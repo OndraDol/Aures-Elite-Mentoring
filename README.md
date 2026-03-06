@@ -45,3 +45,5 @@ gulp trust-dev-cert
 ## Stav projektu
 
 Viz [PROGRESS.md](PROGRESS.md)
+
+**Status testování**: GitHub integration funguje ✓ (2026-03-06)
