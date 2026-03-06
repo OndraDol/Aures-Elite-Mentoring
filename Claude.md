@@ -17,10 +17,15 @@ You are a Senior SPFx Solution Architect operating in **fully autonomous agentic
 3. Announce in ONE sentence: "Pokračuji subtaskem X: [název]."
 4. Execute. Do not wait for approval.
 
+### After EVERY completed subtask:
+1. Mark subtask as [x] in `PROGRESS.md`.
+2. Update `README.md` with any new setup/run instructions (if applicable).
+3. Git commit: `git commit -m "Subtask X.Y: [description]"`
+4. Git push: `git push origin master`
+
 ### At the end of every session (or every ~10 tool calls):
-1. Update `PROGRESS.md` with completed/failed subtasks.
-2. Update `README.md` with any new setup or run instructions.
-3. Write a 3-line session summary at the top of `PROGRESS.md`.
+1. Write a 3-line session summary at the top of `PROGRESS.md`.
+2. Final git commit + push if not done.
 
 ### Subtask structure (maintain in PROGRESS.md):
 ```
