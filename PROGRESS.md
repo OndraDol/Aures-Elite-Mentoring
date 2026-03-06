@@ -1,7 +1,8 @@
 # PROGRESS.md — Aures Elite Mentoring
 
 ## Session Log
-- **2026-03-06**: Prvni session. Analyzovan scaffold (SPFx 1.11), precten Project_overview.md, vytvoren PROGRESS.md, navrzen architektura. Zadny kod.
+- **2026-03-06**: Session 2. Upgrade SPFx 1.11 → 1.18.2, React 16 → 17, TS 4.5, Gulp 3 → 4. Build prochazi. GitHub repo propojeno. Subtasky 0.1–0.3 hotove.
+- **2026-03-06**: Session 1. Analyzovan scaffold (SPFx 1.11), precten Project_overview.md, vytvoren PROGRESS.md, navrzen architektura. Zadny kod.
 
 ---
 
@@ -18,9 +19,9 @@ Scaffold: SPFx **1.11** (CLAUDE.md vyzaduje 1.18+). Pouze default WebPart, zadne
 
 ## Phase 0: Zakladna & Scaffold
 
-- [ ] 0.1 Re-scaffold SPFx na v1.18+ (Node 18, React 17, TypeScript 4.x)
-- [ ] 0.2 Vycistit package.json — sjednotit @pnp/sp v4, odstranit @pnp/common v2
-- [ ] 0.3 Overit Dart Sass (sass) — uz nainstalovany, overit build
+- [x] 0.1 Re-scaffold SPFx na v1.18+ → SPFx 1.18.2, React 17.0.1, TypeScript 4.5.5, Gulp 4.0.2
+- [x] 0.2 Vycistit package.json — sjednotit @pnp/sp v4, odstranit @pnp/common v2
+- [x] 0.3 Overit Dart Sass (sass) — build prosel (gulp build OK)
 - [ ] 0.4 Overit `gulp serve` funguje s cistym scaffoldem
 - [ ] 0.5 Nastavit @pnp/sp inicializaci v WebPart (spfi + SPFx context)
 

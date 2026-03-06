@@ -1,73 +1,47 @@
-# aures-elite-mentoring
+# Aures Elite Mentoring
 
-## Summary
+Exkluzivni SPFx aplikace pro propojovani talentu Aures Holdings s top managementem (mentory). System "Concierge" — plne automatizovany fall-through workflow.
 
-Short summary on functionality and used technologies.
+## Stack
 
-[picture of the solution in action, if possible]
+| Vrstva | Technologie |
+|---|---|
+| Platform | SharePoint Online, SPFx 1.18.2 |
+| Runtime | Node.js v18.20.0 |
+| Framework | React 17.0.1, TypeScript 4.5.5 |
+| Data | @pnp/sp v4 |
+| Styling | Dart Sass + Fluent UI |
 
-## Used SharePoint Framework Version
+## Pozadavky
 
-![version](https://img.shields.io/badge/version-1.11-green.svg)
+- Node.js **v18.20.0** (striktne — v24 nefunguje)
+- npm 10+
 
-## Applies to
+## Instalace
 
-- [SharePoint Framework](https://aka.ms/spfx)
-- [Microsoft 365 tenant](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/set-up-your-developer-tenant)
+```bash
+npm install
+```
 
-> Get your own free development tenant by subscribing to [Microsoft 365 developer program](http://aka.ms/o365devprogram)
+## Prikazy
 
-## Prerequisites
+```bash
+# Lokalni preview (gulp serve — vyzaduje SP Online workbench)
+gulp serve
 
-> Any special pre-requisites?
+# Build pro produkci
+gulp bundle --ship && gulp package-solution --ship
 
-## Solution
+# Fix HTTPS certifikatu
+gulp trust-dev-cert
+```
 
-Solution|Author(s)
---------|---------
-folder name | Author details (name, company, twitter alias with link)
+## Nasazeni
 
-## Version history
+1. Spustit `gulp bundle --ship && gulp package-solution --ship`
+2. Soubor `sharepoint/solution/aures-elite-mentoring.sppkg` predat SHP tymu
+3. SHP tym nahraje do App Catalogu
 
-Version|Date|Comments
--------|----|--------
-1.1|March 10, 2021|Update comment
-1.0|January 29, 2021|Initial release
+## Stav projektu
 
-## Disclaimer
-
-**THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
-
----
-
-## Minimal Path to Awesome
-
-- Clone this repository
-- Ensure that you are at the solution folder
-- in the command-line run:
-  - **npm install**
-  - **gulp serve**
-
-> Include any additional steps as needed.
-
-## Features
-
-Description of the extension that expands upon high-level summary above.
-
-This extension illustrates the following concepts:
-
-- topic 1
-- topic 2
-- topic 3
-
-> Notice that better pictures and documentation will increase the sample usage and the value you are providing for others. Thanks for your submissions advance.
-
-> Share your web part with others through Microsoft 365 Patterns and Practices program to get visibility and exposure. More details on the community, open-source projects and other activities from http://aka.ms/m365pnp.
-
-## References
-
-- [Getting started with SharePoint Framework](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/set-up-your-developer-tenant)
-- [Building for Microsoft teams](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/build-for-teams-overview)
-- [Use Microsoft Graph in your solution](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/get-started/using-microsoft-graph-apis)
-- [Publish SharePoint Framework applications to the Marketplace](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/publish-to-marketplace-overview)
-- [Microsoft 365 Patterns and Practices](https://aka.ms/m365pnp) - Guidance, tooling, samples and open-source controls for your Microsoft 365 development
+Viz [PROGRESS.md](PROGRESS.md)
