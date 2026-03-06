@@ -15,6 +15,7 @@ import { IAuresAppProps } from './components/IAuresAppProps';
 
 export interface IAuresAppWebPartProps {
   description: string;
+  hrEmail: string;
 }
 
 export default class AuresAppWebPart extends BaseClientSideWebPart<IAuresAppWebPartProps> {
@@ -29,7 +30,8 @@ export default class AuresAppWebPart extends BaseClientSideWebPart<IAuresAppWebP
       AuresApp,
       {
         sp: this._sp,
-        context: this.context
+        context: this.context,
+        hrEmail: this.properties.hrEmail ?? ''
       }
     );
 
@@ -57,6 +59,9 @@ export default class AuresAppWebPart extends BaseClientSideWebPart<IAuresAppWebP
               groupFields: [
                 PropertyPaneTextField('description', {
                   label: strings.DescriptionFieldLabel
+                }),
+                PropertyPaneTextField('hrEmail', {
+                  label: 'HR Email (prijemce notifikaci)'
                 })
               ]
             }

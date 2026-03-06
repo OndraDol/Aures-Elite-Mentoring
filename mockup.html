@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aures Elite Mentoring — UI Mockup</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary:      #0078d4;
+      --primary-dark: #005a9e;
+      --bg:           #f3f2f1;
+      --surface:      #ffffff;
+      --border:       #e1dfdd;
+      --text:         #323130;
+      --text-muted:   #605e5c;
+      --error:        #d13438;
+      --success:      #107c10;
+      --r-sm:  4px;
+      --r-md:  8px;
+      --r-pill: 20px;
+      --sh-sm: 0 1px 3px rgba(0,0,0,.08);
+      --sh-md: 0 4px 12px rgba(0,0,0,.12);
+      --sh-lg: 0 8px 24px rgba(0,0,0,.16);
+      --t: all .2s ease;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #e8e6e4;
+      color: var(--text);
+      min-height: 100vh;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* ---- DEMO BAR ---- */
+    .demo-bar {
+      background: #1b1b1b;
+      color: rgba(255,255,255,.55);
+      padding: 9px 24px;
+      font-size: 11px;
+      text-align: center;
+      letter-spacing: .4px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .demo-bar strong { color: #fff; }
+
+    /* ---- APP WRAPPER ---- */
+    .app {
+      max-width: 980px;
+      margin: 20px auto;
+      background: var(--surface);
+      box-shadow: var(--sh-lg);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+
+    /* ---- HEADER ---- */
+    .header {
+      background: linear-gradient(135deg, #0078d4 0%, #004e8c 100%);
+      padding: 22px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header-brand {}
+    .header-title {
+      color: #fff;
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+    .header-subtitle {
+      color: rgba(255,255,255,.65);
+      font-size: 12px;
+      margin-top: 3px;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .user-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    .user-name {
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .role-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 10px;
+      border-radius: var(--r-pill);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      margin-top: 3px;
+    }
+    .role-talent   { background: rgba(255,255,255,.2);   color: #fff; }
+    .role-mentor   { background: rgba(255,200,0,.28);    color: #ffd700; }
+    .role-hr       { background: rgba(100,220,100,.22);  color: #90ee90; }
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    /* ---- ROLE SWITCHER ---- */
+    .role-switcher {
+      background: rgba(0,40,90,.35);
+      padding: 7px 32px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: rgba(255,255,255,.5);
+    }
+    .role-switcher-label { color: rgba(255,255,255,.5); margin-right: 2px; }
+    .role-btn {
+      padding: 3px 13px;
+      border-radius: var(--r-pill);
+      border: 1px solid rgba(255,255,255,.3);
+      background: transparent;
+      color: rgba(255,255,255,.65);
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 600;
+      transition: var(--t);
+      font-family: inherit;
+    }
+    .role-btn:hover { background: rgba(255,255,255,.14); color: #fff; }
+    .role-btn.active {
+      background: rgba(255,255,255,.22);
+      color: #fff;
+      border-color: rgba(255,255,255,.6);
+    }
+
+    /* ---- NAV ---- */
+    .nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 28px;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+    }
+    .nav-tab {
+      padding: 14px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      white-space: nowrap;
+      transition: var(--t);
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+    .nav-tab:hover { color: var(--primary); }
+    .nav-tab.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 700; }
+    .nav-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--error);
+      color: #fff;
+      border-radius: var(--r-pill);
+      font-size: 10px;
+      font-weight: 700;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      margin-left: 7px;
+    }
+
+    /* ---- CONTENT ---- */
+    .content {
+      padding: 28px 32px 40px;
+      background: var(--bg);
+      min-height: 520px;
+    }
+
+    /* ---- VIEWS ---- */
+    .view { animation: fadeUp .22s ease; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---- PAGE HEADER ---- */
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    .page-title {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    /* ---- BUTTONS ---- */
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 9px 20px;
+      border-radius: var(--r-sm);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--t);
+      font-family: inherit;
+    }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 9px 20px;
+      border-radius: var(--r-sm);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--t);
+      font-family: inherit;
+    }
+    .btn-secondary:hover { background: #f0f6fc; border-color: var(--primary); color: var(--primary); }
+    .btn-approve {
+      background: var(--success);
+      color: #fff;
+      border: none;
+      padding: 9px 22px;
+      border-radius: var(--r-sm);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--t);
+      font-family: inherit;
+    }
+    .btn-approve:hover { background: #0b5c0b; }
+    .btn-reject {
+      background: var(--error);
+      color: #fff;
+      border: none;
+      padding: 9px 22px;
+      border-radius: var(--r-sm);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--t);
+      font-family: inherit;
+    }
+    .btn-reject:hover { background: #a4262c; }
+    .btn-back {
+      background: none;
+      border: none;
+      color: var(--primary);
+      font-size: 13px;
+      cursor: pointer;
+      padding: 0;
+      margin-bottom: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: inherit;
+    }
+    .btn-back:hover { text-decoration: underline; }
+
+    /* ---- STATUS BADGES ---- */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 12px;
+      border-radius: var(--r-pill);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .4px;
+    }
+    .s-pending   { background: #fff4ce; color: #7a4f00; }
+    .s-approved  { background: #dff6dd; color: #107c10; }
+    .s-hr        { background: #ffe7e7; color: #d13438; }
+    .s-scheduled { background: #e8f0fe; color: #1a56db; }
+    .s-cancelled { background: #f3f2f1; color: #605e5c; }
+
+    /* ---- MENTOR GRID ---- */
+    .mentor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(264px, 1fr));
+      gap: 18px;
+    }
+    .mentor-card {
+      background: var(--surface);
+      border-radius: var(--r-md);
+      box-shadow: var(--sh-sm);
+      border: 1px solid var(--border);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      transition: var(--t);
+    }
+    .mentor-card:hover {
+      box-shadow: var(--sh-md);
+      transform: translateY(-3px);
+      border-color: #c0bebe;
+    }
+    .mentor-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .mentor-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), #004e8c);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+    .mentor-name { font-size: 15px; font-weight: 700; }
+    .mentor-job  { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .mentor-superpower {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .mentor-bio {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 12px;
+      flex: 1;
+    }
+    .mentor-availability {
+      font-size: 12px;
+      color: var(--success);
+      background: #dff6dd;
+      padding: 4px 10px;
+      border-radius: var(--r-pill);
+      display: inline-block;
+      margin-bottom: 14px;
+    }
+    .mentor-card-actions { margin-top: 4px; }
+    .mentor-card-actions .btn-primary { width: 100%; }
+
+    /* ---- REQUEST LIST ---- */
+    .request-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .request-card {
+      background: var(--surface);
+      border-radius: var(--r-md);
+      box-shadow: var(--sh-sm);
+      border: 1px solid var(--border);
+      padding: 16px 20px;
+    }
+    .request-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .request-title { font-size: 14px; font-weight: 700; }
+    .request-mentors { display: flex; flex-wrap: wrap; gap: 7px; }
+    .mentor-tag {
+      padding: 3px 10px;
+      border-radius: var(--r-pill);
+      font-size: 11px;
+      font-weight: 600;
+      background: #f0f6fc;
+      color: var(--primary);
+      border: 1px solid #c7e0f4;
+    }
+    .mt-approved { background: #dff6dd; color: #107c10; border-color: #b3e6b3; }
+    .mt-rejected { background: #ffe7e7; color: #d13438; border-color: #f5b8b8; }
+    .mt-current  { background: #fff4ce; color: #7a4f00; border-color: #ffe8a1; }
+
+    /* ---- PENDING ROW ---- */
+    .pending-row {
+      background: var(--surface);
+      border-radius: var(--r-md);
+      box-shadow: var(--sh-sm);
+      border: 1px solid var(--border);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: var(--t);
+    }
+    .pending-row:hover { box-shadow: var(--sh-md); transform: translateY(-2px); border-color: #c0bebe; }
+    .pending-row-left { flex: 1; }
+    .pending-row-header { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .talent-name    { font-size: 12px; color: var(--text-muted); margin-bottom: 5px; }
+    .msg-preview    { font-size: 12px; color: var(--text-muted); font-style: italic; }
+    .stage-indicator {
+      padding: 2px 9px;
+      border-radius: var(--r-pill);
+      background: #f0f6fc;
+      color: var(--primary);
+      font-size: 11px;
+      font-weight: 700;
+      border: 1px solid #c7e0f4;
+    }
+    .arrow-icon { color: #c8c6c4; font-size: 26px; margin-left: 16px; }
+
+    /* ---- REQUEST DETAIL ---- */
+    .detail-card {
+      background: var(--surface);
+      border-radius: var(--r-md);
+      box-shadow: var(--sh-sm);
+      border: 1px solid var(--border);
+      padding: 26px;
+      max-width: 620px;
+    }
+    .detail-section { margin-bottom: 22px; }
+    .detail-section:last-child { margin-bottom: 0; }
+    .detail-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      margin-bottom: 6px;
+    }
+    .detail-value { font-size: 16px; font-weight: 700; }
+    .talent-msg {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 13px 16px;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .reject-hint {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 10px;
+      padding: 8px 12px;
+      background: #fff4ce;
+      border-radius: var(--r-sm);
+      border-left: 3px solid #f0b429;
+    }
+    .decision-btns { display: flex; gap: 10px; margin-top: 10px; }
+
+    /* ---- HISTORY ---- */
+    .history-card {
+      background: var(--surface);
+      border-radius: var(--r-md);
+      border: 1px solid var(--border);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .history-title { font-size: 14px; font-weight: 600; }
+    .history-meta  { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
+    .d-badge { padding: 3px 12px; border-radius: var(--r-pill); font-size: 11px; font-weight: 700; }
+    .d-approved { background: #dff6dd; color: #107c10; }
+    .d-rejected { background: #ffe7e7; color: var(--error); }
+
+    /* ---- HR REVIEW ---- */
+    .hr-card {
+      background: var(--surface);
+      border-radius: var(--r-md);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--error);
+      padding: 18px 20px;
+      box-shadow: var(--sh-sm);
+    }
+    .hr-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .hr-talent { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
+    .hr-actions { display: flex; gap: 10px; margin-top: 14px; }
+    .section-hint {
+      font-size: 13px;
+      color: #7a4f00;
+      background: #fffbe6;
+      padding: 10px 14px;
+      border-radius: var(--r-sm);
+      border-left: 3px solid #f0b429;
+      margin-bottom: 20px;
+    }
+
+    /* ---- ALL REQUESTS ---- */
+    .filter-row { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
+    .filter-bar  { display: flex; gap: 6px; flex-wrap: wrap; }
+    .filter-btn {
+      padding: 5px 14px;
+      border-radius: var(--r-pill);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--t);
+      font-family: inherit;
+    }
+    .filter-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .filter-btn-active {
+      padding: 5px 14px;
+      border-radius: var(--r-pill);
+      border: 1px solid var(--primary);
+      background: var(--primary);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .search-input {
+      padding: 7px 14px;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+      font-size: 13px;
+      outline: none;
+      transition: var(--t);
+      min-width: 200px;
+      font-family: inherit;
+    }
+    .search-input:focus { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(0,120,212,.14); }
+    .all-row {
+      background: var(--surface);
+      border-radius: var(--r-md);
+      border: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .all-row-main { display: flex; flex-direction: column; gap: 2px; }
+    .all-row-meta { display: flex; align-items: center; gap: 10px; }
+    .talent-small { font-size: 12px; color: var(--text-muted); }
+
+    /* ---- MANAGEMENT ---- */
+    .mgmt-list { display: flex; flex-direction: column; gap: 10px; }
+    .mgmt-row {
+      background: var(--surface);
+      border-radius: var(--r-md);
+      border: 1px solid var(--border);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: var(--t);
+    }
+    .mgmt-row-inactive { opacity: .52; }
+    .mgmt-info { flex: 1; }
+    .mgmt-name { font-size: 14px; font-weight: 600; }
+    .mgmt-meta { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .active-btn {
+      padding: 5px 16px;
+      border-radius: var(--r-pill);
+      border: 1px solid var(--success);
+      background: #dff6dd;
+      color: var(--success);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .inactive-btn {
+      padding: 5px 16px;
+      border-radius: var(--r-pill);
+      border: 1px solid var(--border);
+      background: #f3f2f1;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .cap-btn {
+      padding: 5px 14px;
+      border-radius: var(--r-sm);
+      border: 1px dashed var(--border);
+      background: transparent;
+      color: var(--text);
+      font-size: 12px;
+      cursor: pointer;
+      transition: var(--t);
+      font-family: inherit;
+    }
+    .cap-btn:hover { border-color: var(--primary); color: var(--primary); background: #f0f6fc; }
+
+    /* ---- CAPACITY DASHBOARD ---- */
+    .cap-list { display: flex; flex-direction: column; gap: 14px; }
+    .cap-row {
+      background: var(--surface);
+      border-radius: var(--r-md);
+      border: 1px solid var(--border);
+      padding: 16px 20px;
+    }
+    .cap-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .cap-stats { display: flex; align-items: center; gap: 12px; }
+    .cap-stat { font-size: 13px; font-weight: 700; }
+    .cap-remaining {
+      font-size: 12px;
+      padding: 2px 10px;
+      border-radius: var(--r-pill);
+      background: #dff6dd;
+      color: var(--success);
+    }
+    .cap-full { background: #ffe7e7; color: var(--error); }
+    .cap-bar-wrap { background: #f3f2f1; border-radius: var(--r-pill); height: 8px; overflow: hidden; }
+    .cap-bar-fill { height: 100%; border-radius: var(--r-pill); transition: width .5s ease; }
+    .bar-ok   { background: linear-gradient(90deg, #107c10, #27ae60); }
+    .bar-high { background: linear-gradient(90deg, #d83b01, #f0a04b); }
+    .bar-full-c { background: linear-gradient(90deg, #d13438, #e87070); }
+
+    /* ---- REQUEST FORM ---- */
+    .form-wrap { max-width: 580px; }
+    .form-sec {
+      background: var(--surface);
+      border-radius: var(--r-md);
+      border: 1px solid var(--border);
+      padding: 20px;
+      margin-bottom: 14px;
+    }
+    .form-sec-title { font-size: 14px; font-weight: 700; margin-bottom: 14px; }
+    .msel-list { display: flex; flex-direction: column; gap: 8px; }
+    .msel-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: var(--t);
+    }
+    .msel-item:hover { border-color: var(--primary); background: #f0f6fc; }
+    .msel-item.checked { border-color: var(--primary); background: #f0f6fc; }
+    .msel-chk { accent-color: var(--primary); width: 16px; height: 16px; flex-shrink: 0; }
+    .msel-info { flex: 1; }
+    .msel-name { font-size: 13px; font-weight: 600; }
+    .msel-job  { font-size: 12px; color: var(--text-muted); }
+    .msg-group { margin-bottom: 14px; }
+    .msg-label { font-size: 12px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display: block; }
+    .msg-textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 10px 12px;
+      font-size: 13px;
+      font-family: inherit;
+      resize: vertical;
+      outline: none;
+      transition: var(--t);
+      color: var(--text);
+      background: var(--surface);
+    }
+    .msg-textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(0,120,212,.12); }
+    .form-actions { display: flex; gap: 10px; align-items: center; }
+
+    /* ---- EMPTY ---- */
+    .empty {
+      text-align: center;
+      padding: 64px 20px;
+      color: var(--text-muted);
+    }
+    .empty p { font-size: 15px; margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <strong>UI MOCKUP</strong> &nbsp;|&nbsp; Aures Elite Mentoring &nbsp;|&nbsp; Klikej na taby, tlacitka a radky. Prepinani role nahore meni cely pohled.
+</div>
+
+<div class="app">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-brand">
+      <div class="header-title">Aures Elite Mentoring</div>
+      <div class="header-subtitle">Aures Holdings &nbsp;·&nbsp; Mentorský program</div>
+    </div>
+    <div class="header-right">
+      <div class="user-info">
+        <div class="user-name" id="hUserName">Markéta Nováková</div>
+        <div class="role-badge role-talent" id="hRoleBadge">Talent</div>
+      </div>
+      <div class="user-avatar" id="hAvatar">MN</div>
+    </div>
+  </div>
+
+  <!-- ROLE SWITCHER -->
+  <div class="role-switcher">
+    <span class="role-switcher-label">Zobrazit jako:</span>
+    <button class="role-btn active" onclick="switchRole('talent')">Talent</button>
+    <button class="role-btn"        onclick="switchRole('mentor')">Mentor</button>
+    <button class="role-btn"        onclick="switchRole('hr')">HR Admin</button>
+  </div>
+
+  <!-- NAV -->
+  <div class="nav" id="nav"></div>
+
+  <!-- CONTENT -->
+  <div class="content" id="content"></div>
+
+</div>
+
+<script>
+// ================================================================
+// DATA
+// ================================================================
+const MENTORS = [
+  { id:1, ini:'JN', name:'Jan Novák',         job:'Chief Operating Officer',   super:'Systémové myšlení pod tlakem',     bio:'17 let v ops managementu. Pomáhám lidem vidět systémy, ne jen problémy. Strukturuji chaos.',                                       avail:'Dostupný od dubna 2026' },
+  { id:2, ini:'PM', name:'Petra Marková',     job:'Chief Financial Officer',    super:'Čísla jako příběh',                bio:'Finanční stratég s přesahem do businessu. Věřím, že každé číslo vypráví příběh o firmě.',                                        avail:'2 místa volná' },
+  { id:3, ini:'TD', name:'Tomáš Dvořák',      job:'VP Sales & Marketing',       super:'Vyjednávání a vliv',               bio:'20 let budování obchodních týmů. Naučím tě jak prodat myšlenku i produkt každému ve firmě.',                                     avail:'' },
+  { id:4, ini:'MH', name:'Michaela Horáková', job:'Chief People Officer',       super:'Lidé jako kompetitivní výhoda',    bio:'HR stratég s fokusem na talent development a organizační kulturu. Pomáhám lidem růst záměrně.',                                  avail:'Dostupná pro 1 talenta' },
+];
+
+const MY_REQUESTS = [
+  { id:1, title:'REQ-2026-001', status:'Pending',   mentors:[{n:'Jan Novák',stage:1,d:null},{n:'Petra Marková',stage:2,d:null}], curStage:1 },
+  { id:2, title:'REQ-2026-002', status:'Approved',  mentors:[{n:'Tomáš Dvořák',stage:1,d:'approved'}],                          curStage:1 },
+  { id:3, title:'REQ-2026-003', status:'HR_Review', mentors:[{n:'Jan Novák',stage:1,d:'rejected'},{n:'Petra Marková',stage:2,d:'rejected'},{n:'Michaela Horáková',stage:3,d:'rejected'}], curStage:3 },
+];
+
+const PENDING = [
+  { id:4, title:'REQ-2026-004', talent:'Jakub Pospíšil',  stage:1, msg:'Chci se od vás naučit systémové řízení projektů. Vidím vás jako ideálního mentora pro svůj rozvoj…' },
+  { id:5, title:'REQ-2026-005', talent:'Anna Blažková',   stage:1, msg:'Zajímá mě pohled COO na škálování týmů. Ráda bych pochopila, jak přemýšlíte o organizaci…' },
+];
+
+const HISTORY = [
+  { id:6, title:'REQ-2026-006', talent:'Ondřej Kratochvíl', stage:1, d:'approved', date:'12. února 2026' },
+  { id:7, title:'REQ-2026-007', talent:'Lucie Horáčková',   stage:1, d:'rejected', date:'28. ledna 2026' },
+  { id:8, title:'REQ-2026-008', talent:'Martin Šimánek',    stage:1, d:'approved', date:'15. ledna 2026' },
+];
+
+const ALL_REQS = [
+  { id:1, title:'REQ-2026-001', talent:'Markéta Nováková',   status:'Pending',   stage:1 },
+  { id:2, title:'REQ-2026-002', talent:'Markéta Nováková',   status:'Approved',  stage:1 },
+  { id:3, title:'REQ-2026-003', talent:'Markéta Nováková',   status:'HR_Review', stage:3 },
+  { id:4, title:'REQ-2026-004', talent:'Jakub Pospíšil',     status:'Pending',   stage:1 },
+  { id:5, title:'REQ-2026-005', talent:'Anna Blažková',      status:'Pending',   stage:1 },
+  { id:6, title:'REQ-2026-006', talent:'Ondřej Kratochvíl',  status:'Approved',  stage:1 },
+  { id:7, title:'REQ-2026-007', talent:'Lucie Horáčková',    status:'Cancelled', stage:1 },
+];
+
+const HR_QUEUE = [
+  { id:3, title:'REQ-2026-003', talent:'Markéta Nováková', mentors:['Jan Novák','Petra Marková','Michaela Horáková'] },
+];
+
+const MENTOR_MGMT = [
+  { id:1, name:'Jan Novák',         job:'Chief Operating Officer',  cap:3, active:true },
+  { id:2, name:'Petra Marková',     job:'Chief Financial Officer',   cap:2, active:true },
+  { id:3, name:'Tomáš Dvořák',      job:'VP Sales & Marketing',      cap:4, active:true },
+  { id:4, name:'Michaela Horáková', job:'Chief People Officer',      cap:1, active:true },
+  { id:5, name:'Tomáš Růžička',     job:'VP Engineering',            cap:3, active:false },
+];
+
+const CAPACITY = [
+  { id:1, name:'Jan Novák',         job:'COO',  cap:3, approved:2 },
+  { id:2, name:'Petra Marková',     job:'CFO',  cap:2, approved:0 },
+  { id:3, name:'Tomáš Dvořák',      job:'VP',   cap:4, approved:1 },
+  { id:4, name:'Michaela Horáková', job:'CPO',  cap:1, approved:1 },
+];
+
+// ================================================================
+// ROLE CONFIG
+// ================================================================
+const ROLES = {
+  talent: {
+    name:'Markéta Nováková', ini:'MN', badgeCls:'role-talent', badgeLbl:'Talent',
+    tabs:[
+      { id:'catalog',    label:'Katalog mentorů' },
+      { id:'myrequests', label:'Moje žádosti' },
+      { id:'newrequest', label:'Nová žádost' },
+    ],
+  },
+  mentor: {
+    name:'Jan Novák', ini:'JN', badgeCls:'role-mentor', badgeLbl:'Mentor',
+    tabs:[
+      { id:'pending', label:'Čekající žádosti', badge:2 },
+      { id:'history', label:'Moje rozhodnutí' },
+    ],
+  },
+  hr: {
+    name:'Tereza Procházková', ini:'TP', badgeCls:'role-hr', badgeLbl:'HR Admin',
+    tabs:[
+      { id:'allreqs',  label:'Všechny žádosti' },
+      { id:'hrqueue',  label:'HR Fronta', badge:1 },
+      { id:'mentormg', label:'Správa mentorů' },
+      { id:'capacity', label:'Kapacitní dashboard' },
+    ],
+  },
+};
+
+let role = 'talent';
+let tab  = 'catalog';
+
+// ================================================================
+// SWITCH ROLE
+// ================================================================
+function switchRole(r) {
+  role = r;
+  tab  = ROLES[r].tabs[0].id;
+  const cfg = ROLES[r];
+
+  document.getElementById('hUserName').textContent  = cfg.name;
+  document.getElementById('hAvatar').textContent    = cfg.ini;
+  const rb = document.getElementById('hRoleBadge');
+  rb.className   = 'role-badge ' + cfg.badgeCls;
+  rb.textContent = cfg.badgeLbl;
+
+  document.querySelectorAll('.role-btn').forEach((b, i) => {
+    b.classList.toggle('active', ['talent','mentor','hr'][i] === r);
+  });
+
+  renderNav();
+  renderContent();
+}
+
+// ================================================================
+// NAV
+// ================================================================
+function renderNav() {
+  document.getElementById('nav').innerHTML = ROLES[role].tabs.map(t => `
+    <div class="nav-tab ${t.id === tab ? 'active' : ''}" onclick="switchTab('${t.id}')">
+      ${t.label}${t.badge ? `<span class="nav-badge">${t.badge}</span>` : ''}
+    </div>
+  `).join('');
+}
+
+function switchTab(t) {
+  tab = t;
+  renderNav();
+  renderContent();
+}
+
+// ================================================================
+// CONTENT ROUTER
+// ================================================================
+function renderContent() {
+  const map = {
+    catalog:    vCatalog,
+    myrequests: vMyRequests,
+    newrequest: vNewRequest,
+    pending:    vPending,
+    history:    vHistory,
+    allreqs:    vAllRequests,
+    hrqueue:    vHRQueue,
+    mentormg:   vMentorMgmt,
+    capacity:   vCapacity,
+  };
+  const c = document.getElementById('content');
+  c.innerHTML = '';
+  const d = document.createElement('div');
+  d.className = 'view';
+  d.innerHTML = (map[tab] || (() => '<p>404</p>'))();
+  c.appendChild(d);
+}
+
+// ================================================================
+// HELPERS
+// ================================================================
+const SL = { Pending:'Čeká na vyjádření', Approved:'Schváleno', HR_Review:'Předáno na HR', Scheduled:'Naplánováno', Cancelled:'Zrušeno' };
+const SC = { Pending:'s-pending', Approved:'s-approved', HR_Review:'s-hr', Scheduled:'s-scheduled', Cancelled:'s-cancelled' };
+
+// ================================================================
+// VIEWS
+// ================================================================
+
+function vCatalog() {
+  return `
+    <div class="page-header"><h2 class="page-title">Katalog mentorů</h2></div>
+    <div class="mentor-grid">
+      ${MENTORS.map(m => `
+        <div class="mentor-card">
+          <div class="mentor-card-header">
+            <div class="mentor-avatar">${m.ini}</div>
+            <div>
+              <div class="mentor-name">${m.name}</div>
+              <div class="mentor-job">${m.job}</div>
+            </div>
+          </div>
+          <div class="mentor-superpower">${m.super}</div>
+          <div class="mentor-bio">${m.bio}</div>
+          ${m.avail ? `<div class="mentor-availability">${m.avail}</div>` : ''}
+          <div class="mentor-card-actions">
+            <button class="btn-primary" onclick="switchTab('newrequest')">Požádat o mentoring</button>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function vMyRequests() {
+  return `
+    <div class="page-header">
+      <h2 class="page-title">Moje žádosti</h2>
+      <button class="btn-primary" onclick="switchTab('catalog')">+ Nová žádost</button>
+    </div>
+    <div class="request-list">
+      ${MY_REQUESTS.map(req => `
+        <div class="request-card">
+          <div class="request-card-header">
+            <span class="request-title">${req.title}</span>
+            <span class="status-badge ${SC[req.status]}">${SL[req.status]}</span>
+          </div>
+          <div class="request-mentors">
+            ${req.mentors.map(m => {
+              let cls = 'mentor-tag';
+              if (m.d === 'approved') cls += ' mt-approved';
+              else if (m.d === 'rejected') cls += ' mt-rejected';
+              else if (req.curStage === m.stage && req.status === 'Pending') cls += ' mt-current';
+              return `<span class="${cls}">#${m.stage} ${m.n}</span>`;
+            }).join('')}
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function vNewRequest() {
+  return `
+    <div class="form-wrap">
+      <h2 class="page-title" style="margin-bottom:22px">Nová žádost o mentoring</h2>
+      <div class="form-sec">
+        <div class="form-sec-title">Výběr mentorů (2 / 3)</div>
+        <div class="msel-list">
+          ${MENTORS.map((m, i) => `
+            <div class="msel-item ${i < 2 ? 'checked' : ''}">
+              <input type="checkbox" class="msel-chk" ${i < 2 ? 'checked' : ''} readonly />
+              <div class="msel-info">
+                <div class="msel-name">${m.name}</div>
+                <div class="msel-job">${m.job} &nbsp;·&nbsp; ${m.super}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+      <div class="form-sec">
+        <div class="form-sec-title">Zprávy mentorům</div>
+        <div class="msg-group">
+          <label class="msg-label">Zpráva pro Jan Novák (#1)</label>
+          <textarea class="msg-textarea" rows="3">Chci se od vás naučit systémové řízení. Obdivuji váš přístup k ops managementu a věřím, že mi pomůžete strukturovat způsob, jakým přemýšlím o složitých problémech.</textarea>
+        </div>
+        <div class="msg-group">
+          <label class="msg-label">Zpráva pro Petra Marková (#2)</label>
+          <textarea class="msg-textarea" rows="3" placeholder="Proč chceš právě Petru jako mentorku…"></textarea>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn-primary" onclick="switchTab('myrequests')">Odeslat žádost</button>
+        <button class="btn-secondary" onclick="switchTab('catalog')">Zpět na katalog</button>
+      </div>
+    </div>
+  `;
+}
+
+function vPending() {
+  return `
+    <div class="page-header"><h2 class="page-title">Čekající žádosti</h2></div>
+    <div class="request-list">
+      ${PENDING.map(req => `
+        <div class="pending-row" onclick="showDetail(${req.id})">
+          <div class="pending-row-left">
+            <div class="pending-row-header">
+              <span class="request-title">${req.title}</span>
+              <span class="stage-indicator">Mentor #${req.stage}</span>
+            </div>
+            <div class="talent-name">${req.talent}</div>
+            <div class="msg-preview">"${req.msg.slice(0,110)}…"</div>
+          </div>
+          <span class="arrow-icon">›</span>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function showDetail(id) {
+  const req = PENDING.find(r => r.id === id);
+  if (!req) return;
+  document.getElementById('content').innerHTML = `
+    <div class="view">
+      <button class="btn-back" onclick="switchTab('pending')">‹ Zpět na seznam</button>
+      <h2 class="page-title" style="margin-bottom:22px">${req.title}</h2>
+      <div class="detail-card">
+        <div class="detail-section">
+          <div class="detail-label">Talent</div>
+          <div class="detail-value">${req.talent}</div>
+        </div>
+        <div class="detail-section">
+          <div class="detail-label">Tvoje pozice v řetězu</div>
+          <span class="stage-indicator">Mentor #${req.stage}</span>
+        </div>
+        <div class="detail-section">
+          <div class="detail-label">Zpráva od talentu</div>
+          <div class="talent-msg">${req.msg} Věřím, že váš mentoring by mi pomohl posunout se výrazně dál.</div>
+        </div>
+        <div class="detail-section">
+          <div class="detail-label">Tvoje rozhodnutí</div>
+          <div class="decision-btns">
+            <button class="btn-approve" onclick="switchTab('pending')">Schválit</button>
+            <button class="btn-reject"  onclick="switchTab('pending')">Zamítnout</button>
+          </div>
+          <div class="reject-hint">Při zamítnutí: žádost bude předána Petře Markové.</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function vHistory() {
+  return `
+    <div class="page-header"><h2 class="page-title">Moje rozhodnutí</h2></div>
+    <div class="request-list">
+      ${HISTORY.map(h => `
+        <div class="history-card">
+          <div>
+            <div class="history-title">${h.title} — ${h.talent}</div>
+            <div class="history-meta">Mentor #${h.stage} &nbsp;·&nbsp; ${h.date}</div>
+          </div>
+          <span class="d-badge ${h.d === 'approved' ? 'd-approved' : 'd-rejected'}">
+            ${h.d === 'approved' ? 'Schváleno' : 'Zamítnuto'}
+          </span>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function vAllRequests() {
+  return `
+    <div class="page-header"><h2 class="page-title">Všechny žádosti (${ALL_REQS.length})</h2></div>
+    <div class="filter-row">
+      <div class="filter-bar">
+        <button class="filter-btn-active">Vše</button>
+        <button class="filter-btn">Čeká</button>
+        <button class="filter-btn">Schváleno</button>
+        <button class="filter-btn">HR Fronta</button>
+        <button class="filter-btn">Naplánováno</button>
+        <button class="filter-btn">Zrušeno</button>
+      </div>
+      <input class="search-input" type="text" placeholder="Hledat talent nebo ID…" />
+    </div>
+    <div class="request-list">
+      ${ALL_REQS.map(r => `
+        <div class="all-row">
+          <div class="all-row-main">
+            <span class="request-title">${r.title}</span>
+            <span class="talent-small">${r.talent}</span>
+          </div>
+          <div class="all-row-meta">
+            <span class="stage-indicator">Stage ${r.stage}</span>
+            <span class="status-badge ${SC[r.status]}">${SL[r.status]}</span>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function vHRQueue() {
+  return `
+    <div class="page-header"><h2 class="page-title">HR Fronta (${HR_QUEUE.length})</h2></div>
+    <div class="section-hint">Žádosti odmítnuté všemi mentory — vyžadují ruční řešení HR.</div>
+    <div class="request-list">
+      ${HR_QUEUE.map(r => `
+        <div class="hr-card">
+          <div class="hr-card-header">
+            <span class="request-title">${r.title}</span>
+            <span class="status-badge s-hr">Předáno na HR</span>
+          </div>
+          <div class="hr-talent">Talent: ${r.talent}</div>
+          <div class="request-mentors">
+            ${r.mentors.map((m,i) => `<span class="mentor-tag mt-rejected">#${i+1} ${m}</span>`).join('')}
+          </div>
+          <div class="hr-actions">
+            <button class="btn-approve">Naplánovat</button>
+            <button class="btn-reject">Zrušit žádost</button>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function vMentorMgmt() {
+  return `
+    <div class="page-header"><h2 class="page-title">Správa mentorů (${MENTOR_MGMT.length})</h2></div>
+    <div class="mgmt-list">
+      ${MENTOR_MGMT.map(m => `
+        <div class="mgmt-row ${!m.active ? 'mgmt-row-inactive' : ''}">
+          <div class="mgmt-info">
+            <div class="mgmt-name">${m.name}</div>
+            <div class="mgmt-meta">${m.job}</div>
+          </div>
+          <button class="cap-btn">Kapacita: ${m.cap}</button>
+          <button class="${m.active ? 'active-btn' : 'inactive-btn'}">${m.active ? 'Aktivní' : 'Neaktivní'}</button>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function vCapacity() {
+  return `
+    <div class="page-header"><h2 class="page-title">Kapacitní dashboard</h2></div>
+    <div class="cap-list">
+      ${CAPACITY.map(m => {
+        const pct = m.cap > 0 ? Math.min(100, Math.round(m.approved / m.cap * 100)) : 100;
+        const barCls = pct >= 100 ? 'bar-full-c' : pct >= 75 ? 'bar-high' : 'bar-ok';
+        const rem = Math.max(0, m.cap - m.approved);
+        return `
+          <div class="cap-row">
+            <div class="cap-top">
+              <div>
+                <div class="mgmt-name">${m.name}</div>
+                <div class="mgmt-meta">${m.job}</div>
+              </div>
+              <div class="cap-stats">
+                <span class="cap-stat">${m.approved} / ${m.cap}</span>
+                <span class="cap-remaining ${rem === 0 ? 'cap-full' : ''}">${rem > 0 ? rem + ' volných' : 'Plno'}</span>
+              </div>
+            </div>
+            <div class="cap-bar-wrap">
+              <div class="cap-bar-fill ${barCls}" style="width:${pct}%"></div>
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+}
+
+// ================================================================
+// INIT
+// ================================================================
+switchRole('talent');
+</script>
+
+</body>
+</html>

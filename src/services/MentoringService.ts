@@ -66,6 +66,24 @@ export class MentoringService {
     return items[0];
   }
 
+  async getMentorById(mentorId: number): Promise<IMentor> {
+    const item: IMentor = await this._sp.web.lists
+      .getByTitle(LIST_MENTORS).items
+      .getById(mentorId)
+      .select(...MENTOR_SELECT)
+      .expand(...MENTOR_EXPAND)();
+    return item;
+  }
+
+  async getAllMentorsForAdmin(): Promise<IMentor[]> {
+    const items: IMentor[] = await this._sp.web.lists
+      .getByTitle(LIST_MENTORS).items
+      .select(...MENTOR_SELECT)
+      .expand(...MENTOR_EXPAND)
+      .orderBy('Title')();
+    return items;
+  }
+
   // ----------------------------------------------------------------
   // Talents
   // ----------------------------------------------------------------
@@ -85,6 +103,24 @@ export class MentoringService {
       .select(...TALENT_SELECT)
       .expand(...TALENT_EXPAND)
       .filter('IsActive eq 1')();
+    return items;
+  }
+
+  async getTalentById(talentId: number): Promise<ITalent> {
+    const item: ITalent = await this._sp.web.lists
+      .getByTitle(LIST_TALENTS).items
+      .getById(talentId)
+      .select(...TALENT_SELECT)
+      .expand(...TALENT_EXPAND)();
+    return item;
+  }
+
+  async getAllTalentsForAdmin(): Promise<ITalent[]> {
+    const items: ITalent[] = await this._sp.web.lists
+      .getByTitle(LIST_TALENTS).items
+      .select(...TALENT_SELECT)
+      .expand(...TALENT_EXPAND)
+      .orderBy('Title')();
     return items;
   }
 
@@ -258,5 +294,12 @@ export class MentoringService {
       .getByTitle(LIST_REQUESTS).items
       .getById(requestId)
       .update({ RequestStatus: status });
+  }
+
+  async setTalentActive(talentId: number, isActive: boolean): Promise<void> {
+    await this._sp.web.lists
+      .getByTitle(LIST_TALENTS).items
+      .getById(talentId)
+      .update({ IsActive: isActive });
   }
 }

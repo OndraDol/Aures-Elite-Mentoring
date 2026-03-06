@@ -36,7 +36,7 @@ Aplikace se chová jako inteligentní průvodce:
 
 # 📂 ULTIMATE MASTER HANDOVER: Aures Elite Mentoring
 
-**Verze dokumentu:** 2.3 (Aktualizace IT constraints) **Datum poslední aktualizace:** 6. března 2026 **Stav projektu:** 🟡 PENDING – čeká se na přípravu SharePoint prostředí ze strany IT (L2)
+**Verze dokumentu:** 2.7 (Phase 7.1–7.3 kompletni) **Datum poslední aktualizace:** 6. března 2026 **Stav projektu:** 🟡 IN PROGRESS — Phase 0–7.3 hotove (UI redesign + lokalizace kompletni), zbyvá Phase 7.4 (production build) a nasazeni pres IT. Ceka se na SP prostredi od IT (L2).
 
 ---
 

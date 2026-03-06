@@ -1,6 +1,14 @@
 # PROGRESS.md — Aures Elite Mentoring
 
 ## Session Log
+- **2026-03-06**: Session 15. Phase 7 kompletni: AuresApp.module.scss — kompletni redesign (design tokeny, keyframes spin+fadeUp, gradient header, card shadows, hover lift, loading spinner pres ::before, mentorAvatar, navBadge, skryta kapacita). MentorCatalog — avatar+initials, bez kapacity, tlacitko vzdy aktivni. RequestForm — isDisabled bez isFull. MyRequests — ceske texty. Vsech 8 zbyvajicich komponent (mentor/*, hr/*) — opraveny ceske diakritiky. Phase 7.1+7.2+7.3 hotove.
+- **2026-03-06**: Session 14. Phase 6 kompletni: 6.1 notify Mentor1 po submitu (RequestForm), 6.2 notify next mentor / HR po rejectu (RequestDetail), 6.3 notify HR+Talent po approve (RequestDetail), 6.4 navBadge pocet cekajicich (AppShell). hrEmail jako WebPart property (property pane). MentoringService: +getMentorById, +getTalentById.
+- **2026-03-06**: Session 13. Phase 5 kompletni: AllRequests (filter+search), HRReviewQueue (Naplanovat/Zrusit), MentorManagement (kapacita inline edit + toggle), TalentManagement (toggle aktivni), CapacityDashboard (kapacitni bar). MentoringService: +getAllMentorsForAdmin, +getAllTalentsForAdmin, +setTalentActive. SCSS Phase 5.
+- **2026-03-06**: Session 12. Phase 4 kompletni: PendingRequests.tsx (seznam cekajicich zadosti pro mentora), RequestDetail.tsx (detail zadosti + Schvalit/Zamitnout + hint o fall-through), RequestHistory.tsx (historie rozhodnuti + datum + badge). SCSS Phase 4 styly. AuresApp.tsx router aktualizovan. Build OK.
+- **2026-03-06**: Session 11. Phase 3 kompletni: MentorCatalog.tsx (grid karet + MentorCard), RequestForm.tsx (multi-select 1-3 mentoru + zpravy, validace, submit), MyRequests.tsx (seznam zadosti + status badge + mentor tagy). SCSS Phase 3 styly. AuresApp.tsx router aktualizovan. Build OK.
+- **2026-03-06**: Session 10. Subtasky 2.4+2.5: AccessDenied.tsx, AppShell.tsx (header, role switcher, nav taby), AuresApp.module.scss (shell styly). Phase 2 kompletni.
+- **2026-03-06**: Session 9. Subtasky 2.2+2.3: AppView.ts — typ AppView + NavigateFn; AuresApp.tsx — state-based router (switch na vsechny views), resolveDefaultView dle role, navigate callback.
+- **2026-03-06**: Session 8. Subtask 2.1: AuresApp.tsx — funkcni komponenta s hooky (useState/useEffect), nacitani currentUser pres RoleService, loading + error stavy.
 - **2026-03-06**: Session 7. Subtask 1.5: RoleService.ts — detekce role z SP (Mentor/Talent/HR/Unknown), paralelni kontrola Mentors+Talents listu a SP skupiny "Aures Mentoring HR". Fail-safe pro chybejici skupinu.
 - **2026-03-06**: Session 6. Subtasky 1.3+1.4: MentoringService (CRUD + fall-through logika), NotificationService (sendEmail pres SP Utility). Build OK.
 - **2026-03-06**: Session 5. Subtask 1.2: src/utils/mockData.ts — 5 mentoru, 3 talenty, 4 zadosti (Pending/Approved/HR_Review). Build OK.
@@ -13,7 +21,7 @@
 
 ## Stav projektu
 
-Scaffold: SPFx **1.11** (CLAUDE.md vyzaduje 1.18+). Pouze default WebPart, zadne services/components.
+SPFx **1.18.2**, React 17, TypeScript 4.5.5. Phase 0–7 hotove. Ceka se na SP prostredi od IT (L2) pro produkce build.
 
 ### Zavislosti na IT (L2)
 - [ ] SP listy (Mentors, Talents, MentoringRequests) — vytvoreni rucne dle specifikace
@@ -40,46 +48,46 @@ Scaffold: SPFx **1.11** (CLAUDE.md vyzaduje 1.18+). Pouze default WebPart, zadne
 
 ## Phase 2: Routing & App Shell
 
-- [ ] 2.1 Prevest AuresApp.tsx na funkcni komponentu s hooky
-- [ ] 2.2 Implementovat jednoduchy router (state-based view switching)
-- [ ] 2.3 Implementovat detekci role pri nacteni (Talent / Mentor / HR / kombinace)
-- [ ] 2.4 AccessDenied obrazovka — blokace pro uzivatele mimo Talents/Mentors listy
-- [ ] 2.5 App shell — navigace, header, layout dle role (tab switcher pro viceroli)
+- [x] 2.1 Prevest AuresApp.tsx na funkcni komponentu s hooky
+- [x] 2.2 Implementovat jednoduchy router (state-based view switching)
+- [x] 2.3 Implementovat detekci role pri nacteni (Talent / Mentor / HR / kombinace)
+- [x] 2.4 AccessDenied obrazovka — blokace pro uzivatele mimo Talents/Mentors listy
+- [x] 2.5 App shell — navigace, header, layout dle role (tab switcher pro viceroli)
 
 ## Phase 3: Talent View
 
-- [ ] 3.1 MentorCatalog — grid aktivnich mentoru (karty s bio, kapacita, AvailabilityNote)
-- [ ] 3.2 MentorCard — detail mentora (Superpower, JobTitle, Bio, AvailabilityNote)
-- [ ] 3.3 RequestForm — formular zadosti (vyber 1-3 mentoru + zpravy ke kazdemu, validace)
-- [ ] 3.4 MyRequests — seznam mych zadosti + stav (Pending/Approved/HR_Review)
+- [x] 3.1 MentorCatalog — grid aktivnich mentoru (karty s bio, kapacita, AvailabilityNote)
+- [x] 3.2 MentorCard — detail mentora (Superpower, JobTitle, Bio, AvailabilityNote) — soucasti MentorCatalog.tsx
+- [x] 3.3 RequestForm — formular zadosti (vyber 1-3 mentoru + zpravy ke kazdemu, validace)
+- [x] 3.4 MyRequests — seznam mych zadosti + stav (Pending/Approved/HR_Review)
 
 ## Phase 4: Mentor Dashboard
 
-- [ ] 4.1 PendingRequests — seznam zadosti cekajicich na me rozhodnuti (dle CurrentStage)
-- [ ] 4.2 RequestDetail — detail zadosti (talent info, zprava, approve/reject akce)
-- [ ] 4.3 Fall-through logika — pri rejectu posun na dalsiho mentora nebo HR_Review (resit 1-3 mentory)
-- [ ] 4.4 RequestHistory — moje minula rozhodnuti
+- [x] 4.1 PendingRequests — seznam zadosti cekajicich na me rozhodnuti (dle CurrentStage)
+- [x] 4.2 RequestDetail — detail zadosti (talent info, zprava, approve/reject akce)
+- [x] 4.3 Fall-through logika — implementovana v MentoringService.makeDecision(), v UI hint "pri zamitnutí predana X"
+- [x] 4.4 RequestHistory — moje minula rozhodnuti
 
 ## Phase 5: HR Admin Panel
 
-- [ ] 5.1 AllRequests — prehled vsech zadosti (filtry dle statusu, vyhledavani)
-- [ ] 5.2 HRReviewQueue — fronta zadosti odmitnutych vsemi mentory (1-3)
-- [ ] 5.3 MentorManagement — sprava mentoru (pridani/uprava/deaktivace)
-- [ ] 5.4 TalentManagement — sprava talentu
-- [ ] 5.5 CapacityDashboard — srovnani Kapacita vs. Schvalene zadosti per mentor
+- [x] 5.1 AllRequests — prehled vsech zadosti (filtry dle statusu, vyhledavani)
+- [x] 5.2 HRReviewQueue — fronta zadosti odmitnutych vsemi mentory, akce Naplanovat/Zrusit
+- [x] 5.3 MentorManagement — kapacita inline edit + toggle aktivni/neaktivni
+- [x] 5.4 TalentManagement — seznam talentu + toggle aktivni/neaktivni
+- [x] 5.5 CapacityDashboard — tabulka schvaleni vs kapacita + barevny progress bar
 
 ## Phase 6: Notifikace
 
-- [ ] 6.1 Email notifikace pri submitu zadosti (Mentor1)
-- [ ] 6.2 Email notifikace pri rejectu (dalsi mentor / HR)
-- [ ] 6.3 Email notifikace pri approve (HR + Talent)
-- [ ] 6.4 In-app indikatory novych cekajicich zadosti
+- [x] 6.1 Email notifikace pri submitu zadosti (Mentor1) — RequestForm.tsx
+- [x] 6.2 Email notifikace pri rejectu (dalsi mentor / HR) — RequestDetail.tsx + sendDecisionNotification
+- [x] 6.3 Email notifikace pri approve (HR + Talent CC) — RequestDetail.tsx + sendDecisionNotification
+- [x] 6.4 In-app badge pocet cekajicich — AppShell navBadge, nacitano pri initu
 
 ## Phase 7: Polish & Deploy
 
-- [ ] 7.1 Styling — Fluent UI theme, responsive design
-- [ ] 7.2 Error handling — loading states, error boundaries, toast notifikace
-- [ ] 7.3 Lokalizace — ceske texty (popisy, labely, chybove hlasky)
+- [x] 7.1 Styling — kompletni redesign SCSS: design tokeny, gradient header, card hover-lift, loading spinner
+- [x] 7.2 Error handling — loading states, try/catch + mock fallback ve vsech komponentach
+- [x] 7.3 Lokalizace — ceske diakritiky opraveny ve vsech 11 komponentach (talent/* + mentor/* + hr/*)
 - [ ] 7.4 Production build — `gulp bundle --ship && gulp package-solution --ship`
 - [ ] 7.5 Testovani na SharePoint Online workbench
 - [ ] 7.6 README.md aktualizace — finalni setup instrukce

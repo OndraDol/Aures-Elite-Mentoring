@@ -46,4 +46,15 @@ gulp trust-dev-cert
 
 Viz [PROGRESS.md](PROGRESS.md)
 
-**Status testování**: GitHub integration funguje ✓ (2026-03-06)
+| Phase | Popis | Status |
+|-------|-------|--------|
+| 0 | Scaffold, build, @pnp/sp inicializace | ✅ Hotovo |
+| 1 | Interfaces, services (Mentoring, Notification, Role), mock data | ✅ Hotovo |
+| 2 | Routing, AppShell, AccessDenied, role detection | ✅ Hotovo |
+| 3 | Talent View — MentorCatalog, RequestForm, MyRequests | ✅ Hotovo |
+| 4 | Mentor Dashboard — PendingRequests, RequestDetail, RequestHistory | ✅ Hotovo |
+| 5 | HR Admin Panel | ✅ Hotovo |
+| 6 | Email notifikace | ✅ Hotovo |
+| 7 | Polish, lokalizace, production build (7.1–7.3 hotovo) | 🟡 In Progress |
+
+**Blocker:** SharePoint listy (Mentors, Talents, MentoringRequests) musi vytvorit IT (L2) rucne dle specifikace v Project_overview.md sekce 3.
