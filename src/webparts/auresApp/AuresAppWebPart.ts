@@ -6,6 +6,8 @@ import {
   PropertyPaneTextField
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
+import { spfi, SPFI } from '@pnp/sp';
+import { SPFx } from '@pnp/sp/behaviors/spfx';
 
 import * as strings from 'AuresAppWebPartStrings';
 import AuresApp from './components/AuresApp';
@@ -16,12 +18,18 @@ export interface IAuresAppWebPartProps {
 }
 
 export default class AuresAppWebPart extends BaseClientSideWebPart<IAuresAppWebPartProps> {
+  private _sp: SPFI;
+
+  protected async onInit(): Promise<void> {
+    this._sp = spfi().using(SPFx(this.context));
+  }
 
   public render(): void {
     const element: React.ReactElement<IAuresAppProps> = React.createElement(
       AuresApp,
       {
-        description: this.properties.description
+        sp: this._sp,
+        context: this.context
       }
     );
 
