@@ -1,6 +1,7 @@
 # PROGRESS.md — Aures Elite Mentoring
 
 ## Session Log
+- **2026-03-06**: Session 4. Subtask 1.1: src/services/interfaces.ts — enums (RequestStatus, StageDecision, UserRole), ISPUser, ISPLookup, IMentor, ITalent, IMentoringRequest, ICurrentUser. Build OK.
 - **2026-03-06**: Session 3. Subtasky 0.4+0.5: gulp build overeno (OK), @pnp/sp inicializace v WebPartu (spfi + SPFx). IAuresAppProps rozsirien o sp:SPFI + context. Build prochazi.
 - **2026-03-06**: Session 2. Upgrade SPFx 1.11 → 1.18.2, React 16 → 17, TS 4.5, Gulp 3 → 4. Build prochazi. GitHub repo propojeno. Subtasky 0.1–0.3 hotove.
 - **2026-03-06**: Session 1. Analyzovan scaffold (SPFx 1.11), precten Project_overview.md, vytvoren PROGRESS.md, navrzen architektura. Zadny kod.
@@ -28,7 +29,7 @@ Scaffold: SPFx **1.11** (CLAUDE.md vyzaduje 1.18+). Pouze default WebPart, zadne
 
 ## Phase 1: Core Infrastructure
 
-- [ ] 1.1 Vytvorit `src/services/interfaces.ts` — IMentor (vcetne AvailabilityNote), ITalent, IMentoringRequest, enums (RequestStatus, StageDecision, UserRole)
+- [x] 1.1 Vytvorit `src/services/interfaces.ts` — IMentor (vcetne AvailabilityNote), ITalent, IMentoringRequest, enums (RequestStatus, StageDecision, UserRole)
 - [ ] 1.2 Vytvorit `src/utils/mockData.ts` — mock data pro lokalni vyvoj
 - [ ] 1.3 Vytvorit `src/services/MentoringService.ts` — CRUD operace nad 3 SP listy
 - [ ] 1.4 Vytvorit `src/services/NotificationService.ts` — email notifikace pres SP Utility (SendEmail)
