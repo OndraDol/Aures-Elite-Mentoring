@@ -1,6 +1,7 @@
 # PROGRESS.md — Aures Elite Mentoring
 
 ## Session Log
+- **2026-03-06**: Session 6. Subtasky 1.3+1.4: MentoringService (CRUD + fall-through logika), NotificationService (sendEmail pres SP Utility). Build OK.
 - **2026-03-06**: Session 5. Subtask 1.2: src/utils/mockData.ts — 5 mentoru, 3 talenty, 4 zadosti (Pending/Approved/HR_Review). Build OK.
 - **2026-03-06**: Session 4. Subtask 1.1: src/services/interfaces.ts — enums (RequestStatus, StageDecision, UserRole), ISPUser, ISPLookup, IMentor, ITalent, IMentoringRequest, ICurrentUser. Build OK.
 - **2026-03-06**: Session 3. Subtasky 0.4+0.5: gulp build overeno (OK), @pnp/sp inicializace v WebPartu (spfi + SPFx). IAuresAppProps rozsirien o sp:SPFI + context. Build prochazi.
@@ -32,8 +33,8 @@ Scaffold: SPFx **1.11** (CLAUDE.md vyzaduje 1.18+). Pouze default WebPart, zadne
 
 - [x] 1.1 Vytvorit `src/services/interfaces.ts` — IMentor (vcetne AvailabilityNote), ITalent, IMentoringRequest, enums (RequestStatus, StageDecision, UserRole)
 - [x] 1.2 Vytvorit `src/utils/mockData.ts` — mock data pro lokalni vyvoj
-- [ ] 1.3 Vytvorit `src/services/MentoringService.ts` — CRUD operace nad 3 SP listy
-- [ ] 1.4 Vytvorit `src/services/NotificationService.ts` — email notifikace pres SP Utility (SendEmail)
+- [x] 1.3 Vytvorit `src/services/MentoringService.ts` — CRUD operace nad 3 SP listy
+- [x] 1.4 Vytvorit `src/services/NotificationService.ts` — email notifikace pres SP Utility (SendEmail)
 - [ ] 1.5 Vytvorit `src/services/RoleService.ts` — detekce role (porovnani current user vs Mentors/Talents list)
 
 ## Phase 2: Routing & App Shell
