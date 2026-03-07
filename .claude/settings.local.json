@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx gulp build --color)",
+      "Bash(npx gulp build)"
+    ]
+  }
+}

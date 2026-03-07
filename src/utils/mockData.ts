@@ -20,7 +20,8 @@ export const MOCK_MENTORS: IMentor[] = [
     Superpower: 'Strategicke mysleni a rozvoj lidi',
     Bio: 'Jan je CEO Aures Holdings s 20 lety zkusenosti v automobilovem prumyslu. Specializuje se na strategicky rust a budovani leadership tymu.',
     Capacity: 2,
-    AvailabilityNote: 'Dostupny uterni odpoledne',
+    AvailabilityNote: '',
+    PhotoUrl: '',
     IsActive: true
   },
   {
@@ -31,7 +32,8 @@ export const MOCK_MENTORS: IMentor[] = [
     Superpower: 'Financni strategie a rizeni nakladovosti',
     Bio: 'Petra ridi finance skupiny Aures Holdings. Pomaha talentum pochopit business logiku a financni aspekty rozhodovani.',
     Capacity: 3,
-    AvailabilityNote: 'Po domluve, preferuje ranni hodiny',
+    AvailabilityNote: '',
+    PhotoUrl: '',
     IsActive: true
   },
   {
@@ -42,7 +44,8 @@ export const MOCK_MENTORS: IMentor[] = [
     Superpower: 'Operativni excelence a procesni zleprovani',
     Bio: 'Martin je zodpovedny za operace ve vsech pobockach. Specialista na lean management a efektivitu procesu.',
     Capacity: 2,
-    AvailabilityNote: 'Plna kapacita — momentalne neprijima nove zadosti',
+    AvailabilityNote: '',
+    PhotoUrl: '',
     IsActive: true
   },
   {
@@ -54,6 +57,7 @@ export const MOCK_MENTORS: IMentor[] = [
     Bio: 'Lucie buduje znacku Aures po 10 let. Mentoruje v oblasti marketingu, prezentace a karierni prezentace.',
     Capacity: 4,
     AvailabilityNote: '',
+    PhotoUrl: '',
     IsActive: true
   },
   {
@@ -64,7 +68,8 @@ export const MOCK_MENTORS: IMentor[] = [
     Superpower: 'Obchodni strategie a rozvoj tymu',
     Bio: 'Tomas vede obchodni tym Aures. Mentoruje v oblasti vyjednavani, prodejnich dovednosti a rizeni vztahu se zakazniky.',
     Capacity: 3,
-    AvailabilityNote: 'Dostupny stredecni dopoledne',
+    AvailabilityNote: '',
+    PhotoUrl: '',
     IsActive: false
   }
 ];

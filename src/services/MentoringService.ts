@@ -15,7 +15,7 @@ const LIST_MENTORS   = 'Mentors';
 const LIST_TALENTS   = 'Talents';
 const LIST_REQUESTS  = 'MentoringRequests';
 
-const MENTOR_SELECT  = ['Id', 'Title', 'JobTitle', 'Superpower', 'Bio', 'Capacity', 'AvailabilityNote', 'IsActive',
+const MENTOR_SELECT  = ['Id', 'Title', 'JobTitle', 'Superpower', 'Bio', 'Capacity', 'AvailabilityNote', 'PhotoUrl', 'IsActive',
                         'MentorUser/Id', 'MentorUser/Title', 'MentorUser/EMail'];
 const MENTOR_EXPAND  = ['MentorUser'];
 
@@ -301,5 +301,65 @@ export class MentoringService {
       .getByTitle(LIST_TALENTS).items
       .getById(talentId)
       .update({ IsActive: isActive });
+  }
+
+  async addMentor(data: {
+    Title: string;
+    MentorUserId: number;
+    JobTitle: string;
+    Superpower: string;
+    Bio: string;
+    Capacity: number;
+    PhotoUrl: string;
+  }): Promise<number> {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const result: any = await this._sp.web.lists
+      .getByTitle(LIST_MENTORS).items.add({
+        ...data,
+        IsActive: true,
+        AvailabilityNote: ''
+      });
+    return result?.Id ?? result?.data?.Id;
+  }
+
+  async updateMentor(mentorId: number, data: Partial<{
+    Title: string;
+    JobTitle: string;
+    Superpower: string;
+    Bio: string;
+    Capacity: number;
+    PhotoUrl: string;
+  }>): Promise<void> {
+    await this._sp.web.lists
+      .getByTitle(LIST_MENTORS).items
+      .getById(mentorId)
+      .update(data);
+  }
+
+  async deleteMentor(mentorId: number): Promise<void> {
+    await this._sp.web.lists
+      .getByTitle(LIST_MENTORS).items
+      .getById(mentorId)
+      .delete();
+  }
+
+  async deleteRequest(requestId: number): Promise<void> {
+    await this._sp.web.lists
+      .getByTitle(LIST_REQUESTS).items
+      .getById(requestId)
+      .delete();
+  }
+
+  async cancelAllRequestsForTalent(talentId: number): Promise<void> {
+    const active = await this._sp.web.lists
+      .getByTitle(LIST_REQUESTS).items
+      .filter(`TalentRefId eq ${talentId} and (RequestStatus eq 'Pending' or RequestStatus eq 'HR_Review')`)
+      .select('Id')();
+    for (const item of active) {
+      await this._sp.web.lists
+        .getByTitle(LIST_REQUESTS).items
+        .getById(item.Id)
+        .update({ RequestStatus: RequestStatus.Cancelled });
+    }
   }
 }

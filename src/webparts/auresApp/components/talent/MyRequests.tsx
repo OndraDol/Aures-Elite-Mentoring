@@ -12,23 +12,7 @@ interface IMyRequestsProps {
   navigate: NavigateFn;
 }
 
-const STATUS_LABEL: Record<RequestStatus, string> = {
-  [RequestStatus.Pending]:   'Čeká na vyjádření',
-  [RequestStatus.Approved]:  'Schváleno',
-  [RequestStatus.HR_Review]: 'Předáno na HR',
-  [RequestStatus.Scheduled]: 'Naplánováno',
-  [RequestStatus.Cancelled]: 'Zrušeno'
-};
-
-const STATUS_CLASS: Record<RequestStatus, string> = {
-  [RequestStatus.Pending]:   styles.statusPending,
-  [RequestStatus.Approved]:  styles.statusApproved,
-  [RequestStatus.HR_Review]: styles.statusHR,
-  [RequestStatus.Scheduled]: styles.statusScheduled,
-  [RequestStatus.Cancelled]: styles.statusCancelled
-};
-
-const MyRequests: React.FC<IMyRequestsProps> = ({ sp, currentUser, navigate }) => {
+const MyRequests: React.FC<IMyRequestsProps> = ({ sp, currentUser }) => {
   const [requests, setRequests] = React.useState<IMentoringRequest[]>([]);
   const [loading, setLoading]   = React.useState(true);
 
@@ -47,38 +31,27 @@ const MyRequests: React.FC<IMyRequestsProps> = ({ sp, currentUser, navigate }) =
 
   if (loading) return <div className={styles.loading}>Načítám žádosti…</div>;
 
+  if (requests.length === 0) {
+    return (
+      <div className={styles.emptyState}>
+        <p>Zatím nemáš žádné žádosti o mentoring.</p>
+      </div>
+    );
+  }
+
   return (
     <div>
-      <div className={styles.pageHeader}>
-        <h2 className={styles.pageTitle}>Moje žádosti</h2>
-        <button className={styles.btnPrimary} onClick={() => navigate('MentorCatalog')}>
-          + Nová žádost
-        </button>
+      <h2 className={styles.pageTitle}>Moje žádosti</h2>
+      <div className={styles.requestList}>
+        {requests.map(req => <RequestCard key={req.Id} request={req} />)}
       </div>
-
-      {requests.length === 0 ? (
-        <div className={styles.emptyState}>
-          <p>Zatím nemáš žádné žádosti o mentoring.</p>
-          <button
-            className={styles.btnPrimary}
-            style={{ marginTop: 16 }}
-            onClick={() => navigate('MentorCatalog')}
-          >
-            Vybrat mentora
-          </button>
-        </div>
-      ) : (
-        <div className={styles.requestList}>
-          {requests.map(req => <RequestRow key={req.Id} request={req} />)}
-        </div>
-      )}
     </div>
   );
 };
 
-interface IRequestRowProps { request: IMentoringRequest; }
+interface IRequestCardProps { request: IMentoringRequest; }
 
-const RequestRow: React.FC<IRequestRowProps> = ({ request }) => {
+const RequestCard: React.FC<IRequestCardProps> = ({ request }) => {
   const stages: { mentor: ISPLookup; stage: 1 | 2 | 3 }[] = (
     [
       { mentor: request.Mentor1Ref, stage: 1 as const },
@@ -87,36 +60,54 @@ const RequestRow: React.FC<IRequestRowProps> = ({ request }) => {
     ] as { mentor: ISPLookup | undefined; stage: 1 | 2 | 3 }[]
   ).filter((s): s is { mentor: ISPLookup; stage: 1 | 2 | 3 } => s.mentor != null);
 
-  const getDecision = (stage: 1 | 2 | 3) => {
+  const getDecision = (stage: 1 | 2 | 3): StageDecision | undefined => {
     if (stage === 1) return request.Stage1Decision;
     if (stage === 2) return request.Stage2Decision;
     return request.Stage3Decision;
   };
 
-  const getMentorTagClass = (stage: 1 | 2 | 3): string => {
-    const d = getDecision(stage);
-    if (d === StageDecision.Approved) return [styles.mentorTag, styles.mentorTagApproved].join(' ');
-    if (d === StageDecision.Rejected) return [styles.mentorTag, styles.mentorTagRejected].join(' ');
-    if (request.CurrentStage === stage && request.RequestStatus === RequestStatus.Pending)
-      return [styles.mentorTag, styles.mentorTagCurrent].join(' ');
-    return styles.mentorTag;
+  const getMentorStatus = (stage: 1 | 2 | 3): { label: string; className: string } => {
+    const decision = getDecision(stage);
+
+    if (request.RequestStatus === RequestStatus.Approved && decision === StageDecision.Approved) {
+      return { label: 'Schváleno', className: styles.statusApproved };
+    }
+    if (decision === StageDecision.Rejected) {
+      return { label: 'Zamítnuto', className: styles.statusCancelled };
+    }
+    if (request.CurrentStage === stage && request.RequestStatus === RequestStatus.Pending) {
+      return { label: 'Čeká na schválení', className: styles.statusPending };
+    }
+    if (stage > request.CurrentStage && request.RequestStatus === RequestStatus.Pending) {
+      return { label: 'Ve frontě', className: styles.statusQueued };
+    }
+    if (request.RequestStatus === RequestStatus.HR_Review) {
+      return { label: 'Předáno na HR', className: styles.statusHR };
+    }
+    if (request.RequestStatus === RequestStatus.Scheduled) {
+      return { label: 'Naplánováno', className: styles.statusScheduled };
+    }
+    if (request.RequestStatus === RequestStatus.Cancelled) {
+      return { label: 'Zrušeno', className: styles.statusCancelled };
+    }
+    return { label: 'Čeká', className: styles.statusPending };
   };
 
   return (
     <div className={styles.requestCard}>
-      <div className={styles.requestCardHeader}>
-        <p className={styles.requestTitle}>{request.Title}</p>
-        <span className={[styles.statusBadge, STATUS_CLASS[request.RequestStatus]].join(' ')}>
-          {STATUS_LABEL[request.RequestStatus]}
-        </span>
-      </div>
-      <div className={styles.requestMentors}>
-        {stages.map(({ mentor, stage }) => (
-          <span key={stage} className={getMentorTagClass(stage)}>
-            #{stage} {mentor.Title}
-          </span>
-        ))}
-      </div>
+      {stages.map(({ mentor, stage }) => {
+        const status = getMentorStatus(stage);
+        return (
+          <div key={stage} className={styles.myRequestMentorRow}>
+            <span className={styles.myRequestMentorName}>
+              Mentoring od {mentor.Title}
+            </span>
+            <span className={[styles.statusBadge, status.className].join(' ')}>
+              {status.label}
+            </span>
+          </div>
+        );
+      })}
     </div>
   );
 };

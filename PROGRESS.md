@@ -1,6 +1,8 @@
 # PROGRESS.md — Aures Elite Mentoring
 
 ## Session Log
+- **2026-03-07**: Session 17. Phase 8 — Major UX redesign dle pozadavku vlastnika. MentorCatalog: odebrany kapacitni info. RequestForm: primarni mentor prominentne zobrazen, sekundarni/terciarni v tabulce, nepovinne zpravy. MyRequests: "Mentoring od XY" s per-mentor statusy (Ceka/Ve fronte/Schvaleno). Talent taby: dynamicke (Katalog / Moje zadosti / Zmena volby). HR taby: "Ceka" (pending+HR_Review s admin akcemi Schvalit/Zrusit) + "Domluvene mentoringy" (approved pary). MentorManagement: plny CRUD (pridat/upravit/smazat mentora). Nove komponenty: ResetChoice.tsx, ApprovedMentorings.tsx. MentoringService: +addMentor, +updateMentor, +deleteMentor, +deleteRequest, +cancelAllRequestsForTalent. IMentor: +PhotoUrl. Mockup.html aktualizovan. Build OK.
+- **2026-03-07**: Session 16. Premium UI/UX overhaul v8: Navy+Gold+Glassmorphism design system. SCSS kompletne prepsany — nove tokeny ($navy, $gold, blue-tinted shadows, $ease-out krivky), gold accent stripe pod headerem, frosted glass efekty, gold ring na avatarech, gold active indicator na tabech, shimmer/pulseGold animace, refined typografie. AppShell.tsx — logo placeholder (diamond motif), split title "AURES ELITE MENTORING" se zlatym akcentem. Build OK.
 - **2026-03-06**: Session 15. Phase 7 kompletni: AuresApp.module.scss — kompletni redesign (design tokeny, keyframes spin+fadeUp, gradient header, card shadows, hover lift, loading spinner pres ::before, mentorAvatar, navBadge, skryta kapacita). MentorCatalog — avatar+initials, bez kapacity, tlacitko vzdy aktivni. RequestForm — isDisabled bez isFull. MyRequests — ceske texty. Vsech 8 zbyvajicich komponent (mentor/*, hr/*) — opraveny ceske diakritiky. Phase 7.1+7.2+7.3 hotove.
 - **2026-03-06**: Session 14. Phase 6 kompletni: 6.1 notify Mentor1 po submitu (RequestForm), 6.2 notify next mentor / HR po rejectu (RequestDetail), 6.3 notify HR+Talent po approve (RequestDetail), 6.4 navBadge pocet cekajicich (AppShell). hrEmail jako WebPart property (property pane). MentoringService: +getMentorById, +getTalentById.
 - **2026-03-06**: Session 13. Phase 5 kompletni: AllRequests (filter+search), HRReviewQueue (Naplanovat/Zrusit), MentorManagement (kapacita inline edit + toggle), TalentManagement (toggle aktivni), CapacityDashboard (kapacitni bar). MentoringService: +getAllMentorsForAdmin, +getAllTalentsForAdmin, +setTalentActive. SCSS Phase 5.
@@ -21,7 +23,7 @@
 
 ## Stav projektu
 
-SPFx **1.18.2**, React 17, TypeScript 4.5.5. Phase 0–7 hotove. Ceka se na SP prostredi od IT (L2) pro produkce build.
+SPFx **1.18.2**, React 17, TypeScript 4.5.5. Phase 0–8 hotove. Ceka se na SP prostredi od IT (L2) pro produkce build.
 
 ### Zavislosti na IT (L2)
 - [ ] SP listy (Mentors, Talents, MentoringRequests) — vytvoreni rucne dle specifikace
@@ -85,9 +87,24 @@ SPFx **1.18.2**, React 17, TypeScript 4.5.5. Phase 0–7 hotove. Ceka se na SP p
 
 ## Phase 7: Polish & Deploy
 
-- [x] 7.1 Styling — kompletni redesign SCSS: design tokeny, gradient header, card hover-lift, loading spinner
+- [x] 7.1 Styling — Premium UI/UX overhaul v8: Navy+Gold+Glassmorphism, gold accents, frosted glass, refined typography, premium animations
 - [x] 7.2 Error handling — loading states, try/catch + mock fallback ve vsech komponentach
 - [x] 7.3 Lokalizace — ceske diakritiky opraveny ve vsech 11 komponentach (talent/* + mentor/* + hr/*)
 - [ ] 7.4 Production build — `gulp bundle --ship && gulp package-solution --ship`
 - [ ] 7.5 Testovani na SharePoint Online workbench
 - [ ] 7.6 README.md aktualizace — finalni setup instrukce
+
+## Phase 8: UX Redesign (vlastnik pozadavky)
+
+- [x] 8.1 MentorCatalog — odebrana kapacitni info (AvailabilityNote)
+- [x] 8.2 RequestForm — primarni mentor prominentne, sekundarni/terciarni tabulka, nepovinne zpravy
+- [x] 8.3 MyRequests — "Mentoring od XY" s per-mentor statusy (Ceka na schvaleni / Ve fronte / Schvaleno / Zamitnuto)
+- [x] 8.4 Talent taby — dynamicke dle existence zadosti (Katalog | Moje zadosti + Zmena volby)
+- [x] 8.5 ResetChoice — stránka pro reset volby mentora (zruseni vsech aktivnich zadosti)
+- [x] 8.6 HR AllRequests — "Ceka" tab s jmenem talenta+mentora, srozumitelnymi statusy, HR admin akcemi (Schvalit/Zrusit)
+- [x] 8.7 ApprovedMentorings — "Domluvene mentoringy" tab pro schvalene pary
+- [x] 8.8 MentorManagement CRUD — pridat/upravit/smazat mentora (vcetne PhotoUrl)
+- [x] 8.9 MentoringService — nove metody (addMentor, updateMentor, deleteMentor, deleteRequest, cancelAllRequestsForTalent)
+- [x] 8.10 IMentor interface — pridáno PhotoUrl pole
+- [x] 8.11 Mockup.html — aktualizovan dle noveho designu
+- [x] 8.12 SCSS — nove styly pro vsechny Phase 8 komponenty

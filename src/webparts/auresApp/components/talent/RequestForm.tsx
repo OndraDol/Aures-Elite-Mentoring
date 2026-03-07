@@ -14,17 +14,14 @@ interface IRequestFormProps {
   preselectedMentorId?: number;
 }
 
-const MAX_MENTORS = 3;
-
 const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, preselectedMentorId }) => {
   const [mentors, setMentors]       = React.useState<IMentor[]>([]);
   const [loading, setLoading]       = React.useState(true);
   const [submitting, setSubmitting] = React.useState(false);
   const [error, setError]           = React.useState<string | null>(null);
 
-  const [selectedIds, setSelectedIds] = React.useState<number[]>(
-    preselectedMentorId ? [preselectedMentorId] : []
-  );
+  const [secondaryId, setSecondaryId] = React.useState<number | null>(null);
+  const [tertiaryId, setTertiaryId]   = React.useState<number | null>(null);
   const [messages, setMessages] = React.useState<Record<number, string>>({});
 
   React.useEffect(() => {
@@ -34,49 +31,39 @@ const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, p
       .finally(() => setLoading(false));
   }, [sp]);
 
-  const toggleMentor = (mentorId: number): void => {
-    setSelectedIds(prev => {
-      if (prev.includes(mentorId)) return prev.filter(id => id !== mentorId);
-      if (prev.length >= MAX_MENTORS) return prev;
-      return [...prev, mentorId];
-    });
-  };
-
   const setMessage = (mentorId: number, msg: string): void => {
     setMessages(prev => ({ ...prev, [mentorId]: msg }));
   };
 
-  const canSubmit = (): boolean => {
-    if (selectedIds.length === 0) return false;
-    return selectedIds.every(id => (messages[id] ?? '').trim().length > 0);
-  };
-
   const handleSubmit = async (): Promise<void> => {
-    if (!canSubmit()) {
-      setError('Vyber alespoň jednoho mentora a vyplň zprávu pro každého z nich.');
+    if (!preselectedMentorId) {
+      setError('Nebyl zvolen primární mentor.');
       return;
     }
     setError(null);
     setSubmitting(true);
     try {
       const talentId = currentUser.talentRecord?.Id ?? 0;
-      const mentorIds: [number, number?, number?] = [selectedIds[0], selectedIds[1], selectedIds[2]];
+      const mentorIds: [number, number?, number?] = [
+        preselectedMentorId,
+        secondaryId ?? undefined,
+        tertiaryId ?? undefined
+      ];
       const msgs: [string, string?, string?] = [
-        (messages[selectedIds[0]] ?? '').trim(),
-        selectedIds[1] != null ? (messages[selectedIds[1]] ?? '').trim() : undefined,
-        selectedIds[2] != null ? (messages[selectedIds[2]] ?? '').trim() : undefined
+        (messages[preselectedMentorId] ?? '').trim(),
+        secondaryId != null ? (messages[secondaryId] ?? '').trim() : undefined,
+        tertiaryId != null ? (messages[tertiaryId] ?? '').trim() : undefined
       ];
       const newId = await new MentoringService(sp).submitRequest(talentId, mentorIds, msgs);
-      // 6.1 — notifikuj Mentora 1 (best-effort)
       void (async () => {
         try {
-          const mentor1 = mentors.find(m => m.Id === selectedIds[0]);
+          const mentor1 = mentors.find(m => m.Id === preselectedMentorId);
           if (mentor1 && currentUser.talentRecord) {
             await new NotificationService(sp).notifyMentorOnSubmit(
               mentor1, currentUser.talentRecord, newId, `REQ-2026-${newId}`
             );
           }
-        } catch { /* notifikace je best-effort */ }
+        } catch { /* best-effort */ }
       })();
       navigate('MyRequests');
     } catch {
@@ -88,80 +75,169 @@ const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, p
 
   if (loading) return <div className={styles.loading}>Načítám mentory…</div>;
 
-  const selectedMentors = selectedIds
-    .map(id => mentors.find(m => m.Id === id))
-    .filter((m): m is IMentor => m != null);
+  const primaryMentor = mentors.find(m => m.Id === preselectedMentorId);
+  const otherMentors = mentors.filter(m => m.Id !== preselectedMentorId);
+
+  if (!primaryMentor) {
+    return (
+      <div className={styles.emptyState}>
+        <p>Mentor nebyl nalezen.</p>
+        <button className={styles.btnPrimary} onClick={() => navigate('MentorCatalog')}>
+          Zpět na katalog
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.requestForm}>
       <h2 className={styles.pageTitle}>Nová žádost o mentoring</h2>
 
-      {/* 1. Výběr mentorů */}
+      {/* 1. Primary Mentor — prominent */}
       <div className={styles.formSection}>
-        <h3 className={styles.formSectionTitle}>
-          Výběr mentorů ({selectedIds.length}/{MAX_MENTORS})
-        </h3>
-        <div className={styles.mentorSelectList}>
-          {mentors.map(mentor => {
-            const isChecked  = selectedIds.includes(mentor.Id);
-            const isDisabled = !isChecked && selectedIds.length >= MAX_MENTORS;
-
-            return (
-              <div
-                key={mentor.Id}
-                className={[
-                  styles.mentorSelectItem,
-                  isChecked  ? styles.mentorSelectItemChecked : '',
-                  isDisabled ? styles.mentorSelectDisabled    : ''
-                ].filter(Boolean).join(' ')}
-                onClick={() => { if (!isDisabled) toggleMentor(mentor.Id); }}
-              >
-                <input
-                  type="checkbox"
-                  className={styles.mentorSelectCheckbox}
-                  checked={isChecked}
-                  disabled={isDisabled}
-                  onChange={() => { if (!isDisabled) toggleMentor(mentor.Id); }}
-                />
-                <div className={styles.mentorSelectInfo}>
-                  <p className={styles.mentorSelectName}>{mentor.Title}</p>
-                  <p className={styles.mentorSelectJobTitle}>
-                    {mentor.JobTitle} · {mentor.Superpower}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
+        <h3 className={styles.formSectionTitle}>Tvůj vybraný mentor</h3>
+        <div className={styles.primaryMentorCard}>
+          <div className={styles.primaryMentorHeader}>
+            <div className={styles.primaryMentorAvatar}>{getInitials(primaryMentor.Title)}</div>
+            <div className={styles.primaryMentorInfo}>
+              <p className={styles.primaryMentorName}>{primaryMentor.Title}</p>
+              <p className={styles.primaryMentorJobTitle}>{primaryMentor.JobTitle}</p>
+              <p className={styles.primaryMentorSuperpower}>{primaryMentor.Superpower}</p>
+            </div>
+            <span className={styles.primaryMentorBadge}>Primární mentor</span>
+          </div>
+          <p className={styles.primaryMentorBio}>{primaryMentor.Bio}</p>
         </div>
       </div>
 
-      {/* 2. Zprávy pro vybrané mentory */}
-      {selectedMentors.length > 0 && (
+      {/* 2. Backup mentors */}
+      {otherMentors.length > 0 && (
         <div className={styles.formSection}>
-          <h3 className={styles.formSectionTitle}>Zprávy mentorům</h3>
-          {selectedMentors.map((mentor, idx) => (
-            <div key={mentor.Id} className={styles.messageGroup}>
-              <label className={styles.messageLabel}>
-                Zpráva pro {mentor.Title} (#{idx + 1})
-              </label>
-              <textarea
-                className={styles.messageTextarea}
-                value={messages[mentor.Id] ?? ''}
-                onChange={e => setMessage(mentor.Id, e.target.value)}
-                placeholder={`Proč chceš právě ${mentor.Title} jako mentora…`}
-                rows={4}
-              />
-            </div>
-          ))}
+          <h3 className={styles.formSectionTitle}>Záložní mentoři</h3>
+          <p className={styles.formSectionHint}>
+            Pokud vybraný mentor nebude mít kapacitu, systém automaticky osloví záložního mentora.
+            Vyber si sekundárního a případně terciálního mentora.
+          </p>
+          <div className={styles.backupMentorList}>
+            {otherMentors.map(mentor => {
+              const isSecondary = secondaryId === mentor.Id;
+              const isTertiary = tertiaryId === mentor.Id;
+              const isSelected = isSecondary || isTertiary;
+
+              return (
+                <div
+                  key={mentor.Id}
+                  className={[
+                    styles.backupMentorRow,
+                    isSelected ? styles.backupMentorRowSelected : ''
+                  ].filter(Boolean).join(' ')}
+                >
+                  <div className={styles.backupMentorInfo}>
+                    <div className={styles.mentorAvatar}>{getInitials(mentor.Title)}</div>
+                    <div>
+                      <p className={styles.mentorSelectName}>{mentor.Title}</p>
+                      <p className={styles.mentorSelectJobTitle}>
+                        {mentor.JobTitle} · {mentor.Superpower}
+                      </p>
+                    </div>
+                  </div>
+                  <div className={styles.backupMentorActions}>
+                    {isSecondary && <span className={styles.backupMentorLabel}>Sekundární</span>}
+                    {isTertiary && <span className={styles.backupMentorLabelTertiary}>Terciální</span>}
+                    {isSelected ? (
+                      <button
+                        className={styles.btnSecondary}
+                        onClick={() => {
+                          if (isSecondary) { setSecondaryId(tertiaryId); setTertiaryId(null); }
+                          else { setTertiaryId(null); }
+                        }}
+                      >
+                        Odebrat
+                      </button>
+                    ) : (
+                      <button
+                        className={styles.btnSecondary}
+                        disabled={secondaryId !== null && tertiaryId !== null}
+                        onClick={() => {
+                          if (secondaryId === null) setSecondaryId(mentor.Id);
+                          else if (tertiaryId === null) setTertiaryId(mentor.Id);
+                        }}
+                      >
+                        {secondaryId === null ? 'Zvolit jako sekundárního' : 'Zvolit jako terciálního'}
+                      </button>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       )}
 
-      {/* 3. Akce */}
+      {/* 3. Optional messages */}
+      <div className={styles.formSection}>
+        <h3 className={styles.formSectionTitle}>Zprávy mentorům</h3>
+        <p className={styles.formSectionHint}>
+          Pokud chceš, můžeš mentorovi napsat zprávu — proč máš o něj zájem,
+          co od mentoringu očekáváš, nebo cokoliv dalšího. Zpráva není povinná.
+        </p>
+
+        <div className={styles.messageGroup}>
+          <label className={styles.messageLabel}>
+            Zpráva pro {primaryMentor.Title} (primární)
+          </label>
+          <textarea
+            className={styles.messageTextarea}
+            value={messages[primaryMentor.Id] ?? ''}
+            onChange={e => setMessage(primaryMentor.Id, e.target.value)}
+            placeholder={`Napiš, proč tě zajímá mentoring od ${primaryMentor.Title}…`}
+            rows={3}
+          />
+        </div>
+
+        {secondaryId != null && (() => {
+          const m = mentors.find(x => x.Id === secondaryId);
+          return m ? (
+            <div className={styles.messageGroup}>
+              <label className={styles.messageLabel}>
+                Zpráva pro {m.Title} (sekundární)
+              </label>
+              <textarea
+                className={styles.messageTextarea}
+                value={messages[secondaryId] ?? ''}
+                onChange={e => setMessage(secondaryId, e.target.value)}
+                placeholder={`Napiš, proč tě zajímá mentoring od ${m.Title}…`}
+                rows={3}
+              />
+            </div>
+          ) : null;
+        })()}
+
+        {tertiaryId != null && (() => {
+          const m = mentors.find(x => x.Id === tertiaryId);
+          return m ? (
+            <div className={styles.messageGroup}>
+              <label className={styles.messageLabel}>
+                Zpráva pro {m.Title} (terciální)
+              </label>
+              <textarea
+                className={styles.messageTextarea}
+                value={messages[tertiaryId] ?? ''}
+                onChange={e => setMessage(tertiaryId, e.target.value)}
+                placeholder={`Napiš, proč tě zajímá mentoring od ${m.Title}…`}
+                rows={3}
+              />
+            </div>
+          ) : null;
+        })()}
+      </div>
+
+      {/* 4. Actions */}
       <div className={styles.formActions}>
         <button
           className={styles.btnPrimary}
           onClick={() => { void handleSubmit(); }}
-          disabled={submitting || !canSubmit()}
+          disabled={submitting}
         >
           {submitting ? 'Odesílám…' : 'Odeslat žádost'}
         </button>
@@ -177,5 +253,11 @@ const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, p
     </div>
   );
 };
+
+function getInitials(name: string): string {
+  const parts = name.trim().split(/\s+/);
+  if (parts.length >= 2) return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  return name.slice(0, 2).toUpperCase();
+}
 
 export default RequestForm;

@@ -1,37 +1,10 @@
 import * as React from 'react';
 import styles from '../AuresApp.module.scss';
 import { SPFI } from '@pnp/sp';
-import { IMentoringRequest, ICurrentUser, RequestStatus } from '../../../../services/interfaces';
+import { IMentoringRequest, ICurrentUser, RequestStatus, StageDecision, ISPLookup } from '../../../../services/interfaces';
 import { MentoringService } from '../../../../services/MentoringService';
 import { NavigateFn } from '../AppView';
 import { MOCK_REQUESTS } from '../../../../utils/mockData';
-
-type StatusFilter = RequestStatus | 'All';
-
-const FILTERS: { value: StatusFilter; label: string }[] = [
-  { value: 'All',                      label: 'Vše' },
-  { value: RequestStatus.Pending,      label: 'Čeká' },
-  { value: RequestStatus.Approved,     label: 'Schváleno' },
-  { value: RequestStatus.HR_Review,    label: 'HR Fronta' },
-  { value: RequestStatus.Scheduled,    label: 'Naplánováno' },
-  { value: RequestStatus.Cancelled,    label: 'Zrušeno' },
-];
-
-const STATUS_LABEL: Record<RequestStatus, string> = {
-  [RequestStatus.Pending]:   'Čeká',
-  [RequestStatus.Approved]:  'Schváleno',
-  [RequestStatus.HR_Review]: 'HR Fronta',
-  [RequestStatus.Scheduled]: 'Naplánováno',
-  [RequestStatus.Cancelled]: 'Zrušeno',
-};
-
-const STATUS_CLASS: Record<RequestStatus, string> = {
-  [RequestStatus.Pending]:   styles.statusPending,
-  [RequestStatus.Approved]:  styles.statusApproved,
-  [RequestStatus.HR_Review]: styles.statusHR,
-  [RequestStatus.Scheduled]: styles.statusScheduled,
-  [RequestStatus.Cancelled]: styles.statusCancelled,
-};
 
 interface IAllRequestsProps {
   sp: SPFI;
@@ -39,73 +12,149 @@ interface IAllRequestsProps {
   navigate: NavigateFn;
 }
 
-const AllRequests: React.FC<IAllRequestsProps> = ({ sp }) => {
+const AllRequests: React.FC<IAllRequestsProps> = ({ sp, currentUser }) => {
   const [requests, setRequests] = React.useState<IMentoringRequest[]>([]);
-  const [filter, setFilter]     = React.useState<StatusFilter>('All');
   const [search, setSearch]     = React.useState('');
   const [loading, setLoading]   = React.useState(true);
+  const [processing, setProcessing] = React.useState<number | null>(null);
 
   React.useEffect(() => {
     new MentoringService(sp).getAllRequests()
-      .then(setRequests)
-      .catch(() => setRequests(MOCK_REQUESTS))
+      .then(all => setRequests(all.filter(r =>
+        r.RequestStatus === RequestStatus.Pending || r.RequestStatus === RequestStatus.HR_Review
+      )))
+      .catch(() => setRequests(MOCK_REQUESTS.filter(r =>
+        r.RequestStatus === RequestStatus.Pending || r.RequestStatus === RequestStatus.HR_Review
+      )))
       .finally(() => setLoading(false));
   }, [sp]);
 
+  const getCurrentMentor = (req: IMentoringRequest): ISPLookup | undefined => {
+    if (req.CurrentStage === 1) return req.Mentor1Ref;
+    if (req.CurrentStage === 2) return req.Mentor2Ref;
+    if (req.CurrentStage === 3) return req.Mentor3Ref;
+    return req.Mentor1Ref;
+  };
+
+  const getStatusLabel = (req: IMentoringRequest): string => {
+    if (req.RequestStatus === RequestStatus.HR_Review) return 'Čeká na schválení HR';
+    const mentor = getCurrentMentor(req);
+    return `Čeká na schválení — ${mentor?.Title ?? 'mentor'}`;
+  };
+
+  const getStatusClass = (req: IMentoringRequest): string => {
+    if (req.RequestStatus === RequestStatus.HR_Review) return styles.statusHR;
+    return styles.statusPending;
+  };
+
+  const handleHRApprove = async (req: IMentoringRequest): Promise<void> => {
+    setProcessing(req.Id);
+    try {
+      await new MentoringService(sp).makeDecision(
+        req.Id, req.CurrentStage, StageDecision.Approved, currentUser.id
+      );
+    } catch { /* lokalni dev */ }
+    setRequests(prev => prev.filter(r => r.Id !== req.Id));
+    setProcessing(null);
+  };
+
+  const handleHRSchedule = async (reqId: number): Promise<void> => {
+    setProcessing(reqId);
+    try {
+      await new MentoringService(sp).setRequestStatus(reqId, RequestStatus.Scheduled);
+    } catch { /* lokalni dev */ }
+    setRequests(prev => prev.filter(r => r.Id !== reqId));
+    setProcessing(null);
+  };
+
+  const handleHRCancel = async (reqId: number): Promise<void> => {
+    setProcessing(reqId);
+    try {
+      await new MentoringService(sp).setRequestStatus(reqId, RequestStatus.Cancelled);
+    } catch { /* lokalni dev */ }
+    setRequests(prev => prev.filter(r => r.Id !== reqId));
+    setProcessing(null);
+  };
+
   const filtered = requests.filter(r => {
-    if (filter !== 'All' && r.RequestStatus !== filter) return false;
     const q = search.trim().toLowerCase();
-    if (q && !r.Title.toLowerCase().includes(q) && !r.TalentRef.Title.toLowerCase().includes(q)) return false;
-    return true;
+    if (!q) return true;
+    const mentor = getCurrentMentor(r);
+    return r.TalentRef.Title.toLowerCase().includes(q)
+      || (mentor?.Title ?? '').toLowerCase().includes(q);
   });
 
   if (loading) return <div className={styles.loading}>Načítám žádosti…</div>;
 
   return (
     <div>
-      <h2 className={styles.pageTitle}>Všechny žádosti ({requests.length})</h2>
+      <h2 className={styles.pageTitle}>Čekající žádosti ({requests.length})</h2>
 
-      {/* Filtry + hledani */}
       <div className={styles.filterRow}>
-        <div className={styles.filterBar}>
-          {FILTERS.map(f => (
-            <button
-              key={f.value}
-              className={filter === f.value ? styles.filterBtnActive : styles.filterBtn}
-              onClick={() => setFilter(f.value)}
-            >
-              {f.label}
-            </button>
-          ))}
-        </div>
         <input
           className={styles.searchInput}
           type="text"
-          placeholder="Hledat talent nebo ID…"
+          placeholder="Hledat talent nebo mentora…"
           value={search}
           onChange={e => setSearch(e.target.value)}
         />
       </div>
 
-      {/* Vysledky */}
       {filtered.length === 0 ? (
-        <div className={styles.emptyState}><p>Žádné žádosti neodpovídají filtru.</p></div>
+        <div className={styles.emptyState}>
+          <p>Žádné žádosti nečekají na vyřízení.</p>
+        </div>
       ) : (
         <div className={styles.requestList}>
-          {filtered.map(req => (
-            <div key={req.Id} className={styles.allRequestRow}>
-              <div className={styles.allRequestMain}>
-                <span className={styles.requestTitle}>{req.Title}</span>
-                <span className={styles.talentName}>{req.TalentRef.Title}</span>
+          {filtered.map(req => {
+            const mentor = getCurrentMentor(req);
+            const isProcessing = processing === req.Id;
+            const isHRReview = req.RequestStatus === RequestStatus.HR_Review;
+
+            return (
+              <div key={req.Id} className={styles.hrRequestRow}>
+                <div className={styles.hrRequestMain}>
+                  <div className={styles.hrRequestNames}>
+                    <span className={styles.hrRequestTalent}>{req.TalentRef.Title}</span>
+                    <span className={styles.hrRequestArrow}>&rarr;</span>
+                    <span className={styles.hrRequestMentor}>{mentor?.Title ?? '—'}</span>
+                  </div>
+                  <span className={[styles.statusBadge, getStatusClass(req)].join(' ')}>
+                    {getStatusLabel(req)}
+                  </span>
+                </div>
+                <div className={styles.hrRequestActions}>
+                  {isHRReview ? (
+                    <button
+                      className={styles.hrActionBtn}
+                      disabled={isProcessing}
+                      onClick={() => { void handleHRSchedule(req.Id); }}
+                      title="Naplánovat mentoring"
+                    >
+                      Naplánovat
+                    </button>
+                  ) : (
+                    <button
+                      className={styles.hrActionBtn}
+                      disabled={isProcessing}
+                      onClick={() => { void handleHRApprove(req); }}
+                      title="Schválit za mentora"
+                    >
+                      Schválit
+                    </button>
+                  )}
+                  <button
+                    className={styles.hrActionBtnDanger}
+                    disabled={isProcessing}
+                    onClick={() => { void handleHRCancel(req.Id); }}
+                    title="Zrušit žádost"
+                  >
+                    Zrušit
+                  </button>
+                </div>
               </div>
-              <div className={styles.allRequestMeta}>
-                <span className={styles.stageIndicator}>Stage {req.CurrentStage}</span>
-                <span className={[styles.statusBadge, STATUS_CLASS[req.RequestStatus]].join(' ')}>
-                  {STATUS_LABEL[req.RequestStatus]}
-                </span>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </div>

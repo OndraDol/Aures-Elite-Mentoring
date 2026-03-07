@@ -71,10 +71,6 @@ const MentorCard: React.FC<IMentorCardProps> = ({ mentor, onRequest }) => (
     <p className={styles.mentorSuperpower}>{mentor.Superpower}</p>
     <p className={styles.mentorBio}>{mentor.Bio}</p>
 
-    {!!mentor.AvailabilityNote && (
-      <p className={styles.mentorAvailability}>{mentor.AvailabilityNote}</p>
-    )}
-
     <div className={styles.mentorCardActions}>
       <button className={styles.btnPrimary} onClick={onRequest} style={{ width: '100%' }}>
         Požádat o mentoring

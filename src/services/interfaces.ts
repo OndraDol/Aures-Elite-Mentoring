@@ -50,6 +50,7 @@ export interface IMentor {
   Bio: string;
   Capacity: number;
   AvailabilityNote: string;
+  PhotoUrl: string;
   IsActive: boolean;
 }
 

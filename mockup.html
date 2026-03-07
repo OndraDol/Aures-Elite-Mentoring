@@ -1,184 +1,356 @@
 <!DOCTYPE html>
 <html lang="cs">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aures Elite Mentoring — UI Mockup</title>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap');
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     :root {
-      --primary:      #0078d4;
-      --primary-dark: #005a9e;
-      --bg:           #f3f2f1;
-      --surface:      #ffffff;
-      --border:       #e1dfdd;
-      --text:         #323130;
-      --text-muted:   #605e5c;
-      --error:        #d13438;
-      --success:      #107c10;
-      --r-sm:  4px;
-      --r-md:  8px;
-      --r-pill: 20px;
-      --sh-sm: 0 1px 3px rgba(0,0,0,.08);
-      --sh-md: 0 4px 12px rgba(0,0,0,.12);
-      --sh-lg: 0 8px 24px rgba(0,0,0,.16);
-      --t: all .2s ease;
+      /* Deep Corporate Blue */
+      --primary: #0B2B5E;
+      --primary-dark: #071C40;
+      /* Elite Gold Accents */
+      --gold: #D4AF37;
+      --gold-dark: #B5952F;
+      --gold-light: rgba(212, 175, 55, 0.15);
+
+      /* Base Colors */
+      --bg-gradient: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
+      --surface: rgba(255, 255, 255, 0.85);
+      /* For Glassmorphism */
+      --surface-solid: #ffffff;
+      --border: rgba(11, 43, 94, 0.1);
+      --border-gold: rgba(212, 175, 55, 0.3);
+
+      /* Text */
+      --text: #1A1A1A;
+      --text-muted: #6C757D;
+
+      /* Status */
+      --error: #D32F2F;
+      --error-light: rgba(211, 47, 47, 0.1);
+      --success: #1B5E20;
+      --success-light: rgba(27, 94, 32, 0.1);
+      --info: #0288D1;
+      --info-light: rgba(2, 136, 209, 0.1);
+      --warning: #F57C00;
+      --warning-light: rgba(245, 124, 0, 0.1);
+
+      /* Shape */
+      --r-sm: 6px;
+      --r-md: 16px;
+      --r-pill: 30px;
+
+      /* Shadows */
+      --sh-sm: 0 4px 15px rgba(11, 43, 94, 0.05);
+      --sh-md: 0 10px 30px rgba(11, 43, 94, 0.08);
+      --sh-lg: 0 20px 40px rgba(11, 43, 94, 0.12);
+
+      --t: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+      /* Glassmorphism */
+      --glass-bg: rgba(255, 255, 255, 0.7);
+      --glass-border: 1px solid rgba(255, 255, 255, 0.5);
+      --glass-blur: blur(12px);
     }
 
     body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background: #e8e6e4;
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg-gradient);
       color: var(--text);
       min-height: 100vh;
       font-size: 14px;
-      line-height: 1.5;
+      line-height: 1.6;
+      background-attachment: fixed;
+    }
+
+    /* Fancy Background Blobs for Glass Effect */
+    body::before,
+    body::after {
+      content: '';
+      position: fixed;
+      border-radius: 50%;
+      z-index: -1;
+      filter: blur(100px);
+      opacity: 0.5;
+    }
+
+    body::before {
+      top: -10%;
+      left: -10%;
+      width: 40vw;
+      height: 40vw;
+      background: rgba(11, 43, 94, 0.15);
+      /* Primary */
+    }
+
+    body::after {
+      bottom: -10%;
+      right: -10%;
+      width: 30vw;
+      height: 30vw;
+      background: rgba(212, 175, 55, 0.15);
+      /* Gold */
     }
 
     /* ---- DEMO BAR ---- */
     .demo-bar {
-      background: #1b1b1b;
-      color: rgba(255,255,255,.55);
-      padding: 9px 24px;
+      background: #000;
+      color: rgba(255, 255, 255, .7);
+      padding: 10px 24px;
       font-size: 11px;
       text-align: center;
-      letter-spacing: .4px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
       position: sticky;
       top: 0;
       z-index: 100;
     }
-    .demo-bar strong { color: #fff; }
+
+    .demo-bar strong {
+      color: var(--gold);
+    }
 
     /* ---- APP WRAPPER ---- */
     .app {
-      max-width: 980px;
-      margin: 20px auto;
-      background: var(--surface);
+      max-width: 1080px;
+      margin: 40px auto;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
       box-shadow: var(--sh-lg);
-      border-radius: var(--r-md);
+      border-radius: 20px;
+      border: var(--glass-border);
       overflow: hidden;
-      margin-bottom: 40px;
+      margin-bottom: 60px;
     }
 
     /* ---- HEADER ---- */
     .header {
-      background: linear-gradient(135deg, #0078d4 0%, #004e8c 100%);
-      padding: 22px 32px;
+      background: linear-gradient(135deg, var(--primary) 0%, #153A70 100%);
+      padding: 30px 40px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: relative;
+      border-bottom: 2px solid var(--gold);
     }
-    .header-brand {}
+
+    /* Subtle Gold pattern overlay on header */
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: radial-gradient(var(--gold) 1px, transparent 1px);
+      background-size: 20px 20px;
+      opacity: 0.05;
+      pointer-events: none;
+    }
+
+    .header-brand {
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* AURES Logo Placeholder */
+    .logo-mock {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      border-radius: 12px;
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .header-title-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+
     .header-title {
       color: #fff;
-      font-size: 21px;
-      font-weight: 700;
-      letter-spacing: .2px;
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
-    .header-subtitle {
-      color: rgba(255,255,255,.65);
-      font-size: 12px;
-      margin-top: 3px;
+
+    .header-title span {
+      color: var(--gold);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      letter-spacing: 2px;
+      font-size: 14px;
+      display: block;
+      margin-top: -4px;
     }
+
     .header-right {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
+      z-index: 1;
     }
+
     .user-info {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
     }
+
     .user-name {
       color: #fff;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 600;
     }
+
     .role-badge {
       display: inline-flex;
       align-items: center;
-      padding: 2px 10px;
+      padding: 3px 12px;
       border-radius: var(--r-pill);
       font-size: 10px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: .6px;
-      margin-top: 3px;
+      letter-spacing: 1px;
+      margin-top: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
-    .role-talent   { background: rgba(255,255,255,.2);   color: #fff; }
-    .role-mentor   { background: rgba(255,200,0,.28);    color: #ffd700; }
-    .role-hr       { background: rgba(100,220,100,.22);  color: #90ee90; }
+
+    .role-talent {
+      background: rgba(255, 255, 255, .1);
+      color: #fff;
+    }
+
+    .role-mentor {
+      background: var(--gold-light);
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .role-hr {
+      background: rgba(2, 136, 209, 0.2);
+      color: #64B5F6;
+      border-color: #64B5F6;
+    }
+
     .user-avatar {
-      width: 40px;
-      height: 40px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
-      background: rgba(255,255,255,.22);
+      background: var(--surface-solid);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #fff;
+      color: var(--primary);
       font-weight: 700;
-      font-size: 14px;
-      flex-shrink: 0;
+      font-size: 16px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      border: 2px solid var(--gold);
     }
 
     /* ---- ROLE SWITCHER ---- */
     .role-switcher {
-      background: rgba(0,40,90,.35);
-      padding: 7px 32px;
+      background: var(--surface-solid);
+      padding: 12px 40px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      color: rgba(255,255,255,.5);
+      gap: 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
     }
-    .role-switcher-label { color: rgba(255,255,255,.5); margin-right: 2px; }
+
+    .role-switcher-label {
+      font-weight: 600;
+      margin-right: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
     .role-btn {
-      padding: 3px 13px;
+      padding: 6px 18px;
       border-radius: var(--r-pill);
-      border: 1px solid rgba(255,255,255,.3);
+      border: 1px solid var(--border);
       background: transparent;
-      color: rgba(255,255,255,.65);
+      color: var(--text-muted);
       cursor: pointer;
       font-size: 11px;
       font-weight: 600;
       transition: var(--t);
       font-family: inherit;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
-    .role-btn:hover { background: rgba(255,255,255,.14); color: #fff; }
+
+    .role-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
     .role-btn.active {
-      background: rgba(255,255,255,.22);
+      background: var(--primary);
       color: #fff;
-      border-color: rgba(255,255,255,.6);
+      border-color: var(--primary);
+      box-shadow: var(--sh-sm);
     }
 
     /* ---- NAV ---- */
     .nav {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 0 28px;
+      background: transparent;
+      padding: 0 40px;
       display: flex;
-      gap: 0;
-      overflow-x: auto;
+      gap: 30px;
+      border-bottom: 1px solid var(--border);
     }
+
     .nav-tab {
-      padding: 14px 18px;
-      font-size: 13px;
-      font-weight: 500;
+      padding: 24px 0 20px;
+      font-size: 14px;
+      font-weight: 600;
       color: var(--text-muted);
       cursor: pointer;
       border-bottom: 3px solid transparent;
-      white-space: nowrap;
       transition: var(--t);
-      user-select: none;
-      display: flex;
-      align-items: center;
-      gap: 0;
+      position: relative;
     }
-    .nav-tab:hover { color: var(--primary); }
-    .nav-tab.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 700; }
+
+    .nav-tab:hover {
+      color: var(--primary);
+    }
+
+    .nav-tab.active {
+      color: var(--primary);
+      border-bottom-color: var(--gold);
+    }
+
     .nav-badge {
+      position: absolute;
+      top: 15px;
+      right: -20px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -187,24 +359,33 @@
       border-radius: var(--r-pill);
       font-size: 10px;
       font-weight: 700;
-      min-width: 18px;
-      height: 18px;
-      padding: 0 5px;
-      margin-left: 7px;
+      min-width: 20px;
+      height: 20px;
+      padding: 0 6px;
+      box-shadow: 0 2px 5px rgba(211, 47, 47, 0.4);
     }
 
     /* ---- CONTENT ---- */
     .content {
-      padding: 28px 32px 40px;
-      background: var(--bg);
+      padding: 40px;
       min-height: 520px;
     }
 
     /* ---- VIEWS ---- */
-    .view { animation: fadeUp .22s ease; }
+    .view {
+      animation: fadeUp .4s ease backwards;
+    }
+
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(8px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* ---- PAGE HEADER ---- */
@@ -212,686 +393,1151 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 24px;
+      margin-bottom: 30px;
     }
+
     .page-title {
-      font-size: 22px;
-      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--primary);
     }
 
     /* ---- BUTTONS ---- */
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      transition: var(--t);
+    }
+
     .btn-primary {
-      background: var(--primary);
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
       color: #fff;
       border: none;
-      padding: 9px 20px;
-      border-radius: var(--r-sm);
-      font-size: 13px;
+      padding: 12px 28px;
+      border-radius: var(--r-pill);
+      font-size: 14px;
       font-weight: 600;
-      cursor: pointer;
-      transition: var(--t);
-      font-family: inherit;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
     }
-    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+      background: linear-gradient(135deg, #e5C158 0%, var(--gold-dark) 100%);
+    }
+
     .btn-secondary {
-      background: var(--surface);
-      color: var(--text);
-      border: 1px solid var(--border);
-      padding: 9px 20px;
-      border-radius: var(--r-sm);
-      font-size: 13px;
+      background: var(--surface-solid);
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      padding: 10px 26px;
+      border-radius: var(--r-pill);
+      font-size: 14px;
       font-weight: 600;
-      cursor: pointer;
-      transition: var(--t);
-      font-family: inherit;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
-    .btn-secondary:hover { background: #f0f6fc; border-color: var(--primary); color: var(--primary); }
+
+    .btn-secondary:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
     .btn-approve {
       background: var(--success);
       color: #fff;
       border: none;
-      padding: 9px 22px;
-      border-radius: var(--r-sm);
+      padding: 10px 24px;
+      border-radius: var(--r-pill);
       font-size: 13px;
       font-weight: 600;
-      cursor: pointer;
-      transition: var(--t);
-      font-family: inherit;
+      box-shadow: 0 4px 10px var(--success-light);
     }
-    .btn-approve:hover { background: #0b5c0b; }
+
+    .btn-approve:hover {
+      background: #144918;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 15px rgba(27, 94, 32, 0.3);
+    }
+
     .btn-reject {
-      background: var(--error);
-      color: #fff;
-      border: none;
-      padding: 9px 22px;
-      border-radius: var(--r-sm);
+      background: transparent;
+      color: var(--error);
+      border: 1px solid var(--error);
+      padding: 9px 23px;
+      border-radius: var(--r-pill);
       font-size: 13px;
       font-weight: 600;
-      cursor: pointer;
-      transition: var(--t);
-      font-family: inherit;
     }
-    .btn-reject:hover { background: #a4262c; }
+
+    .btn-reject:hover {
+      background: var(--error-light);
+    }
+
     .btn-back {
       background: none;
       border: none;
-      color: var(--primary);
+      color: var(--text-muted);
       font-size: 13px;
-      cursor: pointer;
+      font-weight: 600;
       padding: 0;
-      margin-bottom: 18px;
+      margin-bottom: 24px;
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      font-family: inherit;
+      gap: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
-    .btn-back:hover { text-decoration: underline; }
+
+    .btn-back:hover {
+      color: var(--primary);
+    }
 
     /* ---- STATUS BADGES ---- */
     .status-badge {
       display: inline-flex;
       align-items: center;
-      padding: 3px 12px;
+      padding: 6px 16px;
       border-radius: var(--r-pill);
       font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: .4px;
+      letter-spacing: 1px;
     }
-    .s-pending   { background: #fff4ce; color: #7a4f00; }
-    .s-approved  { background: #dff6dd; color: #107c10; }
-    .s-hr        { background: #ffe7e7; color: #d13438; }
-    .s-scheduled { background: #e8f0fe; color: #1a56db; }
-    .s-cancelled { background: #f3f2f1; color: #605e5c; }
+
+    .s-pending {
+      background: var(--warning-light);
+      color: var(--warning);
+      border: 1px solid rgba(245, 124, 0, 0.2);
+    }
+
+    .s-approved {
+      background: var(--success-light);
+      color: var(--success);
+      border: 1px solid rgba(27, 94, 32, 0.2);
+    }
+
+    .s-hr {
+      background: var(--error-light);
+      color: var(--error);
+      border: 1px solid rgba(211, 47, 47, 0.2);
+    }
+
+    .s-scheduled {
+      background: var(--info-light);
+      color: var(--info);
+      border: 1px solid rgba(2, 136, 209, 0.2);
+    }
+
+    .s-cancelled {
+      background: #E9ECEF;
+      color: var(--text-muted);
+    }
 
     /* ---- MENTOR GRID ---- */
     .mentor-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(264px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
     }
+
     .mentor-card {
-      background: var(--surface);
+      background: var(--surface-solid);
       border-radius: var(--r-md);
       box-shadow: var(--sh-sm);
       border: 1px solid var(--border);
-      padding: 20px;
+      padding: 30px;
       display: flex;
       flex-direction: column;
       transition: var(--t);
+      position: relative;
+      overflow: hidden;
     }
+
+    /* Subtle highlight on top */
+    .mentor-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: transparent;
+      transition: var(--t);
+    }
+
     .mentor-card:hover {
       box-shadow: var(--sh-md);
-      transform: translateY(-3px);
-      border-color: #c0bebe;
+      transform: translateY(-5px);
     }
+
+    .mentor-card:hover::before {
+      background: var(--gold);
+    }
+
     .mentor-card-header {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 14px;
+      gap: 16px;
+      margin-bottom: 20px;
     }
+
     .mentor-avatar {
-      width: 46px;
-      height: 46px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), #004e8c);
-      color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: var(--gold);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
-      font-size: 15px;
+      font-weight: 600;
+      font-size: 20px;
       flex-shrink: 0;
+      border: 2px solid var(--gold-light);
+      font-family: 'Playfair Display', serif;
     }
-    .mentor-name { font-size: 15px; font-weight: 700; }
-    .mentor-job  { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-    .mentor-superpower {
-      font-size: 13px;
+
+    .mentor-name {
+      font-size: 18px;
       font-weight: 700;
       color: var(--primary);
-      margin-bottom: 8px;
     }
-    .mentor-bio {
+
+    .mentor-job {
       font-size: 13px;
       color: var(--text-muted);
-      line-height: 1.65;
-      margin-bottom: 12px;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    .mentor-superpower {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold-dark);
+      background: var(--gold-light);
+      padding: 8px 12px;
+      border-radius: var(--r-sm);
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    .mentor-bio {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
       flex: 1;
     }
+
     .mentor-availability {
       font-size: 12px;
+      font-weight: 600;
       color: var(--success);
-      background: #dff6dd;
-      padding: 4px 10px;
-      border-radius: var(--r-pill);
-      display: inline-block;
-      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 24px;
     }
-    .mentor-card-actions { margin-top: 4px; }
-    .mentor-card-actions .btn-primary { width: 100%; }
+
+    .mentor-availability::before {
+      content: '•';
+      font-size: 18px;
+    }
+
+    .mentor-card-actions .btn-secondary {
+      width: 100%;
+      border-radius: var(--r-md);
+    }
 
     /* ---- REQUEST LIST ---- */
-    .request-list { display: flex; flex-direction: column; gap: 10px; }
+    .request-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
 
     .request-card {
-      background: var(--surface);
+      background: var(--surface-solid);
       border-radius: var(--r-md);
       box-shadow: var(--sh-sm);
       border: 1px solid var(--border);
-      padding: 16px 20px;
+      padding: 24px 30px;
+      transition: var(--t);
     }
+
+    .request-card:hover {
+      box-shadow: var(--sh-md);
+    }
+
     .request-card-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 10px;
+      margin-bottom: 16px;
     }
-    .request-title { font-size: 14px; font-weight: 700; }
-    .request-mentors { display: flex; flex-wrap: wrap; gap: 7px; }
-    .mentor-tag {
-      padding: 3px 10px;
-      border-radius: var(--r-pill);
-      font-size: 11px;
-      font-weight: 600;
-      background: #f0f6fc;
+
+    .request-title {
+      font-size: 16px;
+      font-weight: 700;
       color: var(--primary);
-      border: 1px solid #c7e0f4;
+      font-family: 'Playfair Display', serif;
     }
-    .mt-approved { background: #dff6dd; color: #107c10; border-color: #b3e6b3; }
-    .mt-rejected { background: #ffe7e7; color: #d13438; border-color: #f5b8b8; }
-    .mt-current  { background: #fff4ce; color: #7a4f00; border-color: #ffe8a1; }
+
+    .request-mentors {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .mentor-tag {
+      padding: 6px 14px;
+      border-radius: var(--r-pill);
+      font-size: 12px;
+      font-weight: 600;
+      background: #F8F9FA;
+      color: var(--text-muted);
+      border: 1px solid #E9ECEF;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mentor-tag span.badge-num {
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 10px;
+    }
+
+    .mt-approved {
+      background: var(--success-light);
+      color: var(--success);
+      border-color: rgba(27, 94, 32, 0.2);
+    }
+
+    .mt-rejected {
+      background: var(--error-light);
+      color: var(--error);
+      border-color: rgba(211, 47, 47, 0.2);
+      text-decoration: line-through;
+    }
+
+    .mt-current {
+      background: var(--surface-solid);
+      color: var(--gold-dark);
+      border-color: var(--gold);
+      box-shadow: 0 0 10px var(--gold-light);
+    }
 
     /* ---- PENDING ROW ---- */
     .pending-row {
-      background: var(--surface);
+      background: var(--surface-solid);
       border-radius: var(--r-md);
       box-shadow: var(--sh-sm);
       border: 1px solid var(--border);
-      padding: 16px 20px;
+      padding: 24px 30px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       cursor: pointer;
       transition: var(--t);
     }
-    .pending-row:hover { box-shadow: var(--sh-md); transform: translateY(-2px); border-color: #c0bebe; }
-    .pending-row-left { flex: 1; }
-    .pending-row-header { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
-    .talent-name    { font-size: 12px; color: var(--text-muted); margin-bottom: 5px; }
-    .msg-preview    { font-size: 12px; color: var(--text-muted); font-style: italic; }
-    .stage-indicator {
-      padding: 2px 9px;
-      border-radius: var(--r-pill);
-      background: #f0f6fc;
-      color: var(--primary);
-      font-size: 11px;
-      font-weight: 700;
-      border: 1px solid #c7e0f4;
-    }
-    .arrow-icon { color: #c8c6c4; font-size: 26px; margin-left: 16px; }
 
-    /* ---- REQUEST DETAIL ---- */
-    .detail-card {
-      background: var(--surface);
-      border-radius: var(--r-md);
-      box-shadow: var(--sh-sm);
-      border: 1px solid var(--border);
-      padding: 26px;
-      max-width: 620px;
-    }
-    .detail-section { margin-bottom: 22px; }
-    .detail-section:last-child { margin-bottom: 0; }
-    .detail-label {
-      font-size: 10px;
-      font-weight: 700;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: .6px;
-      margin-bottom: 6px;
-    }
-    .detail-value { font-size: 16px; font-weight: 700; }
-    .talent-msg {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: var(--r-sm);
-      padding: 13px 16px;
-      font-size: 13px;
-      line-height: 1.65;
-    }
-    .reject-hint {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 10px;
-      padding: 8px 12px;
-      background: #fff4ce;
-      border-radius: var(--r-sm);
-      border-left: 3px solid #f0b429;
-    }
-    .decision-btns { display: flex; gap: 10px; margin-top: 10px; }
-
-    /* ---- HISTORY ---- */
-    .history-card {
-      background: var(--surface);
-      border-radius: var(--r-md);
-      border: 1px solid var(--border);
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .history-title { font-size: 14px; font-weight: 600; }
-    .history-meta  { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
-    .d-badge { padding: 3px 12px; border-radius: var(--r-pill); font-size: 11px; font-weight: 700; }
-    .d-approved { background: #dff6dd; color: #107c10; }
-    .d-rejected { background: #ffe7e7; color: var(--error); }
-
-    /* ---- HR REVIEW ---- */
-    .hr-card {
-      background: var(--surface);
-      border-radius: var(--r-md);
-      border: 1px solid var(--border);
-      border-left: 4px solid var(--error);
-      padding: 18px 20px;
-      box-shadow: var(--sh-sm);
-    }
-    .hr-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-    .hr-talent { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
-    .hr-actions { display: flex; gap: 10px; margin-top: 14px; }
-    .section-hint {
-      font-size: 13px;
-      color: #7a4f00;
-      background: #fffbe6;
-      padding: 10px 14px;
-      border-radius: var(--r-sm);
-      border-left: 3px solid #f0b429;
-      margin-bottom: 20px;
+    .pending-row:hover {
+      box-shadow: 0 10px 25px var(--gold-light);
+      transform: translateY(-2px);
+      border-color: var(--gold);
     }
 
-    /* ---- ALL REQUESTS ---- */
-    .filter-row { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
-    .filter-bar  { display: flex; gap: 6px; flex-wrap: wrap; }
-    .filter-btn {
-      padding: 5px 14px;
-      border-radius: var(--r-pill);
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text-muted);
-      font-size: 12px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: var(--t);
-      font-family: inherit;
+    .pending-row-left {
+      flex: 1;
     }
-    .filter-btn:hover { border-color: var(--primary); color: var(--primary); }
-    .filter-btn-active {
-      padding: 5px 14px;
-      border-radius: var(--r-pill);
-      border: 1px solid var(--primary);
-      background: var(--primary);
-      color: #fff;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      font-family: inherit;
-    }
-    .search-input {
-      padding: 7px 14px;
-      border-radius: var(--r-sm);
-      border: 1px solid var(--border);
-      font-size: 13px;
-      outline: none;
-      transition: var(--t);
-      min-width: 200px;
-      font-family: inherit;
-    }
-    .search-input:focus { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(0,120,212,.14); }
-    .all-row {
-      background: var(--surface);
-      border-radius: var(--r-md);
-      border: 1px solid var(--border);
-      padding: 12px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .all-row-main { display: flex; flex-direction: column; gap: 2px; }
-    .all-row-meta { display: flex; align-items: center; gap: 10px; }
-    .talent-small { font-size: 12px; color: var(--text-muted); }
 
-    /* ---- MANAGEMENT ---- */
-    .mgmt-list { display: flex; flex-direction: column; gap: 10px; }
-    .mgmt-row {
-      background: var(--surface);
-      border-radius: var(--r-md);
-      border: 1px solid var(--border);
-      padding: 14px 20px;
+    .pending-row-header {
       display: flex;
       align-items: center;
       gap: 16px;
+      margin-bottom: 8px;
+    }
+
+    .talent-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .msg-preview {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    .stage-indicator {
+      padding: 4px 12px;
+      border-radius: var(--r-sm);
+      background: rgba(11, 43, 94, 0.05);
+      color: var(--primary);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .arrow-icon {
+      color: var(--gold);
+      font-size: 32px;
+      margin-left: 20px;
+      font-weight: 300;
+    }
+
+    /* ---- REQUEST DETAIL ---- */
+    .detail-card {
+      background: var(--surface-solid);
+      border-radius: var(--r-md);
+      box-shadow: var(--sh-md);
+      border: 1px solid var(--border);
+      padding: 40px;
+      max-width: 700px;
+      border-top: 4px solid var(--gold);
+    }
+
+    .detail-section {
+      margin-bottom: 30px;
+    }
+
+    .detail-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .detail-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .detail-value {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .talent-msg {
+      background: #F8F9FA;
+      border-left: 3px solid var(--gold);
+      padding: 20px;
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text);
+      font-style: italic;
+    }
+
+    .reject-hint {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 16px;
+      padding: 12px 16px;
+      background: rgba(11, 43, 94, 0.03);
+      border-radius: var(--r-sm);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .reject-hint::before {
+      content: 'ℹ';
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      color: #fff;
+      font-size: 12px;
+      font-style: normal;
+    }
+
+    .decision-btns {
+      display: flex;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    /* ---- HISTORY ---- */
+    .history-card {
+      background: var(--surface-solid);
+      border-radius: var(--r-md);
+      border: 1px solid var(--border);
+      padding: 20px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       transition: var(--t);
     }
-    .mgmt-row-inactive { opacity: .52; }
-    .mgmt-info { flex: 1; }
-    .mgmt-name { font-size: 14px; font-weight: 600; }
-    .mgmt-meta { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-    .active-btn {
-      padding: 5px 16px;
+
+    .history-card:hover {
+      box-shadow: var(--sh-sm);
+      transform: translateY(-1px);
+    }
+
+    .history-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .history-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .d-badge {
+      padding: 4px 14px;
       border-radius: var(--r-pill);
-      border: 1px solid var(--success);
-      background: #dff6dd;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .d-approved {
+      background: var(--success-light);
+      color: var(--success);
+    }
+
+    .d-rejected {
+      background: var(--error-light);
+      color: var(--error);
+    }
+
+    /* ---- ALL REQUESTS & HR QUEUE ---- */
+    .filter-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 8px 16px;
+      border-radius: var(--r-pill);
+      border: 1px solid var(--border);
+      background: var(--surface-solid);
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--t);
+    }
+
+    .filter-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .filter-btn-active {
+      padding: 8px 16px;
+      border-radius: var(--r-pill);
+      border: none;
+      background: var(--primary);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(11, 43, 94, 0.2);
+    }
+
+    .search-input {
+      padding: 10px 20px;
+      border-radius: var(--r-pill);
+      border: 1px solid var(--border);
+      font-size: 14px;
+      outline: none;
+      transition: var(--t);
+      min-width: 260px;
+      background: var(--surface-solid);
+    }
+
+    .search-input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px var(--gold-light);
+    }
+
+    .all-row {
+      background: var(--surface-solid);
+      border-radius: var(--r-md);
+      border: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: var(--t);
+    }
+
+    .all-row:hover {
+      box-shadow: var(--sh-sm);
+    }
+
+    .all-row-main {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .all-row-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .talent-small {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* HR QUEUE CARD */
+    .hr-card {
+      background: var(--surface-solid);
+      border-radius: var(--r-md);
+      border: 1px solid var(--error-light);
+      border-left: 4px solid var(--error);
+      padding: 24px 30px;
+      box-shadow: var(--sh-sm);
+    }
+
+    .hr-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .hr-talent {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--primary);
+    }
+
+    .hr-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .section-hint {
+      font-size: 14px;
+      color: var(--warning);
+      background: var(--warning-light);
+      padding: 16px 20px;
+      border-radius: var(--r-md);
+      border-left: 4px solid var(--warning);
+      margin-bottom: 24px;
+      font-weight: 500;
+    }
+
+    /* ---- MANAGEMENT & CAPACITY ---- */
+    .mgmt-list,
+    .cap-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .mgmt-row,
+    .cap-row {
+      background: var(--surface-solid);
+      border-radius: var(--r-md);
+      border: 1px solid var(--border);
+      padding: 24px 30px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transition: var(--t);
+      box-shadow: var(--sh-sm);
+    }
+
+    .mgmt-row:hover,
+    .cap-row:hover {
+      box-shadow: var(--sh-md);
+      transform: translateY(-2px);
+      border-color: var(--primary);
+    }
+
+    .mgmt-row-inactive {
+      opacity: .6;
+      filter: grayscale(50%);
+    }
+
+    .mgmt-info {
+      flex: 1;
+    }
+
+    .mgmt-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .mgmt-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    .active-btn {
+      padding: 6px 20px;
+      border-radius: var(--r-pill);
+      border: 1px solid rgba(27, 94, 32, 0.2);
+      background: var(--success-light);
       color: var(--success);
       font-size: 12px;
       font-weight: 700;
-      cursor: pointer;
-      font-family: inherit;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
+
     .inactive-btn {
-      padding: 5px 16px;
+      padding: 6px 20px;
       border-radius: var(--r-pill);
       border: 1px solid var(--border);
-      background: #f3f2f1;
+      background: #E9ECEF;
       color: var(--text-muted);
       font-size: 12px;
       font-weight: 700;
-      cursor: pointer;
-      font-family: inherit;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
+
     .cap-btn {
-      padding: 5px 14px;
-      border-radius: var(--r-sm);
+      padding: 6px 16px;
+      border-radius: var(--r-pill);
       border: 1px dashed var(--border);
       background: transparent;
-      color: var(--text);
+      color: var(--primary);
       font-size: 12px;
-      cursor: pointer;
-      transition: var(--t);
-      font-family: inherit;
+      font-weight: 600;
     }
-    .cap-btn:hover { border-color: var(--primary); color: var(--primary); background: #f0f6fc; }
 
-    /* ---- CAPACITY DASHBOARD ---- */
-    .cap-list { display: flex; flex-direction: column; gap: 14px; }
-    .cap-row {
-      background: var(--surface);
-      border-radius: var(--r-md);
-      border: 1px solid var(--border);
-      padding: 16px 20px;
+    .cap-btn:hover {
+      border-color: var(--primary);
+      background: rgba(11, 43, 94, 0.05);
     }
-    .cap-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-    .cap-stats { display: flex; align-items: center; gap: 12px; }
-    .cap-stat { font-size: 13px; font-weight: 700; }
+
+    .cap-row {
+      display: block;
+    }
+
+    .cap-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .cap-stats {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .cap-stat {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
     .cap-remaining {
-      font-size: 12px;
-      padding: 2px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 14px;
       border-radius: var(--r-pill);
-      background: #dff6dd;
+      background: var(--success-light);
       color: var(--success);
     }
-    .cap-full { background: #ffe7e7; color: var(--error); }
-    .cap-bar-wrap { background: #f3f2f1; border-radius: var(--r-pill); height: 8px; overflow: hidden; }
-    .cap-bar-fill { height: 100%; border-radius: var(--r-pill); transition: width .5s ease; }
-    .bar-ok   { background: linear-gradient(90deg, #107c10, #27ae60); }
-    .bar-high { background: linear-gradient(90deg, #d83b01, #f0a04b); }
-    .bar-full-c { background: linear-gradient(90deg, #d13438, #e87070); }
+
+    .cap-full {
+      background: var(--error-light);
+      color: var(--error);
+    }
+
+    .cap-bar-wrap {
+      background: rgba(11, 43, 94, 0.05);
+      border-radius: var(--r-pill);
+      height: 8px;
+      overflow: hidden;
+    }
+
+    .cap-bar-fill {
+      height: 100%;
+      border-radius: var(--r-pill);
+      transition: width 1s ease;
+    }
+
+    .bar-ok {
+      background: linear-gradient(90deg, #1B5E20, #4CAF50);
+    }
+
+    .bar-high {
+      background: linear-gradient(90deg, #E65100, #FF9800);
+    }
+
+    .bar-full-c {
+      background: linear-gradient(90deg, #B71C1C, #F44336);
+    }
 
     /* ---- REQUEST FORM ---- */
-    .form-wrap { max-width: 580px; }
+    .form-wrap {
+      max-width: 700px;
+    }
+
     .form-sec {
-      background: var(--surface);
+      background: var(--surface-solid);
       border-radius: var(--r-md);
       border: 1px solid var(--border);
-      padding: 20px;
-      margin-bottom: 14px;
+      padding: 30px;
+      margin-bottom: 24px;
+      box-shadow: var(--sh-sm);
     }
-    .form-sec-title { font-size: 14px; font-weight: 700; margin-bottom: 14px; }
-    .msel-list { display: flex; flex-direction: column; gap: 8px; }
+
+    .form-sec-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--primary);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .msel-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
     .msel-item {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 10px 14px;
-      border-radius: var(--r-sm);
+      gap: 16px;
+      padding: 16px 20px;
+      border-radius: var(--r-md);
       border: 1px solid var(--border);
       cursor: pointer;
       transition: var(--t);
     }
-    .msel-item:hover { border-color: var(--primary); background: #f0f6fc; }
-    .msel-item.checked { border-color: var(--primary); background: #f0f6fc; }
-    .msel-chk { accent-color: var(--primary); width: 16px; height: 16px; flex-shrink: 0; }
-    .msel-info { flex: 1; }
-    .msel-name { font-size: 13px; font-weight: 600; }
-    .msel-job  { font-size: 12px; color: var(--text-muted); }
-    .msg-group { margin-bottom: 14px; }
-    .msg-label { font-size: 12px; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; display: block; }
+
+    .msel-item:hover {
+      border-color: var(--gold);
+      background: rgba(212, 175, 55, 0.05);
+      transform: translateX(4px);
+    }
+
+    .msel-item.checked {
+      border-color: var(--gold);
+      background: rgba(212, 175, 55, 0.05);
+      box-shadow: 0 4px 15px var(--gold-light);
+    }
+
+    .msel-chk {
+      accent-color: var(--gold);
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      outline: none;
+      border: 1px solid var(--border);
+    }
+
+    .msel-info {
+      flex: 1;
+    }
+
+    .msel-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .msel-job {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .msg-group {
+      margin-bottom: 20px;
+    }
+
+    .msg-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
     .msg-textarea {
       width: 100%;
       border: 1px solid var(--border);
-      border-radius: var(--r-sm);
-      padding: 10px 12px;
-      font-size: 13px;
+      border-radius: var(--r-md);
+      padding: 16px;
+      font-size: 14px;
       font-family: inherit;
       resize: vertical;
       outline: none;
       transition: var(--t);
       color: var(--text);
-      background: var(--surface);
+      background: var(--surface-solid);
+      line-height: 1.6;
     }
-    .msg-textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(0,120,212,.12); }
-    .form-actions { display: flex; gap: 10px; align-items: center; }
+
+    .msg-textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 4px var(--gold-light);
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-top: 10px;
+    }
 
     /* ---- EMPTY ---- */
     .empty {
       text-align: center;
-      padding: 64px 20px;
+      padding: 80px 20px;
       color: var(--text-muted);
     }
-    .empty p { font-size: 15px; margin-bottom: 20px; }
+
+    .empty p {
+      font-size: 16px;
+      font-weight: 500;
+    }
   </style>
 </head>
+
 <body>
 
-<div class="demo-bar">
-  <strong>UI MOCKUP</strong> &nbsp;|&nbsp; Aures Elite Mentoring &nbsp;|&nbsp; Klikej na taby, tlacitka a radky. Prepinani role nahore meni cely pohled.
-</div>
+  <div class="demo-bar">
+    <strong>PREMIUM UI MOCKUP</strong> &nbsp;|&nbsp; Aures Elite Mentoring &nbsp;|&nbsp; Klikej na taby, tlacitka a
+    radky.
+  </div>
 
-<div class="app">
+  <div class="app">
 
-  <!-- HEADER -->
-  <div class="header">
-    <div class="header-brand">
-      <div class="header-title">Aures Elite Mentoring</div>
-      <div class="header-subtitle">Aures Holdings &nbsp;·&nbsp; Mentorský program</div>
-    </div>
-    <div class="header-right">
-      <div class="user-info">
-        <div class="user-name" id="hUserName">Markéta Nováková</div>
-        <div class="role-badge role-talent" id="hRoleBadge">Talent</div>
+    <!-- HEADER -->
+    <div class="header">
+      <div class="header-brand">
+        <div class="logo-mock">A</div>
+        <div class="header-title-wrapper">
+          <div class="header-title">Elite <span>Mentoring</span></div>
+        </div>
       </div>
-      <div class="user-avatar" id="hAvatar">MN</div>
+      <div class="header-right">
+        <div class="user-info">
+          <div class="user-name" id="hUserName">Markéta Nováková</div>
+          <div class="role-badge role-talent" id="hRoleBadge">Talent</div>
+        </div>
+        <div class="user-avatar" id="hAvatar">MN</div>
+      </div>
     </div>
+
+    <!-- ROLE SWITCHER -->
+    <div class="role-switcher">
+      <span class="role-switcher-label">Zobrazit jako:</span>
+      <button class="role-btn active" onclick="switchRole('talent')">Talent</button>
+      <button class="role-btn" onclick="switchRole('mentor')">Mentor</button>
+      <button class="role-btn" onclick="switchRole('hr')">HR Admin</button>
+    </div>
+
+    <!-- NAV -->
+    <div class="nav" id="nav"></div>
+
+    <!-- CONTENT -->
+    <div class="content" id="content"></div>
+
   </div>
 
-  <!-- ROLE SWITCHER -->
-  <div class="role-switcher">
-    <span class="role-switcher-label">Zobrazit jako:</span>
-    <button class="role-btn active" onclick="switchRole('talent')">Talent</button>
-    <button class="role-btn"        onclick="switchRole('mentor')">Mentor</button>
-    <button class="role-btn"        onclick="switchRole('hr')">HR Admin</button>
-  </div>
+  <script>
+    // ================================================================
+    // DATA
+    // ================================================================
+    const MENTORS = [
+      { id: 1, ini: 'JN', name: 'Jan Novák', job: 'Chief Operating Officer', super: 'Systémové myšlení pod tlakem', bio: '17 let v ops managementu. Pomáhám lidem vidět systémy, ne jen problémy. Strukturuji chaos.' },
+      { id: 2, ini: 'PM', name: 'Petra Marková', job: 'Chief Financial Officer', super: 'Čísla jako příběh', bio: 'Finanční stratég s přesahem do businessu. Věřím, že každé číslo vypráví příběh o firmě.' },
+      { id: 3, ini: 'TD', name: 'Tomáš Dvořák', job: 'VP Sales & Marketing', super: 'Vyjednávání a vliv', bio: '20 let budování obchodních týmů. Naučím tě jak prodat myšlenku i produkt každému ve firmě.' },
+      { id: 4, ini: 'MH', name: 'Michaela Horáková', job: 'Chief People Officer', super: 'Lidé jako kompetitivní výhoda', bio: 'HR stratég s fokusem na talent development a organizační kulturu. Pomáhám lidem růst záměrně.' },
+    ];
 
-  <!-- NAV -->
-  <div class="nav" id="nav"></div>
+    const MY_REQUESTS = [
+      { id: 1, title: 'REQ-2026-001', status: 'Pending', mentors: [{ n: 'Jan Novák', stage: 1, d: null }, { n: 'Petra Marková', stage: 2, d: null }], curStage: 1 },
+      { id: 2, title: 'REQ-2026-002', status: 'Approved', mentors: [{ n: 'Tomáš Dvořák', stage: 1, d: 'approved' }], curStage: 1 },
+      { id: 3, title: 'REQ-2026-003', status: 'HR_Review', mentors: [{ n: 'Jan Novák', stage: 1, d: 'rejected' }, { n: 'Petra Marková', stage: 2, d: 'rejected' }, { n: 'Michaela Horáková', stage: 3, d: 'rejected' }], curStage: 3 },
+    ];
 
-  <!-- CONTENT -->
-  <div class="content" id="content"></div>
+    const PENDING = [
+      { id: 4, title: 'REQ-2026-004', talent: 'Jakub Pospíšil', stage: 1, msg: 'Chci se od vás naučit systémové řízení projektů. Vidím vás jako ideálního mentora pro svůj rozvoj…' },
+      { id: 5, title: 'REQ-2026-005', talent: 'Anna Blažková', stage: 1, msg: 'Zajímá mě pohled COO na škálování týmů. Ráda bych pochopila, jak přemýšlíte o organizaci…' },
+    ];
 
-</div>
+    const HISTORY = [
+      { id: 6, title: 'REQ-2026-006', talent: 'Ondřej Kratochvíl', stage: 1, d: 'approved', date: '12. února 2026' },
+      { id: 7, title: 'REQ-2026-007', talent: 'Lucie Horáčková', stage: 1, d: 'rejected', date: '28. ledna 2026' },
+      { id: 8, title: 'REQ-2026-008', talent: 'Martin Šimánek', stage: 1, d: 'approved', date: '15. ledna 2026' },
+    ];
 
-<script>
-// ================================================================
-// DATA
-// ================================================================
-const MENTORS = [
-  { id:1, ini:'JN', name:'Jan Novák',         job:'Chief Operating Officer',   super:'Systémové myšlení pod tlakem',     bio:'17 let v ops managementu. Pomáhám lidem vidět systémy, ne jen problémy. Strukturuji chaos.',                                       avail:'Dostupný od dubna 2026' },
-  { id:2, ini:'PM', name:'Petra Marková',     job:'Chief Financial Officer',    super:'Čísla jako příběh',                bio:'Finanční stratég s přesahem do businessu. Věřím, že každé číslo vypráví příběh o firmě.',                                        avail:'2 místa volná' },
-  { id:3, ini:'TD', name:'Tomáš Dvořák',      job:'VP Sales & Marketing',       super:'Vyjednávání a vliv',               bio:'20 let budování obchodních týmů. Naučím tě jak prodat myšlenku i produkt každému ve firmě.',                                     avail:'' },
-  { id:4, ini:'MH', name:'Michaela Horáková', job:'Chief People Officer',       super:'Lidé jako kompetitivní výhoda',    bio:'HR stratég s fokusem na talent development a organizační kulturu. Pomáhám lidem růst záměrně.',                                  avail:'Dostupná pro 1 talenta' },
-];
+    const ALL_REQS = [
+      { id: 1, talent: 'Markéta Nováková', mentor: 'Jan Novák', status: 'Pending', stage: 1 },
+      { id: 3, talent: 'Markéta Nováková', mentor: 'Michaela Horáková', status: 'HR_Review', stage: 3 },
+      { id: 4, talent: 'Jakub Pospíšil', mentor: 'Jan Novák', status: 'Pending', stage: 1 },
+      { id: 5, talent: 'Anna Blažková', mentor: 'Jan Novák', status: 'Pending', stage: 1 },
+    ];
 
-const MY_REQUESTS = [
-  { id:1, title:'REQ-2026-001', status:'Pending',   mentors:[{n:'Jan Novák',stage:1,d:null},{n:'Petra Marková',stage:2,d:null}], curStage:1 },
-  { id:2, title:'REQ-2026-002', status:'Approved',  mentors:[{n:'Tomáš Dvořák',stage:1,d:'approved'}],                          curStage:1 },
-  { id:3, title:'REQ-2026-003', status:'HR_Review', mentors:[{n:'Jan Novák',stage:1,d:'rejected'},{n:'Petra Marková',stage:2,d:'rejected'},{n:'Michaela Horáková',stage:3,d:'rejected'}], curStage:3 },
-];
+    const APPROVED_PAIRS = [
+      { id: 2, talent: 'Markéta Nováková', mentor: 'Tomáš Dvořák', status: 'Approved' },
+      { id: 6, talent: 'Ondřej Kratochvíl', mentor: 'Jan Novák', status: 'Scheduled' },
+    ];
 
-const PENDING = [
-  { id:4, title:'REQ-2026-004', talent:'Jakub Pospíšil',  stage:1, msg:'Chci se od vás naučit systémové řízení projektů. Vidím vás jako ideálního mentora pro svůj rozvoj…' },
-  { id:5, title:'REQ-2026-005', talent:'Anna Blažková',   stage:1, msg:'Zajímá mě pohled COO na škálování týmů. Ráda bych pochopila, jak přemýšlíte o organizaci…' },
-];
+    const HR_QUEUE = [
+      { id: 3, title: 'REQ-2026-003', talent: 'Markéta Nováková', mentors: ['Jan Novák', 'Petra Marková', 'Michaela Horáková'] },
+    ];
 
-const HISTORY = [
-  { id:6, title:'REQ-2026-006', talent:'Ondřej Kratochvíl', stage:1, d:'approved', date:'12. února 2026' },
-  { id:7, title:'REQ-2026-007', talent:'Lucie Horáčková',   stage:1, d:'rejected', date:'28. ledna 2026' },
-  { id:8, title:'REQ-2026-008', talent:'Martin Šimánek',    stage:1, d:'approved', date:'15. ledna 2026' },
-];
+    const MENTOR_MGMT = [
+      { id: 1, name: 'Jan Novák', job: 'Chief Operating Officer', cap: 3, active: true },
+      { id: 2, name: 'Petra Marková', job: 'Chief Financial Officer', cap: 2, active: true },
+      { id: 3, name: 'Tomáš Dvořák', job: 'VP Sales & Marketing', cap: 4, active: true },
+      { id: 4, name: 'Michaela Horáková', job: 'Chief People Officer', cap: 1, active: true },
+      { id: 5, name: 'Tomáš Růžička', job: 'VP Engineering', cap: 3, active: false },
+    ];
 
-const ALL_REQS = [
-  { id:1, title:'REQ-2026-001', talent:'Markéta Nováková',   status:'Pending',   stage:1 },
-  { id:2, title:'REQ-2026-002', talent:'Markéta Nováková',   status:'Approved',  stage:1 },
-  { id:3, title:'REQ-2026-003', talent:'Markéta Nováková',   status:'HR_Review', stage:3 },
-  { id:4, title:'REQ-2026-004', talent:'Jakub Pospíšil',     status:'Pending',   stage:1 },
-  { id:5, title:'REQ-2026-005', talent:'Anna Blažková',      status:'Pending',   stage:1 },
-  { id:6, title:'REQ-2026-006', talent:'Ondřej Kratochvíl',  status:'Approved',  stage:1 },
-  { id:7, title:'REQ-2026-007', talent:'Lucie Horáčková',    status:'Cancelled', stage:1 },
-];
+    const CAPACITY = [
+      { id: 1, name: 'Jan Novák', job: 'COO', cap: 3, approved: 2 },
+      { id: 2, name: 'Petra Marková', job: 'CFO', cap: 2, approved: 0 },
+      { id: 3, name: 'Tomáš Dvořák', job: 'VP', cap: 4, approved: 1 },
+      { id: 4, name: 'Michaela Horáková', job: 'CPO', cap: 1, approved: 1 },
+    ];
 
-const HR_QUEUE = [
-  { id:3, title:'REQ-2026-003', talent:'Markéta Nováková', mentors:['Jan Novák','Petra Marková','Michaela Horáková'] },
-];
+    // ================================================================
+    // ROLE CONFIG
+    // ================================================================
+    const ROLES = {
+      talent: {
+        name: 'Markéta Nováková', ini: 'MN', badgeCls: 'role-talent', badgeLbl: 'Talent',
+        tabs: [
+          { id: 'catalog', label: 'Katalog mentorů' },
+          { id: 'myrequests', label: 'Moje žádosti' },
+          { id: 'resetchoice', label: 'Změna volby' },
+        ],
+      },
+      mentor: {
+        name: 'Jan Novák', ini: 'JN', badgeCls: 'role-mentor', badgeLbl: 'Mentor',
+        tabs: [
+          { id: 'pending', label: 'Čekající žádosti', badge: 2 },
+          { id: 'history', label: 'Moje rozhodnutí' },
+        ],
+      },
+      hr: {
+        name: 'Tereza Procházková', ini: 'TP', badgeCls: 'role-hr', badgeLbl: 'HR Admin',
+        tabs: [
+          { id: 'allreqs', label: 'Čeká' },
+          { id: 'approved', label: 'Domluvené mentoringy' },
+          { id: 'mentormg', label: 'Správa mentorů' },
+          { id: 'capacity', label: 'Kapacitní dashboard' },
+        ],
+      },
+    };
 
-const MENTOR_MGMT = [
-  { id:1, name:'Jan Novák',         job:'Chief Operating Officer',  cap:3, active:true },
-  { id:2, name:'Petra Marková',     job:'Chief Financial Officer',   cap:2, active:true },
-  { id:3, name:'Tomáš Dvořák',      job:'VP Sales & Marketing',      cap:4, active:true },
-  { id:4, name:'Michaela Horáková', job:'Chief People Officer',      cap:1, active:true },
-  { id:5, name:'Tomáš Růžička',     job:'VP Engineering',            cap:3, active:false },
-];
+    let role = 'talent';
+    let tab = 'catalog';
+    let selectedMentor = 1;
 
-const CAPACITY = [
-  { id:1, name:'Jan Novák',         job:'COO',  cap:3, approved:2 },
-  { id:2, name:'Petra Marková',     job:'CFO',  cap:2, approved:0 },
-  { id:3, name:'Tomáš Dvořák',      job:'VP',   cap:4, approved:1 },
-  { id:4, name:'Michaela Horáková', job:'CPO',  cap:1, approved:1 },
-];
+    function switchRole(r) {
+      role = r;
+      tab = ROLES[r].tabs[0].id;
+      const cfg = ROLES[r];
 
-// ================================================================
-// ROLE CONFIG
-// ================================================================
-const ROLES = {
-  talent: {
-    name:'Markéta Nováková', ini:'MN', badgeCls:'role-talent', badgeLbl:'Talent',
-    tabs:[
-      { id:'catalog',    label:'Katalog mentorů' },
-      { id:'myrequests', label:'Moje žádosti' },
-      { id:'newrequest', label:'Nová žádost' },
-    ],
-  },
-  mentor: {
-    name:'Jan Novák', ini:'JN', badgeCls:'role-mentor', badgeLbl:'Mentor',
-    tabs:[
-      { id:'pending', label:'Čekající žádosti', badge:2 },
-      { id:'history', label:'Moje rozhodnutí' },
-    ],
-  },
-  hr: {
-    name:'Tereza Procházková', ini:'TP', badgeCls:'role-hr', badgeLbl:'HR Admin',
-    tabs:[
-      { id:'allreqs',  label:'Všechny žádosti' },
-      { id:'hrqueue',  label:'HR Fronta', badge:1 },
-      { id:'mentormg', label:'Správa mentorů' },
-      { id:'capacity', label:'Kapacitní dashboard' },
-    ],
-  },
-};
+      document.getElementById('hUserName').textContent = cfg.name;
+      document.getElementById('hAvatar').textContent = cfg.ini;
+      const rb = document.getElementById('hRoleBadge');
+      rb.className = 'role-badge ' + cfg.badgeCls;
+      rb.textContent = cfg.badgeLbl;
 
-let role = 'talent';
-let tab  = 'catalog';
+      document.querySelectorAll('.role-btn').forEach((b, i) => {
+        b.classList.toggle('active', ['talent', 'mentor', 'hr'][i] === r);
+      });
 
-// ================================================================
-// SWITCH ROLE
-// ================================================================
-function switchRole(r) {
-  role = r;
-  tab  = ROLES[r].tabs[0].id;
-  const cfg = ROLES[r];
+      renderNav();
+      renderContent();
+    }
 
-  document.getElementById('hUserName').textContent  = cfg.name;
-  document.getElementById('hAvatar').textContent    = cfg.ini;
-  const rb = document.getElementById('hRoleBadge');
-  rb.className   = 'role-badge ' + cfg.badgeCls;
-  rb.textContent = cfg.badgeLbl;
-
-  document.querySelectorAll('.role-btn').forEach((b, i) => {
-    b.classList.toggle('active', ['talent','mentor','hr'][i] === r);
-  });
-
-  renderNav();
-  renderContent();
-}
-
-// ================================================================
-// NAV
-// ================================================================
-function renderNav() {
-  document.getElementById('nav').innerHTML = ROLES[role].tabs.map(t => `
+    function renderNav() {
+      document.getElementById('nav').innerHTML = ROLES[role].tabs.map(t => `
     <div class="nav-tab ${t.id === tab ? 'active' : ''}" onclick="switchTab('${t.id}')">
       ${t.label}${t.badge ? `<span class="nav-badge">${t.badge}</span>` : ''}
     </div>
   `).join('');
-}
+    }
 
-function switchTab(t) {
-  tab = t;
-  renderNav();
-  renderContent();
-}
+    function switchTab(t) {
+      tab = t;
+      renderNav();
+      renderContent();
+    }
 
-// ================================================================
-// CONTENT ROUTER
-// ================================================================
-function renderContent() {
-  const map = {
-    catalog:    vCatalog,
-    myrequests: vMyRequests,
-    newrequest: vNewRequest,
-    pending:    vPending,
-    history:    vHistory,
-    allreqs:    vAllRequests,
-    hrqueue:    vHRQueue,
-    mentormg:   vMentorMgmt,
-    capacity:   vCapacity,
-  };
-  const c = document.getElementById('content');
-  c.innerHTML = '';
-  const d = document.createElement('div');
-  d.className = 'view';
-  d.innerHTML = (map[tab] || (() => '<p>404</p>'))();
-  c.appendChild(d);
-}
+    const SL = { Pending: 'Čeká na vyjádření', Approved: 'Schváleno', HR_Review: 'Předáno na HR', Scheduled: 'Naplánováno', Cancelled: 'Zrušeno' };
+    const SC = { Pending: 's-pending', Approved: 's-approved', HR_Review: 's-hr', Scheduled: 's-scheduled', Cancelled: 's-cancelled' };
 
-// ================================================================
-// HELPERS
-// ================================================================
-const SL = { Pending:'Čeká na vyjádření', Approved:'Schváleno', HR_Review:'Předáno na HR', Scheduled:'Naplánováno', Cancelled:'Zrušeno' };
-const SC = { Pending:'s-pending', Approved:'s-approved', HR_Review:'s-hr', Scheduled:'s-scheduled', Cancelled:'s-cancelled' };
+    function renderContent() {
+      const map = {
+        catalog: vCatalog,
+        myrequests: vMyRequests,
+        newrequest: vNewRequest,
+        resetchoice: vResetChoice,
+        pending: vPending,
+        history: vHistory,
+        allreqs: vAllRequests,
+        approved: vApprovedMentorings,
+        hrqueue: vHRQueue,
+        mentormg: vMentorMgmt,
+        capacity: vCapacity,
+      };
+      const c = document.getElementById('content');
+      c.innerHTML = '';
+      const d = document.createElement('div');
+      d.className = 'view';
+      d.innerHTML = (map[tab] || (() => '<div class="empty"><p>Feature v přípravě</p></div>'))();
+      c.appendChild(d);
+    }
 
-// ================================================================
-// VIEWS
-// ================================================================
-
-function vCatalog() {
-  return `
+    function vCatalog() {
+      return `
     <div class="page-header"><h2 class="page-title">Katalog mentorů</h2></div>
     <div class="mentor-grid">
       ${MENTORS.map(m => `
@@ -905,72 +1551,102 @@ function vCatalog() {
           </div>
           <div class="mentor-superpower">${m.super}</div>
           <div class="mentor-bio">${m.bio}</div>
-          ${m.avail ? `<div class="mentor-availability">${m.avail}</div>` : ''}
           <div class="mentor-card-actions">
-            <button class="btn-primary" onclick="switchTab('newrequest')">Požádat o mentoring</button>
+            <button class="btn-secondary" onclick="selectedMentor=${m.id};switchTab('newrequest')">Požádat o mentoring</button>
           </div>
         </div>
       `).join('')}
     </div>
   `;
-}
+    }
 
-function vMyRequests() {
-  return `
+    function vMyRequests() {
+      return `
     <div class="page-header">
       <h2 class="page-title">Moje žádosti</h2>
-      <button class="btn-primary" onclick="switchTab('catalog')">+ Nová žádost</button>
     </div>
     <div class="request-list">
       ${MY_REQUESTS.map(req => `
         <div class="request-card">
-          <div class="request-card-header">
-            <span class="request-title">${req.title}</span>
-            <span class="status-badge ${SC[req.status]}">${SL[req.status]}</span>
-          </div>
-          <div class="request-mentors">
-            ${req.mentors.map(m => {
-              let cls = 'mentor-tag';
-              if (m.d === 'approved') cls += ' mt-approved';
-              else if (m.d === 'rejected') cls += ' mt-rejected';
-              else if (req.curStage === m.stage && req.status === 'Pending') cls += ' mt-current';
-              return `<span class="${cls}">#${m.stage} ${m.n}</span>`;
-            }).join('')}
-          </div>
+          ${req.mentors.map(m => {
+        let statusLabel, statusCls;
+        if (req.status === 'Approved' && m.d === 'approved') { statusLabel = 'Schváleno'; statusCls = 's-approved'; }
+        else if (m.d === 'rejected') { statusLabel = 'Zamítnuto'; statusCls = 's-cancelled'; }
+        else if (req.curStage === m.stage && req.status === 'Pending') { statusLabel = 'Čeká na schválení'; statusCls = 's-pending'; }
+        else if (m.stage > req.curStage && req.status === 'Pending') { statusLabel = 'Ve frontě'; statusCls = 's-cancelled'; }
+        else if (req.status === 'HR_Review') { statusLabel = 'Předáno na HR'; statusCls = 's-hr'; }
+        else { statusLabel = 'Čeká'; statusCls = 's-pending'; }
+        return `<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;${m.stage > 1 ? 'border-top:1px solid #eee;' : ''}">
+          <span style="font-size:15px;font-weight:600;color:var(--text);">Mentoring od ${m.n}</span>
+          <span class="status-badge ${statusCls}">${statusLabel}</span>
+        </div>`;
+      }).join('')}
         </div>
       `).join('')}
     </div>
   `;
-}
+    }
 
-function vNewRequest() {
-  return `
+    function vNewRequest() {
+      const pm = MENTORS.find(m => m.id === selectedMentor) || MENTORS[0];
+      const others = MENTORS.filter(m => m.id !== pm.id);
+      return `
     <div class="form-wrap">
-      <h2 class="page-title" style="margin-bottom:22px">Nová žádost o mentoring</h2>
+      <h2 class="page-title" style="margin-bottom:30px">Nová žádost o mentoring</h2>
+      <div class="form-sec" style="border:2px solid var(--gold);border-top:3px solid var(--gold);">
+        <div class="form-sec-title">Tvůj vybraný mentor</div>
+        <div style="display:flex;align-items:center;gap:20px;margin-bottom:16px;flex-wrap:wrap;">
+          <div class="mentor-avatar" style="width:72px;height:72px;font-size:24px;border:3px solid var(--gold);">${pm.ini}</div>
+          <div style="flex:1;">
+            <div style="font-size:20px;font-weight:700;color:var(--primary);">${pm.name}</div>
+            <div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin:4px 0;">${pm.job}</div>
+            <div style="font-size:14px;font-weight:600;color:var(--gold-dark);">✦ ${pm.super}</div>
+          </div>
+          <span class="status-badge s-approved" style="background:var(--gold-light);color:var(--gold-dark);border:1px solid var(--gold);">Primární mentor</span>
+        </div>
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.7;">${pm.bio}</div>
+      </div>
       <div class="form-sec">
-        <div class="form-sec-title">Výběr mentorů (2 / 3)</div>
+        <div class="form-sec-title">Záložní mentoři</div>
+        <p style="font-size:13px;color:var(--text-muted);margin:-10px 0 16px;line-height:1.6;">
+          Pokud vybraný mentor nebude mít kapacitu, systém automaticky osloví záložního mentora.
+          Vyber si sekundárního a případně terciálního mentora.
+        </p>
         <div class="msel-list">
-          ${MENTORS.map((m, i) => `
-            <div class="msel-item ${i < 2 ? 'checked' : ''}">
-              <input type="checkbox" class="msel-chk" ${i < 2 ? 'checked' : ''} readonly />
-              <div class="msel-info">
-                <div class="msel-name">${m.name}</div>
-                <div class="msel-job">${m.job} &nbsp;·&nbsp; ${m.super}</div>
+          ${others.map((m, i) => `
+            <div class="msel-item" style="justify-content:space-between;">
+              <div style="display:flex;align-items:center;gap:14px;">
+                <div class="mentor-avatar" style="width:44px;height:44px;font-size:15px;">${m.ini}</div>
+                <div class="msel-info">
+                  <div class="msel-name">${m.name}</div>
+                  <div class="msel-job">${m.job} · ${m.super}</div>
+                </div>
               </div>
+              <button class="btn-secondary" style="padding:6px 16px;font-size:12px;">${i === 0 ? 'Sekundární ✓' : 'Zvolit jako ' + (i === 1 ? 'sekundárního' : 'terciálního')}</button>
             </div>
           `).join('')}
         </div>
       </div>
       <div class="form-sec">
         <div class="form-sec-title">Zprávy mentorům</div>
+        <p style="font-size:13px;color:var(--text-muted);margin:-10px 0 16px;line-height:1.6;">
+          Pokud chceš, můžeš mentorovi napsat zprávu — proč máš o něj zájem,
+          co od mentoringu očekáváš, nebo cokoliv dalšího. Zpráva není povinná.
+        </p>
         <div class="msg-group">
-          <label class="msg-label">Zpráva pro Jan Novák (#1)</label>
-          <textarea class="msg-textarea" rows="3">Chci se od vás naučit systémové řízení. Obdivuji váš přístup k ops managementu a věřím, že mi pomůžete strukturovat způsob, jakým přemýšlím o složitých problémech.</textarea>
+          <label class="msg-label">Zpráva pro ${pm.name} (primární)</label>
+          <textarea class="msg-textarea" rows="3" placeholder="Napiš, proč tě zajímá mentoring od ${pm.name}…"></textarea>
         </div>
-        <div class="msg-group">
-          <label class="msg-label">Zpráva pro Petra Marková (#2)</label>
-          <textarea class="msg-textarea" rows="3" placeholder="Proč chceš právě Petru jako mentorku…"></textarea>
-        </div>
+        ${others[0] ? `
+        <div class="msg-group" style="margin-top:14px;">
+          <label class="msg-label">Zpráva pro ${others[0].name} (sekundární)</label>
+          <textarea class="msg-textarea" rows="3" placeholder="Napiš, proč tě zajímá mentoring od ${others[0].name}…"></textarea>
+        </div>` : ''}
+        ${others[1] ? `
+        <div class="msg-group" style="margin-top:14px;">
+          <label class="msg-label">Zpráva pro ${others[1].name} (terciální)</label>
+          <textarea class="msg-textarea" rows="3" placeholder="Napiš, proč tě zajímá mentoring od ${others[1].name}…"></textarea>
+        </div>` : ''}
       </div>
       <div class="form-actions">
         <button class="btn-primary" onclick="switchTab('myrequests')">Odeslat žádost</button>
@@ -978,10 +1654,10 @@ function vNewRequest() {
       </div>
     </div>
   `;
-}
+    }
 
-function vPending() {
-  return `
+    function vPending() {
+      return `
     <div class="page-header"><h2 class="page-title">Čekající žádosti</h2></div>
     <div class="request-list">
       ${PENDING.map(req => `
@@ -989,60 +1665,60 @@ function vPending() {
           <div class="pending-row-left">
             <div class="pending-row-header">
               <span class="request-title">${req.title}</span>
-              <span class="stage-indicator">Mentor #${req.stage}</span>
+              <span class="stage-indicator">Volba #${req.stage}</span>
             </div>
             <div class="talent-name">${req.talent}</div>
-            <div class="msg-preview">"${req.msg.slice(0,110)}…"</div>
+            <div class="msg-preview">"${req.msg.slice(0, 110)}…"</div>
           </div>
           <span class="arrow-icon">›</span>
         </div>
       `).join('')}
     </div>
   `;
-}
+    }
 
-function showDetail(id) {
-  const req = PENDING.find(r => r.id === id);
-  if (!req) return;
-  document.getElementById('content').innerHTML = `
+    function showDetail(id) {
+      const req = PENDING.find(r => r.id === id);
+      if (!req) return;
+      document.getElementById('content').innerHTML = `
     <div class="view">
-      <button class="btn-back" onclick="switchTab('pending')">‹ Zpět na seznam</button>
-      <h2 class="page-title" style="margin-bottom:22px">${req.title}</h2>
+      <button class="btn-back" onclick="switchTab('pending')">‹ Zpět na přehled</button>
+      <h2 class="page-title" style="margin-bottom:30px">${req.title}</h2>
       <div class="detail-card">
         <div class="detail-section">
           <div class="detail-label">Talent</div>
           <div class="detail-value">${req.talent}</div>
         </div>
         <div class="detail-section">
-          <div class="detail-label">Tvoje pozice v řetězu</div>
-          <span class="stage-indicator">Mentor #${req.stage}</span>
+          <div class="detail-label">Pořadí priority</div>
+          <span class="stage-indicator" style="background: var(--gold-light); color: var(--gold-dark);">Jste volba #${req.stage}</span>
         </div>
         <div class="detail-section">
-          <div class="detail-label">Zpráva od talentu</div>
+          <div class="detail-label">Osobní zpráva od talentu</div>
           <div class="talent-msg">${req.msg} Věřím, že váš mentoring by mi pomohl posunout se výrazně dál.</div>
         </div>
         <div class="detail-section">
-          <div class="detail-label">Tvoje rozhodnutí</div>
+          <div class="detail-label">Rozhodnutí</div>
           <div class="decision-btns">
-            <button class="btn-approve" onclick="switchTab('pending')">Schválit</button>
-            <button class="btn-reject"  onclick="switchTab('pending')">Zamítnout</button>
+            <button class="btn-approve" onclick="switchTab('pending')">Přijmout do mentoringu</button>
+            <button class="btn-reject"  onclick="switchTab('pending')">S lítostí odmítnout</button>
           </div>
-          <div class="reject-hint">Při zamítnutí: žádost bude předána Petře Markové.</div>
+          <div class="reject-hint">Při zamítnutí bude žádost automaticky, diskrétně a bez prodlení předána Petře Markové (Volba #2).</div>
         </div>
       </div>
     </div>
   `;
-}
+    }
 
-function vHistory() {
-  return `
+    function vHistory() {
+      return `
     <div class="page-header"><h2 class="page-title">Moje rozhodnutí</h2></div>
     <div class="request-list">
       ${HISTORY.map(h => `
         <div class="history-card">
           <div>
             <div class="history-title">${h.title} — ${h.talent}</div>
-            <div class="history-meta">Mentor #${h.stage} &nbsp;·&nbsp; ${h.date}</div>
+            <div class="history-meta">Volba #${h.stage} &nbsp;·&nbsp; ${h.date}</div>
           </div>
           <span class="d-badge ${h.d === 'approved' ? 'd-approved' : 'd-rejected'}">
             ${h.d === 'approved' ? 'Schváleno' : 'Zamítnuto'}
@@ -1051,43 +1727,43 @@ function vHistory() {
       `).join('')}
     </div>
   `;
-}
+    }
 
-function vAllRequests() {
-  return `
-    <div class="page-header"><h2 class="page-title">Všechny žádosti (${ALL_REQS.length})</h2></div>
+    function vAllRequests() {
+      return `
+    <div class="page-header"><h2 class="page-title">Čekající žádosti (${ALL_REQS.length})</h2></div>
     <div class="filter-row">
-      <div class="filter-bar">
-        <button class="filter-btn-active">Vše</button>
-        <button class="filter-btn">Čeká</button>
-        <button class="filter-btn">Schváleno</button>
-        <button class="filter-btn">HR Fronta</button>
-        <button class="filter-btn">Naplánováno</button>
-        <button class="filter-btn">Zrušeno</button>
-      </div>
-      <input class="search-input" type="text" placeholder="Hledat talent nebo ID…" />
+      <input class="search-input" type="text" placeholder="Hledat talent nebo mentora…" />
     </div>
     <div class="request-list">
-      ${ALL_REQS.map(r => `
-        <div class="all-row">
-          <div class="all-row-main">
-            <span class="request-title">${r.title}</span>
-            <span class="talent-small">${r.talent}</span>
+      ${ALL_REQS.map(r => {
+        const statusLabel = r.status === 'HR_Review' ? 'Čeká na schválení HR' : 'Čeká na schválení — ' + r.mentor;
+        const statusCls = r.status === 'HR_Review' ? 's-hr' : 's-pending';
+        const approveLabel = r.status === 'HR_Review' ? 'Naplánovat' : 'Schválit';
+        return `
+        <div class="all-row" style="flex-wrap:wrap;gap:12px;">
+          <div class="all-row-main" style="flex:1;min-width:200px;">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+              <span style="font-weight:700;font-size:14px;color:var(--text);">${r.talent}</span>
+              <span style="color:var(--text-muted);font-size:14px;">→</span>
+              <span style="font-weight:600;font-size:14px;color:var(--primary);">${r.mentor}</span>
+            </div>
+            <span class="status-badge ${statusCls}" style="margin-top:6px;">${statusLabel}</span>
           </div>
-          <div class="all-row-meta">
-            <span class="stage-indicator">Stage ${r.stage}</span>
-            <span class="status-badge ${SC[r.status]}">${SL[r.status]}</span>
+          <div style="display:flex;gap:6px;flex-shrink:0;">
+            <button class="filter-btn" style="font-size:12px;padding:5px 14px;">${approveLabel}</button>
+            <button class="filter-btn" style="font-size:12px;padding:5px 14px;color:var(--error);border-color:var(--error);" onmouseover="this.style.background='var(--error-light)'" onmouseout="this.style.background=''">Zrušit</button>
           </div>
-        </div>
-      `).join('')}
+        </div>`;
+      }).join('')}
     </div>
   `;
-}
+    }
 
-function vHRQueue() {
-  return `
-    <div class="page-header"><h2 class="page-title">HR Fronta (${HR_QUEUE.length})</h2></div>
-    <div class="section-hint">Žádosti odmítnuté všemi mentory — vyžadují ruční řešení HR.</div>
+    function vHRQueue() {
+      return `
+    <div class="page-header"><h2 class="page-title">HR Jistina (Eskalace)</h2></div>
+    <div class="section-hint">Tyto žádosti propadly přes všechny vybrané mentory a vyžadují váš individuální přístup k nalezení vhodného mentora.</div>
     <div class="request-list">
       ${HR_QUEUE.map(r => `
         <div class="hr-card">
@@ -1095,23 +1771,26 @@ function vHRQueue() {
             <span class="request-title">${r.title}</span>
             <span class="status-badge s-hr">Předáno na HR</span>
           </div>
-          <div class="hr-talent">Talent: ${r.talent}</div>
+          <div class="hr-talent">${r.talent}</div>
           <div class="request-mentors">
-            ${r.mentors.map((m,i) => `<span class="mentor-tag mt-rejected">#${i+1} ${m}</span>`).join('')}
+            ${r.mentors.map((m, i) => `<span class="mentor-tag mt-rejected"><span class="badge-num">${i + 1}</span> ${m}</span>`).join('')}
           </div>
           <div class="hr-actions">
-            <button class="btn-approve">Naplánovat</button>
-            <button class="btn-reject">Zrušit žádost</button>
+            <button class="btn-primary">Přiřadit ručně</button>
+            <button class="btn-reject">Diskutovat s talentem</button>
           </div>
         </div>
       `).join('')}
     </div>
   `;
-}
+    }
 
-function vMentorMgmt() {
-  return `
-    <div class="page-header"><h2 class="page-title">Správa mentorů (${MENTOR_MGMT.length})</h2></div>
+    function vMentorMgmt() {
+      return `
+    <div class="page-header">
+      <h2 class="page-title">Správa mentorů (${MENTOR_MGMT.length})</h2>
+      <button class="btn-primary">+ Přidat mentora</button>
+    </div>
     <div class="mgmt-list">
       ${MENTOR_MGMT.map(m => `
         <div class="mgmt-row ${!m.active ? 'mgmt-row-inactive' : ''}">
@@ -1119,16 +1798,18 @@ function vMentorMgmt() {
             <div class="mgmt-name">${m.name}</div>
             <div class="mgmt-meta">${m.job}</div>
           </div>
-          <button class="cap-btn">Kapacita: ${m.cap}</button>
+          <span style="font-size:13px;color:var(--text-muted);padding:4px 12px;background:#f5f6f8;border-radius:6px;">Kapacita: ${m.cap}</span>
           <button class="${m.active ? 'active-btn' : 'inactive-btn'}">${m.active ? 'Aktivní' : 'Neaktivní'}</button>
+          <button class="filter-btn" style="font-size:12px;padding:5px 14px;">Upravit</button>
+          <button class="filter-btn" style="font-size:12px;padding:5px 14px;color:var(--error);border-color:var(--error);">Smazat</button>
         </div>
       `).join('')}
     </div>
   `;
-}
+    }
 
-function vCapacity() {
-  return `
+    function vCapacity() {
+      return `
     <div class="page-header"><h2 class="page-title">Kapacitní dashboard</h2></div>
     <div class="cap-list">
       ${CAPACITY.map(m => {
@@ -1155,13 +1836,51 @@ function vCapacity() {
       }).join('')}
     </div>
   `;
-}
+    }
 
-// ================================================================
-// INIT
-// ================================================================
-switchRole('talent');
-</script>
+    function vResetChoice() {
+      return `
+    <div class="page-header"><h2 class="page-title">Změna volby mentora</h2></div>
+    <div class="form-sec" style="max-width:600px;">
+      <p style="font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:18px;">
+        Pokud chceš změnit svou volbu mentora, můžeš zde zrušit všechny aktuální žádosti
+        a začít výběr od začátku. Systém zruší všechny tvoje aktivní žádosti
+        a budeš si moci znovu vybrat mentora z katalogu.
+      </p>
+      <div style="font-size:13px;color:var(--error);font-weight:600;padding:10px 14px;background:var(--error-light);border-radius:6px;border-left:3px solid var(--error);margin-bottom:18px;">
+        Tato akce je nevratná — všechny tvoje aktuální žádosti budou zrušeny.
+      </div>
+      <button class="btn-reject" onclick="switchTab('catalog')">Resetovat volbu a začít znovu</button>
+    </div>
+  `;
+    }
+
+    function vApprovedMentorings() {
+      return `
+    <div class="page-header"><h2 class="page-title">Domluvené mentoringy (${APPROVED_PAIRS.length})</h2></div>
+    <p style="font-size:14px;color:var(--text-muted);margin-bottom:24px;">
+      Přehled schválených mentorských párů. Další koordinaci řeší HR mimo systém.
+    </p>
+    <div class="request-list">
+      ${APPROVED_PAIRS.map(p => `
+        <div class="all-row" style="border-left:3px solid var(--success);">
+          <div style="display:flex;align-items:center;gap:10px;flex:1;">
+            <span style="font-weight:700;font-size:14px;color:var(--text);">${p.talent}</span>
+            <span style="color:var(--gold);font-size:16px;font-weight:700;">↔</span>
+            <span style="font-weight:700;font-size:14px;color:var(--primary);">${p.mentor}</span>
+          </div>
+          <span class="status-badge ${p.status === 'Scheduled' ? 's-scheduled' : 's-approved'}">
+            ${p.status === 'Scheduled' ? 'Naplánováno' : 'Schváleno'}
+          </span>
+        </div>
+      `).join('')}
+    </div>
+  `;
+    }
+
+    switchRole('talent');
+  </script>
 
 </body>
+
 </html>

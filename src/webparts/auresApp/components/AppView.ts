@@ -5,12 +5,14 @@ export type AppView =
   | 'MentorCatalog'
   | 'RequestForm'
   | 'MyRequests'
+  | 'ResetChoice'
   // Mentor
   | 'PendingRequests'
   | 'RequestDetail'
   | 'RequestHistory'
   // HR
   | 'AllRequests'
+  | 'ApprovedMentorings'
   | 'HRReviewQueue'
   | 'MentorManagement'
   | 'TalentManagement'

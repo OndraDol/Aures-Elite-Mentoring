@@ -10,7 +10,7 @@ Exkluzivni SPFx aplikace pro propojovani talentu Aures Holdings s top management
 | Runtime | Node.js v18.20.0 |
 | Framework | React 17.0.1, TypeScript 4.5.5 |
 | Data | @pnp/sp v4 |
-| Styling | Dart Sass + Fluent UI |
+| Styling | Dart Sass + Fluent UI (Navy/Gold premium theme) |
 
 ## Pozadavky
 
@@ -56,5 +56,6 @@ Viz [PROGRESS.md](PROGRESS.md)
 | 5 | HR Admin Panel | ✅ Hotovo |
 | 6 | Email notifikace | ✅ Hotovo |
 | 7 | Polish, lokalizace, production build (7.1–7.3 hotovo) | 🟡 In Progress |
+| 8 | UX Redesign — Mentor CRUD, dynamicke taby, HR admin powers | ✅ Hotovo |
 
-**Blocker:** SharePoint listy (Mentors, Talents, MentoringRequests) musi vytvorit IT (L2) rucne dle specifikace v Project_overview.md sekce 3.
+**Blocker:** SharePoint listy (Mentors, Talents, MentoringRequests) musi vytvorit IT (L2) rucne dle specifikace v Project_overview.md sekce 3. Seznam Mentors novy sloupec: `PhotoUrl` (URL/Hyperlink).

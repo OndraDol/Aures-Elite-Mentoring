@@ -5,9 +5,13 @@ import { AppView, NavigateFn } from './AppView';
 
 interface ITab { label: string; view: AppView; }
 
-const TALENT_TABS: ITab[] = [
+const TALENT_TABS_BASE: ITab[] = [
+  { label: 'Katalog mentorů', view: 'MentorCatalog' },
+];
+const TALENT_TABS_WITH_REQUESTS: ITab[] = [
   { label: 'Katalog mentorů', view: 'MentorCatalog' },
   { label: 'Moje žádosti',    view: 'MyRequests'    },
+  { label: 'Změna volby',     view: 'ResetChoice'   },
 ];
 
 const MENTOR_TABS: ITab[] = [
@@ -16,18 +20,12 @@ const MENTOR_TABS: ITab[] = [
 ];
 
 const HR_TABS: ITab[] = [
-  { label: 'Všechny žádosti', view: 'AllRequests'       },
-  { label: 'HR Fronta',       view: 'HRReviewQueue'     },
-  { label: 'Mentoři',         view: 'MentorManagement'  },
-  { label: 'Talenti',         view: 'TalentManagement'  },
-  { label: 'Kapacita',        view: 'CapacityDashboard' },
+  { label: 'Čeká',                view: 'AllRequests'        },
+  { label: 'Domluvené mentoringy', view: 'ApprovedMentorings' },
+  { label: 'Mentoři',             view: 'MentorManagement'   },
+  { label: 'Talenti',             view: 'TalentManagement'   },
+  { label: 'Kapacita',            view: 'CapacityDashboard'  },
 ];
-
-const ROLE_TABS: Partial<Record<UserRole, ITab[]>> = {
-  [UserRole.Talent]: TALENT_TABS,
-  [UserRole.Mentor]: MENTOR_TABS,
-  [UserRole.HR]:     HR_TABS,
-};
 
 const ROLE_LABELS: Partial<Record<UserRole, string>> = {
   [UserRole.Talent]: 'Talent',
@@ -35,7 +33,6 @@ const ROLE_LABELS: Partial<Record<UserRole, string>> = {
   [UserRole.HR]:     'HR Admin',
 };
 
-// Role s vlastnimi taby (v poradi priority)
 const NAVIGABLE_ROLES: UserRole[] = [UserRole.Talent, UserRole.Mentor, UserRole.HR];
 
 interface IAppShellProps {
@@ -44,31 +41,46 @@ interface IAppShellProps {
   navigate: NavigateFn;
   children: React.ReactNode;
   navBadges?: Partial<Record<AppView, number>>;
+  hasActiveRequests?: boolean;
 }
 
-const AppShell: React.FC<IAppShellProps> = ({ currentUser, currentView, navigate, children, navBadges }) => {
+const AppShell: React.FC<IAppShellProps> = ({
+  currentUser, currentView, navigate, children, navBadges, hasActiveRequests
+}) => {
   const navigableRoles = currentUser.roles.filter(r => NAVIGABLE_ROLES.includes(r));
-
-  // Aktivni role — vychozi je ta s nejvyssi prioritou v NAVIGABLE_ROLES
   const [activeRole, setActiveRole] = React.useState<UserRole>(navigableRoles[0]);
 
-  const tabs = ROLE_TABS[activeRole] ?? [];
+  const getTabsForRole = (role: UserRole): ITab[] => {
+    if (role === UserRole.Talent) {
+      return hasActiveRequests ? TALENT_TABS_WITH_REQUESTS : TALENT_TABS_BASE;
+    }
+    if (role === UserRole.Mentor) return MENTOR_TABS;
+    if (role === UserRole.HR) return HR_TABS;
+    return [];
+  };
+
+  const tabs = getTabsForRole(activeRole);
 
   const handleRoleSwitch = (role: UserRole): void => {
     setActiveRole(role);
-    const defaultTab = ROLE_TABS[role]?.[0];
+    const defaultTab = getTabsForRole(role)[0];
     if (defaultTab) navigate(defaultTab.view);
   };
 
   return (
     <div className={styles.appShell}>
-      {/* Header */}
       <header className={styles.header}>
-        <span className={styles.headerTitle}>Aures Elite Mentoring</span>
+        <div className={styles.headerLeft}>
+          <div className={styles.headerLogo} />
+          <span className={styles.headerTitle}>
+            {'AURES '}
+            <span className={styles.headerTitleAccent}>ELITE</span>
+            {' MENTORING'}
+          </span>
+        </div>
         <span className={styles.headerUser}>{currentUser.title}</span>
       </header>
 
-      {/* Role switcher — jen pro uzivatele s vice rolemi */}
       {navigableRoles.length > 1 && (
         <div className={styles.roleSwitch}>
           {navigableRoles.map(role => (
@@ -83,7 +95,6 @@ const AppShell: React.FC<IAppShellProps> = ({ currentUser, currentView, navigate
         </div>
       )}
 
-      {/* Navigacni taby */}
       <nav className={styles.nav}>
         {tabs.map(tab => {
           const badge = navBadges?.[tab.view] ?? 0;
@@ -100,7 +111,6 @@ const AppShell: React.FC<IAppShellProps> = ({ currentUser, currentView, navigate
         })}
       </nav>
 
-      {/* Obsah */}
       <main className={styles.content}>
         {children}
       </main>
