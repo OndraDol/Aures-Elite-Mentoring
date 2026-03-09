@@ -1,6 +1,7 @@
 # PROGRESS.md — Aures Elite Mentoring
 
 ## Session Log
+- **2026-03-09**: Session 18. Phase 9 — Oprava 4 kritickyck bugy: (1) Fall-through logika MentoringService.makeDecision — fix podmínky pro přeskočení Mentor2 při stage=1→Mentor3 (stage===1||2 místo jen stage===2). (2) Bezpečnost rozhodování v RequestDetail — resolveMyStage nahrazena resolveActiveStage vracející null mimo aktivní fázi + guard s info zprávou (brání "zombie" schválení ze staré stránky). (3) HR ApprovedMentorings — getApprovedMentor přepsána dle StageXDecision===Approved místo CurrentStage (fix chybné identifikace mentora u HR_Review→Scheduled). (4) Talent RequestForm — přidána kontrola aktivní žádosti při načtení, blokuje spam nových žádostí. Commit + push.
 - **2026-03-07**: Session 17. Phase 8 — Major UX redesign dle pozadavku vlastnika. MentorCatalog: odebrany kapacitni info. RequestForm: primarni mentor prominentne zobrazen, sekundarni/terciarni v tabulce, nepovinne zpravy. MyRequests: "Mentoring od XY" s per-mentor statusy (Ceka/Ve fronte/Schvaleno). Talent taby: dynamicke (Katalog / Moje zadosti / Zmena volby). HR taby: "Ceka" (pending+HR_Review s admin akcemi Schvalit/Zrusit) + "Domluvene mentoringy" (approved pary). MentorManagement: plny CRUD (pridat/upravit/smazat mentora). Nove komponenty: ResetChoice.tsx, ApprovedMentorings.tsx. MentoringService: +addMentor, +updateMentor, +deleteMentor, +deleteRequest, +cancelAllRequestsForTalent. IMentor: +PhotoUrl. Mockup.html aktualizovan. Build OK.
 - **2026-03-07**: Session 16. Premium UI/UX overhaul v8: Navy+Gold+Glassmorphism design system. SCSS kompletne prepsany — nove tokeny ($navy, $gold, blue-tinted shadows, $ease-out krivky), gold accent stripe pod headerem, frosted glass efekty, gold ring na avatarech, gold active indicator na tabech, shimmer/pulseGold animace, refined typografie. AppShell.tsx — logo placeholder (diamond motif), split title "AURES ELITE MENTORING" se zlatym akcentem. Build OK.
 - **2026-03-06**: Session 15. Phase 7 kompletni: AuresApp.module.scss — kompletni redesign (design tokeny, keyframes spin+fadeUp, gradient header, card shadows, hover lift, loading spinner pres ::before, mentorAvatar, navBadge, skryta kapacita). MentorCatalog — avatar+initials, bez kapacity, tlacitko vzdy aktivni. RequestForm — isDisabled bez isFull. MyRequests — ceske texty. Vsech 8 zbyvajicich komponent (mentor/*, hr/*) — opraveny ceske diakritiky. Phase 7.1+7.2+7.3 hotove.
@@ -93,6 +94,13 @@ SPFx **1.18.2**, React 17, TypeScript 4.5.5. Phase 0–8 hotove. Ceka se na SP p
 - [ ] 7.4 Production build — `gulp bundle --ship && gulp package-solution --ship`
 - [ ] 7.5 Testovani na SharePoint Online workbench
 - [ ] 7.6 README.md aktualizace — finalni setup instrukce
+
+## Phase 9: Kritické opravy logiky (2026-03-09)
+
+- [x] 9.1 MentoringService.makeDecision — fall-through logika pro přeskočení Mentor2 (stage 1→Mentor3 bez Mentor2)
+- [x] 9.2 RequestDetail — resolveActiveStage vrací null mimo aktivní fázi; guard brání pozdnímu rozhodnutí mentora
+- [x] 9.3 ApprovedMentorings — getApprovedMentor identifikuje mentora dle StageXDecision=Approved (ne CurrentStage)
+- [x] 9.4 RequestForm — blokace submitu pokud má talent aktivní žádost (Pending/Approved/HR_Review/Scheduled)
 
 ## Phase 8: UX Redesign (vlastnik pozadavky)
 

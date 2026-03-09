@@ -57,5 +57,6 @@ Viz [PROGRESS.md](PROGRESS.md)
 | 6 | Email notifikace | ✅ Hotovo |
 | 7 | Polish, lokalizace, production build (7.1–7.3 hotovo) | 🟡 In Progress |
 | 8 | UX Redesign — Mentor CRUD, dynamicke taby, HR admin powers | ✅ Hotovo |
+| 9 | Kritické opravy logiky — fall-through, bezpečnost rozhodování, HR identifikace mentora, spam blokace | ✅ Hotovo |
 
 **Blocker:** SharePoint listy (Mentors, Talents, MentoringRequests) musi vytvorit IT (L2) rucne dle specifikace v Project_overview.md sekce 3. Seznam Mentors novy sloupec: `PhotoUrl` (URL/Hyperlink).
