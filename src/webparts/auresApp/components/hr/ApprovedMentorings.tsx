@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styles from '../AuresApp.module.scss';
 import { SPFI } from '@pnp/sp';
-import { IMentoringRequest, ICurrentUser, RequestStatus, ISPLookup } from '../../../../services/interfaces';
+import { IMentoringRequest, ICurrentUser, RequestStatus, ISPLookup, StageDecision } from '../../../../services/interfaces';
 import { MentoringService } from '../../../../services/MentoringService';
 import { NavigateFn } from '../AppView';
 import { MOCK_REQUESTS } from '../../../../utils/mockData';
@@ -30,10 +30,10 @@ const ApprovedMentorings: React.FC<IApprovedMentoringsProps> = ({ sp }) => {
   if (loading) return <div className={styles.loading}>Načítám domluvené mentoringy…</div>;
 
   const getApprovedMentor = (req: IMentoringRequest): ISPLookup | undefined => {
-    if (req.Mentor1Ref && req.CurrentStage === 1) return req.Mentor1Ref;
-    if (req.Mentor2Ref && req.CurrentStage === 2) return req.Mentor2Ref;
-    if (req.Mentor3Ref && req.CurrentStage === 3) return req.Mentor3Ref;
-    return req.Mentor1Ref;
+    if (req.Stage1Decision === StageDecision.Approved) return req.Mentor1Ref;
+    if (req.Stage2Decision === StageDecision.Approved) return req.Mentor2Ref;
+    if (req.Stage3Decision === StageDecision.Approved) return req.Mentor3Ref;
+    return undefined;
   };
 
   return (

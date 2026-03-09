@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styles from '../AuresApp.module.scss';
 import { SPFI } from '@pnp/sp';
-import { IMentoringRequest, ICurrentUser, StageDecision } from '../../../../services/interfaces';
+import { IMentoringRequest, ICurrentUser, StageDecision, RequestStatus } from '../../../../services/interfaces';
 import { MentoringService } from '../../../../services/MentoringService';
 import { NotificationService } from '../../../../services/NotificationService';
 import { NavigateFn } from '../AppView';
@@ -62,7 +62,17 @@ const RequestDetail: React.FC<IRequestDetailProps> = ({ sp, currentUser, navigat
   if (!request)  return <div className={styles.loading}>Žádost nenalezena.</div>;
 
   const mentorId = currentUser.mentorRecord?.Id ?? MOCK_MENTOR_ID;
-  const myStage  = resolveMyStage(request, mentorId);
+  const myStage  = resolveActiveStage(request, mentorId);
+
+  if (!myStage) {
+    return (
+      <div className={styles.requestDetailCard}>
+        <p>Tato žádost momentálně nevyžaduje tvoje rozhodnutí (není ve tvé fázi, nebo už byla vyřešena).</p>
+        <button className={styles.btnSecondary} onClick={() => navigate('PendingRequests')}>Zpět</button>
+      </div>
+    );
+  }
+
   const myMessage = myStage === 1 ? request.Message1
     : myStage === 2 ? request.Message2
     : request.Message3;
@@ -138,10 +148,12 @@ const RequestDetail: React.FC<IRequestDetailProps> = ({ sp, currentUser, navigat
 // Helpers
 // ----------------------------------------------------------------
 
-function resolveMyStage(req: IMentoringRequest, mentorId: number): 1 | 2 | 3 {
-  if (req.Mentor2Ref?.Id === mentorId && req.CurrentStage === 2) return 2;
-  if (req.Mentor3Ref?.Id === mentorId && req.CurrentStage === 3) return 3;
-  return 1;
+function resolveActiveStage(req: IMentoringRequest, mentorId: number): 1 | 2 | 3 | null {
+  if (req.RequestStatus !== RequestStatus.Pending) return null;
+  if (req.CurrentStage === 1 && req.Mentor1Ref?.Id === mentorId) return 1;
+  if (req.CurrentStage === 2 && req.Mentor2Ref?.Id === mentorId) return 2;
+  if (req.CurrentStage === 3 && req.Mentor3Ref?.Id === mentorId) return 3;
+  return null;
 }
 
 function resolveNextMentorHint(req: IMentoringRequest, myStage: 1 | 2 | 3): string {

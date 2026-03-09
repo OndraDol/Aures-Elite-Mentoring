@@ -253,12 +253,9 @@ export class MentoringService {
       update['RequestStatus'] = RequestStatus.Approved;
     } else {
       // Fall-through: posun na dalsiho mentora nebo HR_Review
-      const hasNext2 = stage === 1 && request.Mentor2Ref?.Id != null;
-      const hasNext3 = stage === 2 && request.Mentor3Ref?.Id != null;
-
-      if (hasNext2) {
+      if (stage === 1 && request.Mentor2Ref?.Id != null) {
         update['CurrentStage'] = 2;
-      } else if (hasNext3) {
+      } else if ((stage === 1 || stage === 2) && request.Mentor3Ref?.Id != null) {
         update['CurrentStage'] = 3;
       } else {
         update['RequestStatus'] = RequestStatus.HR_Review;

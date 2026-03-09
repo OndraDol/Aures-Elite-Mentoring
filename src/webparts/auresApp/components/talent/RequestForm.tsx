@@ -1,11 +1,11 @@
 import * as React from 'react';
 import styles from '../AuresApp.module.scss';
 import { SPFI } from '@pnp/sp';
-import { IMentor, ICurrentUser } from '../../../../services/interfaces';
+import { IMentor, ICurrentUser, RequestStatus } from '../../../../services/interfaces';
 import { MentoringService } from '../../../../services/MentoringService';
 import { NotificationService } from '../../../../services/NotificationService';
 import { NavigateFn } from '../AppView';
-import { MOCK_MENTORS } from '../../../../utils/mockData';
+import { MOCK_MENTORS, MOCK_REQUESTS } from '../../../../utils/mockData';
 
 interface IRequestFormProps {
   sp: SPFI;
@@ -17,19 +17,38 @@ interface IRequestFormProps {
 const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, preselectedMentorId }) => {
   const [mentors, setMentors]       = React.useState<IMentor[]>([]);
   const [loading, setLoading]       = React.useState(true);
-  const [submitting, setSubmitting] = React.useState(false);
-  const [error, setError]           = React.useState<string | null>(null);
+  const [submitting, setSubmitting]       = React.useState(false);
+  const [error, setError]                 = React.useState<string | null>(null);
+  const [hasActiveRequest, setHasActiveRequest] = React.useState(false);
 
   const [secondaryId, setSecondaryId] = React.useState<number | null>(null);
   const [tertiaryId, setTertiaryId]   = React.useState<number | null>(null);
   const [messages, setMessages] = React.useState<Record<number, string>>({});
 
   React.useEffect(() => {
-    new MentoringService(sp).getMentors()
-      .then(setMentors)
-      .catch(() => setMentors(MOCK_MENTORS.filter(m => m.IsActive)))
+    const talentId = currentUser.talentRecord?.Id;
+    const svc = new MentoringService(sp);
+    Promise.all([
+      svc.getMentors(),
+      talentId ? svc.getMyRequests(talentId) : Promise.resolve([])
+    ])
+      .then(([mentorsData, myReqs]) => {
+        setMentors(mentorsData);
+        const active = myReqs.some(r =>
+          ([RequestStatus.Pending, RequestStatus.Approved, RequestStatus.HR_Review, RequestStatus.Scheduled] as string[]).includes(r.RequestStatus)
+        );
+        setHasActiveRequest(active);
+      })
+      .catch(() => {
+        setMentors(MOCK_MENTORS.filter(m => m.IsActive));
+        const active = MOCK_REQUESTS.some(r =>
+          r.TalentRef?.Id === talentId &&
+          ([RequestStatus.Pending, RequestStatus.Approved, RequestStatus.HR_Review, RequestStatus.Scheduled] as string[]).includes(r.RequestStatus)
+        );
+        setHasActiveRequest(active);
+      })
       .finally(() => setLoading(false));
-  }, [sp]);
+  }, [sp, currentUser]);
 
   const setMessage = (mentorId: number, msg: string): void => {
     setMessages(prev => ({ ...prev, [mentorId]: msg }));
@@ -74,6 +93,15 @@ const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, p
   };
 
   if (loading) return <div className={styles.loading}>Načítám mentory…</div>;
+
+  if (hasActiveRequest) {
+    return (
+      <div className={styles.emptyState}>
+        <p>Již máš aktivní žádost o mentoring. Pokud chceš podat novou, musíš svou volbu nejprve resetovat.</p>
+        <button className={styles.btnPrimary} onClick={() => navigate('MyRequests')}>Přejít na Moje žádosti</button>
+      </div>
+    );
+  }
 
   const primaryMentor = mentors.find(m => m.Id === preselectedMentorId);
   const otherMentors = mentors.filter(m => m.Id !== preselectedMentorId);
