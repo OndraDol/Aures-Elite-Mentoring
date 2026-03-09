@@ -71,9 +71,8 @@ const AppShell: React.FC<IAppShellProps> = ({
     <div className={styles.appShell}>
       <header className={styles.header}>
         <div className={styles.headerLeft}>
-          <div className={styles.headerLogo} />
+          <div className={styles.headerLogo}>AURES</div>
           <span className={styles.headerTitle}>
-            {'AURES '}
             <span className={styles.headerTitleAccent}>ELITE</span>
             {' MENTORING'}
           </span>

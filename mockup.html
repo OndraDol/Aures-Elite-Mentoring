@@ -174,13 +174,16 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      width: 48px;
+      padding: 0 16px;
+      min-width: 90px;
       height: 48px;
       background: linear-gradient(135deg, var(--gold), var(--gold-dark));
       border-radius: 12px;
       color: var(--primary);
-      font-weight: 800;
-      font-size: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 900;
+      font-size: 21px;
+      letter-spacing: 0px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
 
@@ -1355,7 +1358,7 @@
     <!-- HEADER -->
     <div class="header">
       <div class="header-brand">
-        <div class="logo-mock">A</div>
+        <div class="logo-mock">AURES</div>
         <div class="header-title-wrapper">
           <div class="header-title">Elite <span>Mentoring</span></div>
         </div>
@@ -1365,7 +1368,9 @@
           <div class="user-name" id="hUserName">Markéta Nováková</div>
           <div class="role-badge role-talent" id="hRoleBadge">Talent</div>
         </div>
-        <div class="user-avatar" id="hAvatar">MN</div>
+        <div class="user-avatar" id="hAvatar"
+          style="background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop'); background-size: cover; background-position: center; color: transparent;">
+          MN</div>
       </div>
     </div>
 
@@ -1390,10 +1395,10 @@
     // DATA
     // ================================================================
     const MENTORS = [
-      { id: 1, ini: 'JN', name: 'Jan Novák', job: 'Chief Operating Officer', super: 'Systémové myšlení pod tlakem', bio: '17 let v ops managementu. Pomáhám lidem vidět systémy, ne jen problémy. Strukturuji chaos.' },
-      { id: 2, ini: 'PM', name: 'Petra Marková', job: 'Chief Financial Officer', super: 'Čísla jako příběh', bio: 'Finanční stratég s přesahem do businessu. Věřím, že každé číslo vypráví příběh o firmě.' },
-      { id: 3, ini: 'TD', name: 'Tomáš Dvořák', job: 'VP Sales & Marketing', super: 'Vyjednávání a vliv', bio: '20 let budování obchodních týmů. Naučím tě jak prodat myšlenku i produkt každému ve firmě.' },
-      { id: 4, ini: 'MH', name: 'Michaela Horáková', job: 'Chief People Officer', super: 'Lidé jako kompetitivní výhoda', bio: 'HR stratég s fokusem na talent development a organizační kulturu. Pomáhám lidem růst záměrně.' },
+      { id: 1, ini: 'KT', name: 'Karolína Topolová', job: 'Co-CEO, Předsedkyně představenstva', super: 'Strategické řízení a ESG', bio: 'Zaměřuji se na strategické řízení společnosti, vztahy s investory, ESG, HR a marketing. Pomohu ti vidět firmu jako celek a rozvíjet dlouhodobě udržitelné procesy.', img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop' },
+      { id: 2, ini: 'PV', name: 'Petr Vaněček', job: 'Co-CEO, Člen představenstva', super: 'Exekutivní řízení a Inovace', bio: 'Mým zaměřením je exekutivní řízení, skupina Mototechna a především digitalizace, IT a inovace procesů. Zaměřuji se i na expanzi značky na nové trhy. Naučím tě uvažovat vizionářsky.', img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop' },
+      { id: 3, ini: 'ML', name: 'Marko Lehtonen', job: 'Chief Financial Officer', super: 'Finanční strategie', bio: 'Jako finanční ředitel řídím ekonomiku celé skupiny AURES Holdings. Pomohu ti pochopit finanční toky a optimalizaci korporátních účtů v mezinárodním prostředí.', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop' },
+      { id: 4, ini: 'MH', name: 'Martin Hrudník', job: 'Člen představenstva', super: 'Operations Management', bio: 'Odpovídám za nastavení a škálování denní operativy a byznys modelů napříč evropským trhem. Zvládneš se mnou optimalizovat složité týmové operace.', img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop' },
     ];
 
     const MY_REQUESTS = [
@@ -1450,6 +1455,7 @@
     const ROLES = {
       talent: {
         name: 'Markéta Nováková', ini: 'MN', badgeCls: 'role-talent', badgeLbl: 'Talent',
+        img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop',
         tabs: [
           { id: 'catalog', label: 'Katalog mentorů' },
           { id: 'myrequests', label: 'Moje žádosti' },
@@ -1485,6 +1491,16 @@
 
       document.getElementById('hUserName').textContent = cfg.name;
       document.getElementById('hAvatar').textContent = cfg.ini;
+      const hav = document.getElementById('hAvatar');
+      if (cfg.img) {
+        hav.style.backgroundImage = `url('${cfg.img}')`;
+        hav.style.backgroundSize = 'cover';
+        hav.style.backgroundPosition = 'center';
+        hav.style.color = 'transparent';
+      } else {
+        hav.style.backgroundImage = 'none';
+        hav.style.color = 'var(--primary)';
+      }
       const rb = document.getElementById('hRoleBadge');
       rb.className = 'role-badge ' + cfg.badgeCls;
       rb.textContent = cfg.badgeLbl;
@@ -1543,7 +1559,7 @@
       ${MENTORS.map(m => `
         <div class="mentor-card">
           <div class="mentor-card-header">
-            <div class="mentor-avatar">${m.ini}</div>
+            <div class="mentor-avatar" ${m.img ? `style="background-image: url('${m.img}'); background-size: cover; background-position: center; color: transparent;"` : ''}>${m.ini}</div>
             <div>
               <div class="mentor-name">${m.name}</div>
               <div class="mentor-job">${m.job}</div>
@@ -1596,7 +1612,7 @@
       <div class="form-sec" style="border:2px solid var(--gold);border-top:3px solid var(--gold);">
         <div class="form-sec-title">Tvůj vybraný mentor</div>
         <div style="display:flex;align-items:center;gap:20px;margin-bottom:16px;flex-wrap:wrap;">
-          <div class="mentor-avatar" style="width:72px;height:72px;font-size:24px;border:3px solid var(--gold);">${pm.ini}</div>
+          <div class="mentor-avatar" style="width:72px;height:72px;font-size:24px;border:3px solid var(--gold); ${pm.img ? `background-image: url('${pm.img}'); background-size: cover; background-position: center; color: transparent;` : ''}">${pm.ini}</div>
           <div style="flex:1;">
             <div style="font-size:20px;font-weight:700;color:var(--primary);">${pm.name}</div>
             <div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin:4px 0;">${pm.job}</div>
@@ -1616,7 +1632,7 @@
           ${others.map((m, i) => `
             <div class="msel-item" style="justify-content:space-between;">
               <div style="display:flex;align-items:center;gap:14px;">
-                <div class="mentor-avatar" style="width:44px;height:44px;font-size:15px;">${m.ini}</div>
+                <div class="mentor-avatar" style="width:44px;height:44px;font-size:15px; ${m.img ? `background-image: url('${m.img}'); background-size: cover; background-position: center; color: transparent;` : ''}">${m.ini}</div>
                 <div class="msel-info">
                   <div class="msel-name">${m.name}</div>
                   <div class="msel-job">${m.job} · ${m.super}</div>

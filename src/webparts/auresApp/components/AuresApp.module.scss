@@ -172,10 +172,11 @@ $transition-slow: 0.4s $ease-out;
   gap: 14px;
 }
 
-// Logo placeholder — diamond / shield motif
+// Logo placeholder — AURES wordmark
 .headerLogo {
-  width: 34px;
-  height: 34px;
+  padding: 0 16px;
+  min-width: 90px;
+  height: 48px;
   border-radius: 6px;
   background: linear-gradient(135deg, $gold-dk, $gold, $gold-lt);
   display: flex;
@@ -184,16 +185,12 @@ $transition-slow: 0.4s $ease-out;
   flex-shrink: 0;
   position: relative;
   box-shadow: 0 2px 8px rgba(201, 168, 76, 0.30);
-
-  // Inner diamond shape
-  &::after {
-    content: '';
-    width: 14px;
-    height: 14px;
-    background: $navy;
-    transform: rotate(45deg);
-    border-radius: 2px;
-  }
+  
+  color: $navy;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900;
+  font-size: 21px;
+  letter-spacing: 0px;
 }
 
 .headerTitle {
