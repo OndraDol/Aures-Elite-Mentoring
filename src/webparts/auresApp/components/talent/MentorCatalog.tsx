@@ -94,13 +94,14 @@ const MentorCard: React.FC<IMentorCardProps> = ({ mentor, onRequest }) => {
 
       {hasMore && (
         <div className={styles.mentorDetails}>
-          <button
-            className={styles.mentorDetailsToggle}
-            onClick={() => setExpanded(!expanded)}
-            style={expanded ? { '--arrow-rotate': '90deg' } as React.CSSProperties : undefined}
-          >
-            {expanded ? 'Skrýt profil' : 'Zobrazit celý profil'}
-          </button>
+          {!expanded && (
+            <button
+              className={styles.mentorDetailsToggle}
+              onClick={() => setExpanded(true)}
+            >
+              Zobrazit celý profil
+            </button>
+          )}
           {expanded && (
             <div className={styles.mentorDetailsContent}>
               <p>{bioText.slice(shortBio.length).trim()}</p>
@@ -109,6 +110,13 @@ const MentorCard: React.FC<IMentorCardProps> = ({ mentor, onRequest }) => {
                   <strong>Největší překonaná výzva:</strong> {challengeText}
                 </div>
               )}
+              <button
+                className={styles.mentorDetailsToggle}
+                onClick={() => setExpanded(false)}
+                style={{ marginTop: '12px' }}
+              >
+                Sbalit profil
+              </button>
             </div>
           )}
         </div>

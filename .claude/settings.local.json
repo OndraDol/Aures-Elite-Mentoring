@@ -2,7 +2,29 @@
   "permissions": {
     "allow": [
       "Bash(npx gulp build --color)",
-      "Bash(npx gulp build)"
+      "Bash(npx gulp build)",
+      "Bash(python3 -c \":*)",
+      "Bash(python3:*)",
+      "Bash(pip install python-docx python-pptx)",
+      "Bash(pip3 install python-docx python-pptx)",
+      "Bash(find /c/Users/ondrej.dolejs/Desktop/Projekty/Aures_Elite_Mentoring/src -type f -name *.ts -o -name *.tsx)",
+      "Bash(pandoc \"Mentoři.docx\" -o /tmp/mentori.md)",
+      "Read(//tmp/**)",
+      "Bash(python scripts/office/unpack.py \"Mentoři.docx\" /tmp/mentori_unpacked/)",
+      "Bash(python \"$APPDATA/Claude/local-agent-mode-sessions/skills-plugin/300db472-eb86-4a71-b33e-d9d69ee862d7/174c2997-d58f-443d-80bf-7f881c10b86d/skills/docx/scripts/office/unpack.py\" \"Mentoři.docx\" /tmp/mentori_unpacked/)",
+      "Bash(pip install:*)",
+      "Bash(python -m pip install defusedxml)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "mcp__Claude_in_Chrome__navigate",
+      "mcp__Claude_in_Chrome__computer",
+      "Bash(start \"\" \"C:/Users/ondrej.dolejs/Desktop/Projekty/Aures_Elite_Mentoring/mockup.html\")",
+      "mcp__Claude_in_Chrome__find",
+      "Bash(npm run:*)",
+      "Bash(nvm list:*)",
+      "Bash(nvm install:*)",
+      "Bash(nvm use:*)",
+      "Bash(nvm ls:*)",
+      "Bash(npm --version)"
     ]
   }
 }
