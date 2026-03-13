@@ -102,6 +102,16 @@ SPFx **1.18.2**, React 17, TypeScript 4.5.5. Phase 0–8 hotove. Ceka se na SP p
 - [x] 9.3 ApprovedMentorings — getApprovedMentor identifikuje mentora dle StageXDecision=Approved (ne CurrentStage)
 - [x] 9.4 RequestForm — blokace submitu pokud má talent aktivní žádost (Pending/Approved/HR_Review/Scheduled)
 
+## Phase 10: Doplnění reálných dat mentorů (2026-03-13)
+
+- [x] 10.1 mockup.html — MENTORS data nahrazena 10 reálnými mentory (karolina.topolova, petr.vanecek, lubos.vorlik, martin.hrudnik, daniel.lunacek, zdenek.batek, miroslav.vapenik, alen.svoboda, zuzana.vobornikova, marie.vorsilkova)
+- [x] 10.2 mockup.html — Fotky z pic/ (80px avatar s box-shadow), bio s expandovací sekcí (details HTML), challenge v gold-bordered box
+- [x] 10.3 src/utils/mockData.ts — MOCK_MENTORS nahrazeny 10 reálnými s Bio = krátký text + "\n\nNejvětší překonaná výzva: ..."
+- [x] 10.4 MentorCatalog.tsx — MentorCard rozšířena: split bio/challenge, expandable section, real photos se 80px avatarem
+- [x] 10.5 AuresApp.module.scss — styly pro .mentorAvatarPhoto, .mentorDetails*, .mentorChallenge
+- [x] 10.6 MENTOR_MGMT a CAPACITY v mockup.html — aktualizovány na 10 reálných mentorů s kapacitami
+- [x] 10.7 Ověření v prohlížeči — fotky OK, expandable bio OK, HR dashboard s 10 mentory OK
+
 ## Phase 8: UX Redesign (vlastnik pozadavky)
 
 - [x] 8.1 MentorCatalog — odebrana kapacitni info (AvailabilityNote)

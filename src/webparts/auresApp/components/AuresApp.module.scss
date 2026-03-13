@@ -709,16 +709,68 @@ $transition-slow: 0.4s $ease-out;
   }
 }
 
+.mentorAvatarPhoto {
+  background-size: cover;
+  background-position: center center;
+  color: transparent;
+  width: 80px;
+  height: 80px;
+  border: none;
+  box-shadow: 0 0 0 3px rgba($gold, 0.25);
+}
+
 .mentorBio {
   font-size: 13.5px;
   color: $text-secondary;
   line-height: 1.65;
-  margin: 0;
+  margin: 0 0 8px;
+}
+
+.mentorDetails {
   flex: 1;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.mentorDetailsToggle {
+  font-size: 13px;
+  font-weight: 600;
+  color: $primary;
+  cursor: pointer;
+  padding: 4px 0;
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  &:hover {
+    color: $gold-dark;
+  }
+
+  &::before {
+    content: '▸';
+    font-size: 11px;
+    transition: transform 0.2s ease;
+  }
+}
+
+.mentorDetailsContent {
+  font-size: 13.5px;
+  color: $text-secondary;
+  line-height: 1.65;
+  padding-top: 8px;
+  animation: fadeUp 0.3s ease;
+}
+
+.mentorChallenge {
+  font-size: 13px;
+  color: $primary;
+  background: rgba($primary, 0.04);
+  padding: 10px 14px;
+  border-radius: $radius-sm;
+  border-left: 3px solid $gold;
+  line-height: 1.6;
+  margin-top: 10px;
 }
 
 .mentorAvailability {
