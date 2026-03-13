@@ -91,9 +91,15 @@ SPFx **1.18.2**, React 17, TypeScript 4.5.5. Phase 0–8 hotove. Ceka se na SP p
 - [x] 7.1 Styling — Premium UI/UX overhaul v8: Navy+Gold+Glassmorphism, gold accents, frosted glass, refined typography, premium animations
 - [x] 7.2 Error handling — loading states, try/catch + mock fallback ve vsech komponentach
 - [x] 7.3 Lokalizace — ceske diakritiky opraveny ve vsech 11 komponentach (talent/* + mentor/* + hr/*)
-- [ ] 7.4 Production build — `gulp bundle --ship && gulp package-solution --ship`
+- [x] 7.4 Production build — `npm run build` prochází OK (Node.js 18.19.0 LTS); release/ folder s .sppkg generován
 - [ ] 7.5 Testovani na SharePoint Online workbench
 - [ ] 7.6 README.md aktualizace — finalni setup instrukce
+
+## Session 20 (2026-03-13) — UI vylepšení a build
+- Opraven SCSS: `$gold-dark` → `$gold-dk`
+- Mentor toggle button: skrýt "Zobrazit" po rozbalení, "Sbalit profil" dole pod challenge
+- Reordered mentors: Topolová, Vaněček, Hrudník, Vorlík, Luňáček, Vápeník, Voršílková, Voborníková, Batěk, Svoboda
+- Production build OK (22s, Node v18.19.0)
 
 ## Phase 9: Kritické opravy logiky (2026-03-09)
 
