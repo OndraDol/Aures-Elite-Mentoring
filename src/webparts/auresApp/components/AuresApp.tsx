@@ -15,6 +15,7 @@ import ResetChoice from './talent/ResetChoice';
 import PendingRequests from './mentor/PendingRequests';
 import RequestDetail from './mentor/RequestDetail';
 import RequestHistory from './mentor/RequestHistory';
+import MenteesDashboard from './hr/MenteesDashboard';
 import AllRequests from './hr/AllRequests';
 import ApprovedMentorings from './hr/ApprovedMentorings';
 import HRReviewQueue from './hr/HRReviewQueue';
@@ -113,7 +114,7 @@ function resolveDefaultView(user: ICurrentUser): AppView {
   if (user.roles.includes(UserRole.Unknown) && user.roles.length === 1) return 'AccessDenied';
   if (user.roles.includes(UserRole.Talent))  return 'MentorCatalog';
   if (user.roles.includes(UserRole.Mentor))  return 'PendingRequests';
-  if (user.roles.includes(UserRole.HR))      return 'AllRequests';
+  if (user.roles.includes(UserRole.HR))      return 'MenteesDashboard';
   return 'AccessDenied';
 }
 
@@ -137,6 +138,7 @@ function renderView(
     case 'RequestDetail':   return <RequestDetail   sp={sp} currentUser={currentUser} navigate={navigate} requestId={params.requestId as number | undefined} hrEmail={hrEmail} />;
     case 'RequestHistory':  return <RequestHistory  sp={sp} currentUser={currentUser} navigate={navigate} />;
     // HR
+    case 'MenteesDashboard': return <MenteesDashboard sp={sp} currentUser={currentUser} navigate={navigate} />;
     case 'AllRequests':       return <AllRequests       sp={sp} currentUser={currentUser} navigate={navigate} />;
     case 'ApprovedMentorings': return <ApprovedMentorings sp={sp} currentUser={currentUser} navigate={navigate} />;
     case 'HRReviewQueue':     return <HRReviewQueue    sp={sp} currentUser={currentUser} navigate={navigate} />;

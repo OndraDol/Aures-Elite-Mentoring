@@ -1885,6 +1885,81 @@ $transition-slow: 0.4s $ease-out;
   color: $primary;
 }
 
+.menteeDashboardRow {
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: $radius-md;
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+  box-shadow: $shadow-sm;
+  transition: box-shadow $transition, border-color $transition;
+
+  &:hover { box-shadow: $shadow-md; }
+}
+
+.menteeDashboardRowWarning {
+  border-color: rgba(201, 168, 76, 0.45);
+  box-shadow: $shadow-sm, 0 0 0 1px rgba(201, 168, 76, 0.14);
+}
+
+.menteeDashboardMain {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.menteeDashboardHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.menteeDashboardIdentity {
+  min-width: 0;
+}
+
+.menteeDashboardBadges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+.menteeDashboardMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.menteeDashboardMetaItem {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: $radius-pill;
+  background: $bg;
+  color: $text-secondary;
+  font-size: 12px;
+  border: 1px solid $border-lt;
+}
+
+.menteeDashboardWarning {
+  margin: 0;
+  padding: 10px 14px;
+  background: $warning-lt;
+  border-left: 3px solid $gold;
+  border-radius: 0 $radius-sm $radius-sm 0;
+  color: darken($warning, 6%);
+  font-size: 12px;
+  font-weight: 600;
+}
+
 .hrRequestActions {
   display: flex;
   align-items: center;

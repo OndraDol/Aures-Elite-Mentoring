@@ -1506,7 +1506,7 @@ Reflect.defineProperty(_fi_js__WEBPACK_IMPORTED_MODULE_1__[/* SPFI */ "e"].proto
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/@microsoft/spfx-heft-plugins/node_modules/css-loader/dist/runtime/api.js */ "Z+AG");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "@keyframes spin_3b2f6a0d{to{transform:rotate(1turn)}}@keyframes fadeUp_3b2f6a0d{0%{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeIn_3b2f6a0d{0%{opacity:0}to{opacity:1}}@keyframes shimmer_3b2f6a0d{0%{background-position:-200%}to{background-position:200%}}@keyframes pulseGold_3b2f6a0d{0%,to{box-shadow:0 0 0 0 rgba(201,168,76,.25)}50%{box-shadow:0 0 0 6px rgba(201,168,76,0)}}@keyframes slideInRight_3b2f6a0d{0%{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:translateX(0)}}.auresApp_3b2f6a0d{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background:#f5f6f8;color:#1a1d23;font-family:Segoe UI,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:14px;line-height:1.55;min-height:100%}.appShell_3b2f6a0d{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;min-height:100%}.header_3b2f6a0d{-ms-flex-align:center;-ms-flex-pack:justify;-ms-flex-negative:0;align-items:center;background:linear-gradient(135deg,#0a2647,#0f3460 50%,#1b4d8e);box-shadow:0 4px 24px rgba(10,38,71,.25);display:-ms-flexbox;display:flex;flex-shrink:0;height:60px;justify-content:space-between;padding:0 28px;position:relative;z-index:10}.header_3b2f6a0d:after{background:linear-gradient(90deg,transparent,#a88b3a 15%,#c9a84c 40%,#dac06e 60%,#a88b3a 85%,transparent);bottom:0;content:\"\";height:2px;left:0;position:absolute;right:0}.headerLeft_3b2f6a0d{gap:14px}.headerLeft_3b2f6a0d,.headerLogo_3b2f6a0d{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.headerLogo_3b2f6a0d{-ms-flex-pack:center;-ms-flex-negative:0;background:linear-gradient(135deg,#a88b3a,#c9a84c,#dac06e);border-radius:6px;box-shadow:0 2px 8px rgba(201,168,76,.3);color:#0a2647;flex-shrink:0;font-family:Arial,Helvetica,sans-serif;font-size:21px;font-weight:900;height:48px;justify-content:center;letter-spacing:0;min-width:90px;padding:0 16px;position:relative}.headerTitle_3b2f6a0d{color:hsla(0,0%,100%,.9);font-size:15px;font-weight:600;letter-spacing:.8px;text-transform:uppercase}.headerTitleAccent_3b2f6a0d{color:#c9a84c;font-weight:800;letter-spacing:1.5px}.headerUser_3b2f6a0d{backdrop-filter:blur(8px);background:hsla(0,0%,100%,.08);border:1px solid hsla(0,0%,100%,.1);border-radius:100px;color:hsla(0,0%,100%,.8);font-size:13px;letter-spacing:.2px;padding:6px 16px;transition:all .2s cubic-bezier(.4,0,.2,1)}.headerUser_3b2f6a0d:hover{background:hsla(0,0%,100%,.12);border-color:rgba(201,168,76,.3)}.roleSwitch_3b2f6a0d{background:linear-gradient(180deg,#081f3a,#0a2647);border-bottom:1px solid rgba(201,168,76,.12);display:-ms-flexbox;display:flex;gap:6px;padding:8px 28px}.roleBtnActive_3b2f6a0d,.roleBtn_3b2f6a0d{background:hsla(0,0%,100%,.04);border:1px solid hsla(0,0%,100%,.15);border-radius:100px;color:hsla(0,0%,100%,.65);cursor:pointer;font-family:inherit;font-size:12px;font-weight:500;letter-spacing:.4px;padding:5px 18px;text-transform:uppercase;transition:all .2s cubic-bezier(.4,0,.2,1)}.roleBtnActive_3b2f6a0d:hover,.roleBtn_3b2f6a0d:hover{background:hsla(0,0%,100%,.1);border-color:hsla(0,0%,100%,.25);color:hsla(0,0%,100%,.9)}.roleBtnActive_3b2f6a0d{background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);box-shadow:0 0 12px rgba(201,168,76,.1);color:#dac06e;font-weight:700}.nav_3b2f6a0d{-ms-flex-negative:0;background:#fff;border-bottom:1px solid #e2e5eb;box-shadow:0 1px 2px rgba(10,38,71,.04);display:-ms-flexbox;display:flex;flex-shrink:0;gap:2px;padding:0 28px}.navTabActive_3b2f6a0d,.navTab_3b2f6a0d{-ms-flex-align:center;align-items:center;background:0 0;border:none;border-bottom:2.5px solid transparent;color:#7c8290;cursor:pointer;display:-ms-inline-flexbox;display:inline-flex;font-family:inherit;font-size:13.5px;letter-spacing:.2px;margin-bottom:-1px;padding:14px 20px;position:relative;transition:color .2s cubic-bezier(.4,0,.2,1),border-color .2s cubic-bezier(.4,0,.2,1),background .2s cubic-bezier(.4,0,.2,1);white-space:nowrap}.navTabActive_3b2f6a0d:hover,.navTab_3b2f6a0d:hover{background:rgba(27,106,224,.03);color:#4a5060}.navTabActive_3b2f6a0d{border-bottom-color:#c9a84c;color:#0a2647;font-weight:700;letter-spacing:.1px}.navBadge_3b2f6a0d{-ms-flex-align:center;-ms-flex-pack:center;align-items:center;animation:fadeUp_3b2f6a0d .3s cubic-bezier(.16,1,.3,1);background:#c53030;border-radius:100px;box-shadow:0 2px 6px rgba(197,48,48,.3);color:#fff;display:-ms-inline-flexbox;display:inline-flex;font-size:11px;font-weight:700;height:20px;justify-content:center;line-height:1;margin-left:8px;min-width:20px;padding:0 6px}.content_3b2f6a0d{animation:fadeIn_3b2f6a0d .25s ease;-ms-flex:1;flex:1;padding:32px 28px}.accessDenied_3b2f6a0d{-ms-flex-align:center;-ms-flex-pack:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;justify-content:center;padding:100px 32px;text-align:center}.accessDenied_3b2f6a0d h2{color:#1a1d23;font-size:24px;font-weight:700;letter-spacing:-.3px;margin:20px 0 10px}.accessDenied_3b2f6a0d p{color:#7c8290;font-size:15px;line-height:1.7;margin:4px 0;max-width:400px}.accessDeniedIcon_3b2f6a0d{font-size:64px;line-height:1;opacity:.8}.pageTitle_3b2f6a0d{color:#1a1d23;font-size:24px;font-weight:700;letter-spacing:-.3px;margin:0 0 24px;padding-left:14px;position:relative}.pageTitle_3b2f6a0d:before{background:linear-gradient(180deg,#c9a84c,#a88b3a);border-radius:3px;bottom:4px;content:\"\";left:0;position:absolute;top:4px;width:3px}.pageHeader_3b2f6a0d{-ms-flex-pack:justify;-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;justify-content:space-between;margin-bottom:24px}.pageHeader_3b2f6a0d .pageTitle_3b2f6a0d{margin:0}.loading_3b2f6a0d{-ms-flex-align:center;-ms-flex-pack:center;align-items:center;color:#7c8290;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;font-size:14px;gap:18px;justify-content:center;letter-spacing:.2px;padding:80px 32px}.loading_3b2f6a0d:before{animation:spin_3b2f6a0d .8s linear infinite;border:3px solid #eceef2;border-radius:50%;border-top-color:#c9a84c;content:\"\";display:block;height:40px;width:40px}.emptyState_3b2f6a0d{-ms-flex-align:center;-ms-flex-pack:center;align-items:center;color:#7c8290;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;justify-content:center;padding:80px 32px;text-align:center}.emptyState_3b2f6a0d p{font-size:15px;line-height:1.7;margin:8px 0;max-width:380px}.sectionHint_3b2f6a0d{color:#7c8290;font-size:13px;line-height:1.55;margin:-14px 0 20px;padding-left:14px}.btnPrimary_3b2f6a0d{-ms-flex-align:center;-ms-flex-pack:center;align-items:center;background:linear-gradient(135deg,#1b6ae0,#1558b8);border:none;border-radius:6px;box-shadow:0 2px 6px rgba(27,106,224,.25);color:#fff;cursor:pointer;display:-ms-inline-flexbox;display:inline-flex;font-family:inherit;font-size:14px;font-weight:600;justify-content:center;letter-spacing:.2px;padding:10px 24px;transition:all .2s cubic-bezier(.4,0,.2,1);white-space:nowrap}.btnPrimary_3b2f6a0d:hover{background:linear-gradient(135deg,#2a75e5,#1b6ae0);box-shadow:0 4px 14px rgba(27,106,224,.35);transform:translateY(-1px)}.btnPrimary_3b2f6a0d:active{box-shadow:0 1px 4px rgba(27,106,224,.2);transform:translateY(0)}.btnPrimary_3b2f6a0d:disabled{background:#eceef2;box-shadow:none;color:#7c8290;cursor:not-allowed;transform:none}.btnSecondary_3b2f6a0d{-ms-flex-align:center;-ms-flex-pack:center;align-items:center;background:0 0;border:1.5px solid rgba(27,106,224,.35);border-radius:6px;color:#1b6ae0;cursor:pointer;display:-ms-inline-flexbox;display:inline-flex;font-family:inherit;font-size:14px;font-weight:600;justify-content:center;padding:9px 24px;transition:all .2s cubic-bezier(.4,0,.2,1);white-space:nowrap}.btnSecondary_3b2f6a0d:hover{background:rgba(27,106,224,.06);border-color:#1b6ae0}.btnSecondary_3b2f6a0d:disabled{cursor:not-allowed;opacity:.4}.btnBack_3b2f6a0d{-ms-flex-align:center;align-items:center;background:0 0;border:none;color:#1b6ae0;cursor:pointer;display:-ms-inline-flexbox;display:inline-flex;font-family:inherit;font-size:13px;font-weight:500;gap:6px;padding:0 0 16px;transition:color .2s cubic-bezier(.4,0,.2,1)}.btnBack_3b2f6a0d:hover{color:#1558b8;text-decoration:underline}.btnApprove_3b2f6a0d{-ms-flex-align:center;-ms-flex-pack:center;align-items:center;background:linear-gradient(135deg,#0d9f3f,#0a7930);border:none;border-radius:6px;box-shadow:0 2px 6px rgba(13,159,63,.25);color:#fff;cursor:pointer;display:-ms-inline-flexbox;display:inline-flex;font-family:inherit;font-size:14px;font-weight:700;justify-content:center;letter-spacing:.2px;padding:10px 28px;transition:all .2s cubic-bezier(.4,0,.2,1)}.btnApprove_3b2f6a0d:hover{box-shadow:0 4px 14px rgba(13,159,63,.35);transform:translateY(-1px)}.btnApprove_3b2f6a0d:disabled{box-shadow:none;cursor:not-allowed;opacity:.45;transform:none}.btnReject_3b2f6a0d{-ms-flex-align:center;-ms-flex-pack:center;align-items:center;background:0 0;border:1.5px solid rgba(197,48,48,.35);border-radius:6px;color:#c53030;cursor:pointer;display:-ms-inline-flexbox;display:inline-flex;font-family:inherit;font-size:14px;font-weight:700;justify-content:center;letter-spacing:.2px;padding:10px 28px;transition:all .2s cubic-bezier(.4,0,.2,1)}.btnReject_3b2f6a0d:hover{background:#fee5e5;border-color:#c53030}.btnReject_3b2f6a0d:disabled{cursor:not-allowed;opacity:.45}.mentorGrid_3b2f6a0d{animation:fadeUp_3b2f6a0d .3s cubic-bezier(.16,1,.3,1);display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}.mentorCard_3b2f6a0d{background:#fff;border:1px solid #e2e5eb;border-radius:14px;box-shadow:0 1px 4px rgba(10,38,71,.06),0 1px 2px rgba(10,38,71,.04);display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:12px;overflow:hidden;padding:24px;position:relative;transition:transform .28s cubic-bezier(.16,1,.3,1),box-shadow .28s cubic-bezier(.16,1,.3,1),border-color .2s cubic-bezier(.4,0,.2,1)}.mentorCard_3b2f6a0d:before{background:linear-gradient(90deg,transparent,#c9a84c,transparent);content:\"\";height:2px;left:0;opacity:0;position:absolute;right:0;top:0;transition:opacity .28s cubic-bezier(.16,1,.3,1)}.mentorCard_3b2f6a0d:hover{border-color:rgba(201,168,76,.25);box-shadow:0 8px 32px rgba(10,38,71,.1),0 2px 8px rgba(10,38,71,.05);transform:translateY(-4px)}.mentorCard_3b2f6a0d:hover:before{opacity:1}.mentorCardHeader_3b2f6a0d{gap:16px}.mentorAvatar_3b2f6a0d,.mentorCardHeader_3b2f6a0d{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.mentorAvatar_3b2f6a0d{-ms-flex-pack:center;-ms-flex-negative:0;background:linear-gradient(135deg,#0a2647,#0f3460);border-radius:50%;color:#fff;flex-shrink:0;font-size:17px;font-weight:700;height:54px;justify-content:center;letter-spacing:.5px;position:relative;width:54px}.mentorAvatar_3b2f6a0d:after{border:2px solid rgba(201,168,76,.4);border-radius:50%;content:\"\";inset:-3px;position:absolute}.mentorName_3b2f6a0d{color:#1a1d23;font-size:16px;font-weight:700;letter-spacing:-.1px;margin:0 0 2px}.mentorJobTitle_3b2f6a0d{color:#7c8290;font-size:11.5px;font-weight:600;letter-spacing:.6px;margin:0;text-transform:uppercase}.mentorCapacityFull_3b2f6a0d,.mentorCapacity_3b2f6a0d{display:none}.mentorSuperpower_3b2f6a0d{-ms-flex-align:center;align-items:center;color:#a88b3a;display:-ms-flexbox;display:flex;font-size:13px;font-weight:600;gap:6px;line-height:1.5;margin:4px 0 0}.mentorSuperpower_3b2f6a0d:before{color:#c9a84c;content:\"\\2726\";font-size:11px}.mentorAvatarPhoto_3b2f6a0d{background-position:50%;background-size:cover;border:none;box-shadow:0 0 0 3px rgba(201,168,76,.25);color:transparent;height:80px;width:80px}.mentorBio_3b2f6a0d{color:#4a5060;font-size:13.5px;line-height:1.65;margin:0 0 8px}.mentorDetails_3b2f6a0d{-ms-flex:1;flex:1;margin-bottom:12px}.mentorDetailsToggle_3b2f6a0d{-ms-flex-align:center;align-items:center;background:0 0;border:none;color:#1b6ae0;cursor:pointer;display:-ms-flexbox;display:flex;font-size:13px;font-weight:600;gap:6px;padding:4px 0}.mentorDetailsToggle_3b2f6a0d:hover{color:#a88b3a}.mentorDetailsToggle_3b2f6a0d:before{content:\"\\25B8\";font-size:11px;transition:transform .2s ease}.mentorDetailsContent_3b2f6a0d{animation:fadeUp_3b2f6a0d .3s ease;color:#4a5060;font-size:13.5px;line-height:1.65;padding-top:8px}.mentorChallenge_3b2f6a0d{background:rgba(27,106,224,.04);border-left:3px solid #c9a84c;border-radius:6px;color:#1b6ae0;font-size:13px;line-height:1.6;margin-top:10px;padding:10px 14px}.mentorAvailability_3b2f6a0d{background:#f5f6f8;border-left:2px solid #c9a84c;border-radius:6px;color:#7c8290;font-size:12px;font-style:italic;margin:0;padding:8px 12px}.mentorCardActions_3b2f6a0d{margin-top:6px}.requestForm_3b2f6a0d{animation:fadeUp_3b2f6a0d .3s cubic-bezier(.16,1,.3,1);gap:32px;max-width:760px}.formSection_3b2f6a0d,.requestForm_3b2f6a0d{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.formSection_3b2f6a0d{gap:14px}.formSectionTitle_3b2f6a0d{border-bottom:2px solid #e2e5eb;color:#1a1d23;font-size:15px;font-weight:700;letter-spacing:-.1px;margin:0;padding-bottom:12px;position:relative}.formSectionTitle_3b2f6a0d:after{background:#c9a84c;bottom:-2px;content:\"\";height:2px;left:0;position:absolute;width:40px}.mentorSelectList_3b2f6a0d{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:10px}.mentorSelectItem_3b2f6a0d{-ms-flex-align:start;align-items:flex-start;border:1.5px solid #e2e5eb;border-radius:10px;cursor:pointer;display:-ms-flexbox;display:flex;gap:14px;padding:16px;transition:border-color .2s cubic-bezier(.4,0,.2,1),background .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,.2,1)}.mentorSelectItem_3b2f6a0d:hover{background:rgba(27,106,224,.06);border-color:#1b6ae0;box-shadow:0 1px 2px rgba(10,38,71,.04)}.mentorSelectItemChecked_3b2f6a0d{background:rgba(27,106,224,.06);border-color:#1b6ae0;box-shadow:0 0 0 3px rgba(27,106,224,.14)}.mentorSelectDisabled_3b2f6a0d{cursor:not-allowed;opacity:.38}.mentorSelectDisabled_3b2f6a0d:hover{background:0 0;border-color:#e2e5eb;box-shadow:none}.mentorSelectCheckbox_3b2f6a0d{-ms-flex-negative:0;accent-color:#1b6ae0;cursor:pointer;flex-shrink:0;height:17px;margin-top:3px;width:17px}.mentorSelectInfo_3b2f6a0d{-ms-flex:1;flex:1;min-width:0}.mentorSelectName_3b2f6a0d{color:#1a1d23;font-size:14px;font-weight:600;margin:0 0 3px}.mentorSelectJobTitle_3b2f6a0d{color:#7c8290;font-size:12px;margin:0}.messageGroup_3b2f6a0d{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:7px}.messageLabel_3b2f6a0d{color:#1a1d23;font-size:13px;font-weight:600}.messageTextarea_3b2f6a0d{background:#fff;border:1.5px solid #e2e5eb;border-radius:10px;box-sizing:border-box;color:#1a1d23;font-family:inherit;font-size:13.5px;line-height:1.65;min-height:92px;padding:12px 14px;resize:vertical;transition:border-color .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,.2,1);width:100%}.messageTextarea_3b2f6a0d:focus{border-color:#1b6ae0;box-shadow:0 0 0 3px rgba(27,106,224,.14);outline:0}.messageTextarea_3b2f6a0d:-ms-input-placeholder{color:#7c8290;font-style:italic}.messageTextarea:-ms-input-placeholder{color:#7c8290;font-style:italic}.messageTextarea_3b2f6a0d::placeholder{color:#7c8290;font-style:italic}.formActions_3b2f6a0d{-ms-flex-wrap:wrap;flex-wrap:wrap;gap:12px}.formActions_3b2f6a0d,.formError_3b2f6a0d{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.formError_3b2f6a0d{color:#c53030;font-size:13px;font-weight:500;gap:6px}.formError_3b2f6a0d:before{content:\"\\26A0\";font-size:14px}.requestList_3b2f6a0d{animation:fadeUp_3b2f6a0d .3s cubic-bezier(.16,1,.3,1);display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:12px}.requestCard_3b2f6a0d{background:#fff;border:1px solid #e2e5eb;border-radius:10px;box-shadow:0 1px 4px rgba(10,38,71,.06),0 1px 2px rgba(10,38,71,.04);padding:18px 22px;transition:box-shadow .2s cubic-bezier(.4,0,.2,1),border-color .2s cubic-bezier(.4,0,.2,1)}.requestCard_3b2f6a0d:hover{box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04)}.requestCardHeader_3b2f6a0d{-ms-flex-pack:justify;-ms-flex-align:start;align-items:flex-start;display:-ms-flexbox;display:flex;gap:14px;justify-content:space-between;margin-bottom:12px}.requestTitle_3b2f6a0d{color:#1a1d23;font-size:15px;font-weight:700;letter-spacing:-.1px;margin:0}.statusBadge_3b2f6a0d{-ms-flex-align:center;-ms-flex-negative:0;align-items:center;border-radius:100px;display:-ms-inline-flexbox;display:inline-flex;flex-shrink:0;font-size:12px;font-weight:700;letter-spacing:.2px;padding:4px 14px;white-space:nowrap}.statusPending_3b2f6a0d{background:#fff8e7;border:1px solid rgba(184,134,11,.15);color:#b8860b}.statusApproved_3b2f6a0d{background:#e6f9ed;border:1px solid rgba(13,159,63,.15);color:#0d9f3f}.statusHR_3b2f6a0d{background:#fee5e5;border:1px solid rgba(197,48,48,.15);color:#c53030}.statusScheduled_3b2f6a0d{background:#ebf3fe;border:1px solid rgba(27,106,224,.15);color:#1b6ae0}.statusCancelled_3b2f6a0d{background:#eceef2;border:1px solid #eceef2;color:#7c8290}.requestMentors_3b2f6a0d{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;gap:6px}.mentorTag_3b2f6a0d{-ms-flex-align:center;align-items:center;background:#eceef2;border-radius:100px;color:#4a5060;display:-ms-inline-flexbox;display:inline-flex;font-size:12px;font-weight:500;gap:4px;padding:4px 12px}.mentorTagCurrent_3b2f6a0d{background:#ebf3fe;border:1px solid rgba(27,106,224,.12);color:#1b6ae0;font-weight:700}.mentorTagApproved_3b2f6a0d{background:#e6f9ed;border:1px solid rgba(13,159,63,.12);color:#0d9f3f}.mentorTagRejected_3b2f6a0d{background:#fee5e5;border:1px solid rgba(197,48,48,.12);color:#c53030;text-decoration:line-through}.pendingRow_3b2f6a0d{-ms-flex-align:center;align-items:center;background:#fff;border:1px solid #e2e5eb;border-radius:10px;box-shadow:0 1px 4px rgba(10,38,71,.06),0 1px 2px rgba(10,38,71,.04);cursor:pointer;display:-ms-flexbox;display:flex;gap:16px;padding:18px 22px;transition:transform .28s cubic-bezier(.16,1,.3,1),box-shadow .28s cubic-bezier(.16,1,.3,1),border-color .2s cubic-bezier(.4,0,.2,1)}.pendingRow_3b2f6a0d:hover{border-color:rgba(201,168,76,.3);box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04);transform:translateX(4px)}.pendingRowLeft_3b2f6a0d{-ms-flex:1;flex:1;min-width:0}.pendingRowHeader_3b2f6a0d{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;gap:10px;margin-bottom:6px}.stageIndicator_3b2f6a0d{-ms-flex-align:center;-ms-flex-negative:0;align-items:center;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:100px;color:#a88b3a;display:-ms-inline-flexbox;display:inline-flex;flex-shrink:0;font-size:11px;font-weight:700;letter-spacing:.4px;padding:3px 12px}.talentName_3b2f6a0d{color:#7c8290;font-size:13px;font-weight:500;margin:0 0 4px}.messagePreview_3b2f6a0d{color:#4a5060;font-size:13px;margin:0;opacity:.7;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.arrowIcon_3b2f6a0d{-ms-flex-negative:0;color:#e2e5eb;flex-shrink:0;font-size:24px;transition:color .2s cubic-bezier(.4,0,.2,1),transform .2s cubic-bezier(.4,0,.2,1)}.pendingRow_3b2f6a0d:hover .arrowIcon_3b2f6a0d{color:#c9a84c;transform:translateX(3px)}.requestDetailCard_3b2f6a0d{animation:fadeUp_3b2f6a0d .3s cubic-bezier(.16,1,.3,1);background:#fff;border:1px solid #e2e5eb;border-radius:14px;box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04);display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:28px;max-width:740px;padding:28px;position:relative}.requestDetailCard_3b2f6a0d:before{background:linear-gradient(90deg,transparent,#c9a84c,transparent);border-radius:0 0 2px 2px;content:\"\";height:2px;left:24px;position:absolute;right:24px;top:0}.detailSection_3b2f6a0d{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:8px}.detailLabel_3b2f6a0d{color:#7c8290;font-size:11px;font-weight:700;letter-spacing:.8px;margin:0;text-transform:uppercase}.detailValue_3b2f6a0d{color:#1a1d23;font-size:16px;font-weight:600;margin:0}.talentMessage_3b2f6a0d{background:linear-gradient(135deg,rgba(201,168,76,.04),rgba(201,168,76,.08));border-left:3px solid #c9a84c;border-radius:0 6px 6px 0;color:#1a1d23;font-size:14px;font-style:italic;line-height:1.75;padding:16px 20px}.decisionBtns_3b2f6a0d{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;gap:14px}.rejectHint_3b2f6a0d{background:#f5f6f8;border-left:2px solid #e2e5eb;border-radius:6px;color:#7c8290;font-size:12px;font-style:italic;margin:8px 0 0;padding:10px 14px}.decisionConfirm_3b2f6a0d{-ms-flex-align:center;align-items:center;background:#e6f9ed;border:1px solid rgba(13,159,63,.15);border-radius:10px;color:#0d9f3f;display:-ms-flexbox;display:flex;font-size:15px;font-weight:700;gap:10px;padding:16px 20px}.decisionConfirm_3b2f6a0d:before{content:\"\\2713\";font-size:18px;font-weight:900}.historyCard_3b2f6a0d{-ms-flex-pack:justify;-ms-flex-align:center;align-items:center;background:#fff;border:1px solid #e2e5eb;border-radius:10px;box-shadow:0 1px 4px rgba(10,38,71,.06),0 1px 2px rgba(10,38,71,.04);display:-ms-flexbox;display:flex;gap:16px;justify-content:space-between;padding:16px 22px;transition:box-shadow .2s cubic-bezier(.4,0,.2,1),transform .2s cubic-bezier(.4,0,.2,1)}.historyCard_3b2f6a0d:hover{box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04);transform:translateY(-1px)}.historyLeft_3b2f6a0d{-ms-flex:1;flex:1;min-width:0}.historyTitle_3b2f6a0d{color:#1a1d23;font-size:14px;font-weight:600;margin:0 0 4px}.historyMeta_3b2f6a0d{color:#7c8290;font-size:12px;margin:0}.decisionBadge_3b2f6a0d{-ms-flex-align:center;align-items:center;border-radius:100px;display:-ms-inline-flexbox;display:inline-flex;font-size:12px;font-weight:700;padding:4px 16px;white-space:nowrap}.decisionApproved_3b2f6a0d{background:#e6f9ed;border:1px solid rgba(13,159,63,.15);color:#0d9f3f}.decisionRejected_3b2f6a0d{background:#fee5e5;border:1px solid rgba(197,48,48,.15);color:#c53030}.filterRow_3b2f6a0d{-ms-flex-align:center;align-items:center;gap:14px;margin-bottom:20px}.filterBar_3b2f6a0d,.filterRow_3b2f6a0d{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.filterBar_3b2f6a0d{gap:6px}.filterBtnActive_3b2f6a0d,.filterBtn_3b2f6a0d{background:0 0;border:1.5px solid #e2e5eb;border-radius:100px;color:#7c8290;cursor:pointer;font-family:inherit;font-size:13px;font-weight:500;padding:6px 16px;transition:all .2s cubic-bezier(.4,0,.2,1)}.filterBtnActive_3b2f6a0d:hover,.filterBtn_3b2f6a0d:hover{background:rgba(27,106,224,.06);border-color:#1b6ae0;color:#1b6ae0}.filterBtnActive_3b2f6a0d{background:linear-gradient(135deg,#0a2647,#0f3460);border-color:#0a2647;box-shadow:0 2px 6px rgba(10,38,71,.2);color:#fff;font-weight:700}.searchInput_3b2f6a0d{background:#fff;border:1.5px solid #e2e5eb;border-radius:6px;color:#1a1d23;-ms-flex:1;flex:1;font-family:inherit;font-size:13px;min-width:200px;padding:8px 14px;transition:border-color .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,.2,1)}.searchInput_3b2f6a0d:focus{border-color:#1b6ae0;box-shadow:0 0 0 3px rgba(27,106,224,.14);outline:0}.searchInput_3b2f6a0d:-ms-input-placeholder{color:#7c8290}.searchInput:-ms-input-placeholder{color:#7c8290}.searchInput_3b2f6a0d::placeholder{color:#7c8290}.allRequestRow_3b2f6a0d{-ms-flex-pack:justify;-ms-flex-align:center;align-items:center;background:#fff;border:1px solid #e2e5eb;border-radius:10px;box-shadow:0 1px 4px rgba(10,38,71,.06),0 1px 2px rgba(10,38,71,.04);display:-ms-flexbox;display:flex;gap:16px;justify-content:space-between;padding:14px 20px;transition:box-shadow .2s cubic-bezier(.4,0,.2,1)}.allRequestRow_3b2f6a0d:hover{box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04)}.allRequestMain_3b2f6a0d{display:-ms-flexbox;display:flex;-ms-flex:1;flex:1;-ms-flex-direction:column;flex-direction:column;gap:3px;min-width:0}.allRequestMeta_3b2f6a0d{-ms-flex-align:center;-ms-flex-negative:0;align-items:center;display:-ms-flexbox;display:flex;flex-shrink:0;gap:10px}.hrReviewCard_3b2f6a0d{background:#fff;border:1px solid #e2e5eb;border-left:4px solid #c9a84c;border-radius:10px;box-shadow:0 1px 4px rgba(10,38,71,.06),0 1px 2px rgba(10,38,71,.04);display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:14px;padding:20px 22px;transition:box-shadow .2s cubic-bezier(.4,0,.2,1)}.hrReviewCard_3b2f6a0d:hover{box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04)}.hrReviewHeader_3b2f6a0d{-ms-flex-align:baseline;align-items:baseline;gap:12px}.hrActionsBar_3b2f6a0d,.hrReviewHeader_3b2f6a0d{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.hrActionsBar_3b2f6a0d{gap:10px;padding-top:4px}.managementList_3b2f6a0d{animation:fadeUp_3b2f6a0d .3s cubic-bezier(.16,1,.3,1);display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:10px}.managementRow_3b2f6a0d{-ms-flex-align:center;align-items:center;background:#fff;border:1px solid #e2e5eb;border-radius:10px;box-shadow:0 1px 4px rgba(10,38,71,.06),0 1px 2px rgba(10,38,71,.04);display:-ms-flexbox;display:flex;gap:18px;padding:16px 20px;transition:opacity .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,.2,1)}.managementRow_3b2f6a0d:hover{box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04)}.managementRowInactive_3b2f6a0d{opacity:.4}.managementInfo_3b2f6a0d{-ms-flex:1;flex:1;min-width:0}.managementName_3b2f6a0d{color:#1a1d23;font-size:14px;font-weight:600;margin:0 0 3px}.managementMeta_3b2f6a0d{color:#7c8290;font-size:12px;margin:0}.managementCapacity_3b2f6a0d{-ms-flex-negative:0;flex-shrink:0}.capacityEdit_3b2f6a0d{background:0 0;border:1.5px dashed #e2e5eb;border-radius:6px;color:#7c8290;cursor:pointer;font-family:inherit;font-size:13px;padding:6px 14px;transition:all .2s cubic-bezier(.4,0,.2,1)}.capacityEdit_3b2f6a0d:hover{background:rgba(201,168,76,.08);border-color:#c9a84c;border-style:solid;color:#a88b3a}.inlineEditGroup_3b2f6a0d{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;gap:6px}.inlineInput_3b2f6a0d{border:1.5px solid #1b6ae0;border-radius:6px;box-shadow:0 0 0 3px rgba(27,106,224,.14);font-family:inherit;font-size:13px;padding:6px 10px;text-align:center;width:64px}.inlineInput_3b2f6a0d:focus{outline:0}.inlineSave_3b2f6a0d{background:linear-gradient(135deg,#1b6ae0,#1558b8);border:none;border-radius:6px;color:#fff;cursor:pointer;font-family:inherit;font-size:12px;font-weight:700;padding:6px 12px}.inlineSave_3b2f6a0d:hover{box-shadow:0 2px 6px rgba(27,106,224,.3)}.inlineSave_3b2f6a0d:disabled{opacity:.45}.inlineCancel_3b2f6a0d{background:0 0;border:1px solid #e2e5eb;border-radius:6px;color:#7c8290;cursor:pointer;font-family:inherit;font-size:12px;padding:6px 12px}.inlineCancel_3b2f6a0d:hover{background:#f5f6f8}.activeBtn_3b2f6a0d{-ms-flex-negative:0;background:#e6f9ed;border:1.5px solid rgba(13,159,63,.18);border-radius:100px;color:#0d9f3f;cursor:pointer;flex-shrink:0;font-family:inherit;font-size:12px;font-weight:700;padding:5px 16px;transition:all .2s cubic-bezier(.4,0,.2,1)}.activeBtn_3b2f6a0d:hover{background:#d6f5e1}.inactiveBtn_3b2f6a0d{-ms-flex-negative:0;background:#eceef2;border:1.5px solid #e2e5eb;border-radius:100px;color:#7c8290;cursor:pointer;flex-shrink:0;font-family:inherit;font-size:12px;font-weight:700;padding:5px 16px;transition:all .2s cubic-bezier(.4,0,.2,1)}.inactiveBtn_3b2f6a0d:hover{background:#f5f6f8}.capacityList_3b2f6a0d{animation:fadeUp_3b2f6a0d .3s cubic-bezier(.16,1,.3,1);display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:14px}.capacityRow_3b2f6a0d{-ms-flex-align:center;align-items:center;background:#fff;border:1px solid #e2e5eb;border-radius:10px;box-shadow:0 1px 4px rgba(10,38,71,.06),0 1px 2px rgba(10,38,71,.04);display:grid;gap:22px;grid-template-columns:1fr auto 220px;padding:18px 22px;transition:box-shadow .2s cubic-bezier(.4,0,.2,1)}.capacityRow_3b2f6a0d:hover{box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04)}.capacityMentorInfo_3b2f6a0d{min-width:0}.capacityStats_3b2f6a0d{-ms-flex-align:end;align-items:flex-end;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:2px;white-space:nowrap}.capacityStat_3b2f6a0d{color:#1a1d23;font-size:16px;font-weight:700}.capacityRemaining_3b2f6a0d{color:#0d9f3f;font-size:12px;font-weight:600}.capacityFull_3b2f6a0d{color:#c53030}.capacityBarWrap_3b2f6a0d{background:#eceef2;border-radius:100px;height:8px;overflow:hidden}.capacityBarFill_3b2f6a0d{border-radius:100px;height:100%;transition:width .6s cubic-bezier(.16,1,.3,1)}.barOk_3b2f6a0d{background:linear-gradient(90deg,#0d9f3f,#34c759)}.barHigh_3b2f6a0d{background:linear-gradient(90deg,#a88b3a,#c9a84c)}.barFull_3b2f6a0d{background:linear-gradient(90deg,#c53030,#e53e3e)}.primaryMentorCard_3b2f6a0d{background:#fff;border:2px solid rgba(201,168,76,.35);border-radius:14px;box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04),0 0 0 1px rgba(201,168,76,.08);overflow:hidden;padding:28px;position:relative}.primaryMentorCard_3b2f6a0d:before{background:linear-gradient(90deg,#a88b3a,#c9a84c,#dac06e,#a88b3a);content:\"\";height:3px;left:0;position:absolute;right:0;top:0}.primaryMentorHeader_3b2f6a0d{-ms-flex-wrap:wrap;flex-wrap:wrap;gap:20px;margin-bottom:16px}.primaryMentorAvatar_3b2f6a0d,.primaryMentorHeader_3b2f6a0d{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.primaryMentorAvatar_3b2f6a0d{-ms-flex-pack:center;-ms-flex-negative:0;background:linear-gradient(135deg,#0a2647,#0f3460);border-radius:50%;color:#fff;flex-shrink:0;font-size:22px;font-weight:700;height:72px;justify-content:center;position:relative;width:72px}.primaryMentorAvatar_3b2f6a0d:after{border:2.5px solid #c9a84c;border-radius:50%;box-shadow:0 4px 20px rgba(201,168,76,.2);content:\"\";inset:-4px;position:absolute}.primaryMentorInfo_3b2f6a0d{-ms-flex:1;flex:1;min-width:0}.primaryMentorName_3b2f6a0d{color:#1a1d23;font-size:20px;font-weight:700;letter-spacing:-.2px;margin:0 0 4px}.primaryMentorJobTitle_3b2f6a0d{color:#7c8290;font-size:12px;font-weight:600;letter-spacing:.6px;margin:0 0 4px;text-transform:uppercase}.primaryMentorSuperpower_3b2f6a0d{-ms-flex-align:center;align-items:center;color:#a88b3a;display:-ms-flexbox;display:flex;font-size:14px;font-weight:600;gap:6px;margin:0}.primaryMentorSuperpower_3b2f6a0d:before{color:#c9a84c;content:\"\\2726\";font-size:12px}.primaryMentorBadge_3b2f6a0d{-ms-flex-align:center;-ms-flex-negative:0;align-items:center;background:linear-gradient(135deg,rgba(201,168,76,.08),rgba(201,168,76,.15));border:1px solid rgba(201,168,76,.3);border-radius:100px;color:#a88b3a;display:-ms-inline-flexbox;display:inline-flex;flex-shrink:0;font-size:12px;font-weight:700;letter-spacing:.4px;padding:5px 16px;white-space:nowrap}.primaryMentorBio_3b2f6a0d{color:#4a5060;font-size:14px;line-height:1.7;margin:0}.formSectionHint_3b2f6a0d{color:#7c8290;font-size:13px;line-height:1.6;margin:-8px 0 8px}.backupMentorList_3b2f6a0d{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:10px}.backupMentorRow_3b2f6a0d{-ms-flex-align:center;-ms-flex-pack:justify;align-items:center;border:1.5px solid #e2e5eb;border-radius:10px;display:-ms-flexbox;display:flex;gap:14px;justify-content:space-between;padding:14px 18px;transition:border-color .2s cubic-bezier(.4,0,.2,1),background .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,.2,1)}.backupMentorRow_3b2f6a0d:hover{background:rgba(27,106,224,.06);border-color:rgba(27,106,224,.25)}.backupMentorRowSelected_3b2f6a0d{background:rgba(27,106,224,.06);border-color:#1b6ae0;box-shadow:0 0 0 2px rgba(27,106,224,.14)}.backupMentorInfo_3b2f6a0d{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex:1;flex:1;gap:14px;min-width:0}.backupMentorActions_3b2f6a0d{-ms-flex-align:center;-ms-flex-negative:0;align-items:center;display:-ms-flexbox;display:flex;flex-shrink:0;gap:10px}.backupMentorLabel_3b2f6a0d{background:#ebf3fe;border:1px solid rgba(27,106,224,.12);border-radius:100px;color:#1b6ae0}.backupMentorLabelTertiary_3b2f6a0d,.backupMentorLabel_3b2f6a0d{display:-ms-inline-flexbox;display:inline-flex;font-size:11px;font-weight:700;padding:3px 12px;white-space:nowrap}.backupMentorLabelTertiary_3b2f6a0d{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:100px;color:#a88b3a}.myRequestMentorRow_3b2f6a0d{-ms-flex-pack:justify;-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;justify-content:space-between;padding:10px 0}.myRequestMentorRow_3b2f6a0d:not(:last-child){border-bottom:1px solid #eceef2}.myRequestMentorName_3b2f6a0d{color:#1a1d23;font-size:15px;font-weight:600}.statusQueued_3b2f6a0d{background:#eceef2;border:1px solid #eceef2;color:#7c8290}.resetChoiceCard_3b2f6a0d{background:#fff;border:1px solid #e2e5eb;border-radius:14px;box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04);display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:18px;max-width:600px;padding:28px}.resetChoiceText_3b2f6a0d{color:#4a5060;font-size:14px;line-height:1.7;margin:0}.resetChoiceWarning_3b2f6a0d{background:#fee5e5;border-left:3px solid #c53030;border-radius:6px;color:#c53030;font-size:13px;font-weight:600;margin:0;padding:10px 14px}.hrRequestRow_3b2f6a0d{-ms-flex-pack:justify;-ms-flex-align:center;align-items:center;background:#fff;border:1px solid #e2e5eb;border-radius:10px;box-shadow:0 1px 4px rgba(10,38,71,.06),0 1px 2px rgba(10,38,71,.04);display:-ms-flexbox;display:flex;gap:16px;justify-content:space-between;padding:16px 20px;transition:box-shadow .2s cubic-bezier(.4,0,.2,1)}.hrRequestRow_3b2f6a0d:hover{box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04)}.hrRequestMain_3b2f6a0d{display:-ms-flexbox;display:flex;-ms-flex:1;flex:1;-ms-flex-direction:column;flex-direction:column;gap:6px;min-width:0}.hrRequestNames_3b2f6a0d{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;gap:8px}.hrRequestTalent_3b2f6a0d{color:#1a1d23;font-size:14px;font-weight:700}.hrRequestArrow_3b2f6a0d{color:#7c8290;font-size:14px}.hrRequestMentor_3b2f6a0d{color:#1b6ae0;font-size:14px;font-weight:600}.hrRequestActions_3b2f6a0d{-ms-flex-align:center;-ms-flex-negative:0;align-items:center;display:-ms-flexbox;display:flex;flex-shrink:0;gap:6px}.hrActionBtn_3b2f6a0d{background:0 0;border:1px solid #e2e5eb;border-radius:6px;color:#7c8290;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;padding:5px 14px;transition:all .2s cubic-bezier(.4,0,.2,1);white-space:nowrap}.hrActionBtn_3b2f6a0d:hover{background:rgba(27,106,224,.06);border-color:#1b6ae0;color:#1b6ae0}.hrActionBtn_3b2f6a0d:disabled{cursor:not-allowed;opacity:.4}.hrActionBtnDanger_3b2f6a0d{background:0 0;border:1px solid #e2e5eb;border-radius:6px;color:#7c8290;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;padding:5px 14px;transition:all .2s cubic-bezier(.4,0,.2,1);white-space:nowrap}.hrActionBtnDanger_3b2f6a0d:hover{background:#fee5e5;border-color:#c53030;color:#c53030}.hrActionBtnDanger_3b2f6a0d:disabled{cursor:not-allowed;opacity:.4}.approvedPairRow_3b2f6a0d{-ms-flex-pack:justify;-ms-flex-align:center;align-items:center;background:#fff;border:1px solid #e2e5eb;border-left:3px solid #0d9f3f;border-radius:10px;box-shadow:0 1px 4px rgba(10,38,71,.06),0 1px 2px rgba(10,38,71,.04);display:-ms-flexbox;display:flex;gap:16px;justify-content:space-between;padding:16px 20px;transition:box-shadow .2s cubic-bezier(.4,0,.2,1)}.approvedPairRow_3b2f6a0d:hover{box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04)}.approvedPairInfo_3b2f6a0d{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex:1;flex:1;gap:10px;min-width:0}.approvedPairTalent_3b2f6a0d{color:#1a1d23;font-size:14px;font-weight:700}.approvedPairArrow_3b2f6a0d{color:#c9a84c;font-size:16px;font-weight:700}.approvedPairMentor_3b2f6a0d{color:#1b6ae0;font-size:14px;font-weight:700}.mentorFormCard_3b2f6a0d{animation:fadeUp_3b2f6a0d .25s cubic-bezier(.16,1,.3,1);background:#fff;border:1px solid #e2e5eb;border-radius:14px;box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04);display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:18px;margin-bottom:24px;padding:24px}.mentorFormGrid_3b2f6a0d{display:grid;gap:14px;grid-template-columns:1fr 1fr}.mentorFormFieldFull_3b2f6a0d,.mentorFormField_3b2f6a0d{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:5px}.mentorFormFieldFull_3b2f6a0d{grid-column:1/-1}.formInput_3b2f6a0d{background:#fff;border:1.5px solid #e2e5eb;border-radius:6px;color:#1a1d23;font-family:inherit;font-size:13.5px;padding:9px 14px;transition:border-color .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,.2,1)}.formInput_3b2f6a0d:focus{border-color:#1b6ae0;box-shadow:0 0 0 3px rgba(27,106,224,.14);outline:0}.formInput_3b2f6a0d:-ms-input-placeholder{color:#7c8290}.formInput:-ms-input-placeholder{color:#7c8290}.formInput_3b2f6a0d::placeholder{color:#7c8290}.managementCapacityLabel_3b2f6a0d{-ms-flex-negative:0;background:#f5f6f8;border-radius:6px;color:#7c8290;flex-shrink:0;font-size:13px;font-weight:500;padding:4px 12px}.deleteConfirm_3b2f6a0d{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;gap:6px}.deleteConfirmText_3b2f6a0d{color:#c53030;font-size:12px;font-weight:600}", ""]);
+exports.push([module.i, "@keyframes spin_d4d045cb{to{transform:rotate(1turn)}}@keyframes fadeUp_d4d045cb{0%{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeIn_d4d045cb{0%{opacity:0}to{opacity:1}}@keyframes shimmer_d4d045cb{0%{background-position:-200%}to{background-position:200%}}@keyframes pulseGold_d4d045cb{0%,to{box-shadow:0 0 0 0 rgba(201,168,76,.25)}50%{box-shadow:0 0 0 6px rgba(201,168,76,0)}}@keyframes slideInRight_d4d045cb{0%{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:translateX(0)}}.auresApp_d4d045cb{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background:#f5f6f8;color:#1a1d23;font-family:Segoe UI,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:14px;line-height:1.55;min-height:100%}.appShell_d4d045cb{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;min-height:100%}.header_d4d045cb{-ms-flex-align:center;-ms-flex-pack:justify;-ms-flex-negative:0;align-items:center;background:linear-gradient(135deg,#0a2647,#0f3460 50%,#1b4d8e);box-shadow:0 4px 24px rgba(10,38,71,.25);display:-ms-flexbox;display:flex;flex-shrink:0;height:60px;justify-content:space-between;padding:0 28px;position:relative;z-index:10}.header_d4d045cb:after{background:linear-gradient(90deg,transparent,#a88b3a 15%,#c9a84c 40%,#dac06e 60%,#a88b3a 85%,transparent);bottom:0;content:\"\";height:2px;left:0;position:absolute;right:0}.headerLeft_d4d045cb{gap:14px}.headerLeft_d4d045cb,.headerLogo_d4d045cb{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.headerLogo_d4d045cb{-ms-flex-pack:center;-ms-flex-negative:0;background:linear-gradient(135deg,#a88b3a,#c9a84c,#dac06e);border-radius:6px;box-shadow:0 2px 8px rgba(201,168,76,.3);color:#0a2647;flex-shrink:0;font-family:Arial,Helvetica,sans-serif;font-size:21px;font-weight:900;height:48px;justify-content:center;letter-spacing:0;min-width:90px;padding:0 16px;position:relative}.headerTitle_d4d045cb{color:hsla(0,0%,100%,.9);font-size:15px;font-weight:600;letter-spacing:.8px;text-transform:uppercase}.headerTitleAccent_d4d045cb{color:#c9a84c;font-weight:800;letter-spacing:1.5px}.headerUser_d4d045cb{backdrop-filter:blur(8px);background:hsla(0,0%,100%,.08);border:1px solid hsla(0,0%,100%,.1);border-radius:100px;color:hsla(0,0%,100%,.8);font-size:13px;letter-spacing:.2px;padding:6px 16px;transition:all .2s cubic-bezier(.4,0,.2,1)}.headerUser_d4d045cb:hover{background:hsla(0,0%,100%,.12);border-color:rgba(201,168,76,.3)}.roleSwitch_d4d045cb{background:linear-gradient(180deg,#081f3a,#0a2647);border-bottom:1px solid rgba(201,168,76,.12);display:-ms-flexbox;display:flex;gap:6px;padding:8px 28px}.roleBtnActive_d4d045cb,.roleBtn_d4d045cb{background:hsla(0,0%,100%,.04);border:1px solid hsla(0,0%,100%,.15);border-radius:100px;color:hsla(0,0%,100%,.65);cursor:pointer;font-family:inherit;font-size:12px;font-weight:500;letter-spacing:.4px;padding:5px 18px;text-transform:uppercase;transition:all .2s cubic-bezier(.4,0,.2,1)}.roleBtnActive_d4d045cb:hover,.roleBtn_d4d045cb:hover{background:hsla(0,0%,100%,.1);border-color:hsla(0,0%,100%,.25);color:hsla(0,0%,100%,.9)}.roleBtnActive_d4d045cb{background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);box-shadow:0 0 12px rgba(201,168,76,.1);color:#dac06e;font-weight:700}.nav_d4d045cb{-ms-flex-negative:0;background:#fff;border-bottom:1px solid #e2e5eb;box-shadow:0 1px 2px rgba(10,38,71,.04);display:-ms-flexbox;display:flex;flex-shrink:0;gap:2px;padding:0 28px}.navTabActive_d4d045cb,.navTab_d4d045cb{-ms-flex-align:center;align-items:center;background:0 0;border:none;border-bottom:2.5px solid transparent;color:#7c8290;cursor:pointer;display:-ms-inline-flexbox;display:inline-flex;font-family:inherit;font-size:13.5px;letter-spacing:.2px;margin-bottom:-1px;padding:14px 20px;position:relative;transition:color .2s cubic-bezier(.4,0,.2,1),border-color .2s cubic-bezier(.4,0,.2,1),background .2s cubic-bezier(.4,0,.2,1);white-space:nowrap}.navTabActive_d4d045cb:hover,.navTab_d4d045cb:hover{background:rgba(27,106,224,.03);color:#4a5060}.navTabActive_d4d045cb{border-bottom-color:#c9a84c;color:#0a2647;font-weight:700;letter-spacing:.1px}.navBadge_d4d045cb{-ms-flex-align:center;-ms-flex-pack:center;align-items:center;animation:fadeUp_d4d045cb .3s cubic-bezier(.16,1,.3,1);background:#c53030;border-radius:100px;box-shadow:0 2px 6px rgba(197,48,48,.3);color:#fff;display:-ms-inline-flexbox;display:inline-flex;font-size:11px;font-weight:700;height:20px;justify-content:center;line-height:1;margin-left:8px;min-width:20px;padding:0 6px}.content_d4d045cb{animation:fadeIn_d4d045cb .25s ease;-ms-flex:1;flex:1;padding:32px 28px}.accessDenied_d4d045cb{-ms-flex-align:center;-ms-flex-pack:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;justify-content:center;padding:100px 32px;text-align:center}.accessDenied_d4d045cb h2{color:#1a1d23;font-size:24px;font-weight:700;letter-spacing:-.3px;margin:20px 0 10px}.accessDenied_d4d045cb p{color:#7c8290;font-size:15px;line-height:1.7;margin:4px 0;max-width:400px}.accessDeniedIcon_d4d045cb{font-size:64px;line-height:1;opacity:.8}.pageTitle_d4d045cb{color:#1a1d23;font-size:24px;font-weight:700;letter-spacing:-.3px;margin:0 0 24px;padding-left:14px;position:relative}.pageTitle_d4d045cb:before{background:linear-gradient(180deg,#c9a84c,#a88b3a);border-radius:3px;bottom:4px;content:\"\";left:0;position:absolute;top:4px;width:3px}.pageHeader_d4d045cb{-ms-flex-pack:justify;-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;justify-content:space-between;margin-bottom:24px}.pageHeader_d4d045cb .pageTitle_d4d045cb{margin:0}.loading_d4d045cb{-ms-flex-align:center;-ms-flex-pack:center;align-items:center;color:#7c8290;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;font-size:14px;gap:18px;justify-content:center;letter-spacing:.2px;padding:80px 32px}.loading_d4d045cb:before{animation:spin_d4d045cb .8s linear infinite;border:3px solid #eceef2;border-radius:50%;border-top-color:#c9a84c;content:\"\";display:block;height:40px;width:40px}.emptyState_d4d045cb{-ms-flex-align:center;-ms-flex-pack:center;align-items:center;color:#7c8290;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;justify-content:center;padding:80px 32px;text-align:center}.emptyState_d4d045cb p{font-size:15px;line-height:1.7;margin:8px 0;max-width:380px}.sectionHint_d4d045cb{color:#7c8290;font-size:13px;line-height:1.55;margin:-14px 0 20px;padding-left:14px}.btnPrimary_d4d045cb{-ms-flex-align:center;-ms-flex-pack:center;align-items:center;background:linear-gradient(135deg,#1b6ae0,#1558b8);border:none;border-radius:6px;box-shadow:0 2px 6px rgba(27,106,224,.25);color:#fff;cursor:pointer;display:-ms-inline-flexbox;display:inline-flex;font-family:inherit;font-size:14px;font-weight:600;justify-content:center;letter-spacing:.2px;padding:10px 24px;transition:all .2s cubic-bezier(.4,0,.2,1);white-space:nowrap}.btnPrimary_d4d045cb:hover{background:linear-gradient(135deg,#2a75e5,#1b6ae0);box-shadow:0 4px 14px rgba(27,106,224,.35);transform:translateY(-1px)}.btnPrimary_d4d045cb:active{box-shadow:0 1px 4px rgba(27,106,224,.2);transform:translateY(0)}.btnPrimary_d4d045cb:disabled{background:#eceef2;box-shadow:none;color:#7c8290;cursor:not-allowed;transform:none}.btnSecondary_d4d045cb{-ms-flex-align:center;-ms-flex-pack:center;align-items:center;background:0 0;border:1.5px solid rgba(27,106,224,.35);border-radius:6px;color:#1b6ae0;cursor:pointer;display:-ms-inline-flexbox;display:inline-flex;font-family:inherit;font-size:14px;font-weight:600;justify-content:center;padding:9px 24px;transition:all .2s cubic-bezier(.4,0,.2,1);white-space:nowrap}.btnSecondary_d4d045cb:hover{background:rgba(27,106,224,.06);border-color:#1b6ae0}.btnSecondary_d4d045cb:disabled{cursor:not-allowed;opacity:.4}.btnBack_d4d045cb{-ms-flex-align:center;align-items:center;background:0 0;border:none;color:#1b6ae0;cursor:pointer;display:-ms-inline-flexbox;display:inline-flex;font-family:inherit;font-size:13px;font-weight:500;gap:6px;padding:0 0 16px;transition:color .2s cubic-bezier(.4,0,.2,1)}.btnBack_d4d045cb:hover{color:#1558b8;text-decoration:underline}.btnApprove_d4d045cb{-ms-flex-align:center;-ms-flex-pack:center;align-items:center;background:linear-gradient(135deg,#0d9f3f,#0a7930);border:none;border-radius:6px;box-shadow:0 2px 6px rgba(13,159,63,.25);color:#fff;cursor:pointer;display:-ms-inline-flexbox;display:inline-flex;font-family:inherit;font-size:14px;font-weight:700;justify-content:center;letter-spacing:.2px;padding:10px 28px;transition:all .2s cubic-bezier(.4,0,.2,1)}.btnApprove_d4d045cb:hover{box-shadow:0 4px 14px rgba(13,159,63,.35);transform:translateY(-1px)}.btnApprove_d4d045cb:disabled{box-shadow:none;cursor:not-allowed;opacity:.45;transform:none}.btnReject_d4d045cb{-ms-flex-align:center;-ms-flex-pack:center;align-items:center;background:0 0;border:1.5px solid rgba(197,48,48,.35);border-radius:6px;color:#c53030;cursor:pointer;display:-ms-inline-flexbox;display:inline-flex;font-family:inherit;font-size:14px;font-weight:700;justify-content:center;letter-spacing:.2px;padding:10px 28px;transition:all .2s cubic-bezier(.4,0,.2,1)}.btnReject_d4d045cb:hover{background:#fee5e5;border-color:#c53030}.btnReject_d4d045cb:disabled{cursor:not-allowed;opacity:.45}.mentorGrid_d4d045cb{animation:fadeUp_d4d045cb .3s cubic-bezier(.16,1,.3,1);display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}.mentorCard_d4d045cb{background:#fff;border:1px solid #e2e5eb;border-radius:14px;box-shadow:0 1px 4px rgba(10,38,71,.06),0 1px 2px rgba(10,38,71,.04);display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:12px;overflow:hidden;padding:24px;position:relative;transition:transform .28s cubic-bezier(.16,1,.3,1),box-shadow .28s cubic-bezier(.16,1,.3,1),border-color .2s cubic-bezier(.4,0,.2,1)}.mentorCard_d4d045cb:before{background:linear-gradient(90deg,transparent,#c9a84c,transparent);content:\"\";height:2px;left:0;opacity:0;position:absolute;right:0;top:0;transition:opacity .28s cubic-bezier(.16,1,.3,1)}.mentorCard_d4d045cb:hover{border-color:rgba(201,168,76,.25);box-shadow:0 8px 32px rgba(10,38,71,.1),0 2px 8px rgba(10,38,71,.05);transform:translateY(-4px)}.mentorCard_d4d045cb:hover:before{opacity:1}.mentorCardHeader_d4d045cb{gap:16px}.mentorAvatar_d4d045cb,.mentorCardHeader_d4d045cb{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.mentorAvatar_d4d045cb{-ms-flex-pack:center;-ms-flex-negative:0;background:linear-gradient(135deg,#0a2647,#0f3460);border-radius:50%;color:#fff;flex-shrink:0;font-size:17px;font-weight:700;height:54px;justify-content:center;letter-spacing:.5px;position:relative;width:54px}.mentorAvatar_d4d045cb:after{border:2px solid rgba(201,168,76,.4);border-radius:50%;content:\"\";inset:-3px;position:absolute}.mentorName_d4d045cb{color:#1a1d23;font-size:16px;font-weight:700;letter-spacing:-.1px;margin:0 0 2px}.mentorJobTitle_d4d045cb{color:#7c8290;font-size:11.5px;font-weight:600;letter-spacing:.6px;margin:0;text-transform:uppercase}.mentorCapacityFull_d4d045cb,.mentorCapacity_d4d045cb{display:none}.mentorSuperpower_d4d045cb{-ms-flex-align:center;align-items:center;color:#a88b3a;display:-ms-flexbox;display:flex;font-size:13px;font-weight:600;gap:6px;line-height:1.5;margin:4px 0 0}.mentorSuperpower_d4d045cb:before{color:#c9a84c;content:\"\\2726\";font-size:11px}.mentorAvatarPhoto_d4d045cb{background-position:50%;background-size:cover;border:none;box-shadow:0 0 0 3px rgba(201,168,76,.25);color:transparent;height:80px;width:80px}.mentorBio_d4d045cb{color:#4a5060;font-size:13.5px;line-height:1.65;margin:0 0 8px}.mentorDetails_d4d045cb{-ms-flex:1;flex:1;margin-bottom:12px}.mentorDetailsToggle_d4d045cb{-ms-flex-align:center;align-items:center;background:0 0;border:none;color:#1b6ae0;cursor:pointer;display:-ms-flexbox;display:flex;font-size:13px;font-weight:600;gap:6px;padding:4px 0}.mentorDetailsToggle_d4d045cb:hover{color:#a88b3a}.mentorDetailsToggle_d4d045cb:before{content:\"\\25B8\";font-size:11px;transition:transform .2s ease}.mentorDetailsContent_d4d045cb{animation:fadeUp_d4d045cb .3s ease;color:#4a5060;font-size:13.5px;line-height:1.65;padding-top:8px}.mentorChallenge_d4d045cb{background:rgba(27,106,224,.04);border-left:3px solid #c9a84c;border-radius:6px;color:#1b6ae0;font-size:13px;line-height:1.6;margin-top:10px;padding:10px 14px}.mentorAvailability_d4d045cb{background:#f5f6f8;border-left:2px solid #c9a84c;border-radius:6px;color:#7c8290;font-size:12px;font-style:italic;margin:0;padding:8px 12px}.mentorCardActions_d4d045cb{margin-top:6px}.requestForm_d4d045cb{animation:fadeUp_d4d045cb .3s cubic-bezier(.16,1,.3,1);gap:32px;max-width:760px}.formSection_d4d045cb,.requestForm_d4d045cb{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.formSection_d4d045cb{gap:14px}.formSectionTitle_d4d045cb{border-bottom:2px solid #e2e5eb;color:#1a1d23;font-size:15px;font-weight:700;letter-spacing:-.1px;margin:0;padding-bottom:12px;position:relative}.formSectionTitle_d4d045cb:after{background:#c9a84c;bottom:-2px;content:\"\";height:2px;left:0;position:absolute;width:40px}.mentorSelectList_d4d045cb{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:10px}.mentorSelectItem_d4d045cb{-ms-flex-align:start;align-items:flex-start;border:1.5px solid #e2e5eb;border-radius:10px;cursor:pointer;display:-ms-flexbox;display:flex;gap:14px;padding:16px;transition:border-color .2s cubic-bezier(.4,0,.2,1),background .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,.2,1)}.mentorSelectItem_d4d045cb:hover{background:rgba(27,106,224,.06);border-color:#1b6ae0;box-shadow:0 1px 2px rgba(10,38,71,.04)}.mentorSelectItemChecked_d4d045cb{background:rgba(27,106,224,.06);border-color:#1b6ae0;box-shadow:0 0 0 3px rgba(27,106,224,.14)}.mentorSelectDisabled_d4d045cb{cursor:not-allowed;opacity:.38}.mentorSelectDisabled_d4d045cb:hover{background:0 0;border-color:#e2e5eb;box-shadow:none}.mentorSelectCheckbox_d4d045cb{-ms-flex-negative:0;accent-color:#1b6ae0;cursor:pointer;flex-shrink:0;height:17px;margin-top:3px;width:17px}.mentorSelectInfo_d4d045cb{-ms-flex:1;flex:1;min-width:0}.mentorSelectName_d4d045cb{color:#1a1d23;font-size:14px;font-weight:600;margin:0 0 3px}.mentorSelectJobTitle_d4d045cb{color:#7c8290;font-size:12px;margin:0}.messageGroup_d4d045cb{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:7px}.messageLabel_d4d045cb{color:#1a1d23;font-size:13px;font-weight:600}.messageTextarea_d4d045cb{background:#fff;border:1.5px solid #e2e5eb;border-radius:10px;box-sizing:border-box;color:#1a1d23;font-family:inherit;font-size:13.5px;line-height:1.65;min-height:92px;padding:12px 14px;resize:vertical;transition:border-color .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,.2,1);width:100%}.messageTextarea_d4d045cb:focus{border-color:#1b6ae0;box-shadow:0 0 0 3px rgba(27,106,224,.14);outline:0}.messageTextarea_d4d045cb:-ms-input-placeholder{color:#7c8290;font-style:italic}.messageTextarea:-ms-input-placeholder{color:#7c8290;font-style:italic}.messageTextarea_d4d045cb::placeholder{color:#7c8290;font-style:italic}.formActions_d4d045cb{-ms-flex-wrap:wrap;flex-wrap:wrap;gap:12px}.formActions_d4d045cb,.formError_d4d045cb{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.formError_d4d045cb{color:#c53030;font-size:13px;font-weight:500;gap:6px}.formError_d4d045cb:before{content:\"\\26A0\";font-size:14px}.requestList_d4d045cb{animation:fadeUp_d4d045cb .3s cubic-bezier(.16,1,.3,1);display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:12px}.requestCard_d4d045cb{background:#fff;border:1px solid #e2e5eb;border-radius:10px;box-shadow:0 1px 4px rgba(10,38,71,.06),0 1px 2px rgba(10,38,71,.04);padding:18px 22px;transition:box-shadow .2s cubic-bezier(.4,0,.2,1),border-color .2s cubic-bezier(.4,0,.2,1)}.requestCard_d4d045cb:hover{box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04)}.requestCardHeader_d4d045cb{-ms-flex-pack:justify;-ms-flex-align:start;align-items:flex-start;display:-ms-flexbox;display:flex;gap:14px;justify-content:space-between;margin-bottom:12px}.requestTitle_d4d045cb{color:#1a1d23;font-size:15px;font-weight:700;letter-spacing:-.1px;margin:0}.statusBadge_d4d045cb{-ms-flex-align:center;-ms-flex-negative:0;align-items:center;border-radius:100px;display:-ms-inline-flexbox;display:inline-flex;flex-shrink:0;font-size:12px;font-weight:700;letter-spacing:.2px;padding:4px 14px;white-space:nowrap}.statusPending_d4d045cb{background:#fff8e7;border:1px solid rgba(184,134,11,.15);color:#b8860b}.statusApproved_d4d045cb{background:#e6f9ed;border:1px solid rgba(13,159,63,.15);color:#0d9f3f}.statusHR_d4d045cb{background:#fee5e5;border:1px solid rgba(197,48,48,.15);color:#c53030}.statusScheduled_d4d045cb{background:#ebf3fe;border:1px solid rgba(27,106,224,.15);color:#1b6ae0}.statusCancelled_d4d045cb{background:#eceef2;border:1px solid #eceef2;color:#7c8290}.requestMentors_d4d045cb{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;gap:6px}.mentorTag_d4d045cb{-ms-flex-align:center;align-items:center;background:#eceef2;border-radius:100px;color:#4a5060;display:-ms-inline-flexbox;display:inline-flex;font-size:12px;font-weight:500;gap:4px;padding:4px 12px}.mentorTagCurrent_d4d045cb{background:#ebf3fe;border:1px solid rgba(27,106,224,.12);color:#1b6ae0;font-weight:700}.mentorTagApproved_d4d045cb{background:#e6f9ed;border:1px solid rgba(13,159,63,.12);color:#0d9f3f}.mentorTagRejected_d4d045cb{background:#fee5e5;border:1px solid rgba(197,48,48,.12);color:#c53030;text-decoration:line-through}.pendingRow_d4d045cb{-ms-flex-align:center;align-items:center;background:#fff;border:1px solid #e2e5eb;border-radius:10px;box-shadow:0 1px 4px rgba(10,38,71,.06),0 1px 2px rgba(10,38,71,.04);cursor:pointer;display:-ms-flexbox;display:flex;gap:16px;padding:18px 22px;transition:transform .28s cubic-bezier(.16,1,.3,1),box-shadow .28s cubic-bezier(.16,1,.3,1),border-color .2s cubic-bezier(.4,0,.2,1)}.pendingRow_d4d045cb:hover{border-color:rgba(201,168,76,.3);box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04);transform:translateX(4px)}.pendingRowLeft_d4d045cb{-ms-flex:1;flex:1;min-width:0}.pendingRowHeader_d4d045cb{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;gap:10px;margin-bottom:6px}.stageIndicator_d4d045cb{-ms-flex-align:center;-ms-flex-negative:0;align-items:center;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:100px;color:#a88b3a;display:-ms-inline-flexbox;display:inline-flex;flex-shrink:0;font-size:11px;font-weight:700;letter-spacing:.4px;padding:3px 12px}.talentName_d4d045cb{color:#7c8290;font-size:13px;font-weight:500;margin:0 0 4px}.messagePreview_d4d045cb{color:#4a5060;font-size:13px;margin:0;opacity:.7;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.arrowIcon_d4d045cb{-ms-flex-negative:0;color:#e2e5eb;flex-shrink:0;font-size:24px;transition:color .2s cubic-bezier(.4,0,.2,1),transform .2s cubic-bezier(.4,0,.2,1)}.pendingRow_d4d045cb:hover .arrowIcon_d4d045cb{color:#c9a84c;transform:translateX(3px)}.requestDetailCard_d4d045cb{animation:fadeUp_d4d045cb .3s cubic-bezier(.16,1,.3,1);background:#fff;border:1px solid #e2e5eb;border-radius:14px;box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04);display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:28px;max-width:740px;padding:28px;position:relative}.requestDetailCard_d4d045cb:before{background:linear-gradient(90deg,transparent,#c9a84c,transparent);border-radius:0 0 2px 2px;content:\"\";height:2px;left:24px;position:absolute;right:24px;top:0}.detailSection_d4d045cb{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:8px}.detailLabel_d4d045cb{color:#7c8290;font-size:11px;font-weight:700;letter-spacing:.8px;margin:0;text-transform:uppercase}.detailValue_d4d045cb{color:#1a1d23;font-size:16px;font-weight:600;margin:0}.talentMessage_d4d045cb{background:linear-gradient(135deg,rgba(201,168,76,.04),rgba(201,168,76,.08));border-left:3px solid #c9a84c;border-radius:0 6px 6px 0;color:#1a1d23;font-size:14px;font-style:italic;line-height:1.75;padding:16px 20px}.decisionBtns_d4d045cb{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;gap:14px}.rejectHint_d4d045cb{background:#f5f6f8;border-left:2px solid #e2e5eb;border-radius:6px;color:#7c8290;font-size:12px;font-style:italic;margin:8px 0 0;padding:10px 14px}.decisionConfirm_d4d045cb{-ms-flex-align:center;align-items:center;background:#e6f9ed;border:1px solid rgba(13,159,63,.15);border-radius:10px;color:#0d9f3f;display:-ms-flexbox;display:flex;font-size:15px;font-weight:700;gap:10px;padding:16px 20px}.decisionConfirm_d4d045cb:before{content:\"\\2713\";font-size:18px;font-weight:900}.historyCard_d4d045cb{-ms-flex-pack:justify;-ms-flex-align:center;align-items:center;background:#fff;border:1px solid #e2e5eb;border-radius:10px;box-shadow:0 1px 4px rgba(10,38,71,.06),0 1px 2px rgba(10,38,71,.04);display:-ms-flexbox;display:flex;gap:16px;justify-content:space-between;padding:16px 22px;transition:box-shadow .2s cubic-bezier(.4,0,.2,1),transform .2s cubic-bezier(.4,0,.2,1)}.historyCard_d4d045cb:hover{box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04);transform:translateY(-1px)}.historyLeft_d4d045cb{-ms-flex:1;flex:1;min-width:0}.historyTitle_d4d045cb{color:#1a1d23;font-size:14px;font-weight:600;margin:0 0 4px}.historyMeta_d4d045cb{color:#7c8290;font-size:12px;margin:0}.decisionBadge_d4d045cb{-ms-flex-align:center;align-items:center;border-radius:100px;display:-ms-inline-flexbox;display:inline-flex;font-size:12px;font-weight:700;padding:4px 16px;white-space:nowrap}.decisionApproved_d4d045cb{background:#e6f9ed;border:1px solid rgba(13,159,63,.15);color:#0d9f3f}.decisionRejected_d4d045cb{background:#fee5e5;border:1px solid rgba(197,48,48,.15);color:#c53030}.filterRow_d4d045cb{-ms-flex-align:center;align-items:center;gap:14px;margin-bottom:20px}.filterBar_d4d045cb,.filterRow_d4d045cb{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.filterBar_d4d045cb{gap:6px}.filterBtnActive_d4d045cb,.filterBtn_d4d045cb{background:0 0;border:1.5px solid #e2e5eb;border-radius:100px;color:#7c8290;cursor:pointer;font-family:inherit;font-size:13px;font-weight:500;padding:6px 16px;transition:all .2s cubic-bezier(.4,0,.2,1)}.filterBtnActive_d4d045cb:hover,.filterBtn_d4d045cb:hover{background:rgba(27,106,224,.06);border-color:#1b6ae0;color:#1b6ae0}.filterBtnActive_d4d045cb{background:linear-gradient(135deg,#0a2647,#0f3460);border-color:#0a2647;box-shadow:0 2px 6px rgba(10,38,71,.2);color:#fff;font-weight:700}.searchInput_d4d045cb{background:#fff;border:1.5px solid #e2e5eb;border-radius:6px;color:#1a1d23;-ms-flex:1;flex:1;font-family:inherit;font-size:13px;min-width:200px;padding:8px 14px;transition:border-color .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,.2,1)}.searchInput_d4d045cb:focus{border-color:#1b6ae0;box-shadow:0 0 0 3px rgba(27,106,224,.14);outline:0}.searchInput_d4d045cb:-ms-input-placeholder{color:#7c8290}.searchInput:-ms-input-placeholder{color:#7c8290}.searchInput_d4d045cb::placeholder{color:#7c8290}.allRequestRow_d4d045cb{-ms-flex-pack:justify;-ms-flex-align:center;align-items:center;background:#fff;border:1px solid #e2e5eb;border-radius:10px;box-shadow:0 1px 4px rgba(10,38,71,.06),0 1px 2px rgba(10,38,71,.04);display:-ms-flexbox;display:flex;gap:16px;justify-content:space-between;padding:14px 20px;transition:box-shadow .2s cubic-bezier(.4,0,.2,1)}.allRequestRow_d4d045cb:hover{box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04)}.allRequestMain_d4d045cb{display:-ms-flexbox;display:flex;-ms-flex:1;flex:1;-ms-flex-direction:column;flex-direction:column;gap:3px;min-width:0}.allRequestMeta_d4d045cb{-ms-flex-align:center;-ms-flex-negative:0;align-items:center;display:-ms-flexbox;display:flex;flex-shrink:0;gap:10px}.hrReviewCard_d4d045cb{background:#fff;border:1px solid #e2e5eb;border-left:4px solid #c9a84c;border-radius:10px;box-shadow:0 1px 4px rgba(10,38,71,.06),0 1px 2px rgba(10,38,71,.04);display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:14px;padding:20px 22px;transition:box-shadow .2s cubic-bezier(.4,0,.2,1)}.hrReviewCard_d4d045cb:hover{box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04)}.hrReviewHeader_d4d045cb{-ms-flex-align:baseline;align-items:baseline;gap:12px}.hrActionsBar_d4d045cb,.hrReviewHeader_d4d045cb{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.hrActionsBar_d4d045cb{gap:10px;padding-top:4px}.managementList_d4d045cb{animation:fadeUp_d4d045cb .3s cubic-bezier(.16,1,.3,1);display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:10px}.managementRow_d4d045cb{-ms-flex-align:center;align-items:center;background:#fff;border:1px solid #e2e5eb;border-radius:10px;box-shadow:0 1px 4px rgba(10,38,71,.06),0 1px 2px rgba(10,38,71,.04);display:-ms-flexbox;display:flex;gap:18px;padding:16px 20px;transition:opacity .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,.2,1)}.managementRow_d4d045cb:hover{box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04)}.managementRowInactive_d4d045cb{opacity:.4}.managementInfo_d4d045cb{-ms-flex:1;flex:1;min-width:0}.managementName_d4d045cb{color:#1a1d23;font-size:14px;font-weight:600;margin:0 0 3px}.managementMeta_d4d045cb{color:#7c8290;font-size:12px;margin:0}.managementCapacity_d4d045cb{-ms-flex-negative:0;flex-shrink:0}.capacityEdit_d4d045cb{background:0 0;border:1.5px dashed #e2e5eb;border-radius:6px;color:#7c8290;cursor:pointer;font-family:inherit;font-size:13px;padding:6px 14px;transition:all .2s cubic-bezier(.4,0,.2,1)}.capacityEdit_d4d045cb:hover{background:rgba(201,168,76,.08);border-color:#c9a84c;border-style:solid;color:#a88b3a}.inlineEditGroup_d4d045cb{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;gap:6px}.inlineInput_d4d045cb{border:1.5px solid #1b6ae0;border-radius:6px;box-shadow:0 0 0 3px rgba(27,106,224,.14);font-family:inherit;font-size:13px;padding:6px 10px;text-align:center;width:64px}.inlineInput_d4d045cb:focus{outline:0}.inlineSave_d4d045cb{background:linear-gradient(135deg,#1b6ae0,#1558b8);border:none;border-radius:6px;color:#fff;cursor:pointer;font-family:inherit;font-size:12px;font-weight:700;padding:6px 12px}.inlineSave_d4d045cb:hover{box-shadow:0 2px 6px rgba(27,106,224,.3)}.inlineSave_d4d045cb:disabled{opacity:.45}.inlineCancel_d4d045cb{background:0 0;border:1px solid #e2e5eb;border-radius:6px;color:#7c8290;cursor:pointer;font-family:inherit;font-size:12px;padding:6px 12px}.inlineCancel_d4d045cb:hover{background:#f5f6f8}.activeBtn_d4d045cb{-ms-flex-negative:0;background:#e6f9ed;border:1.5px solid rgba(13,159,63,.18);border-radius:100px;color:#0d9f3f;cursor:pointer;flex-shrink:0;font-family:inherit;font-size:12px;font-weight:700;padding:5px 16px;transition:all .2s cubic-bezier(.4,0,.2,1)}.activeBtn_d4d045cb:hover{background:#d6f5e1}.inactiveBtn_d4d045cb{-ms-flex-negative:0;background:#eceef2;border:1.5px solid #e2e5eb;border-radius:100px;color:#7c8290;cursor:pointer;flex-shrink:0;font-family:inherit;font-size:12px;font-weight:700;padding:5px 16px;transition:all .2s cubic-bezier(.4,0,.2,1)}.inactiveBtn_d4d045cb:hover{background:#f5f6f8}.capacityList_d4d045cb{animation:fadeUp_d4d045cb .3s cubic-bezier(.16,1,.3,1);display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:14px}.capacityRow_d4d045cb{-ms-flex-align:center;align-items:center;background:#fff;border:1px solid #e2e5eb;border-radius:10px;box-shadow:0 1px 4px rgba(10,38,71,.06),0 1px 2px rgba(10,38,71,.04);display:grid;gap:22px;grid-template-columns:1fr auto 220px;padding:18px 22px;transition:box-shadow .2s cubic-bezier(.4,0,.2,1)}.capacityRow_d4d045cb:hover{box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04)}.capacityMentorInfo_d4d045cb{min-width:0}.capacityStats_d4d045cb{-ms-flex-align:end;align-items:flex-end;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:2px;white-space:nowrap}.capacityStat_d4d045cb{color:#1a1d23;font-size:16px;font-weight:700}.capacityRemaining_d4d045cb{color:#0d9f3f;font-size:12px;font-weight:600}.capacityFull_d4d045cb{color:#c53030}.capacityBarWrap_d4d045cb{background:#eceef2;border-radius:100px;height:8px;overflow:hidden}.capacityBarFill_d4d045cb{border-radius:100px;height:100%;transition:width .6s cubic-bezier(.16,1,.3,1)}.barOk_d4d045cb{background:linear-gradient(90deg,#0d9f3f,#34c759)}.barHigh_d4d045cb{background:linear-gradient(90deg,#a88b3a,#c9a84c)}.barFull_d4d045cb{background:linear-gradient(90deg,#c53030,#e53e3e)}.primaryMentorCard_d4d045cb{background:#fff;border:2px solid rgba(201,168,76,.35);border-radius:14px;box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04),0 0 0 1px rgba(201,168,76,.08);overflow:hidden;padding:28px;position:relative}.primaryMentorCard_d4d045cb:before{background:linear-gradient(90deg,#a88b3a,#c9a84c,#dac06e,#a88b3a);content:\"\";height:3px;left:0;position:absolute;right:0;top:0}.primaryMentorHeader_d4d045cb{-ms-flex-wrap:wrap;flex-wrap:wrap;gap:20px;margin-bottom:16px}.primaryMentorAvatar_d4d045cb,.primaryMentorHeader_d4d045cb{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.primaryMentorAvatar_d4d045cb{-ms-flex-pack:center;-ms-flex-negative:0;background:linear-gradient(135deg,#0a2647,#0f3460);border-radius:50%;color:#fff;flex-shrink:0;font-size:22px;font-weight:700;height:72px;justify-content:center;position:relative;width:72px}.primaryMentorAvatar_d4d045cb:after{border:2.5px solid #c9a84c;border-radius:50%;box-shadow:0 4px 20px rgba(201,168,76,.2);content:\"\";inset:-4px;position:absolute}.primaryMentorInfo_d4d045cb{-ms-flex:1;flex:1;min-width:0}.primaryMentorName_d4d045cb{color:#1a1d23;font-size:20px;font-weight:700;letter-spacing:-.2px;margin:0 0 4px}.primaryMentorJobTitle_d4d045cb{color:#7c8290;font-size:12px;font-weight:600;letter-spacing:.6px;margin:0 0 4px;text-transform:uppercase}.primaryMentorSuperpower_d4d045cb{-ms-flex-align:center;align-items:center;color:#a88b3a;display:-ms-flexbox;display:flex;font-size:14px;font-weight:600;gap:6px;margin:0}.primaryMentorSuperpower_d4d045cb:before{color:#c9a84c;content:\"\\2726\";font-size:12px}.primaryMentorBadge_d4d045cb{-ms-flex-align:center;-ms-flex-negative:0;align-items:center;background:linear-gradient(135deg,rgba(201,168,76,.08),rgba(201,168,76,.15));border:1px solid rgba(201,168,76,.3);border-radius:100px;color:#a88b3a;display:-ms-inline-flexbox;display:inline-flex;flex-shrink:0;font-size:12px;font-weight:700;letter-spacing:.4px;padding:5px 16px;white-space:nowrap}.primaryMentorBio_d4d045cb{color:#4a5060;font-size:14px;line-height:1.7;margin:0}.formSectionHint_d4d045cb{color:#7c8290;font-size:13px;line-height:1.6;margin:-8px 0 8px}.backupMentorList_d4d045cb{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:10px}.backupMentorRow_d4d045cb{-ms-flex-align:center;-ms-flex-pack:justify;align-items:center;border:1.5px solid #e2e5eb;border-radius:10px;display:-ms-flexbox;display:flex;gap:14px;justify-content:space-between;padding:14px 18px;transition:border-color .2s cubic-bezier(.4,0,.2,1),background .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,.2,1)}.backupMentorRow_d4d045cb:hover{background:rgba(27,106,224,.06);border-color:rgba(27,106,224,.25)}.backupMentorRowSelected_d4d045cb{background:rgba(27,106,224,.06);border-color:#1b6ae0;box-shadow:0 0 0 2px rgba(27,106,224,.14)}.backupMentorInfo_d4d045cb{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex:1;flex:1;gap:14px;min-width:0}.backupMentorActions_d4d045cb{-ms-flex-align:center;-ms-flex-negative:0;align-items:center;display:-ms-flexbox;display:flex;flex-shrink:0;gap:10px}.backupMentorLabel_d4d045cb{background:#ebf3fe;border:1px solid rgba(27,106,224,.12);border-radius:100px;color:#1b6ae0}.backupMentorLabelTertiary_d4d045cb,.backupMentorLabel_d4d045cb{display:-ms-inline-flexbox;display:inline-flex;font-size:11px;font-weight:700;padding:3px 12px;white-space:nowrap}.backupMentorLabelTertiary_d4d045cb{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:100px;color:#a88b3a}.myRequestMentorRow_d4d045cb{-ms-flex-pack:justify;-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;justify-content:space-between;padding:10px 0}.myRequestMentorRow_d4d045cb:not(:last-child){border-bottom:1px solid #eceef2}.myRequestMentorName_d4d045cb{color:#1a1d23;font-size:15px;font-weight:600}.statusQueued_d4d045cb{background:#eceef2;border:1px solid #eceef2;color:#7c8290}.resetChoiceCard_d4d045cb{background:#fff;border:1px solid #e2e5eb;border-radius:14px;box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04);display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:18px;max-width:600px;padding:28px}.resetChoiceText_d4d045cb{color:#4a5060;font-size:14px;line-height:1.7;margin:0}.resetChoiceWarning_d4d045cb{background:#fee5e5;border-left:3px solid #c53030;border-radius:6px;color:#c53030;font-size:13px;font-weight:600;margin:0;padding:10px 14px}.hrRequestRow_d4d045cb{-ms-flex-pack:justify;-ms-flex-align:center;align-items:center;background:#fff;border:1px solid #e2e5eb;border-radius:10px;box-shadow:0 1px 4px rgba(10,38,71,.06),0 1px 2px rgba(10,38,71,.04);display:-ms-flexbox;display:flex;gap:16px;justify-content:space-between;padding:16px 20px;transition:box-shadow .2s cubic-bezier(.4,0,.2,1)}.hrRequestRow_d4d045cb:hover{box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04)}.hrRequestMain_d4d045cb{display:-ms-flexbox;display:flex;-ms-flex:1;flex:1;-ms-flex-direction:column;flex-direction:column;gap:6px;min-width:0}.hrRequestNames_d4d045cb{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;gap:8px}.hrRequestTalent_d4d045cb{color:#1a1d23;font-size:14px;font-weight:700}.hrRequestArrow_d4d045cb{color:#7c8290;font-size:14px}.hrRequestMentor_d4d045cb{color:#1b6ae0;font-size:14px;font-weight:600}.menteeDashboardRow_d4d045cb{-ms-flex-pack:justify;-ms-flex-align:start;align-items:flex-start;background:#fff;border:1px solid #e2e5eb;border-radius:10px;box-shadow:0 1px 4px rgba(10,38,71,.06),0 1px 2px rgba(10,38,71,.04);display:-ms-flexbox;display:flex;gap:18px;justify-content:space-between;padding:18px 20px;transition:box-shadow .2s cubic-bezier(.4,0,.2,1),border-color .2s cubic-bezier(.4,0,.2,1)}.menteeDashboardRow_d4d045cb:hover{box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04)}.menteeDashboardRowWarning_d4d045cb{border-color:rgba(201,168,76,.45);box-shadow:0 1px 4px rgba(10,38,71,.06),0 1px 2px rgba(10,38,71,.04),0 0 0 1px rgba(201,168,76,.14)}.menteeDashboardMain_d4d045cb{display:-ms-flexbox;display:flex;-ms-flex:1;flex:1;-ms-flex-direction:column;flex-direction:column;gap:10px;min-width:0}.menteeDashboardHeader_d4d045cb{-ms-flex-pack:justify;-ms-flex-align:start;align-items:flex-start;display:-ms-flexbox;display:flex;gap:14px;justify-content:space-between}.menteeDashboardIdentity_d4d045cb{min-width:0}.menteeDashboardBadges_d4d045cb{-ms-flex-pack:end;-ms-flex-negative:0;flex-shrink:0;justify-content:flex-end}.menteeDashboardBadges_d4d045cb,.menteeDashboardMeta_d4d045cb{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;gap:8px}.menteeDashboardMetaItem_d4d045cb{-ms-flex-align:center;align-items:center;background:#f5f6f8;border:1px solid #eceef2;border-radius:100px;color:#4a5060;display:-ms-inline-flexbox;display:inline-flex;font-size:12px;padding:5px 12px}.menteeDashboardWarning_d4d045cb{background:#fff8e7;border-left:3px solid #c9a84c;border-radius:0 6px 6px 0;color:#9b7109;font-size:12px;font-weight:600;margin:0;padding:10px 14px}.hrRequestActions_d4d045cb{-ms-flex-align:center;-ms-flex-negative:0;align-items:center;display:-ms-flexbox;display:flex;flex-shrink:0;gap:6px}.hrActionBtn_d4d045cb{background:0 0;border:1px solid #e2e5eb;border-radius:6px;color:#7c8290;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;padding:5px 14px;transition:all .2s cubic-bezier(.4,0,.2,1);white-space:nowrap}.hrActionBtn_d4d045cb:hover{background:rgba(27,106,224,.06);border-color:#1b6ae0;color:#1b6ae0}.hrActionBtn_d4d045cb:disabled{cursor:not-allowed;opacity:.4}.hrActionBtnDanger_d4d045cb{background:0 0;border:1px solid #e2e5eb;border-radius:6px;color:#7c8290;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;padding:5px 14px;transition:all .2s cubic-bezier(.4,0,.2,1);white-space:nowrap}.hrActionBtnDanger_d4d045cb:hover{background:#fee5e5;border-color:#c53030;color:#c53030}.hrActionBtnDanger_d4d045cb:disabled{cursor:not-allowed;opacity:.4}.approvedPairRow_d4d045cb{-ms-flex-pack:justify;-ms-flex-align:center;align-items:center;background:#fff;border:1px solid #e2e5eb;border-left:3px solid #0d9f3f;border-radius:10px;box-shadow:0 1px 4px rgba(10,38,71,.06),0 1px 2px rgba(10,38,71,.04);display:-ms-flexbox;display:flex;gap:16px;justify-content:space-between;padding:16px 20px;transition:box-shadow .2s cubic-bezier(.4,0,.2,1)}.approvedPairRow_d4d045cb:hover{box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04)}.approvedPairInfo_d4d045cb{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex:1;flex:1;gap:10px;min-width:0}.approvedPairTalent_d4d045cb{color:#1a1d23;font-size:14px;font-weight:700}.approvedPairArrow_d4d045cb{color:#c9a84c;font-size:16px;font-weight:700}.approvedPairMentor_d4d045cb{color:#1b6ae0;font-size:14px;font-weight:700}.mentorFormCard_d4d045cb{animation:fadeUp_d4d045cb .25s cubic-bezier(.16,1,.3,1);background:#fff;border:1px solid #e2e5eb;border-radius:14px;box-shadow:0 4px 16px rgba(10,38,71,.08),0 1px 4px rgba(10,38,71,.04);display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:18px;margin-bottom:24px;padding:24px}.mentorFormGrid_d4d045cb{display:grid;gap:14px;grid-template-columns:1fr 1fr}.mentorFormFieldFull_d4d045cb,.mentorFormField_d4d045cb{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;gap:5px}.mentorFormFieldFull_d4d045cb{grid-column:1/-1}.formInput_d4d045cb{background:#fff;border:1.5px solid #e2e5eb;border-radius:6px;color:#1a1d23;font-family:inherit;font-size:13.5px;padding:9px 14px;transition:border-color .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,.2,1)}.formInput_d4d045cb:focus{border-color:#1b6ae0;box-shadow:0 0 0 3px rgba(27,106,224,.14);outline:0}.formInput_d4d045cb:-ms-input-placeholder{color:#7c8290}.formInput:-ms-input-placeholder{color:#7c8290}.formInput_d4d045cb::placeholder{color:#7c8290}.managementCapacityLabel_d4d045cb{-ms-flex-negative:0;background:#f5f6f8;border-radius:6px;color:#7c8290;flex-shrink:0;font-size:13px;font-weight:500;padding:4px 12px}.deleteConfirm_d4d045cb{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;gap:6px}.deleteConfirmText_d4d045cb{color:#c53030;font-size:12px;font-weight:600}", ""]);
 // Exports
 module.exports = exports;
 
@@ -1867,6 +1867,399 @@ function lifecycle() {
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_DnXt__;
+
+/***/ }),
+
+/***/ "DsCf":
+/*!*****************************************************************!*\
+  !*** ./lib/webparts/auresApp/components/hr/MenteesDashboard.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/*! exports used: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../AuresApp.module.scss */ "sg2l");
+/* harmony import */ var _services_interfaces__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../services/interfaces */ "FFPM");
+/* harmony import */ var _services_MentoringService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../services/MentoringService */ "39m/");
+/* harmony import */ var _utils_mockData__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../utils/mockData */ "IxoJ");
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+var ACTIVE_STATUSES = [
+    _services_interfaces__WEBPACK_IMPORTED_MODULE_2__[/* RequestStatus */ "e"].Pending,
+    _services_interfaces__WEBPACK_IMPORTED_MODULE_2__[/* RequestStatus */ "e"].HR_Review,
+    _services_interfaces__WEBPACK_IMPORTED_MODULE_2__[/* RequestStatus */ "e"].Approved,
+    _services_interfaces__WEBPACK_IMPORTED_MODULE_2__[/* RequestStatus */ "e"].Scheduled
+];
+var FILTER_OPTIONS = [
+    { id: 'all', label: 'Všichni' },
+    { id: 'needsHr', label: 'Vyžaduje HR' },
+    { id: 'waiting', label: 'Čeká na mentora' },
+    { id: 'warning', label: 'Více aktivních' }
+];
+var MenteesDashboard = function (_a) {
+    var sp = _a.sp, currentUser = _a.currentUser;
+    var _b = react__WEBPACK_IMPORTED_MODULE_0__["useState"]([]), talents = _b[0], setTalents = _b[1];
+    var _c = react__WEBPACK_IMPORTED_MODULE_0__["useState"]([]), requests = _c[0], setRequests = _c[1];
+    var _d = react__WEBPACK_IMPORTED_MODULE_0__["useState"](true), loading = _d[0], setLoading = _d[1];
+    var _e = react__WEBPACK_IMPORTED_MODULE_0__["useState"](''), search = _e[0], setSearch = _e[1];
+    var _f = react__WEBPACK_IMPORTED_MODULE_0__["useState"]('all'), activeFilter = _f[0], setActiveFilter = _f[1];
+    var _g = react__WEBPACK_IMPORTED_MODULE_0__["useState"](null), processingId = _g[0], setProcessingId = _g[1];
+    var loadData = react__WEBPACK_IMPORTED_MODULE_0__["useCallback"](function () { return __awaiter(void 0, void 0, void 0, function () {
+        var svc, _a, allTalents, allRequests, _b;
+        return __generator(this, function (_c) {
+            switch (_c.label) {
+                case 0:
+                    setLoading(true);
+                    _c.label = 1;
+                case 1:
+                    _c.trys.push([1, 3, 4, 5]);
+                    svc = new _services_MentoringService__WEBPACK_IMPORTED_MODULE_3__[/* MentoringService */ "e"](sp);
+                    return [4 /*yield*/, Promise.all([
+                            svc.getAllTalentsForAdmin(),
+                            svc.getAllRequests()
+                        ])];
+                case 2:
+                    _a = _c.sent(), allTalents = _a[0], allRequests = _a[1];
+                    setTalents(allTalents);
+                    setRequests(allRequests);
+                    return [3 /*break*/, 5];
+                case 3:
+                    _b = _c.sent();
+                    setTalents(_utils_mockData__WEBPACK_IMPORTED_MODULE_4__[/* MOCK_TALENTS */ "n"]);
+                    setRequests(_utils_mockData__WEBPACK_IMPORTED_MODULE_4__[/* MOCK_REQUESTS */ "t"]);
+                    return [3 /*break*/, 5];
+                case 4:
+                    setLoading(false);
+                    return [7 /*endfinally*/];
+                case 5: return [2 /*return*/];
+            }
+        });
+    }); }, [sp]);
+    react__WEBPACK_IMPORTED_MODULE_0__["useEffect"](function () {
+        void loadData();
+    }, [loadData]);
+    var rows = buildRows(talents, requests);
+    var filteredRows = rows.filter(function (row) { return matchesFilter(row, activeFilter) && matchesSearch(row, search); });
+    var handleApprove = function (request) { return __awaiter(void 0, void 0, void 0, function () {
+        var _a;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    setProcessingId(request.Id);
+                    _b.label = 1;
+                case 1:
+                    _b.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, new _services_MentoringService__WEBPACK_IMPORTED_MODULE_3__[/* MentoringService */ "e"](sp).makeDecision(request.Id, request.CurrentStage, _services_interfaces__WEBPACK_IMPORTED_MODULE_2__[/* StageDecision */ "t"].Approved, currentUser.id)];
+                case 2:
+                    _b.sent();
+                    return [3 /*break*/, 4];
+                case 3:
+                    _a = _b.sent();
+                    return [3 /*break*/, 4];
+                case 4: return [4 /*yield*/, loadData()];
+                case 5:
+                    _b.sent();
+                    setProcessingId(null);
+                    return [2 /*return*/];
+            }
+        });
+    }); };
+    var handleSchedule = function (requestId) { return __awaiter(void 0, void 0, void 0, function () {
+        var _a;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    setProcessingId(requestId);
+                    _b.label = 1;
+                case 1:
+                    _b.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, new _services_MentoringService__WEBPACK_IMPORTED_MODULE_3__[/* MentoringService */ "e"](sp).setRequestStatus(requestId, _services_interfaces__WEBPACK_IMPORTED_MODULE_2__[/* RequestStatus */ "e"].Scheduled)];
+                case 2:
+                    _b.sent();
+                    return [3 /*break*/, 4];
+                case 3:
+                    _a = _b.sent();
+                    return [3 /*break*/, 4];
+                case 4: return [4 /*yield*/, loadData()];
+                case 5:
+                    _b.sent();
+                    setProcessingId(null);
+                    return [2 /*return*/];
+            }
+        });
+    }); };
+    var handleCancel = function (requestId) { return __awaiter(void 0, void 0, void 0, function () {
+        var _a;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    setProcessingId(requestId);
+                    _b.label = 1;
+                case 1:
+                    _b.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, new _services_MentoringService__WEBPACK_IMPORTED_MODULE_3__[/* MentoringService */ "e"](sp).setRequestStatus(requestId, _services_interfaces__WEBPACK_IMPORTED_MODULE_2__[/* RequestStatus */ "e"].Cancelled)];
+                case 2:
+                    _b.sent();
+                    return [3 /*break*/, 4];
+                case 3:
+                    _a = _b.sent();
+                    return [3 /*break*/, 4];
+                case 4: return [4 /*yield*/, loadData()];
+                case 5:
+                    _b.sent();
+                    setProcessingId(null);
+                    return [2 /*return*/];
+            }
+        });
+    }); };
+    if (loading)
+        return react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].loading }, "Na\u010D\u00EDt\u00E1m dashboard mentees\u2026");
+    return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null,
+        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("h2", { className: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].pageTitle },
+            "Mentees dashboard (",
+            rows.length,
+            ")"),
+        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", { className: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].sectionHint }, "Talent-centric p\u0159ehled. HR hned vid\u00ED, kdo nem\u00E1 request, kdo \u010Dek\u00E1 na mentora a kde je nutn\u00FD z\u00E1sah."),
+        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].filterRow },
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("input", { className: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].searchInput, type: "text", placeholder: "Hledat mentee nebo mentora\u2026", value: search, onChange: function (e) { return setSearch(e.target.value); } }),
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].filterBar }, FILTER_OPTIONS.map(function (option) { return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("button", { key: option.id, className: activeFilter === option.id ? _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].filterBtnActive : _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].filterBtn, onClick: function () { return setActiveFilter(option.id); } }, option.label)); }))),
+        filteredRows.length === 0 ? (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].emptyState },
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", null, "\u017D\u00E1dn\u00ED mentees neodpov\u00EDdaj\u00ED aktu\u00E1ln\u00EDm filtr\u016Fm."))) : (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].requestList }, filteredRows.map(function (row) {
+            var _a;
+            var isProcessing = processingId === ((_a = row.activeRequest) === null || _a === void 0 ? void 0 : _a.Id);
+            return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { key: row.talent.Id, className: [
+                    _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].menteeDashboardRow,
+                    !row.talent.IsActive ? _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].managementRowInactive : '',
+                    row.hasMultipleActiveRequests ? _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].menteeDashboardRowWarning : ''
+                ].filter(Boolean).join(' ') },
+                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].menteeDashboardMain },
+                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].menteeDashboardHeader },
+                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].menteeDashboardIdentity },
+                            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", { className: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].managementName }, row.talent.Title),
+                            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", { className: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].managementMeta }, row.talent.TalentUser.EMail)),
+                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].menteeDashboardBadges },
+                            !row.talent.IsActive && (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: [_AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].statusBadge, _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].statusCancelled].join(' ') }, "Neaktivn\u00ED talent")),
+                            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: [_AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].statusBadge, row.statusClassName].join(' ') }, row.statusLabel))),
+                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].menteeDashboardMeta },
+                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].menteeDashboardMetaItem },
+                            "Mentor: ",
+                            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("strong", null, row.mentorLabel)),
+                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].menteeDashboardMetaItem }, row.detailLabel),
+                        row.activeRequest && (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("span", { className: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].menteeDashboardMetaItem },
+                            "\u017D\u00E1dost ",
+                            row.activeRequest.Title))),
+                    row.hasMultipleActiveRequests && (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", { className: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].menteeDashboardWarning }, "Talent m\u00E1 v\u00EDce aktivn\u00EDch \u017E\u00E1dost\u00ED. Dashboard zobrazuje nejnov\u011Bj\u0161\u00ED request."))),
+                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", { className: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].hrRequestActions },
+                    row.activeRequest && row.status === 'pending' && (react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null,
+                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("button", { className: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].hrActionBtn, disabled: isProcessing, onClick: function () { void handleApprove(row.activeRequest); }, title: "Schv\u00E1lit za aktu\u00E1ln\u00EDho mentora" }, "Schv\u00E1lit za mentora"),
+                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("button", { className: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].hrActionBtnDanger, disabled: isProcessing, onClick: function () { void handleCancel(row.activeRequest.Id); }, title: "Zru\u0161it \u017E\u00E1dost" }, "Zru\u0161it"))),
+                    row.activeRequest && row.status === 'hr_review' && (react__WEBPACK_IMPORTED_MODULE_0__["createElement"](react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null,
+                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("button", { className: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].hrActionBtn, disabled: isProcessing, onClick: function () { void handleSchedule(row.activeRequest.Id); }, title: "Napl\u00E1novat mentoring" }, "Napl\u00E1novat"),
+                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("button", { className: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].hrActionBtnDanger, disabled: isProcessing, onClick: function () { void handleCancel(row.activeRequest.Id); }, title: "Zru\u0161it \u017E\u00E1dost" }, "Zru\u0161it"))),
+                    row.activeRequest && row.status === 'approved' && (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("button", { className: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].hrActionBtn, disabled: isProcessing, onClick: function () { void handleSchedule(row.activeRequest.Id); }, title: "Ozna\u010Dit jako napl\u00E1novan\u00E9" }, "Napl\u00E1novat")))));
+        })))));
+};
+function buildRows(talents, requests) {
+    var _a;
+    var activeRequestsByTalent = new Map();
+    for (var _i = 0, requests_1 = requests; _i < requests_1.length; _i++) {
+        var request = requests_1[_i];
+        if (!ACTIVE_STATUSES.includes(request.RequestStatus))
+            continue;
+        var bucket = (_a = activeRequestsByTalent.get(request.TalentRef.Id)) !== null && _a !== void 0 ? _a : [];
+        bucket.push(request);
+        activeRequestsByTalent.set(request.TalentRef.Id, bucket);
+    }
+    return talents
+        .map(function (talent) {
+        var _a;
+        var activeRequests = ((_a = activeRequestsByTalent.get(talent.Id)) !== null && _a !== void 0 ? _a : []).slice().sort(function (a, b) { return b.Id - a.Id; });
+        var activeRequest = activeRequests[0];
+        return createRow(talent, activeRequest, activeRequests.length > 1);
+    })
+        .sort(function (a, b) {
+        var statusDelta = getStatusRank(a) - getStatusRank(b);
+        if (statusDelta !== 0)
+            return statusDelta;
+        return a.talent.Title.localeCompare(b.talent.Title, 'cs');
+    });
+}
+function createRow(talent, activeRequest, hasMultipleActiveRequests) {
+    var _a, _b, _c, _d, _e, _f;
+    if (!activeRequest) {
+        return {
+            talent: talent,
+            status: 'no_request',
+            statusLabel: 'Bez žádosti',
+            detailLabel: 'Talent zatím nemá aktivní mentoring request.',
+            mentorLabel: '—',
+            statusClassName: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].statusCancelled,
+            hasMultipleActiveRequests: hasMultipleActiveRequests,
+            searchText: "".concat(talent.Title, " ").concat(talent.TalentUser.EMail).toLowerCase()
+        };
+    }
+    if (activeRequest.RequestStatus === _services_interfaces__WEBPACK_IMPORTED_MODULE_2__[/* RequestStatus */ "e"].Pending) {
+        var currentMentor = getCurrentMentor(activeRequest);
+        return {
+            talent: talent,
+            activeRequest: activeRequest,
+            status: 'pending',
+            statusLabel: 'Čeká na mentora',
+            detailLabel: "Aktivn\u00ED stage ".concat(activeRequest.CurrentStage, " z ").concat(getTotalStages(activeRequest), "."),
+            mentorLabel: (_a = currentMentor === null || currentMentor === void 0 ? void 0 : currentMentor.Title) !== null && _a !== void 0 ? _a : '—',
+            actionLabel: 'Schválit za mentora',
+            statusClassName: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].statusPending,
+            hasMultipleActiveRequests: hasMultipleActiveRequests,
+            searchText: "".concat(talent.Title, " ").concat(talent.TalentUser.EMail, " ").concat((_b = currentMentor === null || currentMentor === void 0 ? void 0 : currentMentor.Title) !== null && _b !== void 0 ? _b : '').toLowerCase()
+        };
+    }
+    if (activeRequest.RequestStatus === _services_interfaces__WEBPACK_IMPORTED_MODULE_2__[/* RequestStatus */ "e"].HR_Review) {
+        return {
+            talent: talent,
+            activeRequest: activeRequest,
+            status: 'hr_review',
+            statusLabel: 'Vyžaduje HR',
+            detailLabel: 'Všichni zvolení mentoři odmítli. Případ čeká na ruční řešení HR.',
+            mentorLabel: listMentors(activeRequest) || '—',
+            actionLabel: 'Naplánovat',
+            statusClassName: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].statusHR,
+            hasMultipleActiveRequests: hasMultipleActiveRequests,
+            searchText: "".concat(talent.Title, " ").concat(talent.TalentUser.EMail, " ").concat(listMentors(activeRequest)).toLowerCase()
+        };
+    }
+    if (activeRequest.RequestStatus === _services_interfaces__WEBPACK_IMPORTED_MODULE_2__[/* RequestStatus */ "e"].Approved) {
+        var approvedMentor = getApprovedMentor(activeRequest);
+        return {
+            talent: talent,
+            activeRequest: activeRequest,
+            status: 'approved',
+            statusLabel: 'Mentor potvrzen',
+            detailLabel: 'Mentor schválil pairing. HR zbývá mentoring naplánovat.',
+            mentorLabel: (_c = approvedMentor === null || approvedMentor === void 0 ? void 0 : approvedMentor.Title) !== null && _c !== void 0 ? _c : '—',
+            actionLabel: 'Naplánovat',
+            statusClassName: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].statusApproved,
+            hasMultipleActiveRequests: hasMultipleActiveRequests,
+            searchText: "".concat(talent.Title, " ").concat(talent.TalentUser.EMail, " ").concat((_d = approvedMentor === null || approvedMentor === void 0 ? void 0 : approvedMentor.Title) !== null && _d !== void 0 ? _d : '').toLowerCase()
+        };
+    }
+    var scheduledMentor = getApprovedMentor(activeRequest);
+    return {
+        talent: talent,
+        activeRequest: activeRequest,
+        status: 'scheduled',
+        statusLabel: 'Propojeno',
+        detailLabel: 'Mentoring je schválený a naplánovaný.',
+        mentorLabel: (_e = scheduledMentor === null || scheduledMentor === void 0 ? void 0 : scheduledMentor.Title) !== null && _e !== void 0 ? _e : '—',
+        statusClassName: _AuresApp_module_scss__WEBPACK_IMPORTED_MODULE_1__[/* default */ "e"].statusScheduled,
+        hasMultipleActiveRequests: hasMultipleActiveRequests,
+        searchText: "".concat(talent.Title, " ").concat(talent.TalentUser.EMail, " ").concat((_f = scheduledMentor === null || scheduledMentor === void 0 ? void 0 : scheduledMentor.Title) !== null && _f !== void 0 ? _f : '').toLowerCase()
+    };
+}
+function matchesFilter(row, filter) {
+    if (filter === 'all')
+        return true;
+    if (filter === 'needsHr')
+        return row.status === 'hr_review';
+    if (filter === 'waiting')
+        return row.status === 'pending';
+    return row.hasMultipleActiveRequests;
+}
+function matchesSearch(row, search) {
+    var query = search.trim().toLowerCase();
+    if (!query)
+        return true;
+    return row.searchText.includes(query);
+}
+function getCurrentMentor(request) {
+    if (request.CurrentStage === 1)
+        return request.Mentor1Ref;
+    if (request.CurrentStage === 2)
+        return request.Mentor2Ref;
+    if (request.CurrentStage === 3)
+        return request.Mentor3Ref;
+    return undefined;
+}
+function getApprovedMentor(request) {
+    if (request.Stage1Decision === _services_interfaces__WEBPACK_IMPORTED_MODULE_2__[/* StageDecision */ "t"].Approved)
+        return request.Mentor1Ref;
+    if (request.Stage2Decision === _services_interfaces__WEBPACK_IMPORTED_MODULE_2__[/* StageDecision */ "t"].Approved)
+        return request.Mentor2Ref;
+    if (request.Stage3Decision === _services_interfaces__WEBPACK_IMPORTED_MODULE_2__[/* StageDecision */ "t"].Approved)
+        return request.Mentor3Ref;
+    return undefined;
+}
+function getTotalStages(request) {
+    if (request.Mentor3Ref)
+        return 3;
+    if (request.Mentor2Ref)
+        return 2;
+    return 1;
+}
+function listMentors(request) {
+    var _a, _b, _c;
+    return [(_a = request.Mentor1Ref) === null || _a === void 0 ? void 0 : _a.Title, (_b = request.Mentor2Ref) === null || _b === void 0 ? void 0 : _b.Title, (_c = request.Mentor3Ref) === null || _c === void 0 ? void 0 : _c.Title]
+        .filter(function (value) { return Boolean(value); })
+        .join(', ');
+}
+function getStatusRank(row) {
+    if (!row.talent.IsActive)
+        return 5;
+    if (row.hasMultipleActiveRequests)
+        return -1;
+    if (row.status === 'hr_review')
+        return 0;
+    if (row.status === 'pending')
+        return 1;
+    if (row.status === 'approved')
+        return 2;
+    if (row.status === 'scheduled')
+        return 3;
+    return 4;
+}
+/* harmony default export */ __webpack_exports__["e"] = (MenteesDashboard);
+
 
 /***/ }),
 
@@ -4625,12 +5018,14 @@ var RequestCard = function (_a) {
 /* harmony import */ var _mentor_PendingRequests__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./mentor/PendingRequests */ "SWTO");
 /* harmony import */ var _mentor_RequestDetail__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./mentor/RequestDetail */ "rLnf");
 /* harmony import */ var _mentor_RequestHistory__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./mentor/RequestHistory */ "WEcB");
-/* harmony import */ var _hr_AllRequests__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./hr/AllRequests */ "U+bE");
-/* harmony import */ var _hr_ApprovedMentorings__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./hr/ApprovedMentorings */ "sFlq");
-/* harmony import */ var _hr_HRReviewQueue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./hr/HRReviewQueue */ "DUND");
-/* harmony import */ var _hr_MentorManagement__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./hr/MentorManagement */ "a6z2");
-/* harmony import */ var _hr_TalentManagement__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./hr/TalentManagement */ "l2Og");
-/* harmony import */ var _hr_CapacityDashboard__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./hr/CapacityDashboard */ "zlKG");
+/* harmony import */ var _hr_MenteesDashboard__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./hr/MenteesDashboard */ "DsCf");
+/* harmony import */ var _hr_AllRequests__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./hr/AllRequests */ "U+bE");
+/* harmony import */ var _hr_ApprovedMentorings__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./hr/ApprovedMentorings */ "sFlq");
+/* harmony import */ var _hr_HRReviewQueue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./hr/HRReviewQueue */ "DUND");
+/* harmony import */ var _hr_MentorManagement__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./hr/MentorManagement */ "a6z2");
+/* harmony import */ var _hr_TalentManagement__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./hr/TalentManagement */ "l2Og");
+/* harmony import */ var _hr_CapacityDashboard__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./hr/CapacityDashboard */ "zlKG");
+
 
 
 
@@ -4728,7 +5123,7 @@ function resolveDefaultView(user) {
     if (user.roles.includes(_services_interfaces__WEBPACK_IMPORTED_MODULE_2__[/* UserRole */ "n"].Mentor))
         return 'PendingRequests';
     if (user.roles.includes(_services_interfaces__WEBPACK_IMPORTED_MODULE_2__[/* UserRole */ "n"].HR))
-        return 'AllRequests';
+        return 'MenteesDashboard';
     return 'AccessDenied';
 }
 function renderView(view, currentUser, sp, navigate, params, hrEmail, onRequestsChanged) {
@@ -4743,12 +5138,13 @@ function renderView(view, currentUser, sp, navigate, params, hrEmail, onRequests
         case 'RequestDetail': return react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_mentor_RequestDetail__WEBPACK_IMPORTED_MODULE_12__[/* default */ "e"], { sp: sp, currentUser: currentUser, navigate: navigate, requestId: params.requestId, hrEmail: hrEmail });
         case 'RequestHistory': return react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_mentor_RequestHistory__WEBPACK_IMPORTED_MODULE_13__[/* default */ "e"], { sp: sp, currentUser: currentUser, navigate: navigate });
         // HR
-        case 'AllRequests': return react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_hr_AllRequests__WEBPACK_IMPORTED_MODULE_14__[/* default */ "e"], { sp: sp, currentUser: currentUser, navigate: navigate });
-        case 'ApprovedMentorings': return react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_hr_ApprovedMentorings__WEBPACK_IMPORTED_MODULE_15__[/* default */ "e"], { sp: sp, currentUser: currentUser, navigate: navigate });
-        case 'HRReviewQueue': return react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_hr_HRReviewQueue__WEBPACK_IMPORTED_MODULE_16__[/* default */ "e"], { sp: sp, currentUser: currentUser, navigate: navigate });
-        case 'MentorManagement': return react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_hr_MentorManagement__WEBPACK_IMPORTED_MODULE_17__[/* default */ "e"], { sp: sp, currentUser: currentUser, navigate: navigate });
-        case 'TalentManagement': return react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_hr_TalentManagement__WEBPACK_IMPORTED_MODULE_18__[/* default */ "e"], { sp: sp, currentUser: currentUser, navigate: navigate });
-        case 'CapacityDashboard': return react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_hr_CapacityDashboard__WEBPACK_IMPORTED_MODULE_19__[/* default */ "e"], { sp: sp, currentUser: currentUser, navigate: navigate });
+        case 'MenteesDashboard': return react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_hr_MenteesDashboard__WEBPACK_IMPORTED_MODULE_14__[/* default */ "e"], { sp: sp, currentUser: currentUser, navigate: navigate });
+        case 'AllRequests': return react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_hr_AllRequests__WEBPACK_IMPORTED_MODULE_15__[/* default */ "e"], { sp: sp, currentUser: currentUser, navigate: navigate });
+        case 'ApprovedMentorings': return react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_hr_ApprovedMentorings__WEBPACK_IMPORTED_MODULE_16__[/* default */ "e"], { sp: sp, currentUser: currentUser, navigate: navigate });
+        case 'HRReviewQueue': return react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_hr_HRReviewQueue__WEBPACK_IMPORTED_MODULE_17__[/* default */ "e"], { sp: sp, currentUser: currentUser, navigate: navigate });
+        case 'MentorManagement': return react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_hr_MentorManagement__WEBPACK_IMPORTED_MODULE_18__[/* default */ "e"], { sp: sp, currentUser: currentUser, navigate: navigate });
+        case 'TalentManagement': return react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_hr_TalentManagement__WEBPACK_IMPORTED_MODULE_19__[/* default */ "e"], { sp: sp, currentUser: currentUser, navigate: navigate });
+        case 'CapacityDashboard': return react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_hr_CapacityDashboard__WEBPACK_IMPORTED_MODULE_20__[/* default */ "e"], { sp: sp, currentUser: currentUser, navigate: navigate });
         default: return react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null, "Na\u010D\u00EDt\u00E1m\u2026");
     }
 }
@@ -6511,7 +6907,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_br4S__;
   !*** external "react" ***!
   \************************/
 /*! no static exports found */
-/*! exports used: createElement, useCallback, useEffect, useState */
+/*! exports used: Fragment, createElement, useCallback, useEffect, useState */
 /***/ (function(module, exports) {
 
 module.exports = __WEBPACK_EXTERNAL_MODULE_cDcd__;
@@ -7669,6 +8065,7 @@ var MENTOR_TABS = [
     { label: 'Historie', view: 'RequestHistory' },
 ];
 var HR_TABS = [
+    { label: 'Mentees dashboard', view: 'MenteesDashboard' },
     { label: 'Čeká', view: 'AllRequests' },
     { label: 'Domluvené mentoringy', view: 'ApprovedMentorings' },
     { label: 'Mentoři', view: 'MentorManagement' },
@@ -9361,192 +9758,201 @@ var ApprovedMentorings = function (_a) {
 /* tslint:disable */
 __webpack_require__(/*! ./AuresApp.module.css */ "i1YX");
 var styles = {
-    auresApp: 'auresApp_3b2f6a0d',
-    appShell: 'appShell_3b2f6a0d',
-    header: 'header_3b2f6a0d',
-    headerLeft: 'headerLeft_3b2f6a0d',
-    headerLogo: 'headerLogo_3b2f6a0d',
-    headerTitle: 'headerTitle_3b2f6a0d',
-    headerTitleAccent: 'headerTitleAccent_3b2f6a0d',
-    headerUser: 'headerUser_3b2f6a0d',
-    roleSwitch: 'roleSwitch_3b2f6a0d',
-    roleBtn: 'roleBtn_3b2f6a0d',
-    roleBtnActive: 'roleBtnActive_3b2f6a0d',
-    nav: 'nav_3b2f6a0d',
-    navTab: 'navTab_3b2f6a0d',
-    navTabActive: 'navTabActive_3b2f6a0d',
-    navBadge: 'navBadge_3b2f6a0d',
-    fadeUp: 'fadeUp_3b2f6a0d',
-    content: 'content_3b2f6a0d',
-    fadeIn: 'fadeIn_3b2f6a0d',
-    accessDenied: 'accessDenied_3b2f6a0d',
-    accessDeniedIcon: 'accessDeniedIcon_3b2f6a0d',
-    pageTitle: 'pageTitle_3b2f6a0d',
-    pageHeader: 'pageHeader_3b2f6a0d',
-    loading: 'loading_3b2f6a0d',
-    spin: 'spin_3b2f6a0d',
-    emptyState: 'emptyState_3b2f6a0d',
-    sectionHint: 'sectionHint_3b2f6a0d',
-    btnPrimary: 'btnPrimary_3b2f6a0d',
-    btnSecondary: 'btnSecondary_3b2f6a0d',
-    btnBack: 'btnBack_3b2f6a0d',
-    btnApprove: 'btnApprove_3b2f6a0d',
-    btnReject: 'btnReject_3b2f6a0d',
-    mentorGrid: 'mentorGrid_3b2f6a0d',
-    mentorCard: 'mentorCard_3b2f6a0d',
-    mentorCardHeader: 'mentorCardHeader_3b2f6a0d',
-    mentorAvatar: 'mentorAvatar_3b2f6a0d',
-    mentorName: 'mentorName_3b2f6a0d',
-    mentorJobTitle: 'mentorJobTitle_3b2f6a0d',
-    mentorCapacity: 'mentorCapacity_3b2f6a0d',
-    mentorCapacityFull: 'mentorCapacityFull_3b2f6a0d',
-    mentorSuperpower: 'mentorSuperpower_3b2f6a0d',
-    mentorAvatarPhoto: 'mentorAvatarPhoto_3b2f6a0d',
-    mentorBio: 'mentorBio_3b2f6a0d',
-    mentorDetails: 'mentorDetails_3b2f6a0d',
-    mentorDetailsToggle: 'mentorDetailsToggle_3b2f6a0d',
-    mentorDetailsContent: 'mentorDetailsContent_3b2f6a0d',
-    mentorChallenge: 'mentorChallenge_3b2f6a0d',
-    mentorAvailability: 'mentorAvailability_3b2f6a0d',
-    mentorCardActions: 'mentorCardActions_3b2f6a0d',
-    requestForm: 'requestForm_3b2f6a0d',
-    formSection: 'formSection_3b2f6a0d',
-    formSectionTitle: 'formSectionTitle_3b2f6a0d',
-    mentorSelectList: 'mentorSelectList_3b2f6a0d',
-    mentorSelectItem: 'mentorSelectItem_3b2f6a0d',
-    mentorSelectItemChecked: 'mentorSelectItemChecked_3b2f6a0d',
-    mentorSelectDisabled: 'mentorSelectDisabled_3b2f6a0d',
-    mentorSelectCheckbox: 'mentorSelectCheckbox_3b2f6a0d',
-    mentorSelectInfo: 'mentorSelectInfo_3b2f6a0d',
-    mentorSelectName: 'mentorSelectName_3b2f6a0d',
-    mentorSelectJobTitle: 'mentorSelectJobTitle_3b2f6a0d',
-    messageGroup: 'messageGroup_3b2f6a0d',
-    messageLabel: 'messageLabel_3b2f6a0d',
-    messageTextarea: 'messageTextarea_3b2f6a0d',
-    formActions: 'formActions_3b2f6a0d',
-    formError: 'formError_3b2f6a0d',
-    requestList: 'requestList_3b2f6a0d',
-    requestCard: 'requestCard_3b2f6a0d',
-    requestCardHeader: 'requestCardHeader_3b2f6a0d',
-    requestTitle: 'requestTitle_3b2f6a0d',
-    statusBadge: 'statusBadge_3b2f6a0d',
-    statusPending: 'statusPending_3b2f6a0d',
-    statusApproved: 'statusApproved_3b2f6a0d',
-    statusHR: 'statusHR_3b2f6a0d',
-    statusScheduled: 'statusScheduled_3b2f6a0d',
-    statusCancelled: 'statusCancelled_3b2f6a0d',
-    requestMentors: 'requestMentors_3b2f6a0d',
-    mentorTag: 'mentorTag_3b2f6a0d',
-    mentorTagCurrent: 'mentorTagCurrent_3b2f6a0d',
-    mentorTagApproved: 'mentorTagApproved_3b2f6a0d',
-    mentorTagRejected: 'mentorTagRejected_3b2f6a0d',
-    pendingRow: 'pendingRow_3b2f6a0d',
-    pendingRowLeft: 'pendingRowLeft_3b2f6a0d',
-    pendingRowHeader: 'pendingRowHeader_3b2f6a0d',
-    stageIndicator: 'stageIndicator_3b2f6a0d',
-    talentName: 'talentName_3b2f6a0d',
-    messagePreview: 'messagePreview_3b2f6a0d',
-    arrowIcon: 'arrowIcon_3b2f6a0d',
-    requestDetailCard: 'requestDetailCard_3b2f6a0d',
-    detailSection: 'detailSection_3b2f6a0d',
-    detailLabel: 'detailLabel_3b2f6a0d',
-    detailValue: 'detailValue_3b2f6a0d',
-    talentMessage: 'talentMessage_3b2f6a0d',
-    decisionBtns: 'decisionBtns_3b2f6a0d',
-    rejectHint: 'rejectHint_3b2f6a0d',
-    decisionConfirm: 'decisionConfirm_3b2f6a0d',
-    historyCard: 'historyCard_3b2f6a0d',
-    historyLeft: 'historyLeft_3b2f6a0d',
-    historyTitle: 'historyTitle_3b2f6a0d',
-    historyMeta: 'historyMeta_3b2f6a0d',
-    decisionBadge: 'decisionBadge_3b2f6a0d',
-    decisionApproved: 'decisionApproved_3b2f6a0d',
-    decisionRejected: 'decisionRejected_3b2f6a0d',
-    filterRow: 'filterRow_3b2f6a0d',
-    filterBar: 'filterBar_3b2f6a0d',
-    filterBtn: 'filterBtn_3b2f6a0d',
-    filterBtnActive: 'filterBtnActive_3b2f6a0d',
-    searchInput: 'searchInput_3b2f6a0d',
-    allRequestRow: 'allRequestRow_3b2f6a0d',
-    allRequestMain: 'allRequestMain_3b2f6a0d',
-    allRequestMeta: 'allRequestMeta_3b2f6a0d',
-    hrReviewCard: 'hrReviewCard_3b2f6a0d',
-    hrReviewHeader: 'hrReviewHeader_3b2f6a0d',
-    hrActionsBar: 'hrActionsBar_3b2f6a0d',
-    managementList: 'managementList_3b2f6a0d',
-    managementRow: 'managementRow_3b2f6a0d',
-    managementRowInactive: 'managementRowInactive_3b2f6a0d',
-    managementInfo: 'managementInfo_3b2f6a0d',
-    managementName: 'managementName_3b2f6a0d',
-    managementMeta: 'managementMeta_3b2f6a0d',
-    managementCapacity: 'managementCapacity_3b2f6a0d',
-    capacityEdit: 'capacityEdit_3b2f6a0d',
-    inlineEditGroup: 'inlineEditGroup_3b2f6a0d',
-    inlineInput: 'inlineInput_3b2f6a0d',
-    inlineSave: 'inlineSave_3b2f6a0d',
-    inlineCancel: 'inlineCancel_3b2f6a0d',
-    activeBtn: 'activeBtn_3b2f6a0d',
-    inactiveBtn: 'inactiveBtn_3b2f6a0d',
-    capacityList: 'capacityList_3b2f6a0d',
-    capacityRow: 'capacityRow_3b2f6a0d',
-    capacityMentorInfo: 'capacityMentorInfo_3b2f6a0d',
-    capacityStats: 'capacityStats_3b2f6a0d',
-    capacityStat: 'capacityStat_3b2f6a0d',
-    capacityRemaining: 'capacityRemaining_3b2f6a0d',
-    capacityFull: 'capacityFull_3b2f6a0d',
-    capacityBarWrap: 'capacityBarWrap_3b2f6a0d',
-    capacityBarFill: 'capacityBarFill_3b2f6a0d',
-    barOk: 'barOk_3b2f6a0d',
-    barHigh: 'barHigh_3b2f6a0d',
-    barFull: 'barFull_3b2f6a0d',
-    primaryMentorCard: 'primaryMentorCard_3b2f6a0d',
-    primaryMentorHeader: 'primaryMentorHeader_3b2f6a0d',
-    primaryMentorAvatar: 'primaryMentorAvatar_3b2f6a0d',
-    primaryMentorInfo: 'primaryMentorInfo_3b2f6a0d',
-    primaryMentorName: 'primaryMentorName_3b2f6a0d',
-    primaryMentorJobTitle: 'primaryMentorJobTitle_3b2f6a0d',
-    primaryMentorSuperpower: 'primaryMentorSuperpower_3b2f6a0d',
-    primaryMentorBadge: 'primaryMentorBadge_3b2f6a0d',
-    primaryMentorBio: 'primaryMentorBio_3b2f6a0d',
-    formSectionHint: 'formSectionHint_3b2f6a0d',
-    backupMentorList: 'backupMentorList_3b2f6a0d',
-    backupMentorRow: 'backupMentorRow_3b2f6a0d',
-    backupMentorRowSelected: 'backupMentorRowSelected_3b2f6a0d',
-    backupMentorInfo: 'backupMentorInfo_3b2f6a0d',
-    backupMentorActions: 'backupMentorActions_3b2f6a0d',
-    backupMentorLabel: 'backupMentorLabel_3b2f6a0d',
-    backupMentorLabelTertiary: 'backupMentorLabelTertiary_3b2f6a0d',
-    myRequestMentorRow: 'myRequestMentorRow_3b2f6a0d',
-    myRequestMentorName: 'myRequestMentorName_3b2f6a0d',
-    statusQueued: 'statusQueued_3b2f6a0d',
-    resetChoiceCard: 'resetChoiceCard_3b2f6a0d',
-    resetChoiceText: 'resetChoiceText_3b2f6a0d',
-    resetChoiceWarning: 'resetChoiceWarning_3b2f6a0d',
-    hrRequestRow: 'hrRequestRow_3b2f6a0d',
-    hrRequestMain: 'hrRequestMain_3b2f6a0d',
-    hrRequestNames: 'hrRequestNames_3b2f6a0d',
-    hrRequestTalent: 'hrRequestTalent_3b2f6a0d',
-    hrRequestArrow: 'hrRequestArrow_3b2f6a0d',
-    hrRequestMentor: 'hrRequestMentor_3b2f6a0d',
-    hrRequestActions: 'hrRequestActions_3b2f6a0d',
-    hrActionBtn: 'hrActionBtn_3b2f6a0d',
-    hrActionBtnDanger: 'hrActionBtnDanger_3b2f6a0d',
-    approvedPairRow: 'approvedPairRow_3b2f6a0d',
-    approvedPairInfo: 'approvedPairInfo_3b2f6a0d',
-    approvedPairTalent: 'approvedPairTalent_3b2f6a0d',
-    approvedPairArrow: 'approvedPairArrow_3b2f6a0d',
-    approvedPairMentor: 'approvedPairMentor_3b2f6a0d',
-    mentorFormCard: 'mentorFormCard_3b2f6a0d',
-    mentorFormGrid: 'mentorFormGrid_3b2f6a0d',
-    mentorFormField: 'mentorFormField_3b2f6a0d',
-    mentorFormFieldFull: 'mentorFormFieldFull_3b2f6a0d',
-    formInput: 'formInput_3b2f6a0d',
-    managementCapacityLabel: 'managementCapacityLabel_3b2f6a0d',
-    deleteConfirm: 'deleteConfirm_3b2f6a0d',
-    deleteConfirmText: 'deleteConfirmText_3b2f6a0d',
-    shimmer: 'shimmer_3b2f6a0d',
-    pulseGold: 'pulseGold_3b2f6a0d',
-    slideInRight: 'slideInRight_3b2f6a0d'
+    auresApp: 'auresApp_d4d045cb',
+    appShell: 'appShell_d4d045cb',
+    header: 'header_d4d045cb',
+    headerLeft: 'headerLeft_d4d045cb',
+    headerLogo: 'headerLogo_d4d045cb',
+    headerTitle: 'headerTitle_d4d045cb',
+    headerTitleAccent: 'headerTitleAccent_d4d045cb',
+    headerUser: 'headerUser_d4d045cb',
+    roleSwitch: 'roleSwitch_d4d045cb',
+    roleBtn: 'roleBtn_d4d045cb',
+    roleBtnActive: 'roleBtnActive_d4d045cb',
+    nav: 'nav_d4d045cb',
+    navTab: 'navTab_d4d045cb',
+    navTabActive: 'navTabActive_d4d045cb',
+    navBadge: 'navBadge_d4d045cb',
+    fadeUp: 'fadeUp_d4d045cb',
+    content: 'content_d4d045cb',
+    fadeIn: 'fadeIn_d4d045cb',
+    accessDenied: 'accessDenied_d4d045cb',
+    accessDeniedIcon: 'accessDeniedIcon_d4d045cb',
+    pageTitle: 'pageTitle_d4d045cb',
+    pageHeader: 'pageHeader_d4d045cb',
+    loading: 'loading_d4d045cb',
+    spin: 'spin_d4d045cb',
+    emptyState: 'emptyState_d4d045cb',
+    sectionHint: 'sectionHint_d4d045cb',
+    btnPrimary: 'btnPrimary_d4d045cb',
+    btnSecondary: 'btnSecondary_d4d045cb',
+    btnBack: 'btnBack_d4d045cb',
+    btnApprove: 'btnApprove_d4d045cb',
+    btnReject: 'btnReject_d4d045cb',
+    mentorGrid: 'mentorGrid_d4d045cb',
+    mentorCard: 'mentorCard_d4d045cb',
+    mentorCardHeader: 'mentorCardHeader_d4d045cb',
+    mentorAvatar: 'mentorAvatar_d4d045cb',
+    mentorName: 'mentorName_d4d045cb',
+    mentorJobTitle: 'mentorJobTitle_d4d045cb',
+    mentorCapacity: 'mentorCapacity_d4d045cb',
+    mentorCapacityFull: 'mentorCapacityFull_d4d045cb',
+    mentorSuperpower: 'mentorSuperpower_d4d045cb',
+    mentorAvatarPhoto: 'mentorAvatarPhoto_d4d045cb',
+    mentorBio: 'mentorBio_d4d045cb',
+    mentorDetails: 'mentorDetails_d4d045cb',
+    mentorDetailsToggle: 'mentorDetailsToggle_d4d045cb',
+    mentorDetailsContent: 'mentorDetailsContent_d4d045cb',
+    mentorChallenge: 'mentorChallenge_d4d045cb',
+    mentorAvailability: 'mentorAvailability_d4d045cb',
+    mentorCardActions: 'mentorCardActions_d4d045cb',
+    requestForm: 'requestForm_d4d045cb',
+    formSection: 'formSection_d4d045cb',
+    formSectionTitle: 'formSectionTitle_d4d045cb',
+    mentorSelectList: 'mentorSelectList_d4d045cb',
+    mentorSelectItem: 'mentorSelectItem_d4d045cb',
+    mentorSelectItemChecked: 'mentorSelectItemChecked_d4d045cb',
+    mentorSelectDisabled: 'mentorSelectDisabled_d4d045cb',
+    mentorSelectCheckbox: 'mentorSelectCheckbox_d4d045cb',
+    mentorSelectInfo: 'mentorSelectInfo_d4d045cb',
+    mentorSelectName: 'mentorSelectName_d4d045cb',
+    mentorSelectJobTitle: 'mentorSelectJobTitle_d4d045cb',
+    messageGroup: 'messageGroup_d4d045cb',
+    messageLabel: 'messageLabel_d4d045cb',
+    messageTextarea: 'messageTextarea_d4d045cb',
+    formActions: 'formActions_d4d045cb',
+    formError: 'formError_d4d045cb',
+    requestList: 'requestList_d4d045cb',
+    requestCard: 'requestCard_d4d045cb',
+    requestCardHeader: 'requestCardHeader_d4d045cb',
+    requestTitle: 'requestTitle_d4d045cb',
+    statusBadge: 'statusBadge_d4d045cb',
+    statusPending: 'statusPending_d4d045cb',
+    statusApproved: 'statusApproved_d4d045cb',
+    statusHR: 'statusHR_d4d045cb',
+    statusScheduled: 'statusScheduled_d4d045cb',
+    statusCancelled: 'statusCancelled_d4d045cb',
+    requestMentors: 'requestMentors_d4d045cb',
+    mentorTag: 'mentorTag_d4d045cb',
+    mentorTagCurrent: 'mentorTagCurrent_d4d045cb',
+    mentorTagApproved: 'mentorTagApproved_d4d045cb',
+    mentorTagRejected: 'mentorTagRejected_d4d045cb',
+    pendingRow: 'pendingRow_d4d045cb',
+    pendingRowLeft: 'pendingRowLeft_d4d045cb',
+    pendingRowHeader: 'pendingRowHeader_d4d045cb',
+    stageIndicator: 'stageIndicator_d4d045cb',
+    talentName: 'talentName_d4d045cb',
+    messagePreview: 'messagePreview_d4d045cb',
+    arrowIcon: 'arrowIcon_d4d045cb',
+    requestDetailCard: 'requestDetailCard_d4d045cb',
+    detailSection: 'detailSection_d4d045cb',
+    detailLabel: 'detailLabel_d4d045cb',
+    detailValue: 'detailValue_d4d045cb',
+    talentMessage: 'talentMessage_d4d045cb',
+    decisionBtns: 'decisionBtns_d4d045cb',
+    rejectHint: 'rejectHint_d4d045cb',
+    decisionConfirm: 'decisionConfirm_d4d045cb',
+    historyCard: 'historyCard_d4d045cb',
+    historyLeft: 'historyLeft_d4d045cb',
+    historyTitle: 'historyTitle_d4d045cb',
+    historyMeta: 'historyMeta_d4d045cb',
+    decisionBadge: 'decisionBadge_d4d045cb',
+    decisionApproved: 'decisionApproved_d4d045cb',
+    decisionRejected: 'decisionRejected_d4d045cb',
+    filterRow: 'filterRow_d4d045cb',
+    filterBar: 'filterBar_d4d045cb',
+    filterBtn: 'filterBtn_d4d045cb',
+    filterBtnActive: 'filterBtnActive_d4d045cb',
+    searchInput: 'searchInput_d4d045cb',
+    allRequestRow: 'allRequestRow_d4d045cb',
+    allRequestMain: 'allRequestMain_d4d045cb',
+    allRequestMeta: 'allRequestMeta_d4d045cb',
+    hrReviewCard: 'hrReviewCard_d4d045cb',
+    hrReviewHeader: 'hrReviewHeader_d4d045cb',
+    hrActionsBar: 'hrActionsBar_d4d045cb',
+    managementList: 'managementList_d4d045cb',
+    managementRow: 'managementRow_d4d045cb',
+    managementRowInactive: 'managementRowInactive_d4d045cb',
+    managementInfo: 'managementInfo_d4d045cb',
+    managementName: 'managementName_d4d045cb',
+    managementMeta: 'managementMeta_d4d045cb',
+    managementCapacity: 'managementCapacity_d4d045cb',
+    capacityEdit: 'capacityEdit_d4d045cb',
+    inlineEditGroup: 'inlineEditGroup_d4d045cb',
+    inlineInput: 'inlineInput_d4d045cb',
+    inlineSave: 'inlineSave_d4d045cb',
+    inlineCancel: 'inlineCancel_d4d045cb',
+    activeBtn: 'activeBtn_d4d045cb',
+    inactiveBtn: 'inactiveBtn_d4d045cb',
+    capacityList: 'capacityList_d4d045cb',
+    capacityRow: 'capacityRow_d4d045cb',
+    capacityMentorInfo: 'capacityMentorInfo_d4d045cb',
+    capacityStats: 'capacityStats_d4d045cb',
+    capacityStat: 'capacityStat_d4d045cb',
+    capacityRemaining: 'capacityRemaining_d4d045cb',
+    capacityFull: 'capacityFull_d4d045cb',
+    capacityBarWrap: 'capacityBarWrap_d4d045cb',
+    capacityBarFill: 'capacityBarFill_d4d045cb',
+    barOk: 'barOk_d4d045cb',
+    barHigh: 'barHigh_d4d045cb',
+    barFull: 'barFull_d4d045cb',
+    primaryMentorCard: 'primaryMentorCard_d4d045cb',
+    primaryMentorHeader: 'primaryMentorHeader_d4d045cb',
+    primaryMentorAvatar: 'primaryMentorAvatar_d4d045cb',
+    primaryMentorInfo: 'primaryMentorInfo_d4d045cb',
+    primaryMentorName: 'primaryMentorName_d4d045cb',
+    primaryMentorJobTitle: 'primaryMentorJobTitle_d4d045cb',
+    primaryMentorSuperpower: 'primaryMentorSuperpower_d4d045cb',
+    primaryMentorBadge: 'primaryMentorBadge_d4d045cb',
+    primaryMentorBio: 'primaryMentorBio_d4d045cb',
+    formSectionHint: 'formSectionHint_d4d045cb',
+    backupMentorList: 'backupMentorList_d4d045cb',
+    backupMentorRow: 'backupMentorRow_d4d045cb',
+    backupMentorRowSelected: 'backupMentorRowSelected_d4d045cb',
+    backupMentorInfo: 'backupMentorInfo_d4d045cb',
+    backupMentorActions: 'backupMentorActions_d4d045cb',
+    backupMentorLabel: 'backupMentorLabel_d4d045cb',
+    backupMentorLabelTertiary: 'backupMentorLabelTertiary_d4d045cb',
+    myRequestMentorRow: 'myRequestMentorRow_d4d045cb',
+    myRequestMentorName: 'myRequestMentorName_d4d045cb',
+    statusQueued: 'statusQueued_d4d045cb',
+    resetChoiceCard: 'resetChoiceCard_d4d045cb',
+    resetChoiceText: 'resetChoiceText_d4d045cb',
+    resetChoiceWarning: 'resetChoiceWarning_d4d045cb',
+    hrRequestRow: 'hrRequestRow_d4d045cb',
+    hrRequestMain: 'hrRequestMain_d4d045cb',
+    hrRequestNames: 'hrRequestNames_d4d045cb',
+    hrRequestTalent: 'hrRequestTalent_d4d045cb',
+    hrRequestArrow: 'hrRequestArrow_d4d045cb',
+    hrRequestMentor: 'hrRequestMentor_d4d045cb',
+    menteeDashboardRow: 'menteeDashboardRow_d4d045cb',
+    menteeDashboardRowWarning: 'menteeDashboardRowWarning_d4d045cb',
+    menteeDashboardMain: 'menteeDashboardMain_d4d045cb',
+    menteeDashboardHeader: 'menteeDashboardHeader_d4d045cb',
+    menteeDashboardIdentity: 'menteeDashboardIdentity_d4d045cb',
+    menteeDashboardBadges: 'menteeDashboardBadges_d4d045cb',
+    menteeDashboardMeta: 'menteeDashboardMeta_d4d045cb',
+    menteeDashboardMetaItem: 'menteeDashboardMetaItem_d4d045cb',
+    menteeDashboardWarning: 'menteeDashboardWarning_d4d045cb',
+    hrRequestActions: 'hrRequestActions_d4d045cb',
+    hrActionBtn: 'hrActionBtn_d4d045cb',
+    hrActionBtnDanger: 'hrActionBtnDanger_d4d045cb',
+    approvedPairRow: 'approvedPairRow_d4d045cb',
+    approvedPairInfo: 'approvedPairInfo_d4d045cb',
+    approvedPairTalent: 'approvedPairTalent_d4d045cb',
+    approvedPairArrow: 'approvedPairArrow_d4d045cb',
+    approvedPairMentor: 'approvedPairMentor_d4d045cb',
+    mentorFormCard: 'mentorFormCard_d4d045cb',
+    mentorFormGrid: 'mentorFormGrid_d4d045cb',
+    mentorFormField: 'mentorFormField_d4d045cb',
+    mentorFormFieldFull: 'mentorFormFieldFull_d4d045cb',
+    formInput: 'formInput_d4d045cb',
+    managementCapacityLabel: 'managementCapacityLabel_d4d045cb',
+    deleteConfirm: 'deleteConfirm_d4d045cb',
+    deleteConfirmText: 'deleteConfirmText_d4d045cb',
+    shimmer: 'shimmer_d4d045cb',
+    pulseGold: 'pulseGold_d4d045cb',
+    slideInRight: 'slideInRight_d4d045cb'
 };
 /* harmony default export */ __webpack_exports__["e"] = (styles);
 /* tslint:enable */ 
