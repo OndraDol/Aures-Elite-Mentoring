@@ -135,35 +135,38 @@ export const MOCK_MENTORS: IMentor[] = [
 ];
 
 export const MOCK_TALENTS: ITalent[] = [
-  {
-    Id: 1,
-    Title: 'Eva Malkova',
-    TalentUser: { Id: 201, Title: 'Eva Malkova', EMail: 'eva.malkova@aures.cz' },
-    IsActive: true
-  },
-  {
-    Id: 2,
-    Title: 'Ondrej Dostal',
-    TalentUser: { Id: 202, Title: 'Ondrej Dostal', EMail: 'ondrej.dostal@aures.cz' },
-    IsActive: true
-  },
-  {
-    Id: 3,
-    Title: 'Katerina Simkova',
-    TalentUser: { Id: 203, Title: 'Katerina Simkova', EMail: 'katerina.simkova@aures.cz' },
-    IsActive: true
-  }
+  { Id: 32069, Title: 'Marek Blahák', TalentUser: { Id: 32069, Title: 'Marek Blahák', EMail: 'marek.blahak@aures.cz' }, IsActive: true },
+  { Id: 111056, Title: 'Michal Gabrhel', TalentUser: { Id: 111056, Title: 'Michal Gabrhel', EMail: 'michal.gabrhel@aures.cz' }, IsActive: true },
+  { Id: 25400, Title: 'Adam Gruber', TalentUser: { Id: 25400, Title: 'Adam Gruber', EMail: 'adam.gruber@aures.cz' }, IsActive: true },
+  { Id: 14233, Title: 'Martin Janovský', TalentUser: { Id: 14233, Title: 'Martin Janovský', EMail: 'martin.janovsky@aures.cz' }, IsActive: true },
+  { Id: 28179, Title: 'Jiří Kamír', TalentUser: { Id: 28179, Title: 'Jiří Kamír', EMail: 'jiri.kamir@aures.cz' }, IsActive: true },
+  { Id: 13835, Title: 'Tomáš Kaprálek', TalentUser: { Id: 13835, Title: 'Tomáš Kaprálek', EMail: 'tomas.kapralek@aures.cz' }, IsActive: true },
+  { Id: 1509, Title: 'Jan Kryl', TalentUser: { Id: 1509, Title: 'Jan Kryl', EMail: 'jan.kryl@aures.cz' }, IsActive: true },
+  { Id: 4620, Title: 'Petr Kuchynka', TalentUser: { Id: 4620, Title: 'Petr Kuchynka', EMail: 'petr.kuchynka@aures.cz' }, IsActive: true },
+  { Id: 12381, Title: 'Jakub Matuška', TalentUser: { Id: 12381, Title: 'Jakub Matuška', EMail: 'jakub.matuska@aures.cz' }, IsActive: true },
+  { Id: 11887, Title: 'Stanislav Otčenášek', TalentUser: { Id: 11887, Title: 'Stanislav Otčenášek', EMail: 'stanislav.otcenasek@aures.cz' }, IsActive: true },
+  { Id: 110249, Title: 'Miroslav Pařík', TalentUser: { Id: 110249, Title: 'Miroslav Pařík', EMail: 'miroslav.parik@aures.cz' }, IsActive: true },
+  { Id: 23574, Title: 'Tomáš Preus', TalentUser: { Id: 23574, Title: 'Tomáš Preus', EMail: 'tomas.preus@aures.cz' }, IsActive: true },
+  { Id: 7042, Title: 'Dušan Procházka', TalentUser: { Id: 7042, Title: 'Dušan Procházka', EMail: 'dusan.prochazka@aures.cz' }, IsActive: true },
+  { Id: 27487, Title: 'David Reich', TalentUser: { Id: 27487, Title: 'David Reich', EMail: 'david.reich@aures.cz' }, IsActive: true },
+  { Id: 8128, Title: 'Marcel Ronge', TalentUser: { Id: 8128, Title: 'Marcel Ronge', EMail: 'marcel.ronge@aures.cz' }, IsActive: true },
+  { Id: 27599, Title: 'Jakub Strouhal', TalentUser: { Id: 27599, Title: 'Jakub Strouhal', EMail: 'jakub.strouhal@aures.cz' }, IsActive: true },
+  { Id: 32407, Title: 'Daniel Svoboda', TalentUser: { Id: 32407, Title: 'Daniel Svoboda', EMail: 'daniel.svoboda@aures.cz' }, IsActive: true },
+  { Id: 27539, Title: 'Petr Šanda', TalentUser: { Id: 27539, Title: 'Petr Šanda', EMail: 'petr.sanda@aures.cz' }, IsActive: true },
+  { Id: 30798, Title: 'Robert Šmol', TalentUser: { Id: 30798, Title: 'Robert Šmol', EMail: 'robert.smol@aures.cz' }, IsActive: true },
+  { Id: 15643, Title: 'Petr Šulc', TalentUser: { Id: 15643, Title: 'Petr Šulc', EMail: 'petr.sulc@aures.cz' }, IsActive: true },
+  { Id: 70142, Title: 'Jarosław Skiba', TalentUser: { Id: 70142, Title: 'Jarosław Skiba', EMail: 'jaroslaw.skiba@aures.cz' }, IsActive: true },
 ];
 
 export const MOCK_REQUESTS: IMentoringRequest[] = [
   {
     Id: 1,
     Title: 'REQ-2026-1',
-    TalentRef: { Id: 1, Title: 'Eva Malkova' },
+    TalentRef: { Id: 27487, Title: 'David Reich' },
     Mentor1Ref: { Id: 1, Title: 'Karolína Topolová' },
     Mentor2Ref: { Id: 2, Title: 'Petr Vaněček' },
     Mentor3Ref: { Id: 10, Title: 'Marie Voršilková' },
-    Message1: 'Chtěla bych se naučit, jak prezentovat strategické projekty top managementu. Váš přístup k leadershipu je pro mě inspirující.',
+    Message1: 'Chtěl bych se naučit, jak prezentovat strategické projekty top managementu a budovat kariéru v mezinárodní firmě.',
     Message2: 'Zajímám se o digitalizaci a inovace v businessu.',
     Message3: 'Ráda bych pochopila HR perspektivu při řízení změn.',
     CurrentStage: 1,
@@ -172,10 +175,10 @@ export const MOCK_REQUESTS: IMentoringRequest[] = [
   {
     Id: 2,
     Title: 'REQ-2026-2',
-    TalentRef: { Id: 2, Title: 'Ondrej Dostal' },
+    TalentRef: { Id: 27487, Title: 'David Reich' },
     Mentor1Ref: { Id: 4, Title: 'Martin Hrudník' },
     Mentor2Ref: { Id: 5, Title: 'Daniel Luňáček' },
-    Message1: 'Chci se zdokonalit v operativním řízení a efektivitě procesů.',
+    Message1: 'Zajímám se o operativní řízení a efektivitu procesů.',
     Message2: 'Obchodní dovednosti jsou klíč k mému kariérnímu rozvoji.',
     CurrentStage: 2,
     RequestStatus: RequestStatus.Pending,
@@ -186,7 +189,7 @@ export const MOCK_REQUESTS: IMentoringRequest[] = [
   {
     Id: 3,
     Title: 'REQ-2026-3',
-    TalentRef: { Id: 3, Title: 'Katerina Simkova' },
+    TalentRef: { Id: 32069, Title: 'Marek Blahák' },
     Mentor1Ref: { Id: 9, Title: 'Zuzana Voborníková' },
     Message1: 'Chtěla bych lépe porozumět náborovým procesům a budování týmů v mezinárodním prostředí.',
     CurrentStage: 1,
@@ -198,7 +201,7 @@ export const MOCK_REQUESTS: IMentoringRequest[] = [
   {
     Id: 4,
     Title: 'REQ-2026-4',
-    TalentRef: { Id: 1, Title: 'Eva Malkova' },
+    TalentRef: { Id: 12381, Title: 'Jakub Matuška' },
     Mentor1Ref: { Id: 7, Title: 'Miroslav Vápeník' },
     Mentor2Ref: { Id: 8, Title: 'Alen Svoboda' },
     Mentor3Ref: { Id: 3, Title: 'Luboš Vorlík' },

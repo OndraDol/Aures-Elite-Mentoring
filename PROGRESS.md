@@ -1,6 +1,7 @@
 # PROGRESS.md — Aures Elite Mentoring
 
 ## Session Log
+- **2026-03-14**: Session 26. Naplnění reálnými talenty — MOCK_TALENTS nahrazeny 21 reálnými osobami (David Reich jako přihlášený uživatel v mockupu), MOCK_REQUESTS aktualizovány, index.html: MENTEES_DASHBOARD + TALENT_MGMT + ALL_REQS + APPROVED_PAIRS + HR_QUEUE aktualizovány, avatar fotky s fix background-position: top center pro správné zobrazení obličejů.
 - **2026-03-14**: Session 25. HR IA simplification — zjednodusena HR navigace v appce i mockupu. `Mentees dashboard` zustava jako hlavni operativni pohled, redundantni `Čeká` vyjmut z menu/routeru, `HRReviewQueue` odstranena z aktivni navigacni struktury a `Talenti` prejmenovani na `Správa talentů`. README aktualizovan, mockup synchronizovan.
 - **2026-03-14**: Session 24. Mockup sync — staticky `index.html` doplnen o HR zalozku `Mentees dashboard` s prehledem vsech mentees a jejich stavu (Bez zadosti / Ceka na mentora / Vyžaduje HR / Mentor potvrzen / Propojeno), aby GitHub Pages odpovidaly implementaci ve SPFx appce. README doplnen o sekci GitHub Pages / Mockup.
 - **2026-03-14**: Session 23. Notification policy change — systemove emaily upraveny na HR-only flow. Submit zadosti notifikuje HR admin skupinu misto mentora, approve notifikuje znovu pouze HR, reject uz neposila email dalsimu mentorovi; pouze eskalace do `HR_Review` notifikuje HR. README aktualizovan, verze app `0.0.2`, solution `1.0.1.0`.

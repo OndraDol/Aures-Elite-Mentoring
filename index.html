@@ -1428,12 +1428,12 @@
       </div>
       <div class="header-right">
         <div class="user-info">
-          <div class="user-name" id="hUserName">Markéta Nováková</div>
+          <div class="user-name" id="hUserName">David Reich</div>
           <div class="role-badge role-talent" id="hRoleBadge">Talent</div>
         </div>
         <div class="user-avatar" id="hAvatar"
-          style="background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop'); background-size: cover; background-position: center; color: transparent;">
-          MN</div>
+          style="background-image: url('pic/27487_David_Reich.jpg'); background-size: cover; background-position: top center; color: transparent;">
+          DR</div>
       </div>
     </div>
 
@@ -1471,7 +1471,7 @@
     ];
 
     const MY_REQUESTS = [
-      { id: 1, title: 'REQ-2026-001', status: 'Pending', mentors: [{ n: 'Jan Novák', stage: 1, d: null }, { n: 'Petra Marková', stage: 2, d: null }], curStage: 1 },
+      { id: 1, title: 'REQ-2026-001', status: 'Pending', mentors: [{ n: 'Karolína Topolová', stage: 1, d: null }, { n: 'Martin Hrudník', stage: 2, d: null }], curStage: 1 },
       { id: 2, title: 'REQ-2026-002', status: 'Approved', mentors: [{ n: 'Tomáš Dvořák', stage: 1, d: 'approved' }], curStage: 1 },
       { id: 3, title: 'REQ-2026-003', status: 'HR_Review', mentors: [{ n: 'Jan Novák', stage: 1, d: 'rejected' }, { n: 'Petra Marková', stage: 2, d: 'rejected' }, { n: 'Michaela Horáková', stage: 3, d: 'rejected' }], curStage: 3 },
     ];
@@ -1488,36 +1488,69 @@
     ];
 
     const ALL_REQS = [
-      { id: 1, talent: 'Markéta Nováková', mentor: 'Jan Novák', status: 'Pending', stage: 1 },
-      { id: 3, talent: 'Markéta Nováková', mentor: 'Michaela Horáková', status: 'HR_Review', stage: 3 },
-      { id: 4, talent: 'Jakub Pospíšil', mentor: 'Jan Novák', status: 'Pending', stage: 1 },
-      { id: 5, talent: 'Anna Blažková', mentor: 'Jan Novák', status: 'Pending', stage: 1 },
+      { id: 1, talent: 'David Reich', mentor: 'Karolína Topolová', status: 'Pending', stage: 1 },
+      { id: 2, talent: 'David Reich', mentor: 'Martin Hrudník', status: 'Pending', stage: 2 },
+      { id: 3, talent: 'Marek Blahák', mentor: 'Zuzana Voborníková', status: 'Approved', stage: 1 },
+      { id: 4, talent: 'Jakub Matuška', mentor: 'Miroslav Vápeník', status: 'HR_Review', stage: 3 },
     ];
 
     const APPROVED_PAIRS = [
-      { id: 2, talent: 'Markéta Nováková', mentor: 'Tomáš Dvořák', status: 'Approved' },
-      { id: 6, talent: 'Ondřej Kratochvíl', mentor: 'Jan Novák', status: 'Scheduled' },
+      { id: 3, talent: 'Marek Blahák', mentor: 'Zuzana Voborníková', status: 'Approved' },
+      { id: 5, talent: 'Martin Janovský', mentor: 'Alen Svoboda', status: 'Scheduled' },
     ];
 
     const MENTEES_DASHBOARD = [
-      { id: 1, talent: 'Markéta Nováková', email: 'marketa.novakova@aures.cz', status: 'Vyžaduje HR', statusCls: 's-hr', mentor: 'Jan Novák, Petra Marková, Michaela Horáková', detail: 'Poslední aktivní žádost propadla přes všechny mentory a čeká na HR.', request: 'REQ-2026-003', warning: true, actions: ['Naplánovat', 'Zrušit'] },
-      { id: 2, talent: 'Jakub Pospíšil', email: 'jakub.pospisil@aures.cz', status: 'Čeká na mentora', statusCls: 's-pending', mentor: 'Jan Novák', detail: 'Aktivní stage 1 z 2. Talent už si vybral mentora a čeká na rozhodnutí.', request: 'REQ-2026-004', warning: false, actions: ['Schválit za mentora', 'Zrušit'] },
-      { id: 3, talent: 'Anna Blažková', email: 'anna.blazkova@aures.cz', status: 'Čeká na mentora', statusCls: 's-pending', mentor: 'Jan Novák', detail: 'Aktivní stage 1 z 1. Žádost právě čeká na reakci mentora.', request: 'REQ-2026-005', warning: false, actions: ['Schválit za mentora', 'Zrušit'] },
-      { id: 4, talent: 'Ondřej Kratochvíl', email: 'ondrej.kratochvil@aures.cz', status: 'Propojeno', statusCls: 's-scheduled', mentor: 'Jan Novák', detail: 'Mentoring je schválený a naplánovaný.', request: 'REQ-2026-006', warning: false, actions: [] },
-      { id: 5, talent: 'Lucie Horáčková', email: 'lucie.horackova@aures.cz', status: 'Bez žádosti', statusCls: 's-cancelled', mentor: '—', detail: 'Talent zatím nemá aktivní žádost a nevybral si mentora.', request: null, warning: false, actions: [] },
-      { id: 6, talent: 'Martin Šimánek', email: 'martin.simanek@aures.cz', status: 'Mentor potvrzen', statusCls: 's-approved', mentor: 'Tomáš Dvořák', detail: 'Mentor pairing schválil, HR zbývá mentoring naplánovat.', request: 'REQ-2026-002', warning: false, actions: ['Naplánovat'] },
+      { id: 1,  talent: 'David Reich',         email: 'david.reich@aures.cz',         img: 'pic/27487_David_Reich.jpg',         status: 'Čeká na mentora',  statusCls: 's-pending',  mentor: 'Karolína Topolová',            detail: 'Aktivní žádost čeká na rozhodnutí mentora.',                      request: 'REQ-2026-001', warning: false, actions: ['Schválit za mentora', 'Zrušit'] },
+      { id: 2,  talent: 'Marek Blahák',        email: 'marek.blahak@aures.cz',        img: 'pic/32069_Marek_Blahak.jpg',        status: 'Mentor potvrzen',  statusCls: 's-approved', mentor: 'Zuzana Voborníková',           detail: 'Mentor schválil žádost. Čeká se na naplánování schůzky.',        request: 'REQ-2026-002', warning: false, actions: ['Naplánovat'] },
+      { id: 3,  talent: 'Michal Gabrhel',      email: 'michal.gabrhel@aures.cz',      img: 'pic/111056_Michal_Gabrhel.jpg',     status: 'Čeká na mentora',  statusCls: 's-pending',  mentor: 'Petr Vaněček',                 detail: 'Žádost čeká na vyjádření mentora (stage 1).',                    request: 'REQ-2026-003', warning: false, actions: ['Schválit za mentora', 'Zrušit'] },
+      { id: 4,  talent: 'Adam Gruber',         email: 'adam.gruber@aures.cz',         img: 'pic/25400_Adam_Gruber.jpg',         status: 'Propojeno',        statusCls: 's-scheduled',mentor: 'Martin Hrudník',               detail: 'Mentoring je schválený a naplánovaný. Spolupráce probíhá.',      request: 'REQ-2026-004', warning: false, actions: [] },
+      { id: 5,  talent: 'Martin Janovský',     email: 'martin.janovsky@aures.cz',     img: 'pic/14233_Martin_Janovsky.jpg',     status: 'Propojeno',        statusCls: 's-scheduled',mentor: 'Alen Svoboda',                 detail: 'Mentoring je schválený a naplánovaný. Spolupráce probíhá.',      request: 'REQ-2026-005', warning: false, actions: [] },
+      { id: 6,  talent: 'Jiří Kamír',          email: 'jiri.kamir@aures.cz',          img: 'pic/28179_Jiri_Kamir.jpg',          status: 'Bez žádosti',      statusCls: 's-cancelled',mentor: '—',                            detail: 'Talent zatím nepodal žádnou žádost o mentoring.',                request: null,           warning: false, actions: [] },
+      { id: 7,  talent: 'Tomáš Kaprálek',      email: 'tomas.kapralek@aures.cz',      img: 'pic/13835_Tomas_Kapralek.jpg',      status: 'Čeká na mentora',  statusCls: 's-pending',  mentor: 'Luboš Vorlík',                 detail: 'Žádost čeká na vyjádření mentora.',                              request: 'REQ-2026-006', warning: false, actions: ['Schválit za mentora', 'Zrušit'] },
+      { id: 8,  talent: 'Jan Kryl',            email: 'jan.kryl@aures.cz',            img: 'pic/1509_Jan_Kryl.jpg',             status: 'Vyžaduje HR',      statusCls: 's-hr',       mentor: 'Miroslav Vápeník, Alen Svoboda, Luboš Vorlík', detail: 'Žádost propadla přes všechny mentory a čeká na zásah HR.',  request: 'REQ-2026-007', warning: false, actions: ['Naplánovat', 'Zrušit'] },
+      { id: 9,  talent: 'Petr Kuchynka',       email: 'petr.kuchynka@aures.cz',       img: 'pic/4620_Petr_Kuchynka.jpg',        status: 'Čeká na mentora',  statusCls: 's-pending',  mentor: 'Daniel Luňáček',               detail: 'Žádost čeká na vyjádření mentora (stage 1).',                    request: 'REQ-2026-008', warning: false, actions: ['Schválit za mentora', 'Zrušit'] },
+      { id: 10, talent: 'Jakub Matuška',       email: 'jakub.matuska@aures.cz',       img: 'pic/12381_Jakub_Matuska.jpg',       status: 'Vyžaduje HR',      statusCls: 's-hr',       mentor: 'Miroslav Vápeník, Alen Svoboda, Luboš Vorlík', detail: 'Žádost propadla přes všechny mentory a vyžaduje HR intervenci.', request: 'REQ-2026-009', warning: false, actions: ['Naplánovat', 'Zrušit'] },
+      { id: 11, talent: 'Stanislav Otčenášek', email: 'stanislav.otcenasek@aures.cz', img: 'pic/11887_Stanislav_Otcenasek.jpg', status: 'Bez žádosti',      statusCls: 's-cancelled',mentor: '—',                            detail: 'Talent zatím nepodal žádnou žádost o mentoring.',                request: null,           warning: false, actions: [] },
+      { id: 12, talent: 'Miroslav Pařík',      email: 'miroslav.parik@aures.cz',      img: 'pic/110249_Miroslav_Parik.jpg',     status: 'Čeká na mentora',  statusCls: 's-pending',  mentor: 'Zdeněk Batěk',                 detail: 'Žádost čeká na vyjádření mentora.',                              request: 'REQ-2026-010', warning: false, actions: ['Schválit za mentora', 'Zrušit'] },
+      { id: 13, talent: 'Tomáš Preus',         email: 'tomas.preus@aures.cz',         img: 'pic/23574_Tomas_Preus.jpg',         status: 'Vyžaduje HR',      statusCls: 's-hr',       mentor: 'Karolína Topolová, Petr Vaněček, Marie Voršilková', detail: 'Žádost propadla přes všechny mentory a čeká na HR.', request: 'REQ-2026-011', warning: false, actions: ['Naplánovat', 'Zrušit'] },
+      { id: 14, talent: 'Dušan Procházka',     email: 'dusan.prochazka@aures.cz',     img: 'pic/7042_Dusan_Prochazka.jpg',      status: 'Čeká na mentora',  statusCls: 's-pending',  mentor: 'Marie Voršilková',             detail: 'Žádost čeká na vyjádření mentora (stage 1).',                    request: 'REQ-2026-012', warning: false, actions: ['Schválit za mentora', 'Zrušit'] },
+      { id: 15, talent: 'Marcel Ronge',        email: 'marcel.ronge@aures.cz',        img: 'pic/8128_Marcel_Ronge.jpg',         status: 'Bez žádosti',      statusCls: 's-cancelled',mentor: '—',                            detail: 'Talent zatím nepodal žádnou žádost o mentoring.',                request: null,           warning: false, actions: [] },
+      { id: 16, talent: 'Jakub Strouhal',      email: 'jakub.strouhal@aures.cz',      img: 'pic/27599_Jakub_Strouhal.jpg',      status: 'Mentor potvrzen',  statusCls: 's-approved', mentor: 'Zdeněk Batěk',                 detail: 'Mentor schválil žádost. Čeká se na naplánování schůzky.',        request: 'REQ-2026-013', warning: false, actions: ['Naplánovat'] },
+      { id: 17, talent: 'Daniel Svoboda',      email: 'daniel.svoboda@aures.cz',      img: 'pic/32407_Daniel_Svoboda.jpg',      status: 'Čeká na mentora',  statusCls: 's-pending',  mentor: 'Martin Hrudník',               detail: 'Žádost čeká na vyjádření mentora.',                              request: 'REQ-2026-014', warning: false, actions: ['Schválit za mentora', 'Zrušit'] },
+      { id: 18, talent: 'Petr Šanda',          email: 'petr.sanda@aures.cz',          img: 'pic/27539_Petr_Sanda.jpg',          status: 'Bez žádosti',      statusCls: 's-cancelled',mentor: '—',                            detail: 'Talent zatím nepodal žádnou žádost o mentoring.',                request: null,           warning: false, actions: [] },
+      { id: 19, talent: 'Robert Šmol',         email: 'robert.smol@aures.cz',         img: 'pic/30798_Robert_Smol.jpg',         status: 'Mentor potvrzen',  statusCls: 's-approved', mentor: 'Daniel Luňáček',               detail: 'Mentor schválil žádost. Čeká se na naplánování schůzky.',        request: 'REQ-2026-015', warning: false, actions: ['Naplánovat'] },
+      { id: 20, talent: 'Petr Šulc',           email: 'petr.sulc@aures.cz',           img: 'pic/15643_Petr_Sulc.jpg',           status: 'Čeká na mentora',  statusCls: 's-pending',  mentor: 'Miroslav Vápeník',             detail: 'Žádost čeká na vyjádření mentora (stage 1).',                    request: 'REQ-2026-016', warning: false, actions: ['Schválit za mentora', 'Zrušit'] },
+      { id: 21, talent: 'Jarosław Skiba',      email: 'jaroslaw.skiba@aures.cz',      img: 'pic/70142_Jaroslaw_Skiba.jpg',      status: 'Bez žádosti',      statusCls: 's-cancelled',mentor: '—',                            detail: 'Talent zatím nepodal žádnou žádost o mentoring.',                request: null,           warning: false, actions: [] },
     ];
 
     const HR_QUEUE = [
-      { id: 3, title: 'REQ-2026-003', talent: 'Markéta Nováková', mentors: ['Jan Novák', 'Petra Marková', 'Michaela Horáková'] },
+      { id: 8, title: 'REQ-2026-007', talent: 'Jan Kryl', mentors: ['Miroslav Vápeník', 'Alen Svoboda', 'Luboš Vorlík'] },
+      { id: 10, title: 'REQ-2026-009', talent: 'Jakub Matuška', mentors: ['Miroslav Vápeník', 'Alen Svoboda', 'Luboš Vorlík'] },
+      { id: 13, title: 'REQ-2026-011', talent: 'Tomáš Preus', mentors: ['Karolína Topolová', 'Petr Vaněček', 'Marie Voršilková'] },
     ];
 
     const TALENT_MGMT = [
-      { id: 1, name: 'Markéta Nováková', email: 'marketa.novakova@aures.cz', active: true },
-      { id: 2, name: 'Jakub Pospíšil', email: 'jakub.pospisil@aures.cz', active: true },
-      { id: 3, name: 'Anna Blažková', email: 'anna.blazkova@aures.cz', active: true },
-      { id: 4, name: 'Lucie Horáčková', email: 'lucie.horackova@aures.cz', active: false },
-      { id: 5, name: 'Martin Šimánek', email: 'martin.simanek@aures.cz', active: true },
+      { id: 32069,  name: 'Marek Blahák',        email: 'marek.blahak@aures.cz',        active: true },
+      { id: 111056, name: 'Michal Gabrhel',       email: 'michal.gabrhel@aures.cz',      active: true },
+      { id: 25400,  name: 'Adam Gruber',          email: 'adam.gruber@aures.cz',         active: true },
+      { id: 14233,  name: 'Martin Janovský',      email: 'martin.janovsky@aures.cz',     active: true },
+      { id: 28179,  name: 'Jiří Kamír',           email: 'jiri.kamir@aures.cz',          active: true },
+      { id: 13835,  name: 'Tomáš Kaprálek',       email: 'tomas.kapralek@aures.cz',      active: true },
+      { id: 1509,   name: 'Jan Kryl',             email: 'jan.kryl@aures.cz',            active: true },
+      { id: 4620,   name: 'Petr Kuchynka',        email: 'petr.kuchynka@aures.cz',       active: true },
+      { id: 12381,  name: 'Jakub Matuška',        email: 'jakub.matuska@aures.cz',       active: true },
+      { id: 11887,  name: 'Stanislav Otčenášek',  email: 'stanislav.otcenasek@aures.cz', active: true },
+      { id: 110249, name: 'Miroslav Pařík',       email: 'miroslav.parik@aures.cz',      active: true },
+      { id: 23574,  name: 'Tomáš Preus',          email: 'tomas.preus@aures.cz',         active: true },
+      { id: 7042,   name: 'Dušan Procházka',      email: 'dusan.prochazka@aures.cz',     active: true },
+      { id: 27487,  name: 'David Reich',          email: 'david.reich@aures.cz',         active: true },
+      { id: 8128,   name: 'Marcel Ronge',         email: 'marcel.ronge@aures.cz',        active: true },
+      { id: 27599,  name: 'Jakub Strouhal',       email: 'jakub.strouhal@aures.cz',      active: true },
+      { id: 32407,  name: 'Daniel Svoboda',       email: 'daniel.svoboda@aures.cz',      active: true },
+      { id: 27539,  name: 'Petr Šanda',           email: 'petr.sanda@aures.cz',          active: true },
+      { id: 30798,  name: 'Robert Šmol',          email: 'robert.smol@aures.cz',         active: true },
+      { id: 15643,  name: 'Petr Šulc',            email: 'petr.sulc@aures.cz',           active: true },
+      { id: 70142,  name: 'Jarosław Skiba',       email: 'jaroslaw.skiba@aures.cz',      active: true },
     ];
 
     const MENTOR_MGMT = [
@@ -1551,8 +1584,8 @@
     // ================================================================
     const ROLES = {
       talent: {
-        name: 'Markéta Nováková', ini: 'MN', badgeCls: 'role-talent', badgeLbl: 'Talent',
-        img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop',
+        name: 'David Reich', ini: 'DR', badgeCls: 'role-talent', badgeLbl: 'Talent',
+        img: 'pic/27487_David_Reich.jpg',
         tabs: [
           { id: 'catalog', label: 'Katalog mentorů' },
           { id: 'myrequests', label: 'Moje žádosti' },
@@ -1593,7 +1626,7 @@
       if (cfg.img) {
         hav.style.backgroundImage = `url('${cfg.img}')`;
         hav.style.backgroundSize = 'cover';
-        hav.style.backgroundPosition = 'center';
+        hav.style.backgroundPosition = 'top center';
         hav.style.color = 'transparent';
       } else {
         hav.style.backgroundImage = 'none';
@@ -1658,7 +1691,7 @@
       ${MENTORS.map(m => `
         <div class="mentor-card">
           <div class="mentor-card-header">
-            <div class="mentor-avatar ${m.img ? 'mentor-avatar-photo' : ''}" ${m.img ? `style="background-image: url('${m.img}'); background-size: cover; background-position: center center; color: transparent;"` : ''}>${m.ini}</div>
+            <div class="mentor-avatar ${m.img ? 'mentor-avatar-photo' : ''}" ${m.img ? `style="background-image: url('${m.img}'); background-size: cover; background-position: top center; color: transparent;"` : ''}>${m.ini}</div>
             <div>
               <div class="mentor-name">${m.name}</div>
               <div class="mentor-job">${m.job}</div>
@@ -1720,7 +1753,7 @@
       <div class="form-sec" style="border:2px solid var(--gold);border-top:3px solid var(--gold);">
         <div class="form-sec-title">Tvůj vybraný mentor</div>
         <div style="display:flex;align-items:center;gap:20px;margin-bottom:16px;flex-wrap:wrap;">
-          <div class="mentor-avatar" style="width:72px;height:72px;font-size:24px;border:3px solid var(--gold); ${pm.img ? `background-image: url('${pm.img}'); background-size: cover; background-position: center; color: transparent;` : ''}">${pm.ini}</div>
+          <div class="mentor-avatar" style="width:72px;height:72px;font-size:24px;border:3px solid var(--gold); ${pm.img ? `background-image: url('${pm.img}'); background-size: cover; background-position: top center; color: transparent;` : ''}">${pm.ini}</div>
           <div style="flex:1;">
             <div style="font-size:20px;font-weight:700;color:var(--primary);">${pm.name}</div>
             <div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin:4px 0;">${pm.job}</div>
@@ -1740,7 +1773,7 @@
           ${others.map((m, i) => `
             <div class="msel-item" style="justify-content:space-between;">
               <div style="display:flex;align-items:center;gap:14px;">
-                <div class="mentor-avatar" style="width:44px;height:44px;font-size:15px; ${m.img ? `background-image: url('${m.img}'); background-size: cover; background-position: center; color: transparent;` : ''}">${m.ini}</div>
+                <div class="mentor-avatar" style="width:44px;height:44px;font-size:15px; ${m.img ? `background-image: url('${m.img}'); background-size: cover; background-position: top center; color: transparent;` : ''}">${m.ini}</div>
                 <div class="msel-info">
                   <div class="msel-name">${m.name}</div>
                   <div class="msel-job">${m.job} · ${m.super}</div>
@@ -1900,9 +1933,12 @@
         <div class="all-row" style="flex-wrap:wrap;align-items:flex-start;gap:12px;${row.warning ? 'border-color: var(--gold); box-shadow: 0 0 0 1px rgba(212,175,55,.18);' : ''}">
           <div class="all-row-main" style="flex:1;min-width:240px;">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
-              <div>
-                <div style="font-weight:700;font-size:14px;color:var(--text);">${row.talent}</div>
-                <div style="font-size:12px;color:var(--text-muted);margin-top:3px;">${row.email}</div>
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div style="width:40px;height:40px;border-radius:50%;background-image:url('${row.img}');background-size:cover;background-position:top center;flex-shrink:0;border:2px solid var(--border);"></div>
+                <div>
+                  <div style="font-weight:700;font-size:14px;color:var(--text);">${row.talent}</div>
+                  <div style="font-size:12px;color:var(--text-muted);margin-top:3px;">${row.email}</div>
+                </div>
               </div>
               <span class="status-badge ${row.statusCls}">${row.status}</span>
             </div>
