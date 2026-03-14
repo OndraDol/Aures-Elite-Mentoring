@@ -657,6 +657,18 @@
       display: flex;
       align-items: center;
       gap: 6px;
+      border: none;
+      background: none;
+      outline: none;
+      box-shadow: none;
+    }
+
+    .mentor-details-toggle:focus,
+    .mentor-details-toggle:focus-visible,
+    .mentor-details-toggle:active {
+      outline: none;
+      box-shadow: none;
+      border: none;
     }
 
     .mentor-details-toggle::before {
@@ -2098,14 +2110,17 @@
     function toggleMentorDetails(btn) {
       const details = btn.closest('.mentor-details');
       const content = details.querySelector('.mentor-details-content');
+      const expandBtn = details.querySelector('.mentor-details-toggle');
       const isExpanded = details.getAttribute('data-expanded') === 'true';
 
       if (isExpanded) {
         content.style.display = 'none';
         details.setAttribute('data-expanded', 'false');
+        expandBtn.style.display = 'flex';
       } else {
         content.style.display = 'block';
         details.setAttribute('data-expanded', 'true');
+        expandBtn.style.display = 'none';
       }
     }
 
