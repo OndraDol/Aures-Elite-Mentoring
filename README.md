@@ -50,6 +50,12 @@ gulp trust-dev-cert
 - Pri eskalaci do `HR_Review` jde notifikace na HR.
 - Mentorum ani mentees nejde ze systemu zadna prima emailova komunikace.
 
+## GitHub Pages / Mockup
+
+- Staticky mockup pro GitHub Pages je v root `index.html`.
+- `mockup.html` zustava jako redirect na `index.html` kvuli starym odkazum.
+- Mockup nyni obsahuje i HR zalozku `Mentees dashboard`, aby odpovidal implementaci ve SPFx aplikaci.
+
 ## Stav projektu
 
 Viz [PROGRESS.md](PROGRESS.md)

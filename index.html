@@ -1499,6 +1499,15 @@
       { id: 6, talent: 'Ondřej Kratochvíl', mentor: 'Jan Novák', status: 'Scheduled' },
     ];
 
+    const MENTEES_DASHBOARD = [
+      { id: 1, talent: 'Markéta Nováková', email: 'marketa.novakova@aures.cz', status: 'Vyžaduje HR', statusCls: 's-hr', mentor: 'Jan Novák, Petra Marková, Michaela Horáková', detail: 'Poslední aktivní žádost propadla přes všechny mentory a čeká na HR.', request: 'REQ-2026-003', warning: true, actions: ['Naplánovat', 'Zrušit'] },
+      { id: 2, talent: 'Jakub Pospíšil', email: 'jakub.pospisil@aures.cz', status: 'Čeká na mentora', statusCls: 's-pending', mentor: 'Jan Novák', detail: 'Aktivní stage 1 z 2. Talent už si vybral mentora a čeká na rozhodnutí.', request: 'REQ-2026-004', warning: false, actions: ['Schválit za mentora', 'Zrušit'] },
+      { id: 3, talent: 'Anna Blažková', email: 'anna.blazkova@aures.cz', status: 'Čeká na mentora', statusCls: 's-pending', mentor: 'Jan Novák', detail: 'Aktivní stage 1 z 1. Žádost právě čeká na reakci mentora.', request: 'REQ-2026-005', warning: false, actions: ['Schválit za mentora', 'Zrušit'] },
+      { id: 4, talent: 'Ondřej Kratochvíl', email: 'ondrej.kratochvil@aures.cz', status: 'Propojeno', statusCls: 's-scheduled', mentor: 'Jan Novák', detail: 'Mentoring je schválený a naplánovaný.', request: 'REQ-2026-006', warning: false, actions: [] },
+      { id: 5, talent: 'Lucie Horáčková', email: 'lucie.horackova@aures.cz', status: 'Bez žádosti', statusCls: 's-cancelled', mentor: '—', detail: 'Talent zatím nemá aktivní žádost a nevybral si mentora.', request: null, warning: false, actions: [] },
+      { id: 6, talent: 'Martin Šimánek', email: 'martin.simanek@aures.cz', status: 'Mentor potvrzen', statusCls: 's-approved', mentor: 'Tomáš Dvořák', detail: 'Mentor pairing schválil, HR zbývá mentoring naplánovat.', request: 'REQ-2026-002', warning: false, actions: ['Naplánovat'] },
+    ];
+
     const HR_QUEUE = [
       { id: 3, title: 'REQ-2026-003', talent: 'Markéta Nováková', mentors: ['Jan Novák', 'Petra Marková', 'Michaela Horáková'] },
     ];
@@ -1552,6 +1561,7 @@
       hr: {
         name: 'Tereza Procházková', ini: 'TP', badgeCls: 'role-hr', badgeLbl: 'HR Admin',
         tabs: [
+          { id: 'mentees', label: 'Mentees dashboard' },
           { id: 'allreqs', label: 'Čeká' },
           { id: 'approved', label: 'Domluvené mentoringy' },
           { id: 'mentormg', label: 'Správa mentorů' },
@@ -1618,6 +1628,7 @@
         resetchoice: vResetChoice,
         pending: vPending,
         history: vHistory,
+        mentees: vMenteesDashboard,
         allreqs: vAllRequests,
         approved: vApprovedMentorings,
         hrqueue: vHRQueue,
@@ -1861,6 +1872,48 @@
           </div>
         </div>`;
       }).join('')}
+    </div>
+  `;
+    }
+
+    function vMenteesDashboard() {
+      return `
+    <div class="page-header"><h2 class="page-title">Mentees dashboard (${MENTEES_DASHBOARD.length})</h2></div>
+    <div class="section-hint">Talent-centric přehled pro HR. Na jedné stránce je vidět, kdo si už vybral mentora, kdo čeká na rozhodnutí, kdo vyžaduje zásah HR a kdo zatím nemá aktivní žádost.</div>
+    <div class="filter-row">
+      <input class="search-input" type="text" placeholder="Hledat mentee nebo mentora…" />
+      <button class="filter-btn-active">Všichni</button>
+      <button class="filter-btn">Vyžaduje HR</button>
+      <button class="filter-btn">Čeká na mentora</button>
+      <button class="filter-btn">Bez žádosti</button>
+    </div>
+    <div class="request-list">
+      ${MENTEES_DASHBOARD.map(row => `
+        <div class="all-row" style="flex-wrap:wrap;align-items:flex-start;gap:12px;${row.warning ? 'border-color: var(--gold); box-shadow: 0 0 0 1px rgba(212,175,55,.18);' : ''}">
+          <div class="all-row-main" style="flex:1;min-width:240px;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
+              <div>
+                <div style="font-weight:700;font-size:14px;color:var(--text);">${row.talent}</div>
+                <div style="font-size:12px;color:var(--text-muted);margin-top:3px;">${row.email}</div>
+              </div>
+              <span class="status-badge ${row.statusCls}">${row.status}</span>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
+              <span style="display:inline-flex;align-items:center;padding:5px 12px;border-radius:var(--r-pill);background:#f5f6f8;color:var(--text);font-size:12px;border:1px solid rgba(11,43,94,0.08);">Mentor: <strong style="margin-left:4px;">${row.mentor}</strong></span>
+              <span style="display:inline-flex;align-items:center;padding:5px 12px;border-radius:var(--r-pill);background:#f5f6f8;color:var(--text-muted);font-size:12px;border:1px solid rgba(11,43,94,0.08);">${row.request ? 'Žádost ' + row.request : 'Bez aktivní žádosti'}</span>
+            </div>
+            <div style="font-size:13px;color:var(--text-muted);margin-top:10px;line-height:1.6;">${row.detail}</div>
+            ${row.warning ? `<div style="margin-top:10px;padding:10px 14px;background:var(--warning-light);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;font-size:12px;font-weight:600;color:#9a6200;">Talent má více aktivních žádostí. Dashboard zobrazuje nejnovější request.</div>` : ''}
+          </div>
+          ${row.actions.length ? `
+          <div style="display:flex;gap:6px;flex-shrink:0;flex-wrap:wrap;">
+            ${row.actions.map(action => {
+              const danger = action === 'Zrušit';
+              return `<button class="filter-btn" style="font-size:12px;padding:5px 14px;${danger ? 'color:var(--error);border-color:var(--error);' : ''}">${action}</button>`;
+            }).join('')}
+          </div>` : ''}
+        </div>
+      `).join('')}
     </div>
   `;
     }
