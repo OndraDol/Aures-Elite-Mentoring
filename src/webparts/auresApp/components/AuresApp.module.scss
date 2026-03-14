@@ -749,6 +749,14 @@ $transition-slow: 0.4s $ease-out;
     color: $gold-dk;
   }
 
+  &:focus,
+  &:focus-visible,
+  &:active {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
   &::before {
     content: '▸';
     font-size: 11px;
