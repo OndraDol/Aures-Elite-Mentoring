@@ -179,19 +179,17 @@ async function sendDecisionNotification(
     const talent = await svc.getTalentById(request.TalentRef.Id);
 
     if (decision === StageDecision.Approved) {
-      // 6.3 — schvaleno: notifikuj HR + Talent (CC)
+      // 6.3 — schvaleno: notifikuj pouze HR
       if (currentUser.mentorRecord) {
         await ns.notifyOnApproval(hrEmail, talent, currentUser.mentorRecord, request.Id, request.Title);
       }
     } else {
-      // 6.2 — zamitnuto: notifikuj dalsiho mentora nebo HR
+      // Pri zamitnuti uz system neposila notifikace mentorum ani talentum.
+      // HR se notifikuje jen pokud zadost eskaluje do HR Review.
       const nextRef = myStage === 1 ? request.Mentor2Ref
                     : myStage === 2 ? request.Mentor3Ref
                     : undefined;
-      if (nextRef) {
-        const nextMentor = await svc.getMentorById(nextRef.Id);
-        await ns.notifyNextMentorOnReject(nextMentor, talent, request.Id, request.Title);
-      } else {
+      if (!nextRef) {
         await ns.notifyHROnEscalation(hrEmail, talent, request.Id, request.Title);
       }
     }

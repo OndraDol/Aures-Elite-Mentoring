@@ -1,4 +1,4 @@
-define("710fcc7f-4d14-424c-947b-74a2c48623d0_0.0.1", ["@microsoft/sp-property-pane","AuresAppWebPartStrings","@microsoft/sp-core-library","@microsoft/sp-webpart-base","react","react-dom"], function(__WEBPACK_EXTERNAL_MODULE__26ea__, __WEBPACK_EXTERNAL_MODULE_DnXt__, __WEBPACK_EXTERNAL_MODULE_UWqr__, __WEBPACK_EXTERNAL_MODULE_br4S__, __WEBPACK_EXTERNAL_MODULE_cDcd__, __WEBPACK_EXTERNAL_MODULE_faye__) { return /******/ (function(modules) { // webpackBootstrap
+define("710fcc7f-4d14-424c-947b-74a2c48623d0_0.0.2", ["@microsoft/sp-property-pane","AuresAppWebPartStrings","@microsoft/sp-core-library","@microsoft/sp-webpart-base","react","react-dom"], function(__WEBPACK_EXTERNAL_MODULE__26ea__, __WEBPACK_EXTERNAL_MODULE_DnXt__, __WEBPACK_EXTERNAL_MODULE_UWqr__, __WEBPACK_EXTERNAL_MODULE_br4S__, __WEBPACK_EXTERNAL_MODULE_cDcd__, __WEBPACK_EXTERNAL_MODULE_faye__) { return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -4768,43 +4768,21 @@ var NotificationService = /** @class */ (function () {
     // ----------------------------------------------------------------
     // Verejne metody
     // ----------------------------------------------------------------
-    /** Submit: notifikuje Mentora 1 o nove zadosti */
-    NotificationService.prototype.notifyMentorOnSubmit = function (mentor, talent, requestId, requestTitle) {
-        var _a, _b;
+    /** Submit: notifikuje HR o nove zadosti */
+    NotificationService.prototype.notifyHROnSubmit = function (hrEmail, talent, mentor, requestId, requestTitle) {
         return __awaiter(this, void 0, void 0, function () {
             var email;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
                     case 0:
                         email = {
-                            To: [(_b = (_a = mentor.MentorUser) === null || _a === void 0 ? void 0 : _a.EMail) !== null && _b !== void 0 ? _b : ''],
+                            To: [hrEmail],
                             Subject: "Aures Elite Mentoring \u2013 Nova zadost o mentoring [".concat(requestTitle, "]"),
-                            Body: this._buildMentorRequestBody(mentor, talent, requestId, requestTitle)
+                            Body: this._buildHRSubmitBody(talent, mentor, requestId, requestTitle)
                         };
                         return [4 /*yield*/, this._send(email)];
                     case 1:
-                        _c.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    /** Reject + dalsi mentor: notifikuje nasledujiciho mentora */
-    NotificationService.prototype.notifyNextMentorOnReject = function (nextMentor, talent, requestId, requestTitle) {
-        var _a, _b;
-        return __awaiter(this, void 0, void 0, function () {
-            var email;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0:
-                        email = {
-                            To: [(_b = (_a = nextMentor.MentorUser) === null || _a === void 0 ? void 0 : _a.EMail) !== null && _b !== void 0 ? _b : ''],
-                            Subject: "Aures Elite Mentoring \u2013 Zadost o mentoring ceka na Vase vyjadreni [".concat(requestTitle, "]"),
-                            Body: this._buildMentorRequestBody(nextMentor, talent, requestId, requestTitle)
-                        };
-                        return [4 /*yield*/, this._send(email)];
-                    case 1:
-                        _c.sent();
+                        _a.sent();
                         return [2 /*return*/];
                 }
             });
@@ -4830,24 +4808,21 @@ var NotificationService = /** @class */ (function () {
             });
         });
     };
-    /** Approve: notifikuje HR i Talenta ke sjednanemu mentoringu */
+    /** Approve: notifikuje HR o schvaleni zadosti */
     NotificationService.prototype.notifyOnApproval = function (hrEmail, talent, mentor, requestId, requestTitle) {
-        var _a, _b;
         return __awaiter(this, void 0, void 0, function () {
-            var talentEmail, email;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
+            var email;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
                     case 0:
-                        talentEmail = (_b = (_a = talent.TalentUser) === null || _a === void 0 ? void 0 : _a.EMail) !== null && _b !== void 0 ? _b : '';
                         email = {
                             To: [hrEmail],
-                            CC: talentEmail ? [talentEmail] : [],
                             Subject: "Aures Elite Mentoring \u2013 Zadost schvalena [".concat(requestTitle, "]"),
                             Body: this._buildApprovalBody(talent, mentor, requestId, requestTitle)
                         };
                         return [4 /*yield*/, this._send(email)];
                     case 1:
-                        _c.sent();
+                        _a.sent();
                         return [2 /*return*/];
                 }
             });
@@ -4877,14 +4852,14 @@ var NotificationService = /** @class */ (function () {
             });
         });
     };
-    NotificationService.prototype._buildMentorRequestBody = function (mentor, talent, requestId, requestTitle) {
-        return "\n<p>Vazeny/a ".concat(mentor.Title, ",</p>\n<p>\n  Talent <strong>").concat(talent.Title, "</strong> Vas pozadal/a o mentoring.\n  Cilem je profesni rust v ramci Aures Holdings.\n</p>\n<p>\n  <strong>ID zadosti:</strong> ").concat(requestTitle, "<br/>\n  <strong>ID zaznamu:</strong> ").concat(requestId, "\n</p>\n<p>\n  Prosim, otevrete aplikaci Aures Elite Mentoring v SharePointu a zadost schvalte nebo zamitnte.\n</p>\n<p>S pozdravem,<br/>Aures Elite Mentoring System</p>\n    ").trim();
+    NotificationService.prototype._buildHRSubmitBody = function (talent, mentor, requestId, requestTitle) {
+        return "\n<p>Dobry den,</p>\n<p>\n  Talent <strong>".concat(talent.Title, "</strong> vytvoril novou zadost o mentoring.\n  Jako primarni mentor byl zvolen/a <strong>").concat(mentor.Title, "</strong>.\n</p>\n<p>\n  <strong>ID zadosti:</strong> ").concat(requestTitle, "<br/>\n  <strong>ID zaznamu:</strong> ").concat(requestId, "\n</p>\n<p>\n  Prosim, otevrete HR cast aplikace Aures Elite Mentoring a sledujte dalsi prubeh zadosti.\n</p>\n<p>S pozdravem,<br/>Aures Elite Mentoring System</p>\n    ").trim();
     };
     NotificationService.prototype._buildHREscalationBody = function (talent, requestId, requestTitle) {
         return "\n<p>Dobry den,</p>\n<p>\n  Zadost talenta <strong>".concat(talent.Title, "</strong> (").concat(requestTitle, ") byla zam\u00EDtnuta\n  vsemi vybranymi mentory a presla do stavu <strong>HR Review</strong>.\n</p>\n<p>\n  <strong>ID zadosti:</strong> ").concat(requestTitle, "<br/>\n  <strong>ID zaznamu:</strong> ").concat(requestId, "\n</p>\n<p>\n  Prosim, otevrete HR Admin Panel v aplikaci Aures Elite Mentoring\n  a dohodnte nasledny postup s talentem.\n</p>\n<p>S pozdravem,<br/>Aures Elite Mentoring System</p>\n    ").trim();
     };
     NotificationService.prototype._buildApprovalBody = function (talent, mentor, requestId, requestTitle) {
-        return "\n<p>Dobry den,</p>\n<p>\n  Zadost talenta <strong>".concat(talent.Title, "</strong> byla <strong>schvalena</strong>\n  mentorem <strong>").concat(mentor.Title, "</strong> (").concat(mentor.JobTitle, ").\n</p>\n<p>\n  <strong>ID zadosti:</strong> ").concat(requestTitle, "<br/>\n  <strong>ID zaznamu:</strong> ").concat(requestId, "\n</p>\n<p>\n  Prosim koordinujte nasledne kroky \u2014 naplanovani uvodni schuze mezi talentem a mentorem.\n</p>\n<p>S pozdravem,<br/>Aures Elite Mentoring System</p>\n    ").trim();
+        return "\n<p>Dobry den,</p>\n<p>\n  Zadost talenta <strong>".concat(talent.Title, "</strong> byla <strong>schvalena</strong>\n  mentorem <strong>").concat(mentor.Title, "</strong> (").concat(mentor.JobTitle, ").\n</p>\n<p>\n  <strong>ID zadosti:</strong> ").concat(requestTitle, "<br/>\n  <strong>ID zaznamu:</strong> ").concat(requestId, "\n</p>\n<p>\n  Prosim koordinujte nasledne kroky v HR procesu mentoringu.\n</p>\n<p>S pozdravem,<br/>Aures Elite Mentoring System</p>\n    ").trim();
     };
     return NotificationService;
 }());
@@ -5130,7 +5105,7 @@ function renderView(view, currentUser, sp, navigate, params, hrEmail, onRequests
     switch (view) {
         // Talent
         case 'MentorCatalog': return react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_talent_MentorCatalog__WEBPACK_IMPORTED_MODULE_7__[/* default */ "e"], { sp: sp, currentUser: currentUser, navigate: navigate });
-        case 'RequestForm': return react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_talent_RequestForm__WEBPACK_IMPORTED_MODULE_8__[/* default */ "e"], { sp: sp, currentUser: currentUser, navigate: navigate, preselectedMentorId: params.preselectedMentorId });
+        case 'RequestForm': return react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_talent_RequestForm__WEBPACK_IMPORTED_MODULE_8__[/* default */ "e"], { sp: sp, currentUser: currentUser, navigate: navigate, hrEmail: hrEmail, preselectedMentorId: params.preselectedMentorId });
         case 'MyRequests': return react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_talent_MyRequests__WEBPACK_IMPORTED_MODULE_9__[/* default */ "e"], { sp: sp, currentUser: currentUser, navigate: navigate });
         case 'ResetChoice': return react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_talent_ResetChoice__WEBPACK_IMPORTED_MODULE_10__[/* default */ "e"], { sp: sp, currentUser: currentUser, navigate: navigate, onRequestsChanged: onRequestsChanged });
         // Mentor
@@ -7404,7 +7379,7 @@ var AuresAppWebPart = /** @class */ (function (_super) {
                                     label: AuresAppWebPartStrings__WEBPACK_IMPORTED_MODULE_7__["DescriptionFieldLabel"]
                                 }),
                                 Object(_microsoft_sp_property_pane__WEBPACK_IMPORTED_MODULE_3__["PropertyPaneTextField"])('hrEmail', {
-                                    label: 'HR Email (prijemce notifikaci)'
+                                    label: 'HR Admin Group Email (prijemce notifikaci)'
                                 })
                             ]
                         }
@@ -8357,7 +8332,7 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
 
 var RequestForm = function (_a) {
     var _b;
-    var sp = _a.sp, currentUser = _a.currentUser, navigate = _a.navigate, preselectedMentorId = _a.preselectedMentorId;
+    var sp = _a.sp, currentUser = _a.currentUser, navigate = _a.navigate, hrEmail = _a.hrEmail, preselectedMentorId = _a.preselectedMentorId;
     var _c = react__WEBPACK_IMPORTED_MODULE_0__["useState"]([]), mentors = _c[0], setMentors = _c[1];
     var _d = react__WEBPACK_IMPORTED_MODULE_0__["useState"](true), loading = _d[0], setLoading = _d[1];
     var _e = react__WEBPACK_IMPORTED_MODULE_0__["useState"](false), submitting = _e[0], setSubmitting = _e[1];
@@ -8436,7 +8411,7 @@ var RequestForm = function (_a) {
                                     _b.trys.push([0, 3, , 4]);
                                     mentor1 = mentors.find(function (m) { return m.Id === preselectedMentorId; });
                                     if (!(mentor1 && currentUser.talentRecord)) return [3 /*break*/, 2];
-                                    return [4 /*yield*/, new _services_NotificationService__WEBPACK_IMPORTED_MODULE_4__[/* NotificationService */ "e"](sp).notifyMentorOnSubmit(mentor1, currentUser.talentRecord, newId_1, "REQ-2026-".concat(newId_1))];
+                                    return [4 /*yield*/, new _services_NotificationService__WEBPACK_IMPORTED_MODULE_4__[/* NotificationService */ "e"](sp).notifyHROnSubmit(hrEmail, currentUser.talentRecord, mentor1, newId_1, "REQ-2026-".concat(newId_1))];
                                 case 1:
                                     _b.sent();
                                     _b.label = 2;
@@ -9628,11 +9603,11 @@ function resolveNextMentorHint(req, myStage) {
 // ----------------------------------------------------------------
 function sendDecisionNotification(sp, decision, request, myStage, currentUser, hrEmail) {
     return __awaiter(this, void 0, void 0, function () {
-        var svc, ns, talent, nextRef, nextMentor, _a;
+        var svc, ns, talent, nextRef, _a;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _b.trys.push([0, 10, , 11]);
+                    _b.trys.push([0, 7, , 8]);
                     svc = new _services_MentoringService__WEBPACK_IMPORTED_MODULE_3__[/* MentoringService */ "e"](sp);
                     ns = new _services_NotificationService__WEBPACK_IMPORTED_MODULE_4__[/* NotificationService */ "e"](sp);
                     return [4 /*yield*/, svc.getTalentById(request.TalentRef.Id)];
@@ -9644,28 +9619,21 @@ function sendDecisionNotification(sp, decision, request, myStage, currentUser, h
                 case 2:
                     _b.sent();
                     _b.label = 3;
-                case 3: return [3 /*break*/, 9];
+                case 3: return [3 /*break*/, 6];
                 case 4:
                     nextRef = myStage === 1 ? request.Mentor2Ref
                         : myStage === 2 ? request.Mentor3Ref
                             : undefined;
-                    if (!nextRef) return [3 /*break*/, 7];
-                    return [4 /*yield*/, svc.getMentorById(nextRef.Id)];
+                    if (!!nextRef) return [3 /*break*/, 6];
+                    return [4 /*yield*/, ns.notifyHROnEscalation(hrEmail, talent, request.Id, request.Title)];
                 case 5:
-                    nextMentor = _b.sent();
-                    return [4 /*yield*/, ns.notifyNextMentorOnReject(nextMentor, talent, request.Id, request.Title)];
-                case 6:
                     _b.sent();
-                    return [3 /*break*/, 9];
-                case 7: return [4 /*yield*/, ns.notifyHROnEscalation(hrEmail, talent, request.Id, request.Title)];
-                case 8:
-                    _b.sent();
-                    _b.label = 9;
-                case 9: return [3 /*break*/, 11];
-                case 10:
+                    _b.label = 6;
+                case 6: return [3 /*break*/, 8];
+                case 7:
                     _a = _b.sent();
-                    return [3 /*break*/, 11];
-                case 11: return [2 /*return*/];
+                    return [3 /*break*/, 8];
+                case 8: return [2 /*return*/];
             }
         });
     });

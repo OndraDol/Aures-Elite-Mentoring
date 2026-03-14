@@ -42,6 +42,14 @@ gulp trust-dev-cert
 2. Soubor `sharepoint/solution/aures-elite-mentoring.sppkg` predat SHP tymu
 3. SHP tym nahraje do App Catalogu
 
+## Email notifikace
+
+- System posila emaily pouze na HR admin skupinu nastavovanou ve webpart property `hrEmail`.
+- Pri vytvoreni nove zadosti jde notifikace na HR, ne mentorovi.
+- Pri schvaleni zadosti mentorem jde notifikace znovu na HR.
+- Pri eskalaci do `HR_Review` jde notifikace na HR.
+- Mentorum ani mentees nejde ze systemu zadna prima emailova komunikace.
+
 ## Stav projektu
 
 Viz [PROGRESS.md](PROGRESS.md)

@@ -3,7 +3,7 @@
   "solution": {
     "name": "aures-elite-mentoring-client-side-solution",
     "id": "1d89567e-a88d-45ec-a37c-60c5f7ecc886",
-    "version": "1.0.0.0",
+    "version": "1.0.1.0",
     "includeClientSideAssets": true,
     "isDomainIsolated": false,
     "developer": {

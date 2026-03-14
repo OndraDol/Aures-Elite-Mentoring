@@ -2,7 +2,7 @@
   "id": "710fcc7f-4d14-424c-947b-74a2c48623d0",
   "alias": "AuresAppWebPart",
   "componentType": "WebPart",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "manifestVersion": 2,
   "requiresCustomScript": false,
   "supportedHosts": [

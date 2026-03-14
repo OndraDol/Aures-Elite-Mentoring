@@ -61,7 +61,7 @@ export default class AuresAppWebPart extends BaseClientSideWebPart<IAuresAppWebP
                   label: strings.DescriptionFieldLabel
                 }),
                 PropertyPaneTextField('hrEmail', {
-                  label: 'HR Email (prijemce notifikaci)'
+                  label: 'HR Admin Group Email (prijemce notifikaci)'
                 })
               ]
             }

@@ -15,32 +15,18 @@ export class NotificationService {
   // Verejne metody
   // ----------------------------------------------------------------
 
-  /** Submit: notifikuje Mentora 1 o nove zadosti */
-  async notifyMentorOnSubmit(
+  /** Submit: notifikuje HR o nove zadosti */
+  async notifyHROnSubmit(
+    hrEmail: string,
+    talent: ITalent,
     mentor: IMentor,
-    talent: ITalent,
     requestId: number,
     requestTitle: string
   ): Promise<void> {
     const email: IEmailProperties = {
-      To: [mentor.MentorUser?.EMail ?? ''],
+      To: [hrEmail],
       Subject: `Aures Elite Mentoring – Nova zadost o mentoring [${requestTitle}]`,
-      Body: this._buildMentorRequestBody(mentor, talent, requestId, requestTitle)
-    };
-    await this._send(email);
-  }
-
-  /** Reject + dalsi mentor: notifikuje nasledujiciho mentora */
-  async notifyNextMentorOnReject(
-    nextMentor: IMentor,
-    talent: ITalent,
-    requestId: number,
-    requestTitle: string
-  ): Promise<void> {
-    const email: IEmailProperties = {
-      To: [nextMentor.MentorUser?.EMail ?? ''],
-      Subject: `Aures Elite Mentoring – Zadost o mentoring ceka na Vase vyjadreni [${requestTitle}]`,
-      Body: this._buildMentorRequestBody(nextMentor, talent, requestId, requestTitle)
+      Body: this._buildHRSubmitBody(talent, mentor, requestId, requestTitle)
     };
     await this._send(email);
   }
@@ -60,7 +46,7 @@ export class NotificationService {
     await this._send(email);
   }
 
-  /** Approve: notifikuje HR i Talenta ke sjednanemu mentoringu */
+  /** Approve: notifikuje HR o schvaleni zadosti */
   async notifyOnApproval(
     hrEmail: string,
     talent: ITalent,
@@ -68,10 +54,8 @@ export class NotificationService {
     requestId: number,
     requestTitle: string
   ): Promise<void> {
-    const talentEmail = talent.TalentUser?.EMail ?? '';
     const email: IEmailProperties = {
       To: [hrEmail],
-      CC: talentEmail ? [talentEmail] : [],
       Subject: `Aures Elite Mentoring – Zadost schvalena [${requestTitle}]`,
       Body: this._buildApprovalBody(talent, mentor, requestId, requestTitle)
     };
@@ -91,24 +75,24 @@ export class NotificationService {
     }
   }
 
-  private _buildMentorRequestBody(
-    mentor: IMentor,
+  private _buildHRSubmitBody(
     talent: ITalent,
+    mentor: IMentor,
     requestId: number,
     requestTitle: string
   ): string {
     return `
-<p>Vazeny/a ${mentor.Title},</p>
+<p>Dobry den,</p>
 <p>
-  Talent <strong>${talent.Title}</strong> Vas pozadal/a o mentoring.
-  Cilem je profesni rust v ramci Aures Holdings.
+  Talent <strong>${talent.Title}</strong> vytvoril novou zadost o mentoring.
+  Jako primarni mentor byl zvolen/a <strong>${mentor.Title}</strong>.
 </p>
 <p>
   <strong>ID zadosti:</strong> ${requestTitle}<br/>
   <strong>ID zaznamu:</strong> ${requestId}
 </p>
 <p>
-  Prosim, otevrete aplikaci Aures Elite Mentoring v SharePointu a zadost schvalte nebo zamitnte.
+  Prosim, otevrete HR cast aplikace Aures Elite Mentoring a sledujte dalsi prubeh zadosti.
 </p>
 <p>S pozdravem,<br/>Aures Elite Mentoring System</p>
     `.trim();
@@ -154,7 +138,7 @@ export class NotificationService {
   <strong>ID zaznamu:</strong> ${requestId}
 </p>
 <p>
-  Prosim koordinujte nasledne kroky — naplanovani uvodni schuze mezi talentem a mentorem.
+  Prosim koordinujte nasledne kroky v HR procesu mentoringu.
 </p>
 <p>S pozdravem,<br/>Aures Elite Mentoring System</p>
     `.trim();

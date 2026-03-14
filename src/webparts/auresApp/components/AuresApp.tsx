@@ -130,7 +130,7 @@ function renderView(
   switch (view) {
     // Talent
     case 'MentorCatalog': return <MentorCatalog sp={sp} currentUser={currentUser} navigate={navigate} />;
-    case 'RequestForm':   return <RequestForm   sp={sp} currentUser={currentUser} navigate={navigate} preselectedMentorId={params.preselectedMentorId as number | undefined} />;
+    case 'RequestForm':   return <RequestForm   sp={sp} currentUser={currentUser} navigate={navigate} hrEmail={hrEmail} preselectedMentorId={params.preselectedMentorId as number | undefined} />;
     case 'MyRequests':    return <MyRequests    sp={sp} currentUser={currentUser} navigate={navigate} />;
     case 'ResetChoice':   return <ResetChoice  sp={sp} currentUser={currentUser} navigate={navigate} onRequestsChanged={onRequestsChanged} />;
     // Mentor
