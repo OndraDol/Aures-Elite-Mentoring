@@ -1512,6 +1512,14 @@
       { id: 3, title: 'REQ-2026-003', talent: 'Markéta Nováková', mentors: ['Jan Novák', 'Petra Marková', 'Michaela Horáková'] },
     ];
 
+    const TALENT_MGMT = [
+      { id: 1, name: 'Markéta Nováková', email: 'marketa.novakova@aures.cz', active: true },
+      { id: 2, name: 'Jakub Pospíšil', email: 'jakub.pospisil@aures.cz', active: true },
+      { id: 3, name: 'Anna Blažková', email: 'anna.blazkova@aures.cz', active: true },
+      { id: 4, name: 'Lucie Horáčková', email: 'lucie.horackova@aures.cz', active: false },
+      { id: 5, name: 'Martin Šimánek', email: 'martin.simanek@aures.cz', active: true },
+    ];
+
     const MENTOR_MGMT = [
       { id: 1, name: 'Karolína Topolová', job: 'co-CEO', cap: 2, active: true },
       { id: 2, name: 'Petr Vaněček', job: 'co-CEO', cap: 2, active: true },
@@ -1562,9 +1570,9 @@
         name: 'Tereza Procházková', ini: 'TP', badgeCls: 'role-hr', badgeLbl: 'HR Admin',
         tabs: [
           { id: 'mentees', label: 'Mentees dashboard' },
-          { id: 'allreqs', label: 'Čeká' },
           { id: 'approved', label: 'Domluvené mentoringy' },
           { id: 'mentormg', label: 'Správa mentorů' },
+          { id: 'talentmg', label: 'Správa talentů' },
           { id: 'capacity', label: 'Kapacitní dashboard' },
         ],
       },
@@ -1629,10 +1637,10 @@
         pending: vPending,
         history: vHistory,
         mentees: vMenteesDashboard,
-        allreqs: vAllRequests,
         approved: vApprovedMentorings,
         hrqueue: vHRQueue,
         mentormg: vMentorMgmt,
+        talentmg: vTalentMgmt,
         capacity: vCapacity,
       };
       const c = document.getElementById('content');
@@ -1960,6 +1968,23 @@
           <button class="${m.active ? 'active-btn' : 'inactive-btn'}">${m.active ? 'Aktivní' : 'Neaktivní'}</button>
           <button class="filter-btn" style="font-size:12px;padding:5px 14px;">Upravit</button>
           <button class="filter-btn" style="font-size:12px;padding:5px 14px;color:var(--error);border-color:var(--error);">Smazat</button>
+        </div>
+      `).join('')}
+    </div>
+  `;
+    }
+
+    function vTalentMgmt() {
+      return `
+    <div class="page-header"><h2 class="page-title">Správa talentů (${TALENT_MGMT.length})</h2></div>
+    <div class="request-list">
+      ${TALENT_MGMT.map(talent => `
+        <div class="mgmt-row ${!talent.active ? 'mgmt-row-inactive' : ''}">
+          <div class="mgmt-info">
+            <div class="mgmt-name">${talent.name}</div>
+            <div class="mgmt-meta">${talent.email}</div>
+          </div>
+          <button class="${talent.active ? 'active-btn' : 'inactive-btn'}">${talent.active ? 'Aktivní' : 'Neaktivní'}</button>
         </div>
       `).join('')}
     </div>

@@ -16,9 +16,7 @@ import PendingRequests from './mentor/PendingRequests';
 import RequestDetail from './mentor/RequestDetail';
 import RequestHistory from './mentor/RequestHistory';
 import MenteesDashboard from './hr/MenteesDashboard';
-import AllRequests from './hr/AllRequests';
 import ApprovedMentorings from './hr/ApprovedMentorings';
-import HRReviewQueue from './hr/HRReviewQueue';
 import MentorManagement from './hr/MentorManagement';
 import TalentManagement from './hr/TalentManagement';
 import CapacityDashboard from './hr/CapacityDashboard';
@@ -139,9 +137,7 @@ function renderView(
     case 'RequestHistory':  return <RequestHistory  sp={sp} currentUser={currentUser} navigate={navigate} />;
     // HR
     case 'MenteesDashboard': return <MenteesDashboard sp={sp} currentUser={currentUser} navigate={navigate} />;
-    case 'AllRequests':       return <AllRequests       sp={sp} currentUser={currentUser} navigate={navigate} />;
     case 'ApprovedMentorings': return <ApprovedMentorings sp={sp} currentUser={currentUser} navigate={navigate} />;
-    case 'HRReviewQueue':     return <HRReviewQueue    sp={sp} currentUser={currentUser} navigate={navigate} />;
     case 'MentorManagement':  return <MentorManagement sp={sp} currentUser={currentUser} navigate={navigate} />;
     case 'TalentManagement':  return <TalentManagement sp={sp} currentUser={currentUser} navigate={navigate} />;
     case 'CapacityDashboard': return <CapacityDashboard sp={sp} currentUser={currentUser} navigate={navigate} />;

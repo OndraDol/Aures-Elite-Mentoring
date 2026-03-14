@@ -56,6 +56,14 @@ gulp trust-dev-cert
 - `mockup.html` zustava jako redirect na `index.html` kvuli starym odkazum.
 - Mockup nyni obsahuje i HR zalozku `Mentees dashboard`, aby odpovidal implementaci ve SPFx aplikaci.
 
+## HR struktura
+
+- `Mentees dashboard` je hlavni operativni pohled pro HR a nahrazuje driv redundantni request-level zalozku `Čeká`.
+- `Domluvené mentoringy` zustava jako samostatny prehled finalizovanych paru.
+- `Mentoři` slouzi pro spravu mentoru.
+- `Správa talentů` slouzi jen pro administraci aktivni/neaktivni entity talentu.
+- `Kapacita` zustava jako samostatny agregovany pohled nad vytizenim mentoru.
+
 ## Stav projektu
 
 Viz [PROGRESS.md](PROGRESS.md)

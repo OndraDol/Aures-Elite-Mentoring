@@ -12,9 +12,7 @@ export type AppView =
   | 'RequestHistory'
   // HR
   | 'MenteesDashboard'
-  | 'AllRequests'
   | 'ApprovedMentorings'
-  | 'HRReviewQueue'
   | 'MentorManagement'
   | 'TalentManagement'
   | 'CapacityDashboard'

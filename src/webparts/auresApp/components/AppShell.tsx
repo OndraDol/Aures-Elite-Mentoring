@@ -21,10 +21,9 @@ const MENTOR_TABS: ITab[] = [
 
 const HR_TABS: ITab[] = [
   { label: 'Mentees dashboard',  view: 'MenteesDashboard'   },
-  { label: 'Čeká',                view: 'AllRequests'        },
   { label: 'Domluvené mentoringy', view: 'ApprovedMentorings' },
   { label: 'Mentoři',             view: 'MentorManagement'   },
-  { label: 'Talenti',             view: 'TalentManagement'   },
+  { label: 'Správa talentů',      view: 'TalentManagement'   },
   { label: 'Kapacita',            view: 'CapacityDashboard'  },
 ];
 
