@@ -45,7 +45,6 @@ const TalentManagement: React.FC<ITalentManagementProps> = ({ sp }) => {
           >
             <div className={styles.managementInfo}>
               <p className={styles.managementName}>{talent.Title}</p>
-              <p className={styles.managementMeta}>{talent.TalentUser.EMail}</p>
             </div>
             <button
               className={talent.IsActive ? styles.activeBtn : styles.inactiveBtn}

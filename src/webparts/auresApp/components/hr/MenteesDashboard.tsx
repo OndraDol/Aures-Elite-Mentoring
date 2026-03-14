@@ -172,7 +172,6 @@ const MenteesDashboard: React.FC<IMenteesDashboardProps> = ({ sp, currentUser })
                   <div className={styles.menteeDashboardHeader}>
                     <div className={styles.menteeDashboardIdentity}>
                       <p className={styles.managementName}>{row.talent.Title}</p>
-                      <p className={styles.managementMeta}>{row.talent.TalentUser.EMail}</p>
                     </div>
                     <div className={styles.menteeDashboardBadges}>
                       {!row.talent.IsActive && (
