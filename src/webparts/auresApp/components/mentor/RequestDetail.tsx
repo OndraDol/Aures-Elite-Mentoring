@@ -175,7 +175,7 @@ async function sendDecisionNotification(
 ): Promise<void> {
   try {
     const svc = new MentoringService(sp);
-    const ns  = new NotificationService(sp);
+    const ns  = new NotificationService();
     const talent = await svc.getTalentById(request.TalentRef.Id);
 
     if (decision === StageDecision.Approved) {
