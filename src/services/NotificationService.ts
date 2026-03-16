@@ -1,15 +1,16 @@
-import { SPFI } from '@pnp/sp';
-import '@pnp/sp/sputilities';
-import { IEmailProperties } from '@pnp/sp/sputilities';
+import { GraphFI } from '@pnp/graph';
+import '@pnp/graph/users';
+import '@pnp/graph/mail';
 
 import { IMentor, ITalent } from './interfaces';
 
 /**
- * Odeslani emailu pres SP Utility.sendEmail (client-side, bez Power Automate).
- * Vyzaduje ze odesilajici uzivatel ma pravo odesilat maily pres SP.
+ * Odeslani emailu pres Microsoft Graph API (sendMail).
+ * Vyzaduje opravneni Mail.Send schvalene v SharePoint Admin Center → API access.
+ * Email je odeslan ze schrany prihlaseneho uzivatele (delegovane opravneni).
  */
 export class NotificationService {
-  constructor(private readonly _sp: SPFI) {}
+  constructor(private readonly _graph: GraphFI) {}
 
   // ----------------------------------------------------------------
   // Verejne metody
@@ -23,12 +24,11 @@ export class NotificationService {
     requestId: number,
     requestTitle: string
   ): Promise<void> {
-    const email: IEmailProperties = {
-      To: [hrEmail],
-      Subject: `Aures Elite Mentoring – Nova zadost o mentoring [${requestTitle}]`,
-      Body: this._buildHRSubmitBody(talent, mentor, requestId, requestTitle)
-    };
-    await this._send(email);
+    await this._send(
+      [hrEmail],
+      `Aures Elite Mentoring – Nova zadost o mentoring [${requestTitle}]`,
+      this._buildHRSubmitBody(talent, mentor, requestId, requestTitle)
+    );
   }
 
   /** Reject + zadny dalsi mentor: notifikuje HR o eskalaci */
@@ -38,12 +38,11 @@ export class NotificationService {
     requestId: number,
     requestTitle: string
   ): Promise<void> {
-    const email: IEmailProperties = {
-      To: [hrEmail],
-      Subject: `Aures Elite Mentoring – HR Review vyzadovan [${requestTitle}]`,
-      Body: this._buildHREscalationBody(talent, requestId, requestTitle)
-    };
-    await this._send(email);
+    await this._send(
+      [hrEmail],
+      `Aures Elite Mentoring – HR Review vyzadovan [${requestTitle}]`,
+      this._buildHREscalationBody(talent, requestId, requestTitle)
+    );
   }
 
   /** Approve: notifikuje HR o schvaleni zadosti */
@@ -54,24 +53,30 @@ export class NotificationService {
     requestId: number,
     requestTitle: string
   ): Promise<void> {
-    const email: IEmailProperties = {
-      To: [hrEmail],
-      Subject: `Aures Elite Mentoring – Zadost schvalena [${requestTitle}]`,
-      Body: this._buildApprovalBody(talent, mentor, requestId, requestTitle)
-    };
-    await this._send(email);
+    await this._send(
+      [hrEmail],
+      `Aures Elite Mentoring – Zadost schvalena [${requestTitle}]`,
+      this._buildApprovalBody(talent, mentor, requestId, requestTitle)
+    );
   }
 
   // ----------------------------------------------------------------
   // Soukrome helpery
   // ----------------------------------------------------------------
 
-  private async _send(email: IEmailProperties): Promise<void> {
+  private async _send(to: string[], subject: string, body: string): Promise<void> {
     try {
-      await this._sp.utility.sendEmail(email);
+      await this._graph.me.sendMail({
+        message: {
+          subject,
+          body: { contentType: 'HTML', content: body },
+          toRecipients: to.map(addr => ({ emailAddress: { address: addr } }))
+        },
+        saveToSentItems: false
+      });
     } catch (err) {
       // Logujeme chybu, ale nenechame ji shodil UI — notifikace jsou best-effort
-      console.error('[NotificationService] sendEmail selhal:', err);
+      console.error('[NotificationService] sendMail selhal:', err);
     }
   }
 

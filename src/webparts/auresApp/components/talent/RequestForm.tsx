@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styles from '../AuresApp.module.scss';
 import { SPFI } from '@pnp/sp';
+import { GraphFI } from '@pnp/graph';
 import { IMentor, ICurrentUser, RequestStatus } from '../../../../services/interfaces';
 import { MentoringService } from '../../../../services/MentoringService';
 import { NotificationService } from '../../../../services/NotificationService';
@@ -9,13 +10,14 @@ import { MOCK_MENTORS, MOCK_REQUESTS } from '../../../../utils/mockData';
 
 interface IRequestFormProps {
   sp: SPFI;
+  graph: GraphFI;
   currentUser: ICurrentUser;
   navigate: NavigateFn;
   hrEmail: string;
   preselectedMentorId?: number;
 }
 
-const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, hrEmail, preselectedMentorId }) => {
+const RequestForm: React.FC<IRequestFormProps> = ({ sp, graph, currentUser, navigate, hrEmail, preselectedMentorId }) => {
   const [mentors, setMentors]       = React.useState<IMentor[]>([]);
   const [loading, setLoading]       = React.useState(true);
   const [submitting, setSubmitting]       = React.useState(false);
@@ -79,7 +81,7 @@ const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, h
         try {
           const mentor1 = mentors.find(m => m.Id === preselectedMentorId);
           if (mentor1 && currentUser.talentRecord) {
-            await new NotificationService(sp).notifyHROnSubmit(
+            await new NotificationService(graph).notifyHROnSubmit(
               hrEmail, currentUser.talentRecord, mentor1, newId, `REQ-2026-${newId}`
             );
           }

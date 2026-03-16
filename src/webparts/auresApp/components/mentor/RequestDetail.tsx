@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styles from '../AuresApp.module.scss';
 import { SPFI } from '@pnp/sp';
+import { GraphFI } from '@pnp/graph';
 import { IMentoringRequest, ICurrentUser, StageDecision, RequestStatus } from '../../../../services/interfaces';
 import { MentoringService } from '../../../../services/MentoringService';
 import { NotificationService } from '../../../../services/NotificationService';
@@ -9,6 +10,7 @@ import { MOCK_REQUESTS } from '../../../../utils/mockData';
 
 interface IRequestDetailProps {
   sp: SPFI;
+  graph: GraphFI;
   currentUser: ICurrentUser;
   navigate: NavigateFn;
   requestId: number | undefined;
@@ -17,7 +19,7 @@ interface IRequestDetailProps {
 
 const MOCK_MENTOR_ID = 1;
 
-const RequestDetail: React.FC<IRequestDetailProps> = ({ sp, currentUser, navigate, requestId, hrEmail }) => {
+const RequestDetail: React.FC<IRequestDetailProps> = ({ sp, graph, currentUser, navigate, requestId, hrEmail }) => {
   const [request, setRequest]   = React.useState<IMentoringRequest | null>(null);
   const [loading, setLoading]   = React.useState(true);
   const [deciding, setDeciding] = React.useState(false);
@@ -52,7 +54,7 @@ const RequestDetail: React.FC<IRequestDetailProps> = ({ sp, currentUser, navigat
       // V lokalni dev nepripojene SP — simulujeme uspech
     }
     // 6.2 / 6.3 — notifikace (best-effort, neblokovani UX)
-    void sendDecisionNotification(sp, decision, request, myStage, currentUser, hrEmail);
+    void sendDecisionNotification(sp, graph, decision, request, myStage, currentUser, hrEmail);
     setDecisionDone(true);
     setDeciding(false);
     setTimeout(() => navigate('PendingRequests'), 1200);
@@ -167,6 +169,7 @@ function resolveNextMentorHint(req: IMentoringRequest, myStage: 1 | 2 | 3): stri
 // ----------------------------------------------------------------
 async function sendDecisionNotification(
   sp: SPFI,
+  graph: GraphFI,
   decision: StageDecision,
   request: IMentoringRequest,
   myStage: 1 | 2 | 3,
@@ -175,7 +178,7 @@ async function sendDecisionNotification(
 ): Promise<void> {
   try {
     const svc = new MentoringService(sp);
-    const ns  = new NotificationService(sp);
+    const ns  = new NotificationService(graph);
     const talent = await svc.getTalentById(request.TalentRef.Id);
 
     if (decision === StageDecision.Approved) {

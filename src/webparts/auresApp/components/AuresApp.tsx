@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { SPFI } from '@pnp/sp';
+import { GraphFI } from '@pnp/graph';
 import styles from './AuresApp.module.scss';
 import { IAuresAppProps } from './IAuresAppProps';
 import { ICurrentUser, UserRole, RequestStatus } from '../../../services/interfaces';
@@ -21,7 +22,7 @@ import MentorManagement from './hr/MentorManagement';
 import TalentManagement from './hr/TalentManagement';
 import CapacityDashboard from './hr/CapacityDashboard';
 
-const AuresApp: React.FC<IAuresAppProps> = ({ sp, hrEmail }) => {
+const AuresApp: React.FC<IAuresAppProps> = ({ sp, graph, hrEmail }) => {
   const [currentUser, setCurrentUser] = React.useState<ICurrentUser | null>(null);
   const [loading, setLoading]         = React.useState<boolean>(true);
   const [error, setError]             = React.useState<string | null>(null);
@@ -102,7 +103,7 @@ const AuresApp: React.FC<IAuresAppProps> = ({ sp, hrEmail }) => {
         navBadges={navBadges}
         hasActiveRequests={hasActiveRequests}
       >
-        {renderView(view, currentUser, sp, navigate, navParams, hrEmail, handleRequestsChanged)}
+        {renderView(view, currentUser, sp, graph, navigate, navParams, hrEmail, handleRequestsChanged)}
       </AppShell>
     </div>
   );
@@ -120,6 +121,7 @@ function renderView(
   view: AppView | null,
   currentUser: ICurrentUser,
   sp: SPFI,
+  graph: GraphFI,
   navigate: NavigateFn,
   params: Record<string, unknown>,
   hrEmail: string,
@@ -128,12 +130,12 @@ function renderView(
   switch (view) {
     // Talent
     case 'MentorCatalog': return <MentorCatalog sp={sp} currentUser={currentUser} navigate={navigate} />;
-    case 'RequestForm':   return <RequestForm   sp={sp} currentUser={currentUser} navigate={navigate} hrEmail={hrEmail} preselectedMentorId={params.preselectedMentorId as number | undefined} />;
+    case 'RequestForm':   return <RequestForm   sp={sp} graph={graph} currentUser={currentUser} navigate={navigate} hrEmail={hrEmail} preselectedMentorId={params.preselectedMentorId as number | undefined} />;
     case 'MyRequests':    return <MyRequests    sp={sp} currentUser={currentUser} navigate={navigate} />;
     case 'ResetChoice':   return <ResetChoice  sp={sp} currentUser={currentUser} navigate={navigate} onRequestsChanged={onRequestsChanged} />;
     // Mentor
     case 'PendingRequests': return <PendingRequests sp={sp} currentUser={currentUser} navigate={navigate} />;
-    case 'RequestDetail':   return <RequestDetail   sp={sp} currentUser={currentUser} navigate={navigate} requestId={params.requestId as number | undefined} hrEmail={hrEmail} />;
+    case 'RequestDetail':   return <RequestDetail   sp={sp} graph={graph} currentUser={currentUser} navigate={navigate} requestId={params.requestId as number | undefined} hrEmail={hrEmail} />;
     case 'RequestHistory':  return <RequestHistory  sp={sp} currentUser={currentUser} navigate={navigate} />;
     // HR
     case 'MenteesDashboard': return <MenteesDashboard sp={sp} currentUser={currentUser} navigate={navigate} />;

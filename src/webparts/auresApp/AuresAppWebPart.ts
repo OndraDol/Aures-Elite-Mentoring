@@ -8,6 +8,8 @@ import {
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { spfi, SPFI } from '@pnp/sp';
 import { SPFx } from '@pnp/sp/behaviors/spfx';
+import { graphfi, GraphFI } from '@pnp/graph';
+import { SPFx as GraphSPFx } from '@pnp/graph/behaviors/spfx';
 
 import * as strings from 'AuresAppWebPartStrings';
 import AuresApp from './components/AuresApp';
@@ -20,9 +22,11 @@ export interface IAuresAppWebPartProps {
 
 export default class AuresAppWebPart extends BaseClientSideWebPart<IAuresAppWebPartProps> {
   private _sp: SPFI;
+  private _graph: GraphFI;
 
   protected async onInit(): Promise<void> {
     this._sp = spfi().using(SPFx(this.context));
+    this._graph = graphfi().using(GraphSPFx(this.context));
   }
 
   public render(): void {
@@ -30,6 +34,7 @@ export default class AuresAppWebPart extends BaseClientSideWebPart<IAuresAppWebP
       AuresApp,
       {
         sp: this._sp,
+        graph: this._graph,
         context: this.context,
         hrEmail: this.properties.hrEmail ?? ''
       }
