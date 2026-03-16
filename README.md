@@ -6,15 +6,15 @@ Exkluzivni SPFx aplikace pro propojovani talentu Aures Holdings s top management
 
 | Vrstva | Technologie |
 |---|---|
-| Platform | SharePoint Online, SPFx 1.18.2 |
-| Runtime | Node.js v18.20.0 |
-| Framework | React 17.0.1, TypeScript 4.5.5 |
+| Platform | SharePoint Online, SPFx 1.22.2 |
+| Runtime | Node.js v22.x |
+| Framework | React 17.0.1, TypeScript ~4.2 (rideno SPFx toolchain) |
 | Data | @pnp/sp v4 |
 | Styling | Dart Sass + Fluent UI (Navy/Gold premium theme) |
 
 ## Pozadavky
 
-- Node.js **v18.20.0** (striktne — v24 nefunguje)
+- Node.js **v22.x** (striktne — viz `engines` v package.json)
 - npm 10+
 
 ## Instalace
@@ -49,6 +49,8 @@ gulp trust-dev-cert
 - Pri schvaleni zadosti mentorem jde notifikace znovu na HR.
 - Pri eskalaci do `HR_Review` jde notifikace na HR.
 - Mentorum ani mentees nejde ze systemu zadna prima emailova komunikace.
+
+> **Poznamka:** Odesilani e-mailu je aktualne vypnute. Deprecated SP Utility `sendEmail` API (zruseno Microsoftem k 31.10.2025) bylo odstraneno. `NotificationService` drzi payload kontrakt a HTML sablony — pro aktivaci staci doplnit transport pres Power Automate (HTTP POST na flow endpoint).
 
 ## GitHub Pages / Mockup
 
