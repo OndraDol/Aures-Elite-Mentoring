@@ -11,11 +11,11 @@ interface IRequestFormProps {
   sp: SPFI;
   currentUser: ICurrentUser;
   navigate: NavigateFn;
-  hrEmail: string;
+  hrEmails: string[];
   preselectedMentorId?: number;
 }
 
-const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, hrEmail, preselectedMentorId }) => {
+const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, hrEmails, preselectedMentorId }) => {
   const [mentors, setMentors]       = React.useState<IMentor[]>([]);
   const [loading, setLoading]       = React.useState(true);
   const [submitting, setSubmitting]       = React.useState(false);
@@ -79,8 +79,8 @@ const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, h
         try {
           const mentor1 = mentors.find(m => m.Id === preselectedMentorId);
           if (mentor1 && currentUser.talentRecord) {
-            await new NotificationService().notifyHROnSubmit(
-              hrEmail, currentUser.talentRecord, mentor1, newId, `REQ-2026-${newId}`
+            await new NotificationService(sp).notifyHROnSubmit(
+              hrEmails, currentUser.talentRecord, mentor1, newId, `REQ-2026-${newId}`
             );
           }
         } catch { /* best-effort */ }

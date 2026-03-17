@@ -12,12 +12,12 @@ interface IRequestDetailProps {
   currentUser: ICurrentUser;
   navigate: NavigateFn;
   requestId: number | undefined;
-  hrEmail: string;
+  hrEmails: string[];
 }
 
 const MOCK_MENTOR_ID = 1;
 
-const RequestDetail: React.FC<IRequestDetailProps> = ({ sp, currentUser, navigate, requestId, hrEmail }) => {
+const RequestDetail: React.FC<IRequestDetailProps> = ({ sp, currentUser, navigate, requestId, hrEmails }) => {
   const [request, setRequest]   = React.useState<IMentoringRequest | null>(null);
   const [loading, setLoading]   = React.useState(true);
   const [deciding, setDeciding] = React.useState(false);
@@ -52,7 +52,7 @@ const RequestDetail: React.FC<IRequestDetailProps> = ({ sp, currentUser, navigat
       // V lokalni dev nepripojene SP — simulujeme uspech
     }
     // 6.2 / 6.3 — notifikace (best-effort, neblokovani UX)
-    void sendDecisionNotification(sp, decision, request, myStage, currentUser, hrEmail);
+    void sendDecisionNotification(sp, decision, request, myStage, currentUser, hrEmails);
     setDecisionDone(true);
     setDeciding(false);
     setTimeout(() => navigate('PendingRequests'), 1200);
@@ -171,7 +171,7 @@ async function sendDecisionNotification(
   request: IMentoringRequest,
   myStage: 1 | 2 | 3,
   currentUser: ICurrentUser,
-  hrEmail: string
+  hrEmails: string[]
 ): Promise<void> {
   try {
     const svc = new MentoringService(sp);
@@ -181,7 +181,7 @@ async function sendDecisionNotification(
     if (decision === StageDecision.Approved) {
       // 6.3 — schvaleno: notifikuj pouze HR
       if (currentUser.mentorRecord) {
-        await ns.notifyOnApproval(hrEmail, talent, currentUser.mentorRecord, request.Id, request.Title);
+        await ns.notifyOnApproval(hrEmails, talent, currentUser.mentorRecord, request.Id, request.Title);
       }
     } else {
       // Pri zamitnuti uz system neposila notifikace mentorum ani talentum.
@@ -190,7 +190,7 @@ async function sendDecisionNotification(
                     : myStage === 2 ? request.Mentor3Ref
                     : undefined;
       if (!nextRef) {
-        await ns.notifyHROnEscalation(hrEmail, talent, request.Id, request.Title);
+        await ns.notifyHROnEscalation(hrEmails, talent, request.Id, request.Title);
       }
     }
   } catch {

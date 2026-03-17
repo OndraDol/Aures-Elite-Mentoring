@@ -1,102 +1,78 @@
+import { SPFI } from '@pnp/sp';
+import '@pnp/sp/sputilities';
+import { IEmailProperties } from '@pnp/sp/sputilities';
+
 import { IMentor, ITalent } from './interfaces';
 
-type NotificationKind = 'hr-submit' | 'hr-escalation' | 'hr-approval';
-
-interface INotificationPayload {
-  kind: NotificationKind;
-  to: string[];
-  subject: string;
-  body: string;
-  requestId: number;
-  requestTitle: string;
-}
-
 /**
- * Notifikace jsou docasne potlacene.
- * Service drzi payload kontrakt, aby slo pozdeji jen doplnit transport pres Power Automate.
+ * Odeslani emailu pres SP Utility.sendEmail (client-side, bez Power Automate).
+ * Vyzaduje ze odesilajici uzivatel ma pravo odesilat maily pres SP.
  */
 export class NotificationService {
+  constructor(private readonly _sp: SPFI) {}
+
   // ----------------------------------------------------------------
   // Verejne metody
   // ----------------------------------------------------------------
 
   /** Submit: notifikuje HR o nove zadosti */
   async notifyHROnSubmit(
-    hrEmail: string,
+    hrEmails: string[],
     talent: ITalent,
     mentor: IMentor,
     requestId: number,
     requestTitle: string
   ): Promise<void> {
-    await this._dispatch({
-      kind: 'hr-submit',
-      to: [hrEmail],
-      subject: `Aures Elite Mentoring - Nova zadost o mentoring [${requestTitle}]`,
-      body: this._buildHRSubmitBody(talent, mentor, requestId, requestTitle),
-      requestId,
-      requestTitle
-    });
+    const email: IEmailProperties = {
+      To: hrEmails,
+      Subject: `Aures Elite Mentoring – Nová žádost o mentoring [${requestTitle}]`,
+      Body: this._buildHRSubmitBody(talent, mentor, requestId, requestTitle)
+    };
+    await this._send(email);
   }
 
   /** Reject + zadny dalsi mentor: notifikuje HR o eskalaci */
   async notifyHROnEscalation(
-    hrEmail: string,
+    hrEmails: string[],
     talent: ITalent,
     requestId: number,
     requestTitle: string
   ): Promise<void> {
-    await this._dispatch({
-      kind: 'hr-escalation',
-      to: [hrEmail],
-      subject: `Aures Elite Mentoring - HR Review vyzadovan [${requestTitle}]`,
-      body: this._buildHREscalationBody(talent, requestId, requestTitle),
-      requestId,
-      requestTitle
-    });
+    const email: IEmailProperties = {
+      To: hrEmails,
+      Subject: `Aures Elite Mentoring – HR Review vyzadovan [${requestTitle}]`,
+      Body: this._buildHREscalationBody(talent, requestId, requestTitle)
+    };
+    await this._send(email);
   }
 
   /** Approve: notifikuje HR o schvaleni zadosti */
   async notifyOnApproval(
-    hrEmail: string,
+    hrEmails: string[],
     talent: ITalent,
     mentor: IMentor,
     requestId: number,
     requestTitle: string
   ): Promise<void> {
-    await this._dispatch({
-      kind: 'hr-approval',
-      to: [hrEmail],
-      subject: `Aures Elite Mentoring - Zadost schvalena [${requestTitle}]`,
-      body: this._buildApprovalBody(talent, mentor, requestId, requestTitle),
-      requestId,
-      requestTitle
-    });
+    const email: IEmailProperties = {
+      To: hrEmails,
+      Subject: `Aures Elite Mentoring – Zadost schvalena [${requestTitle}]`,
+      Body: this._buildApprovalBody(talent, mentor, requestId, requestTitle)
+    };
+    await this._send(email);
   }
 
   // ----------------------------------------------------------------
   // Soukrome helpery
   // ----------------------------------------------------------------
 
-  private async _dispatch(payload: INotificationPayload): Promise<void> {
-    const recipients = payload.to.map(address => address.trim()).filter(Boolean);
-
-    if (recipients.length === 0) {
-      console.info('[NotificationService] Notification skipped because no recipient is configured.', {
-        kind: payload.kind,
-        requestId: payload.requestId,
-        requestTitle: payload.requestTitle
-      });
-      return;
+  private async _send(email: IEmailProperties): Promise<void> {
+    try {
+      await this._sp.utility.sendEmail(email);
+    } catch (err) {
+      // Logujeme chybu, ale nenechame ji shodil UI — notifikace jsou best-effort
+      console.error('[NotificationService] sendEmail selhal:', err);
     }
-
-    console.info('[NotificationService] Notification delivery is disabled until Power Automate is implemented.', {
-      kind: payload.kind,
-      to: recipients,
-      subject: payload.subject,
-      requestId: payload.requestId,
-      requestTitle: payload.requestTitle,
-      bodyPreview: payload.body.slice(0, 120)
-    });
   }
 
   private _buildHRSubmitBody(

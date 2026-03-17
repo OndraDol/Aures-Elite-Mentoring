@@ -24,7 +24,13 @@
       "Bash(nvm install:*)",
       "Bash(nvm use:*)",
       "Bash(nvm ls:*)",
-      "Bash(npm --version)"
+      "Bash(npm --version)",
+      "mcp__Claude_in_Chrome__read_console_messages",
+      "Bash(git pull:*)",
+      "Bash(find C:Usersondrej.dolejsDesktopProjektyAures_Elite_Mentoring -type f \\\\\\(-name elements.xml -o -name schema.xml -o -name *provisioning* -o -name *PnP* \\\\\\))",
+      "Bash(gulp bundle:*)",
+      "Bash(gulp package-solution:*)",
+      "Bash(npx gulp:*)"
     ]
   }
 }

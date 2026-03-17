@@ -38,7 +38,7 @@ const RequestHistory: React.FC<IRequestHistoryProps> = ({ sp, currentUser }) => 
 
   return (
     <div>
-      <h2 className={styles.pageTitle}>Moje rozhodnuti</h2>
+      <h2 className={styles.pageTitle}>Moje rozhodnutí</h2>
 
       {requests.length === 0 ? (
         <div className={styles.emptyState}>
