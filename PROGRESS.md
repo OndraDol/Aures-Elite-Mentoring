@@ -1,11 +1,12 @@
 # PROGRESS.md — Aures Elite Mentoring
 
 ## Session Summary (2026-03-17)
-- Oddeleny photo asset pipeline pro HTML mockup a SPFx, aby obe casti fungovaly samostatne i po rozdeleni projektu.
-- Zuzana Vobornikova dostala novy portret, per-avatar focal point a vizualni kontrolu pres agent-browser.
-- SPFx build i ship bundle prosel; `package-solution --ship` stale konci prazdnym stderr warningem v toolchainu.
+- Uklizeny docasne QA screenshoty, stazene toolchain tarbally, `.codex-tmp`, `pptx_unpacked` a duplicitni mockup podslozky.
+- Odstraneny jednorazove pracovni artefakty `Create-SharePointLists.ps1`, `source-code-review.md` a release dependency audit JSON.
+- Git working tree je po cleanupu cisty.
 
 ## Session Log
+- **2026-03-17**: Session 29. Artefact cleanup - odstraneny docasne screenshoty, tarbally, `.codex-tmp`, `pptx_unpacked`, duplicitni `assets/mockup/mentors|talents`, jednorazove helper/report soubory a tracked release audit artefakt; working tree vycisten.
 - **2026-03-17**: Session 28. Foto asset split + Zuzana Vobornikova - `assets/mockup/` oddelen od `src/webparts/auresApp/assets/mentors/`, pridan SPFx mentor avatar resolver s fallbackem a focal pointy, `RequestForm` + `MentorCatalog` prevedeny na sdileny avatar komponent, `index.html` dostal centralni photo metadata a QA deep-linky, browserove overeni pres `agent-browser` + build OK.
 - **2026-03-17**: Session 27. Code review export pro Honzu — pridan skript `Create-ProHonzu.ps1` a exportni slozka `pro honzu/` (bez `.md`, bez build outputu).
 - **2026-03-14**: Session 26. Naplnění reálnými talenty — MOCK_TALENTS nahrazeny 21 reálnými osobami (David Reich jako přihlášený uživatel v mockupu), MOCK_REQUESTS aktualizovány, index.html: MENTEES_DASHBOARD + TALENT_MGMT + ALL_REQS + APPROVED_PAIRS + HR_QUEUE aktualizovány, avatar fotky s fix background-position: top center pro správné zobrazení obličejů.
