@@ -1,6 +1,12 @@
 # PROGRESS.md — Aures Elite Mentoring
 
+## Session Summary (2026-03-17)
+- Vytvoren export pro code review: `Create-ProHonzu.ps1` generuje slozku `pro honzu/`.
+- Export kopiruje jen zdrojaky + konfiguraci a automaticky vynecha vsechny `.md` soubory.
+- `.gitignore` doplnen o `pro honzu/`, aby se export necommitoval.
+
 ## Session Log
+- **2026-03-17**: Session 27. Code review export pro Honzu — pridan skript `Create-ProHonzu.ps1` a exportni slozka `pro honzu/` (bez `.md`, bez build outputu).
 - **2026-03-14**: Session 26. Naplnění reálnými talenty — MOCK_TALENTS nahrazeny 21 reálnými osobami (David Reich jako přihlášený uživatel v mockupu), MOCK_REQUESTS aktualizovány, index.html: MENTEES_DASHBOARD + TALENT_MGMT + ALL_REQS + APPROVED_PAIRS + HR_QUEUE aktualizovány, avatar fotky s fix background-position: top center pro správné zobrazení obličejů.
 - **2026-03-14**: Session 25. HR IA simplification — zjednodusena HR navigace v appce i mockupu. `Mentees dashboard` zustava jako hlavni operativni pohled, redundantni `Čeká` vyjmut z menu/routeru, `HRReviewQueue` odstranena z aktivni navigacni struktury a `Talenti` prejmenovani na `Správa talentů`. README aktualizovan, mockup synchronizovan.
 - **2026-03-14**: Session 24. Mockup sync — staticky `index.html` doplnen o HR zalozku `Mentees dashboard` s prehledem vsech mentees a jejich stavu (Bez zadosti / Ceka na mentora / Vyžaduje HR / Mentor potvrzen / Propojeno), aby GitHub Pages odpovidaly implementaci ve SPFx appce. README doplnen o sekci GitHub Pages / Mockup.
@@ -101,6 +107,7 @@ SPFx **1.18.2**, React 17, TypeScript 4.5.5. Phase 0–8 hotove. Ceka se na SP p
 - [x] 7.4 Production build — `npm run build` prochází OK (Node.js 18.19.0 LTS); release/ folder s .sppkg generován
 - [ ] 7.5 Testovani na SharePoint Online workbench
 - [ ] 7.6 README.md aktualizace — finalni setup instrukce
+- [x] 7.7 Code review export — `Create-ProHonzu.ps1` generuje `pro honzu/` (bez `.md`, bez build outputu)
 
 ## Session 20 (2026-03-13) — UI vylepšení a build
 - Opraven SCSS: `$gold-dark` → `$gold-dk`
