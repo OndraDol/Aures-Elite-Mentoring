@@ -1,11 +1,12 @@
 # PROGRESS.md — Aures Elite Mentoring
 
 ## Session Summary (2026-03-17)
-- Uklizeny docasne QA screenshoty, stazene toolchain tarbally, `.codex-tmp`, `pptx_unpacked` a duplicitni mockup podslozky.
-- Odstraneny jednorazove pracovni artefakty `Create-SharePointLists.ps1`, `source-code-review.md` a release dependency audit JSON.
-- Git working tree je po cleanupu cisty.
+- Zuzana Vobornikova prepnutá na novy crop vytvoreny primo z posledniho obrazku vlozeneho v chatu.
+- Mockup `index.html` i SPFx avatar resolver pouzivaji stejny novy oblicej a centrovany square portrait.
+- Vizuální kontrola probehla v katalogu mentoru i ve formulari nove zadosti v mockupu.
 
 ## Session Log
+- **2026-03-17**: Session 30. Oprava portretu Zuzany Vobornikove - z posledniho chatu dekodovan zdrojovy PNG, vytvoren novy square crop obliceje, prepnut `assets/mockup/vobornikova.jpg` + `src/webparts/auresApp/assets/mentors/vobornikova.png`, metadata sjednocena na centrovany portrait a browserove overena v katalogu + RequestForm.
 - **2026-03-17**: Session 29. Artefact cleanup - odstraneny docasne screenshoty, tarbally, `.codex-tmp`, `pptx_unpacked`, duplicitni `assets/mockup/mentors|talents`, jednorazove helper/report soubory a tracked release audit artefakt; working tree vycisten.
 - **2026-03-17**: Session 28. Foto asset split + Zuzana Vobornikova - `assets/mockup/` oddelen od `src/webparts/auresApp/assets/mentors/`, pridan SPFx mentor avatar resolver s fallbackem a focal pointy, `RequestForm` + `MentorCatalog` prevedeny na sdileny avatar komponent, `index.html` dostal centralni photo metadata a QA deep-linky, browserove overeni pres `agent-browser` + build OK.
 - **2026-03-17**: Session 27. Code review export pro Honzu — pridan skript `Create-ProHonzu.ps1` a exportni slozka `pro honzu/` (bez `.md`, bez build outputu).

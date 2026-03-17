@@ -28,7 +28,7 @@ const MENTOR_AVATARS: IMentorAvatarConfig[] = [
   { src: lunacekPhoto, position: '50% 22%', ids: [5], aliases: ['daniel lunacek', 'daniel.lunacek', 'lunacek'] },
   { src: vapenikPhoto, position: '50% 30%', ids: [7], aliases: ['miroslav vapenik', 'miroslav.vapenik', 'vapenik'] },
   { src: vorsilkovaPhoto, position: '50% 20%', ids: [10], aliases: ['marie vorsilkova', 'marie.vorsilkova', 'vorsilkova'] },
-  { src: vobornikovaPhoto, position: '50% 38%', ids: [9], aliases: ['zuzana vobornikova', 'zuzana.vobornikova', 'vobornikova'] },
+  { src: vobornikovaPhoto, position: '50% 50%', ids: [9], aliases: ['zuzana vobornikova', 'zuzana.vobornikova', 'vobornikova'] },
   { src: batekPhoto, position: '50% 26%', ids: [6], aliases: ['zdenek batek', 'zdenek.batek', 'batek'] },
   { src: svobodaPhoto, position: '50% 26%', ids: [8], aliases: ['alen svoboda', 'alen.svoboda', 'svoboda'] }
 ];
