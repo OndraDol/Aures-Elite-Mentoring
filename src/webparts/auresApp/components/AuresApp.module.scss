@@ -660,6 +660,7 @@ $transition-slow: 0.4s $ease-out;
   flex-shrink: 0;
   letter-spacing: 0.5px;
   position: relative;
+  overflow: hidden;
 
   // Gold ring
   &::after {
@@ -669,6 +670,25 @@ $transition-slow: 0.4s $ease-out;
     border-radius: 50%;
     border: 2px solid rgba(201, 168, 76, 0.40);
   }
+}
+
+.mentorAvatarCatalog {
+  width: 80px;
+  height: 80px;
+}
+
+.mentorAvatarHasPhoto {
+  color: transparent;
+  border: none;
+  box-shadow: 0 0 0 3px rgba($gold, 0.25);
+}
+
+.mentorAvatarImage {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: inherit;
 }
 
 .mentorName {
@@ -707,16 +727,6 @@ $transition-slow: 0.4s $ease-out;
     font-size: 11px;
     color: $gold;
   }
-}
-
-.mentorAvatarPhoto {
-  background-size: cover;
-  background-position: center center;
-  color: transparent;
-  width: 80px;
-  height: 80px;
-  border: none;
-  box-shadow: 0 0 0 3px rgba($gold, 0.25);
 }
 
 .mentorBio {
@@ -1634,6 +1644,7 @@ $transition-slow: 0.4s $ease-out;
   font-size: 22px;
   flex-shrink: 0;
   position: relative;
+  overflow: hidden;
 
   &::after {
     content: '';
@@ -1643,6 +1654,18 @@ $transition-slow: 0.4s $ease-out;
     border: 2.5px solid $gold;
     box-shadow: $shadow-gold;
   }
+}
+
+.primaryMentorAvatarHasPhoto {
+  color: transparent;
+}
+
+.primaryMentorAvatarImage {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: inherit;
 }
 
 .primaryMentorInfo {

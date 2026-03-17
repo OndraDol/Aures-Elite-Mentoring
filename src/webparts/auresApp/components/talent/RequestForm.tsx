@@ -6,6 +6,7 @@ import { MentoringService } from '../../../../services/MentoringService';
 import { NotificationService } from '../../../../services/NotificationService';
 import { NavigateFn } from '../AppView';
 import { MOCK_MENTORS, MOCK_REQUESTS } from '../../../../utils/mockData';
+import MentorAvatar from '../shared/MentorAvatar';
 
 interface IRequestFormProps {
   sp: SPFI;
@@ -16,19 +17,20 @@ interface IRequestFormProps {
 }
 
 const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, hrEmails, preselectedMentorId }) => {
-  const [mentors, setMentors]       = React.useState<IMentor[]>([]);
-  const [loading, setLoading]       = React.useState(true);
-  const [submitting, setSubmitting]       = React.useState(false);
-  const [error, setError]                 = React.useState<string | null>(null);
+  const [mentors, setMentors] = React.useState<IMentor[]>([]);
+  const [loading, setLoading] = React.useState(true);
+  const [submitting, setSubmitting] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
   const [hasActiveRequest, setHasActiveRequest] = React.useState(false);
 
   const [secondaryId, setSecondaryId] = React.useState<number | null>(null);
-  const [tertiaryId, setTertiaryId]   = React.useState<number | null>(null);
+  const [tertiaryId, setTertiaryId] = React.useState<number | null>(null);
   const [messages, setMessages] = React.useState<Record<number, string>>({});
 
   React.useEffect(() => {
     const talentId = currentUser.talentRecord?.Id;
     const svc = new MentoringService(sp);
+
     Promise.all([
       svc.getMentors(),
       talentId ? svc.getMyRequests(talentId) : Promise.resolve([])
@@ -57,11 +59,13 @@ const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, h
 
   const handleSubmit = async (): Promise<void> => {
     if (!preselectedMentorId) {
-      setError('Nebyl zvolen primární mentor.');
+      setError('Nebyl zvolen primarni mentor.');
       return;
     }
+
     setError(null);
     setSubmitting(true);
+
     try {
       const talentId = currentUser.talentRecord?.Id ?? 0;
       const mentorIds: [number, number?, number?] = [
@@ -74,32 +78,43 @@ const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, h
         secondaryId != null ? (messages[secondaryId] ?? '').trim() : undefined,
         tertiaryId != null ? (messages[tertiaryId] ?? '').trim() : undefined
       ];
+
       const newId = await new MentoringService(sp).submitRequest(talentId, mentorIds, msgs);
+
       void (async () => {
         try {
           const mentor1 = mentors.find(m => m.Id === preselectedMentorId);
           if (mentor1 && currentUser.talentRecord) {
             await new NotificationService(sp).notifyHROnSubmit(
-              hrEmails, currentUser.talentRecord, mentor1, newId, `REQ-2026-${newId}`
+              hrEmails,
+              currentUser.talentRecord,
+              mentor1,
+              newId,
+              `REQ-2026-${newId}`
             );
           }
-        } catch { /* best-effort */ }
+        } catch {
+          // best-effort
+        }
       })();
+
       navigate('MyRequests');
     } catch {
-      setError('Nepodařilo se odeslat žádost. Zkus to znovu.');
+      setError('Nepodarilo se odeslat zadost. Zkus to znovu.');
     } finally {
       setSubmitting(false);
     }
   };
 
-  if (loading) return <div className={styles.loading}>Načítám mentory…</div>;
+  if (loading) {
+    return <div className={styles.loading}>Nacitam mentory...</div>;
+  }
 
   if (hasActiveRequest) {
     return (
       <div className={styles.emptyState}>
-        <p>Již máš aktivní žádost o mentoring. Pokud chceš podat novou, musíš svou volbu nejprve resetovat.</p>
-        <button className={styles.btnPrimary} onClick={() => navigate('MyRequests')}>Přejít na Moje žádosti</button>
+        <p>Jiz mas aktivni zadost o mentoring. Pokud chces podat novou, musis svou volbu nejprve resetovat.</p>
+        <button className={styles.btnPrimary} onClick={() => navigate('MyRequests')}>Prejit na Moje zadosti</button>
       </div>
     );
   }
@@ -112,7 +127,7 @@ const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, h
       <div className={styles.emptyState}>
         <p>Mentor nebyl nalezen.</p>
         <button className={styles.btnPrimary} onClick={() => navigate('MentorCatalog')}>
-          Zpět na katalog
+          Zpet na katalog
         </button>
       </div>
     );
@@ -120,32 +135,30 @@ const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, h
 
   return (
     <div className={styles.requestForm}>
-      <h2 className={styles.pageTitle}>Nová žádost o mentoring</h2>
+      <h2 className={styles.pageTitle}>Nova zadost o mentoring</h2>
 
-      {/* 1. Primary Mentor — prominent */}
       <div className={styles.formSection}>
-        <h3 className={styles.formSectionTitle}>Tvůj vybraný mentor</h3>
+        <h3 className={styles.formSectionTitle}>Tvuj vybrany mentor</h3>
         <div className={styles.primaryMentorCard}>
           <div className={styles.primaryMentorHeader}>
-            <div className={styles.primaryMentorAvatar}>{getInitials(primaryMentor.Title)}</div>
+            <MentorAvatar mentor={primaryMentor} variant="primary" />
             <div className={styles.primaryMentorInfo}>
               <p className={styles.primaryMentorName}>{primaryMentor.Title}</p>
               <p className={styles.primaryMentorJobTitle}>{primaryMentor.JobTitle}</p>
               <p className={styles.primaryMentorSuperpower}>{primaryMentor.Superpower}</p>
             </div>
-            <span className={styles.primaryMentorBadge}>Primární mentor</span>
+            <span className={styles.primaryMentorBadge}>Primarni mentor</span>
           </div>
           <p className={styles.primaryMentorBio}>{primaryMentor.Bio}</p>
         </div>
       </div>
 
-      {/* 2. Backup mentors */}
       {otherMentors.length > 0 && (
         <div className={styles.formSection}>
-          <h3 className={styles.formSectionTitle}>Záložní mentoři</h3>
+          <h3 className={styles.formSectionTitle}>Zalozni mentori</h3>
           <p className={styles.formSectionHint}>
-            Pokud vybraný mentor nebude mít kapacitu, systém automaticky osloví záložního mentora.
-            Vyber si sekundárního a případně terciálního mentora.
+            Pokud vybrany mentor nebude mit kapacitu, system automaticky oslovi zalozniho mentora.
+            Vyber si sekundarniho a pripadne terciarniho mentora.
           </p>
           <div className={styles.backupMentorList}>
             {otherMentors.map(mentor => {
@@ -162,7 +175,7 @@ const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, h
                   ].filter(Boolean).join(' ')}
                 >
                   <div className={styles.backupMentorInfo}>
-                    <div className={styles.mentorAvatar}>{getInitials(mentor.Title)}</div>
+                    <MentorAvatar mentor={mentor} />
                     <div>
                       <p className={styles.mentorSelectName}>{mentor.Title}</p>
                       <p className={styles.mentorSelectJobTitle}>
@@ -171,14 +184,18 @@ const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, h
                     </div>
                   </div>
                   <div className={styles.backupMentorActions}>
-                    {isSecondary && <span className={styles.backupMentorLabel}>Sekundární</span>}
-                    {isTertiary && <span className={styles.backupMentorLabelTertiary}>Terciální</span>}
+                    {isSecondary && <span className={styles.backupMentorLabel}>Sekundarni</span>}
+                    {isTertiary && <span className={styles.backupMentorLabelTertiary}>Terciarni</span>}
                     {isSelected ? (
                       <button
                         className={styles.btnSecondary}
                         onClick={() => {
-                          if (isSecondary) { setSecondaryId(tertiaryId); setTertiaryId(null); }
-                          else { setTertiaryId(null); }
+                          if (isSecondary) {
+                            setSecondaryId(tertiaryId);
+                            setTertiaryId(null);
+                          } else {
+                            setTertiaryId(null);
+                          }
                         }}
                       >
                         Odebrat
@@ -188,11 +205,14 @@ const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, h
                         className={styles.btnSecondary}
                         disabled={secondaryId !== null && tertiaryId !== null}
                         onClick={() => {
-                          if (secondaryId === null) setSecondaryId(mentor.Id);
-                          else if (tertiaryId === null) setTertiaryId(mentor.Id);
+                          if (secondaryId === null) {
+                            setSecondaryId(mentor.Id);
+                          } else if (tertiaryId === null) {
+                            setTertiaryId(mentor.Id);
+                          }
                         }}
                       >
-                        {secondaryId === null ? 'Zvolit jako sekundárního' : 'Zvolit jako terciálního'}
+                        {secondaryId === null ? 'Zvolit jako sekundarniho' : 'Zvolit jako terciarniho'}
                       </button>
                     )}
                   </div>
@@ -203,39 +223,38 @@ const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, h
         </div>
       )}
 
-      {/* 3. Optional messages */}
       <div className={styles.formSection}>
-        <h3 className={styles.formSectionTitle}>Zprávy mentorům</h3>
+        <h3 className={styles.formSectionTitle}>Zpravy mentorum</h3>
         <p className={styles.formSectionHint}>
-          Pokud chceš, můžeš mentorovi napsat zprávu — proč máš o něj zájem,
-          co od mentoringu očekáváš, nebo cokoliv dalšího. Zpráva není povinná.
+          Pokud chces, muzes mentorovi napsat zpravu - proc mas o nej zajem,
+          co od mentoringu ocekavas, nebo cokoliv dalsiho. Zprava neni povinna.
         </p>
 
         <div className={styles.messageGroup}>
           <label className={styles.messageLabel}>
-            Zpráva pro {primaryMentor.Title} (primární)
+            Zprava pro {primaryMentor.Title} (primarni)
           </label>
           <textarea
             className={styles.messageTextarea}
             value={messages[primaryMentor.Id] ?? ''}
             onChange={e => setMessage(primaryMentor.Id, e.target.value)}
-            placeholder={`Napiš, proč tě zajímá mentoring od ${primaryMentor.Title}…`}
+            placeholder={`Napis, proc te zajima mentoring od ${primaryMentor.Title}...`}
             rows={3}
           />
         </div>
 
         {secondaryId != null && (() => {
-          const m = mentors.find(x => x.Id === secondaryId);
-          return m ? (
+          const mentor = mentors.find(x => x.Id === secondaryId);
+          return mentor ? (
             <div className={styles.messageGroup}>
               <label className={styles.messageLabel}>
-                Zpráva pro {m.Title} (sekundární)
+                Zprava pro {mentor.Title} (sekundarni)
               </label>
               <textarea
                 className={styles.messageTextarea}
                 value={messages[secondaryId] ?? ''}
                 onChange={e => setMessage(secondaryId, e.target.value)}
-                placeholder={`Napiš, proč tě zajímá mentoring od ${m.Title}…`}
+                placeholder={`Napis, proc te zajima mentoring od ${mentor.Title}...`}
                 rows={3}
               />
             </div>
@@ -243,17 +262,17 @@ const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, h
         })()}
 
         {tertiaryId != null && (() => {
-          const m = mentors.find(x => x.Id === tertiaryId);
-          return m ? (
+          const mentor = mentors.find(x => x.Id === tertiaryId);
+          return mentor ? (
             <div className={styles.messageGroup}>
               <label className={styles.messageLabel}>
-                Zpráva pro {m.Title} (terciální)
+                Zprava pro {mentor.Title} (terciarni)
               </label>
               <textarea
                 className={styles.messageTextarea}
                 value={messages[tertiaryId] ?? ''}
                 onChange={e => setMessage(tertiaryId, e.target.value)}
-                placeholder={`Napiš, proč tě zajímá mentoring od ${m.Title}…`}
+                placeholder={`Napis, proc te zajima mentoring od ${mentor.Title}...`}
                 rows={3}
               />
             </div>
@@ -261,32 +280,25 @@ const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, h
         })()}
       </div>
 
-      {/* 4. Actions */}
       <div className={styles.formActions}>
         <button
           className={styles.btnPrimary}
           onClick={() => { void handleSubmit(); }}
           disabled={submitting}
         >
-          {submitting ? 'Odesílám…' : 'Odeslat žádost'}
+          {submitting ? 'Odesilam...' : 'Odeslat zadost'}
         </button>
         <button
           className={styles.btnSecondary}
           onClick={() => navigate('MentorCatalog')}
           disabled={submitting}
         >
-          Zpět na katalog
+          Zpet na katalog
         </button>
         {error && <span className={styles.formError}>{error}</span>}
       </div>
     </div>
   );
 };
-
-function getInitials(name: string): string {
-  const parts = name.trim().split(/\s+/);
-  if (parts.length >= 2) return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
-  return name.slice(0, 2).toUpperCase();
-}
 
 export default RequestForm;

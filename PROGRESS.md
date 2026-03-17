@@ -1,11 +1,12 @@
 # PROGRESS.md — Aures Elite Mentoring
 
 ## Session Summary (2026-03-17)
-- Vytvoren export pro code review: `Create-ProHonzu.ps1` generuje slozku `pro honzu/`.
-- Export kopiruje jen zdrojaky + konfiguraci a automaticky vynecha vsechny `.md` soubory.
-- `.gitignore` doplnen o `pro honzu/`, aby se export necommitoval.
+- Oddeleny photo asset pipeline pro HTML mockup a SPFx, aby obe casti fungovaly samostatne i po rozdeleni projektu.
+- Zuzana Vobornikova dostala novy portret, per-avatar focal point a vizualni kontrolu pres agent-browser.
+- SPFx build i ship bundle prosel; `package-solution --ship` stale konci prazdnym stderr warningem v toolchainu.
 
 ## Session Log
+- **2026-03-17**: Session 28. Foto asset split + Zuzana Vobornikova - `assets/mockup/` oddelen od `src/webparts/auresApp/assets/mentors/`, pridan SPFx mentor avatar resolver s fallbackem a focal pointy, `RequestForm` + `MentorCatalog` prevedeny na sdileny avatar komponent, `index.html` dostal centralni photo metadata a QA deep-linky, browserove overeni pres `agent-browser` + build OK.
 - **2026-03-17**: Session 27. Code review export pro Honzu — pridan skript `Create-ProHonzu.ps1` a exportni slozka `pro honzu/` (bez `.md`, bez build outputu).
 - **2026-03-14**: Session 26. Naplnění reálnými talenty — MOCK_TALENTS nahrazeny 21 reálnými osobami (David Reich jako přihlášený uživatel v mockupu), MOCK_REQUESTS aktualizovány, index.html: MENTEES_DASHBOARD + TALENT_MGMT + ALL_REQS + APPROVED_PAIRS + HR_QUEUE aktualizovány, avatar fotky s fix background-position: top center pro správné zobrazení obličejů.
 - **2026-03-14**: Session 25. HR IA simplification — zjednodusena HR navigace v appce i mockupu. `Mentees dashboard` zustava jako hlavni operativni pohled, redundantni `Čeká` vyjmut z menu/routeru, `HRReviewQueue` odstranena z aktivni navigacni struktury a `Talenti` prejmenovani na `Správa talentů`. README aktualizovan, mockup synchronizovan.
@@ -131,6 +132,8 @@ SPFx **1.18.2**, React 17, TypeScript 4.5.5. Phase 0–8 hotove. Ceka se na SP p
 - [x] 10.5 AuresApp.module.scss — styly pro .mentorAvatarPhoto, .mentorDetails*, .mentorChallenge
 - [x] 10.6 MENTOR_MGMT a CAPACITY v mockup.html — aktualizovány na 10 reálných mentorů s kapacitami
 - [x] 10.7 Ověření v prohlížeči — fotky OK, expandable bio OK, HR dashboard s 10 mentory OK
+
+- [x] 10.8 Nezavisle foto assety pro mockup/SPFx + novy portret Zuzany Vobornikove - `assets/mockup/`, `src/webparts/auresApp/assets/mentors/`, bundled fallback resolver, focal point metadata, browser QA screenshoty
 
 ## Phase 8: UX Redesign (vlastnik pozadavky)
 

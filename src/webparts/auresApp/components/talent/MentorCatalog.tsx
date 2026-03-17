@@ -5,6 +5,7 @@ import { IMentor, ICurrentUser } from '../../../../services/interfaces';
 import { MentoringService } from '../../../../services/MentoringService';
 import { NavigateFn } from '../AppView';
 import { MOCK_MENTORS } from '../../../../utils/mockData';
+import MentorAvatar from '../shared/MentorAvatar';
 
 interface IMentorCatalogProps {
   sp: SPFI;
@@ -70,19 +71,10 @@ const MentorCard: React.FC<IMentorCardProps> = ({ mentor, onRequest }) => {
   const shortBio = bioText.split(/(?<=\.)\s+/).slice(0, 2).join(' ');
   const hasMore = bioText.length > shortBio.length || challengeText.length > 0;
 
-  const avatarClass = mentor.PhotoUrl
-    ? `${styles.mentorAvatar} ${styles.mentorAvatarPhoto}`
-    : styles.mentorAvatar;
-  const avatarStyle = mentor.PhotoUrl
-    ? { backgroundImage: `url('${mentor.PhotoUrl}')` }
-    : undefined;
-
   return (
     <div className={styles.mentorCard}>
       <div className={styles.mentorCardHeader}>
-        <div className={avatarClass} style={avatarStyle}>
-          {!mentor.PhotoUrl && getInitials(mentor.Title)}
-        </div>
+        <MentorAvatar mentor={mentor} variant="catalog" />
         <div>
           <p className={styles.mentorName}>{mentor.Title}</p>
           <p className={styles.mentorJobTitle}>{mentor.JobTitle}</p>
@@ -121,11 +113,5 @@ const MentorCard: React.FC<IMentorCardProps> = ({ mentor, onRequest }) => {
     </div>
   );
 };
-
-function getInitials(name: string): string {
-  const parts = name.trim().split(/\s+/);
-  if (parts.length >= 2) return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
-  return name.slice(0, 2).toUpperCase();
-}
 
 export default MentorCatalog;

@@ -34,7 +34,7 @@
     "scriptResources": {
       "aures-app-web-part": {
         "type": "path",
-        "path": "aures-app-web-part_9bca8afac3e434488ffe.js"
+        "path": "aures-app-web-part_f05a8d39373d1d30424f.js"
       },
       "@microsoft/sp-property-pane": {
         "type": "component",
