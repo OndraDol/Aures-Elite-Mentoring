@@ -59,6 +59,7 @@ export interface ITalent {
   Title: string;
   TalentUser: ISPUser;
   IsActive: boolean;
+  PhotoUrl?: string;
 }
 
 export interface IMentoringRequest {
