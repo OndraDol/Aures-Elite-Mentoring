@@ -36,6 +36,11 @@ gulp bundle --ship && gulp package-solution --ship
 gulp trust-dev-cert
 ```
 
+## Code review (pro Honzu)
+
+- Spustit `powershell -ExecutionPolicy Bypass -NoProfile -File .\\Create-ProHonzu.ps1`.
+- Vytvori slozku `pro honzu/` se zdrojaky + konfiguraci (bez `.md`, bez build outputu).
+
 ## Nasazeni
 
 1. Spustit `gulp bundle --ship && gulp package-solution --ship`
