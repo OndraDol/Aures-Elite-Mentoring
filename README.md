@@ -1,21 +1,30 @@
 # Aures Elite Mentoring
 
-SPFx aplikace pro propojovani talentu Aures Holdings s top managementem (mentory) s concierge fall-through workflow a synchronnim HTML mockupem.
+SPFx webpart pro mentoring workflow mezi talenty, mentory a HR v SharePoint Online.
+
+## Aktuální stav
+
+- SPFx stack je upgradovaný na `1.22.2`.
+- Build runtime je `Node.js 22.x`.
+- TypeScript compiler je `5.3.x`.
+- Testovací i produkční SharePoint prostředí už existuje.
+- Schválení a nasazení `.sppkg` do App Catalogu zatím čeká na IT.
+- E-mailové notifikace nejsou aktivní. `NotificationService` je stub připravený pro budoucí Power Automate flow.
 
 ## Stack
 
 | Vrstva | Technologie |
-|---|---|
-| Platform | SharePoint Online, SPFx 1.18.2 |
-| Runtime | Node.js v18 LTS |
-| Framework | React 17.0.1, TypeScript 4.5.x |
-| Data | @pnp/sp v4 |
+| --- | --- |
+| Platforma | SharePoint Online, SPFx `1.22.2` |
+| Runtime | Node.js `22.x` |
+| Framework | React `17.0.1`, TypeScript `5.3.x` |
+| Data | `@pnp/sp` v4 |
 | Styling | Dart Sass + Fluent UI |
 
-## Pozadavky
+## Požadavky
 
-- Node.js v18 LTS
-- npm 9+
+- Node.js `22.x`
+- npm `10+`
 
 ## Instalace
 
@@ -23,10 +32,10 @@ SPFx aplikace pro propojovani talentu Aures Holdings s top managementem (mentory
 npm install
 ```
 
-## Prikazy
+## Lokální příkazy
 
 ```bash
-# Lokalni preview (SPFx)
+# Lokální SPFx debug
 npx gulp serve
 
 # Debug build
@@ -38,39 +47,102 @@ npx gulp bundle --ship
 # Production package
 npx gulp package-solution --ship
 
-# Fix HTTPS certifikatu
+# Oba produkční kroky najednou
+npm run package
+
+# HTTPS certifikát pro localhost debug
 npx gulp trust-dev-cert
 ```
 
+## Co lze dělat bez schváleného `.sppkg`
+
+Bez App Catalog deploymentu lze aplikaci testovat v SharePoint test site přes hosted workbench a debug manifesty z localhostu.
+
+To už teď umožňuje:
+
+- ověřit, že listy `Mentors`, `Talents`, `MentoringRequests` mají správné názvy a pole
+- testovat reálné čtení a zápis do SharePoint listů
+- testovat role Talent / Mentor / HR na reálných účtech
+- testovat celý workflow žádosti v UI nad reálnými daty
+- ověřit vzhled aplikace téměř stejně, jak ji uvidí uživatelé po nasazení
+
+Bez schváleného `.sppkg` naopak zatím nelze:
+
+- přidat webpart jako standardní komponentu na běžnou SharePoint stránku
+- otestovat finální distribuci přes App Catalog
+- pustit aplikaci normálním uživatelům bez debug režimu
+
+## Jak testovat v SharePoint test prostředí
+
+1. V repu spusť `nvm use 22.22.1` nebo jinou Node `22.x`.
+2. Spusť `npm install`.
+3. Poprvé případně `npx gulp trust-dev-cert`.
+4. Spusť `npx gulp serve --nobrowser`.
+5. Otevři hosted workbench na test site:
+   `https://<tenant>.sharepoint.com/sites/<test-site>/_layouts/15/workbench.aspx`
+6. Potvrď načtení debug manifestů z localhostu.
+
+Tohle není jen „koukání na testovací stránku“. Uvidíš reálný webpart UI renderovaný v SharePointu nad reálnými listy. Rozdíl proti finálnímu nasazení je hlavně v tom, že běží přes debug manifest z tvého PC, ne z App Catalogu.
+
+## SharePoint předpoklady
+
+### Listy
+
+Musí existovat tyto listy:
+
+- `Mentors`
+- `Talents`
+- `MentoringRequests`
+
+Interní názvy polí musí zůstat přesně podle implementace v [MentoringService.ts](/root/Aures-Elite-Mentoring/src/services/MentoringService.ts).
+
+### HR role
+
+HR role se aktuálně nebere ze SharePoint skupiny. Určuje se porovnáním přihlášeného e-mailu s hodnotami z webpart property `hrEmails`, viz [RoleService.ts](/root/Aures-Elite-Mentoring/src/services/RoleService.ts).
+
+### Notifikace
+
+- `SPUtility.sendEmail` je odstraněné.
+- Microsoft Graph mail se nepoužívá.
+- `NotificationService` je kompatibilní stub pro budoucí Power Automate řešení.
+- Aktuální testy workflow proto neověřují skutečné odeslání e-mailu.
+
+## Funkční přehled
+
+### Talent
+
+- katalog mentorů
+- založení žádosti s 1 až 3 mentory
+- přehled vlastních žádostí
+- reset volby / zrušení aktivních žádostí
+
+### Mentor
+
+- čekající žádosti pro aktivní stage
+- detail žádosti s approve / reject
+- historie rozhodnutí
+
+### HR
+
+- `Mentees dashboard`
+- `Domluvené mentoringy`
+- správa mentorů
+- správa talentů
+- kapacitní dashboard
+
 ## Fotky a assety
 
-- HTML mockup pouziva pouze assety v `assets/mockup/`.
-- SPFx cast pouziva pouze bundled mentor assety v `src/webparts/auresApp/assets/mentors/`.
-- Root `pic/` uz neni runtime zavislost pro mockup ani pro SPFx.
-- SPFx resolver bere `PhotoUrl` ze SharePointu jako prioritu; kdyz chybi, pouzije bundled fallback podle mentora.
-- Focal point pro kruhove avatary je drzen interne v UI vrstve, bez zmeny SharePoint schema.
+- HTML mockup používá assety v `assets/mockup/`
+- SPFx část používá bundled assety v `src/webparts/auresApp/assets/`
+- výsledný `.sppkg` balíček obsahuje 10 mentor fotek, 21 talent fotek a 2 Teams ikony
 
-## Mockup
+## Deployment
 
-- Staticky mockup pro GitHub Pages je v root `index.html`.
-- `mockup.html` zustava jako redirect na `index.html`.
-- Mockup podporuje deep-link QA pres query parametry:
-  - `?role=talent&tab=newrequest&mentor=9`
-  - `?role=hr&tab=mentees`
-
-## Nasazeni
-
-1. Spustit `npx gulp bundle --ship`.
-2. Spustit `npx gulp package-solution --ship`.
-3. Soubor `sharepoint/solution/aures-elite-mentoring.sppkg` predat SharePoint tymu.
-
-## Email notifikace
-
-- System posila emaily pouze na HR admin skupinu nastavovanou ve webpart property `hrEmail`.
-- Pri vytvoreni nove zadosti jde notifikace na HR.
-- Pri schvaleni zadosti mentorem jde notifikace znovu na HR.
-- Pri eskalaci do `HR_Review` jde notifikace na HR.
+1. Spustit `npm run package`
+2. Vznikne balíček `sharepoint/solution/aures-elite-mentoring.sppkg`
+3. IT / SharePoint tým musí balíček schválit a nahrát do App Catalogu
+4. Až potom půjde webpart přidávat na běžné stránky bez debug režimu
 
 ## Stav projektu
 
-Viz `PROGRESS.md`.
+Aktuální technický a projektový stav je v [PROGRESS.md](/root/Aures-Elite-Mentoring/PROGRESS.md).
