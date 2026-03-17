@@ -1,0 +1,12 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "isCreatingSolution": true,
+    "environment": "spo",
+    "version": "1.22.2",
+    "libraryName": "aures-elite-mentoring",
+    "libraryId": "1d89567e-a88d-45ec-a37c-60c5f7ecc886",
+    "packageManager": "npm",
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
