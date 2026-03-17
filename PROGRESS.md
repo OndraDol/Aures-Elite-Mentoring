@@ -1,11 +1,12 @@
 # PROGRESS.md — Aures Elite Mentoring
 
 ## Session Summary (2026-03-17)
-- Zuzana Vobornikova prepnutá na novy crop vytvoreny primo z posledniho obrazku vlozeneho v chatu.
-- Mockup `index.html` i SPFx avatar resolver pouzivaji stejny novy oblicej a centrovany square portrait.
-- Vizuální kontrola probehla v katalogu mentoru i ve formulari nove zadosti v mockupu.
+- Opravena chyba Windows EPERM při opakovaném `gulp package-solution --ship` — pre-clean hook v gulpfile.js.
+- NotificationService přepsán na stub pro Power Automate (sendEmail odstraněno, @pnp/sputilities dependency odebrána).
+- Finální .sppkg vygenerován a připraven pro IT (App Catalog upload).
 
 ## Session Log
+- **2026-03-17**: Session 31. Fix EPERM build chyby — gulpfile.js pre-clean hook (rmdir /s /q před package-solution), NotificationService přepsán na PA stub (sendEmail odstraněno), package.json: nový script "package", build OK, .sppkg čerstvý.
 - **2026-03-17**: Session 30. Oprava portretu Zuzany Vobornikove - z posledniho chatu dekodovan zdrojovy PNG, vytvoren novy square crop obliceje, prepnut `assets/mockup/vobornikova.jpg` + `src/webparts/auresApp/assets/mentors/vobornikova.png`, metadata sjednocena na centrovany portrait a browserove overena v katalogu + RequestForm.
 - **2026-03-17**: Session 29. Artefact cleanup - odstraneny docasne screenshoty, tarbally, `.codex-tmp`, `pptx_unpacked`, duplicitni `assets/mockup/mentors|talents`, jednorazove helper/report soubory a tracked release audit artefakt; working tree vycisten.
 - **2026-03-17**: Session 28. Foto asset split + Zuzana Vobornikova - `assets/mockup/` oddelen od `src/webparts/auresApp/assets/mentors/`, pridan SPFx mentor avatar resolver s fallbackem a focal pointy, `RequestForm` + `MentorCatalog` prevedeny na sdileny avatar komponent, `index.html` dostal centralni photo metadata a QA deep-linky, browserove overeni pres `agent-browser` + build OK.

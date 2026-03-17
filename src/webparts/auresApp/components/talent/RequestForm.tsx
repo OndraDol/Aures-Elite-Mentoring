@@ -85,7 +85,7 @@ const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, h
         try {
           const mentor1 = mentors.find(m => m.Id === preselectedMentorId);
           if (mentor1 && currentUser.talentRecord) {
-            await new NotificationService(sp).notifyHROnSubmit(
+            await new NotificationService().notifyHROnSubmit(
               hrEmails,
               currentUser.talentRecord,
               mentor1,
