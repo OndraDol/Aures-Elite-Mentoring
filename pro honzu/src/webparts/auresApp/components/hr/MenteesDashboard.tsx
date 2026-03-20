@@ -58,9 +58,11 @@ const MenteesDashboard: React.FC<IMenteesDashboardProps> = ({ sp, currentUser })
   const [processingId, setProcessingId] = React.useState<number | null>(null);
 
   const [loadError, setLoadError] = React.useState<string | null>(null);
+  const [actionError, setActionError] = React.useState<string | null>(null);
 
   const loadData = React.useCallback(async (): Promise<void> => {
     setLoadError(null);
+    setActionError(null);
     setLoading(true);
     try {
       const svc = new MentoringService(sp);
@@ -85,6 +87,7 @@ const MenteesDashboard: React.FC<IMenteesDashboardProps> = ({ sp, currentUser })
   const filteredRows = rows.filter(row => matchesFilter(row, activeFilter) && matchesSearch(row, search));
 
   const handleApprove = async (request: IMentoringRequest): Promise<void> => {
+    setActionError(null);
     setProcessingId(request.Id);
     try {
       await new MentoringService(sp).makeDecision(
@@ -93,33 +96,38 @@ const MenteesDashboard: React.FC<IMenteesDashboardProps> = ({ sp, currentUser })
         StageDecision.Approved,
         currentUser.id
       );
+      await loadData();
     } catch {
-      // lokalni dev fallback
+      setActionError('Nepodarilo se schvalit zadost za mentora.');
+    } finally {
+      setProcessingId(null);
     }
-    await loadData();
-    setProcessingId(null);
   };
 
   const handleSchedule = async (requestId: number): Promise<void> => {
+    setActionError(null);
     setProcessingId(requestId);
     try {
       await new MentoringService(sp).setRequestStatus(requestId, RequestStatus.Scheduled);
+      await loadData();
     } catch {
-      // lokalni dev fallback
+      setActionError('Nepodarilo se oznacit mentoring jako naplanovany.');
+    } finally {
+      setProcessingId(null);
     }
-    await loadData();
-    setProcessingId(null);
   };
 
   const handleCancel = async (requestId: number): Promise<void> => {
+    setActionError(null);
     setProcessingId(requestId);
     try {
       await new MentoringService(sp).setRequestStatus(requestId, RequestStatus.Cancelled);
+      await loadData();
     } catch {
-      // lokalni dev fallback
+      setActionError('Nepodarilo se zrusit zadost.');
+    } finally {
+      setProcessingId(null);
     }
-    await loadData();
-    setProcessingId(null);
   };
 
   if (loading) return <div className={styles.loading}>Načítám dashboard mentees…</div>;
@@ -131,6 +139,8 @@ const MenteesDashboard: React.FC<IMenteesDashboardProps> = ({ sp, currentUser })
       <p className={styles.sectionHint}>
         Talent-centric přehled. HR hned vidí, kdo nemá request, kdo čeká na mentora a kde je nutný zásah.
       </p>
+
+      {actionError && <ErrorBanner message={actionError} />}
 
       <div className={styles.filterRow}>
         <input

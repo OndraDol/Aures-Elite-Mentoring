@@ -17,10 +17,12 @@ const AllRequests: React.FC<IAllRequestsProps> = ({ sp, currentUser }) => {
   const [search, setSearch]     = React.useState('');
   const [loading, setLoading]   = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
+  const [actionError, setActionError] = React.useState<string | null>(null);
   const [processing, setProcessing] = React.useState<number | null>(null);
 
   const loadData = React.useCallback(() => {
     setError(null);
+    setActionError(null);
     setLoading(true);
     new MentoringService(sp).getAllRequests()
       .then(all => setRequests(all.filter(r =>
@@ -51,32 +53,44 @@ const AllRequests: React.FC<IAllRequestsProps> = ({ sp, currentUser }) => {
   };
 
   const handleHRApprove = async (req: IMentoringRequest): Promise<void> => {
+    setActionError(null);
     setProcessing(req.Id);
     try {
       await new MentoringService(sp).makeDecision(
         req.Id, req.CurrentStage, StageDecision.Approved, currentUser.id
       );
-    } catch { /* lokalni dev */ }
-    setRequests(prev => prev.filter(r => r.Id !== req.Id));
-    setProcessing(null);
+      setRequests(prev => prev.filter(r => r.Id !== req.Id));
+    } catch {
+      setActionError('Nepodarilo se schvalit zadost. Zkus to znovu.');
+    } finally {
+      setProcessing(null);
+    }
   };
 
   const handleHRSchedule = async (reqId: number): Promise<void> => {
+    setActionError(null);
     setProcessing(reqId);
     try {
       await new MentoringService(sp).setRequestStatus(reqId, RequestStatus.Scheduled);
-    } catch { /* lokalni dev */ }
-    setRequests(prev => prev.filter(r => r.Id !== reqId));
-    setProcessing(null);
+      setRequests(prev => prev.filter(r => r.Id !== reqId));
+    } catch {
+      setActionError('Nepodarilo se oznacit mentoring jako naplanovany.');
+    } finally {
+      setProcessing(null);
+    }
   };
 
   const handleHRCancel = async (reqId: number): Promise<void> => {
+    setActionError(null);
     setProcessing(reqId);
     try {
       await new MentoringService(sp).setRequestStatus(reqId, RequestStatus.Cancelled);
-    } catch { /* lokalni dev */ }
-    setRequests(prev => prev.filter(r => r.Id !== reqId));
-    setProcessing(null);
+      setRequests(prev => prev.filter(r => r.Id !== reqId));
+    } catch {
+      setActionError('Nepodarilo se zrusit zadost.');
+    } finally {
+      setProcessing(null);
+    }
   };
 
   const filtered = requests.filter(r => {
@@ -93,6 +107,8 @@ const AllRequests: React.FC<IAllRequestsProps> = ({ sp, currentUser }) => {
   return (
     <div>
       <h2 className={styles.pageTitle}>Čekající žádosti ({requests.length})</h2>
+
+      {actionError && <ErrorBanner message={actionError} />}
 
       <div className={styles.filterRow}>
         <input

@@ -1,8 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx gulp build --color)",
-      "Bash(npx gulp build)",
+      "Bash(npm run build:*)",
+      "Bash(npm run package:*)",
+      "Bash(npm run start:*)",
       "Bash(python3 -c \":*)",
       "Bash(python3:*)",
       "Bash(pip install python-docx python-pptx)",
@@ -28,9 +29,8 @@
       "mcp__Claude_in_Chrome__read_console_messages",
       "Bash(git pull:*)",
       "Bash(find C:Usersondrej.dolejsDesktopProjektyAures_Elite_Mentoring -type f \\\\\\(-name elements.xml -o -name schema.xml -o -name *provisioning* -o -name *PnP* \\\\\\))",
-      "Bash(gulp bundle:*)",
-      "Bash(gulp package-solution:*)",
-      "Bash(npx gulp:*)"
+      "Bash(npm audit:*)",
+      "Bash(ls -la \"C:/Users/ondrej.dolejs/Desktop/Projekty/Aures_Elite_Mentoring/\"*.md)"
     ]
   }
 }

@@ -41,7 +41,7 @@ interface IAppShellProps {
   navigate: NavigateFn;
   children: React.ReactNode;
   navBadges?: Partial<Record<AppView, number>>;
-  hasActiveRequests?: boolean;
+  hasActiveRequests?: boolean | null;
 }
 
 const AppShell: React.FC<IAppShellProps> = ({
@@ -52,7 +52,7 @@ const AppShell: React.FC<IAppShellProps> = ({
 
   const getTabsForRole = (role: UserRole): ITab[] => {
     if (role === UserRole.Talent) {
-      return hasActiveRequests ? TALENT_TABS_WITH_REQUESTS : TALENT_TABS_BASE;
+      return hasActiveRequests === false ? TALENT_TABS_BASE : TALENT_TABS_WITH_REQUESTS;
     }
     if (role === UserRole.Mentor) return MENTOR_TABS;
     if (role === UserRole.HR) return HR_TABS;

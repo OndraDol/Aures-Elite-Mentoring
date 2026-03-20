@@ -8,6 +8,7 @@ import { MentoringService } from '../../../services/MentoringService';
 import { AppView, NavigateFn } from './AppView';
 import AppShell from './AppShell';
 import AccessDenied from './AccessDenied';
+import ErrorBanner from './shared/ErrorBanner';
 import MentorCatalog from './talent/MentorCatalog';
 import RequestForm from './talent/RequestForm';
 import MyRequests from './talent/MyRequests';
@@ -28,13 +29,17 @@ const AuresApp: React.FC<IAuresAppProps> = ({ sp, hrEmails }) => {
   const [view, setView]               = React.useState<AppView | null>(null);
   const [navParams, setNavParams]     = React.useState<Record<string, unknown>>({});
   const [navBadges, setNavBadges]     = React.useState<Partial<Record<AppView, number>>>({});
-  const [hasActiveRequests, setHasActiveRequests] = React.useState(false);
+  const [hasActiveRequests, setHasActiveRequests] = React.useState<boolean | null>(null);
+  const [requestStateError, setRequestStateError] = React.useState<string | null>(null);
 
   const checkActiveRequests = React.useCallback((user: ICurrentUser) => {
     if (!user.roles.includes(UserRole.Talent) || !user.talentRecord) {
       setHasActiveRequests(false);
+      setRequestStateError(null);
       return;
     }
+    setHasActiveRequests(null);
+    setRequestStateError(null);
     new MentoringService(sp).getMyRequests(user.talentRecord.Id)
       .then(reqs => {
         const active = reqs.some(r =>
@@ -44,8 +49,14 @@ const AuresApp: React.FC<IAuresAppProps> = ({ sp, hrEmails }) => {
           r.RequestStatus === RequestStatus.Scheduled
         );
         setHasActiveRequests(active);
+        setRequestStateError(null);
       })
-      .catch(() => setHasActiveRequests(true)); // fallback: show tabs
+      .catch(() => {
+        setHasActiveRequests(null);
+        setRequestStateError(
+          'Nepodarilo se overit stav tvych zadosti. Talent zalozky zustavaji dostupne, ale data mohou byt neuplna.'
+        );
+      });
   }, [sp]);
 
   React.useEffect(() => {
@@ -102,7 +113,15 @@ const AuresApp: React.FC<IAuresAppProps> = ({ sp, hrEmails }) => {
         navBadges={navBadges}
         hasActiveRequests={hasActiveRequests}
       >
-        {renderView(view, currentUser, sp, navigate, navParams, hrEmails, handleRequestsChanged)}
+        <>
+          {requestStateError && (
+            <ErrorBanner
+              message={requestStateError}
+              onRetry={() => { checkActiveRequests(currentUser); }}
+            />
+          )}
+          {renderView(view, currentUser, sp, navigate, navParams, hrEmails, handleRequestsChanged)}
+        </>
       </AppShell>
     </div>
   );

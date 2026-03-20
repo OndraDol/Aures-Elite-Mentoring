@@ -17,37 +17,44 @@ const TalentManagement: React.FC<ITalentManagementProps> = ({ sp }) => {
   const [talents, setTalents] = React.useState<ITalent[]>([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
+  const [actionError, setActionError] = React.useState<string | null>(null);
 
   const loadData = React.useCallback(() => {
     setError(null);
+    setActionError(null);
     setLoading(true);
     new MentoringService(sp).getAllTalentsForAdmin()
       .then(setTalents)
-      .catch(() => setError('Nepodařilo se načíst talenty.'))
+      .catch(() => setError('Nepodarilo se nacist talenty.'))
       .finally(() => setLoading(false));
   }, [sp]);
 
   React.useEffect(() => { loadData(); }, [loadData]);
 
   const toggleActive = async (talent: ITalent): Promise<void> => {
+    setActionError(null);
     try {
       await new MentoringService(sp).setTalentActive(talent.Id, !talent.IsActive);
+      setTalents(prev => prev.map(t => t.Id === talent.Id ? { ...t, IsActive: !t.IsActive } : t));
     } catch {
-      // lokalni dev — ignoruj
+      setActionError('Nepodarilo se zmenit stav talentu.');
     }
-    setTalents(prev => prev.map(t => t.Id === talent.Id ? { ...t, IsActive: !t.IsActive } : t));
   };
 
-  if (loading) return <div className={styles.loading}>Načítám talenty…</div>;
+  if (loading) return <div className={styles.loading}>Nacitam talenty...</div>;
   if (error) return <ErrorBanner message={error} onRetry={loadData} />;
 
   return (
     <div>
-      <h2 className={styles.pageTitle}>Správa talentů ({talents.length})</h2>
+      <h2 className={styles.pageTitle}>Sprava talentu ({talents.length})</h2>
+
+      {actionError && <ErrorBanner message={actionError} />}
+
       <div className={styles.managementList}>
         {talents.map(talent => {
           const photoSrc = resolveTalentPhoto(talent);
           const initials = getTalentInitials(talent.Title);
+
           return (
             <div
               key={talent.Id}
@@ -66,7 +73,7 @@ const TalentManagement: React.FC<ITalentManagementProps> = ({ sp }) => {
                 className={talent.IsActive ? styles.activeBtn : styles.inactiveBtn}
                 onClick={() => { void toggleActive(talent); }}
               >
-                {talent.IsActive ? 'Aktivní' : 'Neaktivní'}
+                {talent.IsActive ? 'Aktivni' : 'Neaktivni'}
               </button>
             </div>
           );

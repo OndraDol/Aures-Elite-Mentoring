@@ -29,6 +29,7 @@ const MentorManagement: React.FC<IMentorManagementProps> = ({ sp }) => {
   const [mentors, setMentors] = React.useState<IMentor[]>([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
+  const [actionError, setActionError] = React.useState<string | null>(null);
   const [saving, setSaving]   = React.useState(false);
 
   // Add/Edit form
@@ -41,6 +42,7 @@ const MentorManagement: React.FC<IMentorManagementProps> = ({ sp }) => {
 
   const loadData = React.useCallback(() => {
     setError(null);
+    setActionError(null);
     setLoading(true);
     new MentoringService(sp).getAllMentorsForAdmin()
       .then(setMentors)
@@ -75,6 +77,7 @@ const MentorManagement: React.FC<IMentorManagementProps> = ({ sp }) => {
 
   const handleSave = async (): Promise<void> => {
     if (!form.Title.trim()) return;
+    setActionError(null);
     setSaving(true);
     const svc = new MentoringService(sp);
     try {
@@ -119,27 +122,37 @@ const MentorManagement: React.FC<IMentorManagementProps> = ({ sp }) => {
           IsActive: true
         }]);
       }
-    } catch { /* lokalni dev */ }
-    setSaving(false);
-    setShowForm(false);
-    setEditingId(null);
+      setShowForm(false);
+      setEditingId(null);
+    } catch {
+      setActionError(editingId ? 'Nepodarilo se ulozit zmeny mentora.' : 'Nepodarilo se vytvorit mentora.');
+    } finally {
+      setSaving(false);
+    }
   };
 
   const handleDelete = async (mentorId: number): Promise<void> => {
+    setActionError(null);
     setSaving(true);
     try {
       await new MentoringService(sp).deleteMentor(mentorId);
-    } catch { /* lokalni dev */ }
-    setMentors(prev => prev.filter(m => m.Id !== mentorId));
-    setDeletingId(null);
-    setSaving(false);
+      setMentors(prev => prev.filter(m => m.Id !== mentorId));
+      setDeletingId(null);
+    } catch {
+      setActionError('Nepodarilo se smazat mentora.');
+    } finally {
+      setSaving(false);
+    }
   };
 
   const toggleActive = async (mentor: IMentor): Promise<void> => {
+    setActionError(null);
     try {
       await new MentoringService(sp).setMentorActive(mentor.Id, !mentor.IsActive);
-    } catch { /* lokalni dev */ }
-    setMentors(prev => prev.map(m => m.Id === mentor.Id ? { ...m, IsActive: !m.IsActive } : m));
+      setMentors(prev => prev.map(m => m.Id === mentor.Id ? { ...m, IsActive: !m.IsActive } : m));
+    } catch {
+      setActionError('Nepodarilo se zmenit stav mentora.');
+    }
   };
 
   if (loading) return <div className={styles.loading}>Načítám mentory…</div>;
@@ -153,6 +166,8 @@ const MentorManagement: React.FC<IMentorManagementProps> = ({ sp }) => {
           + Přidat mentora
         </button>
       </div>
+
+      {actionError && <ErrorBanner message={actionError} />}
 
       {/* Add/Edit Form */}
       {showForm && (
