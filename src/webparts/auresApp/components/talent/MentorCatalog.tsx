@@ -4,8 +4,8 @@ import { SPFI } from '@pnp/sp';
 import { IMentor, ICurrentUser } from '../../../../services/interfaces';
 import { MentoringService } from '../../../../services/MentoringService';
 import { NavigateFn } from '../AppView';
-import { MOCK_MENTORS } from '../../../../utils/mockData';
 import MentorAvatar from '../shared/MentorAvatar';
+import ErrorBanner from '../shared/ErrorBanner';
 
 interface IMentorCatalogProps {
   sp: SPFI;
@@ -16,15 +16,21 @@ interface IMentorCatalogProps {
 const MentorCatalog: React.FC<IMentorCatalogProps> = ({ sp, navigate }) => {
   const [mentors, setMentors] = React.useState<IMentor[]>([]);
   const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
 
-  React.useEffect(() => {
+  const loadData = React.useCallback(() => {
+    setError(null);
+    setLoading(true);
     new MentoringService(sp).getMentors()
       .then(setMentors)
-      .catch(() => setMentors(MOCK_MENTORS.filter(m => m.IsActive)))
+      .catch(() => setError('Nepodařilo se načíst mentory.'))
       .finally(() => setLoading(false));
   }, [sp]);
 
+  React.useEffect(() => { loadData(); }, [loadData]);
+
   if (loading) return <div className={styles.loading}>Načítám mentory…</div>;
+  if (error) return <ErrorBanner message={error} onRetry={loadData} />;
 
   if (!mentors.length) {
     return (

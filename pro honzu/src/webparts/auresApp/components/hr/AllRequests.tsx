@@ -4,7 +4,7 @@ import { SPFI } from '@pnp/sp';
 import { IMentoringRequest, ICurrentUser, RequestStatus, StageDecision, ISPLookup } from '../../../../services/interfaces';
 import { MentoringService } from '../../../../services/MentoringService';
 import { NavigateFn } from '../AppView';
-import { MOCK_REQUESTS } from '../../../../utils/mockData';
+import ErrorBanner from '../shared/ErrorBanner';
 
 interface IAllRequestsProps {
   sp: SPFI;
@@ -16,18 +16,21 @@ const AllRequests: React.FC<IAllRequestsProps> = ({ sp, currentUser }) => {
   const [requests, setRequests] = React.useState<IMentoringRequest[]>([]);
   const [search, setSearch]     = React.useState('');
   const [loading, setLoading]   = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
   const [processing, setProcessing] = React.useState<number | null>(null);
 
-  React.useEffect(() => {
+  const loadData = React.useCallback(() => {
+    setError(null);
+    setLoading(true);
     new MentoringService(sp).getAllRequests()
       .then(all => setRequests(all.filter(r =>
         r.RequestStatus === RequestStatus.Pending || r.RequestStatus === RequestStatus.HR_Review
       )))
-      .catch(() => setRequests(MOCK_REQUESTS.filter(r =>
-        r.RequestStatus === RequestStatus.Pending || r.RequestStatus === RequestStatus.HR_Review
-      )))
+      .catch(() => setError('Nepodařilo se načíst žádosti.'))
       .finally(() => setLoading(false));
   }, [sp]);
+
+  React.useEffect(() => { loadData(); }, [loadData]);
 
   const getCurrentMentor = (req: IMentoringRequest): ISPLookup | undefined => {
     if (req.CurrentStage === 1) return req.Mentor1Ref;
@@ -85,6 +88,7 @@ const AllRequests: React.FC<IAllRequestsProps> = ({ sp, currentUser }) => {
   });
 
   if (loading) return <div className={styles.loading}>Načítám žádosti…</div>;
+  if (error) return <ErrorBanner message={error} onRetry={loadData} />;
 
   return (
     <div>

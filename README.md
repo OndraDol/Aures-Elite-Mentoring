@@ -1,148 +1,84 @@
 # Aures Elite Mentoring
 
-SPFx webpart pro mentoring workflow mezi talenty, mentory a HR v SharePoint Online.
+SPFx aplikace pro propojovani talentu Aures Holdings s mentory a HR workflow nad SharePoint Online.
 
-## Aktuální stav
+## Source of Truth
 
-- SPFx stack je upgradovaný na `1.22.2`.
-- Build runtime je `Node.js 22.x`.
-- TypeScript compiler je `5.3.x`.
-- Testovací i produkční SharePoint prostředí už existuje.
-- Schválení a nasazení `.sppkg` do App Catalogu zatím čeká na IT.
-- E-mailové notifikace nejsou aktivní. `NotificationService` je stub připravený pro budoucí Power Automate flow.
+- Zdrojovy kod je v rootu repozitare.
+- Slozka `pro honzu/` je generovany export pro review/predani (viz `Create-ProHonzu.ps1`), neni to druhy aktivni projekt.
 
-## Stack
+## Hlavni workflow
+
+1. Talent poda zadost a zvoli 1-3 mentory.
+2. Zadost jde nejdriv na Mentora 1.
+3. Pri odmitnuti se posouva na dalsiho mentora.
+4. Pokud odmitnou vsichni, zadost prejde do `HR_Review`.
+5. Pri schvaleni jde pripad k HR k domluveni mentoringu.
+
+## Tech stack
 
 | Vrstva | Technologie |
-| --- | --- |
-| Platforma | SharePoint Online, SPFx `1.22.2` |
-| Runtime | Node.js `22.x` |
-| Framework | React `17.0.1`, TypeScript `5.3.x` |
+|---|---|
+| Platform | SharePoint Online, SPFx 1.22.2 |
+| Build | Heft + ejected Webpack |
+| Runtime pro build | Node.js 22.14+ |
+| Framework | React 17.0.1, TypeScript 5.8.x |
 | Data | `@pnp/sp` v4 |
-| Styling | Dart Sass + Fluent UI |
+| Styling | Sass |
 
-## Požadavky
+## Pozadavky
 
-- Node.js `22.x`
-- npm `10+`
+- Node.js `>=22.14.0 <23`
+- npm 10+
 
-## Instalace
-
-```bash
-npm install
-```
-
-## Lokální příkazy
+## Prikazy
 
 ```bash
-# Lokální SPFx debug
-npx gulp serve
-
-# Debug build
-npx gulp build
-
-# Production bundle
-npx gulp bundle --ship
-
-# Production package
-npx gulp package-solution --ship
-
-# Oba produkční kroky najednou
-npm run package
-
-# HTTPS certifikát pro localhost debug
-npx gulp trust-dev-cert
+npm install          # Instalace zavislosti
+npm run start        # Lokalni vyvoj
+npm run build        # Production build
+npm run package      # Production package (.sppkg)
+npm run clean        # Cleanup
+npm audit            # Kontrola zranitelnosti
 ```
 
-## Co lze dělat bez schváleného `.sppkg`
+## Build artefakty
 
-Bez App Catalog deploymentu lze aplikaci testovat v SharePoint test site přes hosted workbench a debug manifesty z localhostu.
+Hlavni vystup pro nasazeni:
 
-To už teď umožňuje:
+- `sharepoint/solution/aures-elite-mentoring.sppkg`
 
-- ověřit, že listy `Mentors`, `Talents`, `MentoringRequests` mají správné názvy a pole
-- testovat reálné čtení a zápis do SharePoint listů
-- testovat role Talent / Mentor / HR na reálných účtech
-- testovat celý workflow žádosti v UI nad reálnými daty
-- ověřit vzhled aplikace téměř stejně, jak ji uvidí uživatelé po nasazení
+## Poznamka k buildu
 
-Bez schváleného `.sppkg` naopak zatím nelze:
+Repo je po migraci v ejected modu — `config/heft.json`, `webpack.config.js`, `webpack.dev.config.js` jsou soucasti projektu. To je zamerne pro plnou kontrolu nad buildem pod SPFx 1.22.x a Node 22.
 
-- přidat webpart jako standardní komponentu na běžnou SharePoint stránku
-- otestovat finální distribuci přes App Catalog
-- pustit aplikaci normálním uživatelům bez debug režimu
+## Lokalizace
 
-## Jak testovat v SharePoint test prostředí
+SPFx webpart lokalizace je v `src/webparts/auresApp/loc/en-us.resjson`.
 
-1. V repu spusť `nvm use 22.22.1` nebo jinou Node `22.x`.
-2. Spusť `npm install`.
-3. Poprvé případně `npx gulp trust-dev-cert`.
-4. Spusť `npx gulp serve --nobrowser`.
-5. Otevři hosted workbench na test site:
-   `https://<tenant>.sharepoint.com/sites/<test-site>/_layouts/15/workbench.aspx`
-6. Potvrď načtení debug manifestů z localhostu.
+## Mockup
 
-Tohle není jen „koukání na testovací stránku“. Uvidíš reálný webpart UI renderovaný v SharePointu nad reálnými listy. Rozdíl proti finálnímu nasazení je hlavně v tom, že běží přes debug manifest z tvého PC, ne z App Catalogu.
+- Staticky mockup pro GitHub Pages je v `index.html`.
+- SPFx assety v `src/webparts/auresApp/assets/`.
 
-## SharePoint předpoklady
+## Otevrene body
 
-### Listy
+- Otestovat aplikaci na SharePoint Online workbench / tenantovi
+- Nahrat `.sppkg` do App Catalogu
+- Vytvorit a naplnit SharePoint listy `Mentors`, `Talents`, `MentoringRequests`
 
-Musí existovat tyto listy:
+## Changelog
 
-- `Mentors`
-- `Talents`
-- `MentoringRequests`
+### 2026-03-20
 
-Interní názvy polí musí zůstat přesně podle implementace v [MentoringService.ts](/root/Aures-Elite-Mentoring/src/services/MentoringService.ts).
+- Odstraneni nebezpecnych mock data fallbacku ze vsech komponent
+- Pridani sdileneho ErrorBanner komponentu pro zobrazeni chyb
+- Doplneni metadata a features do `config/package-solution.json`
+- Aktualizace initialPage v `webpack.dev.config.js`
 
-### HR role
+### 2026-03-18
 
-HR role se aktuálně nebere ze SharePoint skupiny. Určuje se porovnáním přihlášeného e-mailu s hodnotami z webpart property `hrEmails`, viz [RoleService.ts](/root/Aures-Elite-Mentoring/src/services/RoleService.ts).
-
-### Notifikace
-
-- `SPUtility.sendEmail` je odstraněné.
-- Microsoft Graph mail se nepoužívá.
-- `NotificationService` je kompatibilní stub pro budoucí Power Automate řešení.
-- Aktuální testy workflow proto neověřují skutečné odeslání e-mailu.
-
-## Funkční přehled
-
-### Talent
-
-- katalog mentorů
-- založení žádosti s 1 až 3 mentory
-- přehled vlastních žádostí
-- reset volby / zrušení aktivních žádostí
-
-### Mentor
-
-- čekající žádosti pro aktivní stage
-- detail žádosti s approve / reject
-- historie rozhodnutí
-
-### HR
-
-- `Mentees dashboard`
-- `Domluvené mentoringy`
-- správa mentorů
-- správa talentů
-- kapacitní dashboard
-
-## Fotky a assety
-
-- HTML mockup používá assety v `assets/mockup/`
-- SPFx část používá bundled assety v `src/webparts/auresApp/assets/`
-- výsledný `.sppkg` balíček obsahuje 10 mentor fotek, 21 talent fotek a 2 Teams ikony
-
-## Deployment
-
-1. Spustit `npm run package`
-2. Vznikne balíček `sharepoint/solution/aures-elite-mentoring.sppkg`
-3. IT / SharePoint tým musí balíček schválit a nahrát do App Catalogu
-4. Až potom půjde webpart přidávat na běžné stránky bez debug režimu
-
-## Stav projektu
-
-Aktuální technický a projektový stav je v [PROGRESS.md](/root/Aures-Elite-Mentoring/PROGRESS.md).
+- Migrace toolchainu na SPFx 1.22.2 + Heft + ejected Webpack
+- Migrace build runtime na Node.js 22.x
+- Srovnani dependency stromu, 0 vulnerabilities
+- Bundling assetů mentoru a talentu do .sppkg

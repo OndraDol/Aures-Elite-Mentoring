@@ -4,7 +4,7 @@ import { SPFI } from '@pnp/sp';
 import { IMentor, IMentoringRequest, ICurrentUser, RequestStatus, StageDecision } from '../../../../services/interfaces';
 import { MentoringService } from '../../../../services/MentoringService';
 import { NavigateFn } from '../AppView';
-import { MOCK_MENTORS, MOCK_REQUESTS } from '../../../../utils/mockData';
+import ErrorBanner from '../shared/ErrorBanner';
 
 interface ICapacityDashboardProps {
   sp: SPFI;
@@ -16,19 +16,22 @@ const CapacityDashboard: React.FC<ICapacityDashboardProps> = ({ sp }) => {
   const [mentors, setMentors]   = React.useState<IMentor[]>([]);
   const [requests, setRequests] = React.useState<IMentoringRequest[]>([]);
   const [loading, setLoading]   = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
 
-  React.useEffect(() => {
+  const loadData = React.useCallback(() => {
+    setError(null);
+    setLoading(true);
     const svc = new MentoringService(sp);
     Promise.all([svc.getMentors(), svc.getAllRequests()])
       .then(([m, r]) => { setMentors(m); setRequests(r); })
-      .catch(() => {
-        setMentors(MOCK_MENTORS.filter(m => m.IsActive));
-        setRequests(MOCK_REQUESTS);
-      })
+      .catch(() => setError('Nepodařilo se načíst kapacitní dashboard.'))
       .finally(() => setLoading(false));
   }, [sp]);
 
+  React.useEffect(() => { loadData(); }, [loadData]);
+
   if (loading) return <div className={styles.loading}>Načítám dashboard…</div>;
+  if (error) return <ErrorBanner message={error} onRetry={loadData} />;
 
   return (
     <div>

@@ -7,6 +7,7 @@
     "libraryId": "1d89567e-a88d-45ec-a37c-60c5f7ecc886",
     "packageManager": "npm",
     "isDomainIsolated": false,
-    "componentType": "webpart"
+    "componentType": "webpart",
+    "ejected": true
   }
 }

@@ -9,7 +9,7 @@ import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { spfi, SPFI } from '@pnp/sp';
 import { SPFx } from '@pnp/sp/behaviors/spfx';
 
-import * as strings from 'AuresAppWebPartStrings';
+import strings from 'AuresAppWebPartStrings';
 import AuresApp from './components/AuresApp';
 import { IAuresAppProps } from './components/IAuresAppProps';
 
@@ -19,9 +19,10 @@ export interface IAuresAppWebPartProps {
 }
 
 export default class AuresAppWebPart extends BaseClientSideWebPart<IAuresAppWebPartProps> {
-  private _sp: SPFI;
+  private _sp!: SPFI;
 
   protected async onInit(): Promise<void> {
+    await super.onInit();
     this._sp = spfi().using(SPFx(this.context));
   }
 
@@ -61,7 +62,7 @@ export default class AuresAppWebPart extends BaseClientSideWebPart<IAuresAppWebP
                   label: strings.DescriptionFieldLabel
                 }),
                 PropertyPaneTextField('hrEmails', {
-                  label: 'HR příjemci notifikací (e-maily oddělené čárkou)',
+                  label: strings.HrEmailsFieldLabel,
                   multiline: true,
                   rows: 3
                 })

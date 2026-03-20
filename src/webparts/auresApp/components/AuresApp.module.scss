@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 // ============================================================
 // Aures Elite Mentoring — Premium Design System v8
 // "Concierge VIP" aesthetic: Navy + Gold + Glassmorphism
@@ -232,7 +234,7 @@ $transition-slow: 0.4s $ease-out;
   display: flex;
   gap: 6px;
   padding: 8px 28px;
-  background: linear-gradient(180deg, darken($navy, 3%) 0%, $navy 100%);
+  background: linear-gradient(180deg, color.adjust($navy, $lightness: -3%) 0%, $navy 100%);
   border-bottom: 1px solid rgba(201, 168, 76, 0.12);
 }
 
@@ -450,6 +452,28 @@ $transition-slow: 0.4s $ease-out;
   }
 }
 
+.errorState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 32px;
+  text-align: center;
+  background: $error-lt;
+  border: 1px solid $error;
+  border-radius: 12px;
+  margin: 16px 0;
+
+  p {
+    margin: 8px 0;
+    font-size: 15px;
+    max-width: 420px;
+    line-height: 1.7;
+    color: $error;
+    font-weight: 500;
+  }
+}
+
 .sectionHint {
   font-size: 13px;
   color: $text-muted;
@@ -481,7 +505,7 @@ $transition-slow: 0.4s $ease-out;
   box-shadow: 0 2px 6px rgba(27, 106, 224, 0.25);
 
   &:hover {
-    background: linear-gradient(135deg, lighten($primary, 4%), $primary);
+    background: linear-gradient(135deg, color.adjust($primary, $lightness: 4%), $primary);
     box-shadow: 0 4px 14px rgba(27, 106, 224, 0.35);
     transform: translateY(-1px);
   }
@@ -546,7 +570,7 @@ $transition-slow: 0.4s $ease-out;
   align-items: center;
   justify-content: center;
   padding: 10px 28px;
-  background: linear-gradient(135deg, $success, darken($success, 8%));
+  background: linear-gradient(135deg, $success, color.adjust($success, $lightness: -8%));
   color: #fff;
   border: none;
   border-radius: $radius-sm;
@@ -1512,7 +1536,7 @@ $transition-slow: 0.4s $ease-out;
   flex-shrink: 0;
   transition: all $transition;
 
-  &:hover { background: darken(#E6F9ED, 4%); }
+  &:hover { background: color.adjust(#E6F9ED, $lightness: -4%); }
 }
 
 .inactiveBtn {
@@ -1988,7 +2012,7 @@ $transition-slow: 0.4s $ease-out;
   background: $warning-lt;
   border-left: 3px solid $gold;
   border-radius: 0 $radius-sm $radius-sm 0;
-  color: darken($warning, 6%);
+  color: color.adjust($warning, $lightness: -6%);
   font-size: 12px;
   font-weight: 600;
 }

@@ -4,7 +4,7 @@ import { SPFI } from '@pnp/sp';
 import { IMentoringRequest, ICurrentUser, RequestStatus, ISPLookup, StageDecision } from '../../../../services/interfaces';
 import { MentoringService } from '../../../../services/MentoringService';
 import { NavigateFn } from '../AppView';
-import { MOCK_REQUESTS } from '../../../../utils/mockData';
+import ErrorBanner from '../shared/ErrorBanner';
 
 interface IApprovedMentoringsProps {
   sp: SPFI;
@@ -15,19 +15,23 @@ interface IApprovedMentoringsProps {
 const ApprovedMentorings: React.FC<IApprovedMentoringsProps> = ({ sp }) => {
   const [requests, setRequests] = React.useState<IMentoringRequest[]>([]);
   const [loading, setLoading]   = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
 
-  React.useEffect(() => {
+  const loadData = React.useCallback(() => {
+    setError(null);
+    setLoading(true);
     new MentoringService(sp).getAllRequests()
       .then(all => setRequests(all.filter(r =>
         r.RequestStatus === RequestStatus.Approved || r.RequestStatus === RequestStatus.Scheduled
       )))
-      .catch(() => setRequests(MOCK_REQUESTS.filter(r =>
-        r.RequestStatus === RequestStatus.Approved || r.RequestStatus === RequestStatus.Scheduled
-      )))
+      .catch(() => setError('Nepodařilo se načíst domluvené mentoringy.'))
       .finally(() => setLoading(false));
   }, [sp]);
 
+  React.useEffect(() => { loadData(); }, [loadData]);
+
   if (loading) return <div className={styles.loading}>Načítám domluvené mentoringy…</div>;
+  if (error) return <ErrorBanner message={error} onRetry={loadData} />;
 
   const getApprovedMentor = (req: IMentoringRequest): ISPLookup | undefined => {
     if (req.Stage1Decision === StageDecision.Approved) return req.Mentor1Ref;

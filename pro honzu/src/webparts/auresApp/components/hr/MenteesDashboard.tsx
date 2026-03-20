@@ -11,7 +11,7 @@ import {
 } from '../../../../services/interfaces';
 import { MentoringService } from '../../../../services/MentoringService';
 import { NavigateFn } from '../AppView';
-import { MOCK_REQUESTS, MOCK_TALENTS } from '../../../../utils/mockData';
+import ErrorBanner from '../shared/ErrorBanner';
 
 type DashboardFilter = 'all' | 'needsHr' | 'waiting' | 'warning';
 type DashboardStatus = 'no_request' | 'pending' | 'hr_review' | 'approved' | 'scheduled';
@@ -57,7 +57,10 @@ const MenteesDashboard: React.FC<IMenteesDashboardProps> = ({ sp, currentUser })
   const [activeFilter, setActiveFilter] = React.useState<DashboardFilter>('all');
   const [processingId, setProcessingId] = React.useState<number | null>(null);
 
+  const [loadError, setLoadError] = React.useState<string | null>(null);
+
   const loadData = React.useCallback(async (): Promise<void> => {
+    setLoadError(null);
     setLoading(true);
     try {
       const svc = new MentoringService(sp);
@@ -68,8 +71,7 @@ const MenteesDashboard: React.FC<IMenteesDashboardProps> = ({ sp, currentUser })
       setTalents(allTalents);
       setRequests(allRequests);
     } catch {
-      setTalents(MOCK_TALENTS);
-      setRequests(MOCK_REQUESTS);
+      setLoadError('Nepodařilo se načíst dashboard mentees.');
     } finally {
       setLoading(false);
     }
@@ -121,6 +123,7 @@ const MenteesDashboard: React.FC<IMenteesDashboardProps> = ({ sp, currentUser })
   };
 
   if (loading) return <div className={styles.loading}>Načítám dashboard mentees…</div>;
+  if (loadError) return <ErrorBanner message={loadError} onRetry={() => { void loadData(); }} />;
 
   return (
     <div>

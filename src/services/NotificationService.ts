@@ -17,6 +17,7 @@ export class NotificationService {
     _requestId: number,
     _requestTitle: string
   ): Promise<void> {
+    void [_hrEmails, _talent, _mentor, _requestId, _requestTitle];
     // Power Automate trigger — implementace na straně flow
   }
 
@@ -26,6 +27,7 @@ export class NotificationService {
     _requestId: number,
     _requestTitle: string
   ): Promise<void> {
+    void [_hrEmails, _talent, _requestId, _requestTitle];
     // Power Automate trigger — implementace na straně flow
   }
 
@@ -36,6 +38,7 @@ export class NotificationService {
     _requestId: number,
     _requestTitle: string
   ): Promise<void> {
+    void [_hrEmails, _talent, _mentor, _requestId, _requestTitle];
     // Power Automate trigger — implementace na straně flow
   }
 }

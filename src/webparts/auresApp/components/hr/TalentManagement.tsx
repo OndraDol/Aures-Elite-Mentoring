@@ -4,8 +4,8 @@ import { SPFI } from '@pnp/sp';
 import { ITalent, ICurrentUser } from '../../../../services/interfaces';
 import { MentoringService } from '../../../../services/MentoringService';
 import { NavigateFn } from '../AppView';
-import { MOCK_TALENTS } from '../../../../utils/mockData';
 import { resolveTalentPhoto, getTalentInitials } from '../shared/talentAvatarCatalog';
+import ErrorBanner from '../shared/ErrorBanner';
 
 interface ITalentManagementProps {
   sp: SPFI;
@@ -16,13 +16,18 @@ interface ITalentManagementProps {
 const TalentManagement: React.FC<ITalentManagementProps> = ({ sp }) => {
   const [talents, setTalents] = React.useState<ITalent[]>([]);
   const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
 
-  React.useEffect(() => {
+  const loadData = React.useCallback(() => {
+    setError(null);
+    setLoading(true);
     new MentoringService(sp).getAllTalentsForAdmin()
       .then(setTalents)
-      .catch(() => setTalents(MOCK_TALENTS))
+      .catch(() => setError('Nepodařilo se načíst talenty.'))
       .finally(() => setLoading(false));
   }, [sp]);
+
+  React.useEffect(() => { loadData(); }, [loadData]);
 
   const toggleActive = async (talent: ITalent): Promise<void> => {
     try {
@@ -34,6 +39,7 @@ const TalentManagement: React.FC<ITalentManagementProps> = ({ sp }) => {
   };
 
   if (loading) return <div className={styles.loading}>Načítám talenty…</div>;
+  if (error) return <ErrorBanner message={error} onRetry={loadData} />;
 
   return (
     <div>

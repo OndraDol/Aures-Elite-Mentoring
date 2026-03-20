@@ -5,38 +5,37 @@ import { IMentoringRequest, ICurrentUser, StageDecision, RequestStatus } from '.
 import { MentoringService } from '../../../../services/MentoringService';
 import { NotificationService } from '../../../../services/NotificationService';
 import { NavigateFn } from '../AppView';
-import { MOCK_REQUESTS } from '../../../../utils/mockData';
+import ErrorBanner from '../shared/ErrorBanner';
 
 interface IRequestDetailProps {
   sp: SPFI;
   currentUser: ICurrentUser;
   navigate: NavigateFn;
   requestId: number | undefined;
-  hrEmail: string;
+  hrEmails: string[];
 }
 
-const MOCK_MENTOR_ID = 1;
-
-const RequestDetail: React.FC<IRequestDetailProps> = ({ sp, currentUser, navigate, requestId, hrEmail }) => {
+const RequestDetail: React.FC<IRequestDetailProps> = ({ sp, currentUser, navigate, requestId, hrEmails }) => {
   const [request, setRequest]   = React.useState<IMentoringRequest | null>(null);
   const [loading, setLoading]   = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
   const [deciding, setDeciding] = React.useState(false);
   const [decisionDone, setDecisionDone] = React.useState(false);
 
-  React.useEffect(() => {
+  const loadData = React.useCallback(() => {
     if (!requestId) {
       navigate('PendingRequests');
       return;
     }
+    setError(null);
+    setLoading(true);
     new MentoringService(sp).getRequestById(requestId)
       .then(setRequest)
-      .catch(() => {
-        const mock = MOCK_REQUESTS.find(r => r.Id === requestId);
-        if (mock) setRequest(mock);
-        else navigate('PendingRequests');
-      })
+      .catch(() => setError('Nepodařilo se načíst detail žádosti.'))
       .finally(() => setLoading(false));
   }, [sp, requestId]);
+
+  React.useEffect(() => { loadData(); }, [loadData]);
 
   const handleDecision = async (decision: StageDecision): Promise<void> => {
     if (!request || !myStage) return;
@@ -52,16 +51,17 @@ const RequestDetail: React.FC<IRequestDetailProps> = ({ sp, currentUser, navigat
       // V lokalni dev nepripojene SP — simulujeme uspech
     }
     // 6.2 / 6.3 — notifikace (best-effort, neblokovani UX)
-    void sendDecisionNotification(sp, decision, request, myStage, currentUser, hrEmail);
+    void sendDecisionNotification(sp, decision, request, myStage, currentUser, hrEmails);
     setDecisionDone(true);
     setDeciding(false);
     setTimeout(() => navigate('PendingRequests'), 1200);
   };
 
   if (loading) return <div className={styles.loading}>Načítám detail žádosti…</div>;
+  if (error) return <ErrorBanner message={error} onRetry={loadData} />;
   if (!request)  return <div className={styles.loading}>Žádost nenalezena.</div>;
 
-  const mentorId = currentUser.mentorRecord?.Id ?? MOCK_MENTOR_ID;
+  const mentorId = currentUser.mentorRecord?.Id;
   const myStage  = resolveActiveStage(request, mentorId);
 
   if (!myStage) {
@@ -148,7 +148,8 @@ const RequestDetail: React.FC<IRequestDetailProps> = ({ sp, currentUser, navigat
 // Helpers
 // ----------------------------------------------------------------
 
-function resolveActiveStage(req: IMentoringRequest, mentorId: number): 1 | 2 | 3 | null {
+function resolveActiveStage(req: IMentoringRequest, mentorId: number | undefined): 1 | 2 | 3 | null {
+  if (!mentorId) return null;
   if (req.RequestStatus !== RequestStatus.Pending) return null;
   if (req.CurrentStage === 1 && req.Mentor1Ref?.Id === mentorId) return 1;
   if (req.CurrentStage === 2 && req.Mentor2Ref?.Id === mentorId) return 2;
@@ -171,7 +172,7 @@ async function sendDecisionNotification(
   request: IMentoringRequest,
   myStage: 1 | 2 | 3,
   currentUser: ICurrentUser,
-  hrEmail: string
+  hrEmails: string[]
 ): Promise<void> {
   try {
     const svc = new MentoringService(sp);
@@ -181,7 +182,7 @@ async function sendDecisionNotification(
     if (decision === StageDecision.Approved) {
       // 6.3 — schvaleno: notifikuj pouze HR
       if (currentUser.mentorRecord) {
-        await ns.notifyOnApproval(hrEmail, talent, currentUser.mentorRecord, request.Id, request.Title);
+        await ns.notifyOnApproval(hrEmails, talent, currentUser.mentorRecord, request.Id, request.Title);
       }
     } else {
       // Pri zamitnuti uz system neposila notifikace mentorum ani talentum.
@@ -190,7 +191,7 @@ async function sendDecisionNotification(
                     : myStage === 2 ? request.Mentor3Ref
                     : undefined;
       if (!nextRef) {
-        await ns.notifyHROnEscalation(hrEmail, talent, request.Id, request.Title);
+        await ns.notifyHROnEscalation(hrEmails, talent, request.Id, request.Title);
       }
     }
   } catch {

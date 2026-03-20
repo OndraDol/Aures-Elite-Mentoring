@@ -4,7 +4,7 @@ import { SPFI } from '@pnp/sp';
 import { IMentor, ICurrentUser } from '../../../../services/interfaces';
 import { MentoringService } from '../../../../services/MentoringService';
 import { NavigateFn } from '../AppView';
-import { MOCK_MENTORS } from '../../../../utils/mockData';
+import ErrorBanner from '../shared/ErrorBanner';
 
 interface IMentorManagementProps {
   sp: SPFI;
@@ -28,6 +28,7 @@ const emptyForm: IMentorFormData = {
 const MentorManagement: React.FC<IMentorManagementProps> = ({ sp }) => {
   const [mentors, setMentors] = React.useState<IMentor[]>([]);
   const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
   const [saving, setSaving]   = React.useState(false);
 
   // Add/Edit form
@@ -38,12 +39,16 @@ const MentorManagement: React.FC<IMentorManagementProps> = ({ sp }) => {
   // Delete confirmation
   const [deletingId, setDeletingId] = React.useState<number | null>(null);
 
-  React.useEffect(() => {
+  const loadData = React.useCallback(() => {
+    setError(null);
+    setLoading(true);
     new MentoringService(sp).getAllMentorsForAdmin()
       .then(setMentors)
-      .catch(() => setMentors(MOCK_MENTORS))
+      .catch(() => setError('Nepodařilo se načíst mentory.'))
       .finally(() => setLoading(false));
   }, [sp]);
+
+  React.useEffect(() => { loadData(); }, [loadData]);
 
   const updateField = <K extends keyof IMentorFormData>(key: K, value: IMentorFormData[K]): void => {
     setForm(prev => ({ ...prev, [key]: value }));
@@ -138,6 +143,7 @@ const MentorManagement: React.FC<IMentorManagementProps> = ({ sp }) => {
   };
 
   if (loading) return <div className={styles.loading}>Načítám mentory…</div>;
+  if (error) return <ErrorBanner message={error} onRetry={loadData} />;
 
   return (
     <div>

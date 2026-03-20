@@ -4,7 +4,7 @@ import { SPFI } from '@pnp/sp';
 import { IMentoringRequest, ICurrentUser, StageDecision } from '../../../../services/interfaces';
 import { MentoringService } from '../../../../services/MentoringService';
 import { NavigateFn } from '../AppView';
-import { MOCK_REQUESTS } from '../../../../utils/mockData';
+import ErrorBanner from '../shared/ErrorBanner';
 
 interface IRequestHistoryProps {
   sp: SPFI;
@@ -12,33 +12,34 @@ interface IRequestHistoryProps {
   navigate: NavigateFn;
 }
 
-const MOCK_MENTOR_ID = 1; // Jan Novak — fallback pro lokalni dev
-
 const RequestHistory: React.FC<IRequestHistoryProps> = ({ sp, currentUser }) => {
   const [requests, setRequests] = React.useState<IMentoringRequest[]>([]);
   const [loading, setLoading]   = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
 
-  React.useEffect(() => {
-    const mentorId = currentUser.mentorRecord?.Id ?? MOCK_MENTOR_ID;
-
-    // Fallback: zadosti kde mentor rozhodoval (ma zaznam Stage*DecisionBy nebo je v MentorXRef)
-    const mockFallback = MOCK_REQUESTS.filter(r =>
-      (r.Mentor1Ref?.Id === mentorId && r.Stage1Decision != null) ||
-      (r.Mentor2Ref?.Id === mentorId && r.Stage2Decision != null) ||
-      (r.Mentor3Ref?.Id === mentorId && r.Stage3Decision != null)
-    );
-
+  const loadData = React.useCallback(() => {
+    const mentorId = currentUser.mentorRecord?.Id;
+    if (!mentorId) {
+      setError('Mentor záznam nebyl nalezen.');
+      setLoading(false);
+      return;
+    }
+    setError(null);
+    setLoading(true);
     new MentoringService(sp).getRequestHistoryForMentor(mentorId)
       .then(setRequests)
-      .catch(() => setRequests(mockFallback))
+      .catch(() => setError('Nepodařilo se načíst historii.'))
       .finally(() => setLoading(false));
   }, [sp, currentUser]);
 
+  React.useEffect(() => { loadData(); }, [loadData]);
+
   if (loading) return <div className={styles.loading}>Načítám historii…</div>;
+  if (error) return <ErrorBanner message={error} onRetry={loadData} />;
 
   return (
     <div>
-      <h2 className={styles.pageTitle}>Moje rozhodnuti</h2>
+      <h2 className={styles.pageTitle}>Moje rozhodnutí</h2>
 
       {requests.length === 0 ? (
         <div className={styles.emptyState}>
@@ -50,7 +51,7 @@ const RequestHistory: React.FC<IRequestHistoryProps> = ({ sp, currentUser }) => 
             <HistoryRow
               key={req.Id}
               request={req}
-              mentorId={currentUser.mentorRecord?.Id ?? MOCK_MENTOR_ID}
+              mentorId={currentUser.mentorRecord!.Id}
             />
           ))}
         </div>

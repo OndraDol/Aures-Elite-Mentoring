@@ -2,7 +2,7 @@
   "id": "710fcc7f-4d14-424c-947b-74a2c48623d0",
   "alias": "AuresAppWebPart",
   "componentType": "WebPart",
-  "version": "0.0.2",
+  "version": "*",
   "manifestVersion": 2,
   "requiresCustomScript": false,
   "supportedHosts": [
@@ -27,43 +27,27 @@
     }
   ],
   "loaderConfig": {
-    "internalModuleBaseUrls": [
-      "<!-- PATH TO CDN -->"
-    ],
+    "internalModuleBaseUrls": [],
     "entryModuleId": "aures-app-web-part",
     "scriptResources": {
       "aures-app-web-part": {
-        "type": "path",
-        "path": "aures-app-web-part_f05a8d39373d1d30424f.js"
-      },
-      "@microsoft/sp-property-pane": {
-        "type": "component",
-        "id": "f9e737b7-f0df-4597-ba8c-3060f82380db",
-        "version": "1.18.2"
-      },
-      "AuresAppWebPartStrings": {
-        "type": "path",
-        "path": "AuresAppWebPartStrings_en-us_536e65149b0acf4d52c0043073b9fc59.js"
+        "type": "localizedPath",
+        "defaultPath": "../assets/aures-app-web-part_en-us_722fa9623029e494133f.js"
       },
       "@microsoft/sp-core-library": {
         "type": "component",
         "id": "7263c7d0-1d6a-45ec-8d85-d4d1d234171b",
-        "version": "1.18.2"
+        "version": "1.22.2"
+      },
+      "@microsoft/sp-property-pane": {
+        "type": "component",
+        "id": "f9e737b7-f0df-4597-ba8c-3060f82380db",
+        "version": "1.22.2"
       },
       "@microsoft/sp-webpart-base": {
         "type": "component",
         "id": "974a7777-0990-4136-8fa6-95d80114c2e0",
-        "version": "1.18.2"
-      },
-      "react": {
-        "type": "component",
-        "id": "0d910c1c-13b9-4e1c-9aa4-b008c5e42d7d",
-        "version": "17.0.1"
-      },
-      "react-dom": {
-        "type": "component",
-        "id": "aa0a46ec-1505-43cd-a44a-93f3a5aa460a",
-        "version": "17.0.1"
+        "version": "1.22.2"
       }
     }
   }

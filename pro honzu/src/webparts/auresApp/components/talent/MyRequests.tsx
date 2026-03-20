@@ -4,7 +4,7 @@ import { SPFI } from '@pnp/sp';
 import { IMentoringRequest, ICurrentUser, RequestStatus, StageDecision, ISPLookup } from '../../../../services/interfaces';
 import { MentoringService } from '../../../../services/MentoringService';
 import { NavigateFn } from '../AppView';
-import { MOCK_REQUESTS } from '../../../../utils/mockData';
+import ErrorBanner from '../shared/ErrorBanner';
 
 interface IMyRequestsProps {
   sp: SPFI;
@@ -15,21 +15,27 @@ interface IMyRequestsProps {
 const MyRequests: React.FC<IMyRequestsProps> = ({ sp, currentUser }) => {
   const [requests, setRequests] = React.useState<IMentoringRequest[]>([]);
   const [loading, setLoading]   = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
 
-  React.useEffect(() => {
+  const loadData = React.useCallback(() => {
     const talentId = currentUser.talentRecord?.Id;
     if (!talentId) {
-      setRequests(MOCK_REQUESTS.filter(r => r.TalentRef.Id === 1));
+      setError('Talent záznam nebyl nalezen.');
       setLoading(false);
       return;
     }
+    setError(null);
+    setLoading(true);
     new MentoringService(sp).getMyRequests(talentId)
       .then(setRequests)
-      .catch(() => setRequests(MOCK_REQUESTS.filter(r => r.TalentRef.Id === talentId)))
+      .catch(() => setError('Nepodařilo se načíst žádosti.'))
       .finally(() => setLoading(false));
   }, [sp, currentUser]);
 
+  React.useEffect(() => { loadData(); }, [loadData]);
+
   if (loading) return <div className={styles.loading}>Načítám žádosti…</div>;
+  if (error) return <ErrorBanner message={error} onRetry={loadData} />;
 
   if (requests.length === 0) {
     return (

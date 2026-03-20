@@ -1,10 +1,10 @@
 import * as React from 'react';
 import styles from '../AuresApp.module.scss';
 import { SPFI } from '@pnp/sp';
-import { IMentoringRequest, ICurrentUser, RequestStatus } from '../../../../services/interfaces';
+import { IMentoringRequest, ICurrentUser } from '../../../../services/interfaces';
 import { MentoringService } from '../../../../services/MentoringService';
 import { NavigateFn } from '../AppView';
-import { MOCK_REQUESTS } from '../../../../utils/mockData';
+import ErrorBanner from '../shared/ErrorBanner';
 
 interface IPendingRequestsProps {
   sp: SPFI;
@@ -12,30 +12,30 @@ interface IPendingRequestsProps {
   navigate: NavigateFn;
 }
 
-const MOCK_MENTOR_ID = 1; // Jan Novak — fallback pro lokalni dev
-
 const PendingRequests: React.FC<IPendingRequestsProps> = ({ sp, currentUser, navigate }) => {
   const [requests, setRequests] = React.useState<IMentoringRequest[]>([]);
   const [loading, setLoading]   = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
 
-  React.useEffect(() => {
-    const mentorId = currentUser.mentorRecord?.Id ?? MOCK_MENTOR_ID;
-
-    const mockFallback = MOCK_REQUESTS.filter(r =>
-      r.RequestStatus === RequestStatus.Pending && (
-        (r.Mentor1Ref?.Id === mentorId && r.CurrentStage === 1) ||
-        (r.Mentor2Ref?.Id === mentorId && r.CurrentStage === 2) ||
-        (r.Mentor3Ref?.Id === mentorId && r.CurrentStage === 3)
-      )
-    );
-
+  const loadData = React.useCallback(() => {
+    const mentorId = currentUser.mentorRecord?.Id;
+    if (!mentorId) {
+      setError('Mentor záznam nebyl nalezen.');
+      setLoading(false);
+      return;
+    }
+    setError(null);
+    setLoading(true);
     new MentoringService(sp).getPendingRequestsForMentor(mentorId)
       .then(setRequests)
-      .catch(() => setRequests(mockFallback))
+      .catch(() => setError('Nepodařilo se načíst žádosti.'))
       .finally(() => setLoading(false));
   }, [sp, currentUser]);
 
+  React.useEffect(() => { loadData(); }, [loadData]);
+
   if (loading) return <div className={styles.loading}>Načítám žádosti…</div>;
+  if (error) return <ErrorBanner message={error} onRetry={loadData} />;
 
   return (
     <div>
@@ -51,7 +51,7 @@ const PendingRequests: React.FC<IPendingRequestsProps> = ({ sp, currentUser, nav
             <PendingRow
               key={req.Id}
               request={req}
-              mentorId={currentUser.mentorRecord?.Id ?? MOCK_MENTOR_ID}
+              mentorId={currentUser.mentorRecord!.Id}
               onClick={() => navigate('RequestDetail', { requestId: req.Id })}
             />
           ))}

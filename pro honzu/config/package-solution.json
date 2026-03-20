@@ -12,7 +12,20 @@
       "privacyUrl": "",
       "termsOfUseUrl": "",
       "mpnId": ""
-    }
+    },
+    "metadata": {
+      "shortDescription": { "default": "Elite Mentoring" },
+      "longDescription": { "default": "Aplikace pro propojení talentů s top management mentory v Aures Holdings" },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [{
+      "title": "Elite Mentoring",
+      "description": "Webová část pro mentoring program Aures Holdings",
+      "id": "1d89567e-a88d-45ec-a37c-60c5f7ecc886",
+      "version": "1.0.1.0"
+    }]
   },
   "paths": {
     "zippedPackage": "solution/aures-elite-mentoring.sppkg"

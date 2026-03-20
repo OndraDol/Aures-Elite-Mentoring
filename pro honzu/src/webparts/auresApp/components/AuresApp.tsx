@@ -21,7 +21,7 @@ import MentorManagement from './hr/MentorManagement';
 import TalentManagement from './hr/TalentManagement';
 import CapacityDashboard from './hr/CapacityDashboard';
 
-const AuresApp: React.FC<IAuresAppProps> = ({ sp, hrEmail }) => {
+const AuresApp: React.FC<IAuresAppProps> = ({ sp, hrEmails }) => {
   const [currentUser, setCurrentUser] = React.useState<ICurrentUser | null>(null);
   const [loading, setLoading]         = React.useState<boolean>(true);
   const [error, setError]             = React.useState<string | null>(null);
@@ -49,7 +49,7 @@ const AuresApp: React.FC<IAuresAppProps> = ({ sp, hrEmail }) => {
   }, [sp]);
 
   React.useEffect(() => {
-    const roleService = new RoleService(sp);
+    const roleService = new RoleService(sp, hrEmails);
     roleService.getCurrentUser()
       .then(user => {
         setCurrentUser(user);
@@ -102,7 +102,7 @@ const AuresApp: React.FC<IAuresAppProps> = ({ sp, hrEmail }) => {
         navBadges={navBadges}
         hasActiveRequests={hasActiveRequests}
       >
-        {renderView(view, currentUser, sp, navigate, navParams, hrEmail, handleRequestsChanged)}
+        {renderView(view, currentUser, sp, navigate, navParams, hrEmails, handleRequestsChanged)}
       </AppShell>
     </div>
   );
@@ -122,18 +122,18 @@ function renderView(
   sp: SPFI,
   navigate: NavigateFn,
   params: Record<string, unknown>,
-  hrEmail: string,
+  hrEmails: string[],
   onRequestsChanged: () => void
 ): React.ReactElement {
   switch (view) {
     // Talent
     case 'MentorCatalog': return <MentorCatalog sp={sp} currentUser={currentUser} navigate={navigate} />;
-    case 'RequestForm':   return <RequestForm   sp={sp} currentUser={currentUser} navigate={navigate} hrEmail={hrEmail} preselectedMentorId={params.preselectedMentorId as number | undefined} />;
+    case 'RequestForm':   return <RequestForm   sp={sp} currentUser={currentUser} navigate={navigate} hrEmails={hrEmails} preselectedMentorId={params.preselectedMentorId as number | undefined} />;
     case 'MyRequests':    return <MyRequests    sp={sp} currentUser={currentUser} navigate={navigate} />;
     case 'ResetChoice':   return <ResetChoice  sp={sp} currentUser={currentUser} navigate={navigate} onRequestsChanged={onRequestsChanged} />;
     // Mentor
     case 'PendingRequests': return <PendingRequests sp={sp} currentUser={currentUser} navigate={navigate} />;
-    case 'RequestDetail':   return <RequestDetail   sp={sp} currentUser={currentUser} navigate={navigate} requestId={params.requestId as number | undefined} hrEmail={hrEmail} />;
+    case 'RequestDetail':   return <RequestDetail   sp={sp} currentUser={currentUser} navigate={navigate} requestId={params.requestId as number | undefined} hrEmails={hrEmails} />;
     case 'RequestHistory':  return <RequestHistory  sp={sp} currentUser={currentUser} navigate={navigate} />;
     // HR
     case 'MenteesDashboard': return <MenteesDashboard sp={sp} currentUser={currentUser} navigate={navigate} />;
