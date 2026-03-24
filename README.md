@@ -36,8 +36,10 @@ SPFx aplikace pro propojovani talentu Aures Holdings s mentory a HR workflow nad
 ```bash
 npm install          # Instalace zavislosti
 npm run start        # Lokalni vyvoj
+npm test             # Jest testy pres Heft
+npm test -- --test-path-pattern packageSolution.test   # Regresni kontrola package manifestu
 npm run build        # Production build
-npm run package      # Production package (.sppkg)
+npm run package      # Production .sppkg pres Heft package-solution
 npm run clean        # Cleanup
 npm audit            # Kontrola zranitelnosti
 ```
@@ -47,6 +49,12 @@ npm audit            # Kontrola zranitelnosti
 Hlavni vystup pro nasazeni:
 
 - `sharepoint/solution/aures-elite-mentoring.sppkg`
+
+## Poznamka k nasazeni
+
+- Deployment balik se vytvari pres Heft workflow `npm run package`, ne pres legacy gulp prikazy.
+- V `config/package-solution.json` musi byt `solution.id` unikatni a nesmi se shodovat s zadnym `features[*].id`.
+- Regresni kontrola teto podminky je pokryta testem `src/config/packageSolution.test.js`.
 
 ## Poznamka k buildu
 
@@ -68,6 +76,12 @@ SPFx webpart lokalizace je v `src/webparts/auresApp/loc/en-us.resjson`.
 - Vytvorit a naplnit SharePoint listy `Mentors`, `Talents`, `MentoringRequests`
 
 ## Changelog
+
+### 2026-03-24
+
+- Opraven konflikt GUID mezi `solution.id` a `features[0].id` v `config/package-solution.json`
+- Pridan regresni test `src/config/packageSolution.test.js` pro kontrolu unikatnich GUID v package manifestu
+- Potvrzen Heft packaging workflow pro deployment (`npm run package`)
 
 ### 2026-03-20
 

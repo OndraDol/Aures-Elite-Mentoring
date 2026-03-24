@@ -13,6 +13,8 @@
 ```bash
 npm install
 npm run start
+npm test
+npm test -- --test-path-pattern packageSolution.test
 npm run build
 npm run package
 npm audit
@@ -25,3 +27,5 @@ Kazda zmena musi zachovat:
 - SPFx `1.22.x`
 - Node `22.x`
 - `npm audit` bez nalezenych zranitelnosti
+- unikatni GUID napric `solution.id` a `solution.features[*].id` v `config/package-solution.json`
+- packaging a deploy overeni pres Heft (`npm run package`), ne pres legacy gulp workflow

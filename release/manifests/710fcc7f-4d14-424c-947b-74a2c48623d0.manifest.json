@@ -32,7 +32,7 @@
     "scriptResources": {
       "aures-app-web-part": {
         "type": "localizedPath",
-        "defaultPath": "../assets/aures-app-web-part_en-us_722fa9623029e494133f.js"
+        "defaultPath": "../assets/aures-app-web-part_en-us_dfa94d9425e319793bb3.js"
       },
       "@microsoft/sp-core-library": {
         "type": "component",
