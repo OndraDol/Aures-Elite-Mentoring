@@ -7,6 +7,9 @@ $ErrorActionPreference = 'Stop'
 $repoRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $destRoot = Join-Path $repoRoot 'pro honzu'
 $exportInfoFile = Join-Path $destRoot 'README.txt'
+$reviewPackageFile = Join-Path $destRoot 'aures-elite-mentoring.sppkg'
+$builtPackageFile = Join-Path $repoRoot 'sharepoint\solution\aures-elite-mentoring.sppkg'
+$exportGitIgnoreFile = Join-Path $destRoot '.gitignore'
 
 $includeDirs = @(
   'src',
@@ -130,6 +133,20 @@ foreach ($file in $includeFiles) {
   Copy-Item -LiteralPath $src -Destination $targetFile -Force
 }
 
+if (Test-Path -LiteralPath $builtPackageFile) {
+  Copy-Item -LiteralPath $builtPackageFile -Destination $reviewPackageFile -Force
+}
+
+if (Test-Path -LiteralPath $exportGitIgnoreFile) {
+  $gitIgnoreContent = Get-Content -LiteralPath $exportGitIgnoreFile -Raw
+
+  if ($gitIgnoreContent -notmatch '(?m)^!aures-elite-mentoring\.sppkg$') {
+    $normalizedGitIgnore = $gitIgnoreContent.TrimEnd("`r", "`n")
+    $updatedGitIgnore = $normalizedGitIgnore + "`r`n!aures-elite-mentoring.sppkg`r`n"
+    Set-Content -LiteralPath $exportGitIgnoreFile -Value $updatedGitIgnore -Encoding UTF8
+  }
+}
+
 @"
 Aures Elite Mentoring - handoff export
 =====================================
@@ -145,6 +162,9 @@ Plati:
 
 Export vytvoren skriptem:
 - Create-ProHonzu.ps1
+
+Pokud je k dispozici production build, export obsahuje i hotovy balik:
+- aures-elite-mentoring.sppkg
 "@ | Set-Content -LiteralPath $exportInfoFile -Encoding UTF8
 
 Write-Output ("OK: Review export created at: {0}" -f $destRoot)

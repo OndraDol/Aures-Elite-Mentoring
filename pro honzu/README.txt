@@ -12,3 +12,6 @@ Plati:
 
 Export vytvoren skriptem:
 - Create-ProHonzu.ps1
+
+Pokud je k dispozici production build, export obsahuje i hotovy balik:
+- aures-elite-mentoring.sppkg
