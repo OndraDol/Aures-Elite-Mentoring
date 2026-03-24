@@ -3,7 +3,7 @@
   "solution": {
     "name": "aures-elite-mentoring-client-side-solution",
     "id": "1d89567e-a88d-45ec-a37c-60c5f7ecc886",
-    "version": "1.0.1.0",
+    "version": "1.0.2.0",
     "includeClientSideAssets": true,
     "isDomainIsolated": false,
     "developer": {
@@ -24,7 +24,7 @@
       "title": "Elite Mentoring",
       "description": "Webová část pro mentoring program Aures Holdings",
       "id": "f76cde47-7ba4-4e41-aaef-1f1ef40753b2",
-      "version": "1.0.1.0"
+      "version": "1.0.2.0"
     }]
   },
   "paths": {
