@@ -39,7 +39,7 @@ const MentorAvatar: React.FC<IMentorAvatarProps> = ({ mentor, variant = 'default
         <img
           className={imageClassName}
           src={avatar.src}
-          alt={`PortrĂ©t ${mentor.Title}`}
+          alt={`Portrét ${mentor.Title}`}
           style={{ objectPosition: avatar.position }}
         />
       ) : (

@@ -25,7 +25,7 @@ const HRReviewQueue: React.FC<IHRReviewQueueProps> = ({ sp }) => {
     setLoading(true);
     new MentoringService(sp).getAllRequests()
       .then(all => setRequests(all.filter(r => r.RequestStatus === RequestStatus.HR_Review)))
-      .catch(() => setError('Nepodarilo se nacist HR frontu.'))
+      .catch(() => setError('Nepodařilo se načíst HR frontu.'))
       .finally(() => setLoading(false));
   }, [sp]);
 
@@ -40,29 +40,29 @@ const HRReviewQueue: React.FC<IHRReviewQueueProps> = ({ sp }) => {
     } catch {
       setActionError(
         newStatus === RequestStatus.Scheduled
-          ? 'Nepodarilo se oznacit mentoring jako naplanovany.'
-          : 'Nepodarilo se zrusit zadost.'
+          ? 'Nepodařilo se označit mentoring jako naplánovaný.'
+          : 'Nepodařilo se zrušit žádost.'
       );
     } finally {
       setProcessing(null);
     }
   };
 
-  if (loading) return <div className={styles.loading}>Nacitam HR frontu...</div>;
+  if (loading) return <div className={styles.loading}>Načítám HR frontu...</div>;
   if (error) return <ErrorBanner message={error} onRetry={loadData} />;
 
   return (
     <div>
       <h2 className={styles.pageTitle}>HR Fronta ({requests.length})</h2>
       <p className={styles.sectionHint}>
-        Zadosti odmitnute vsemi mentory vyzaduji rucni reseni HR.
+        Žádosti odmítnuté všemi mentory vyžadují ruční řešení HR.
       </p>
 
       {actionError && <ErrorBanner message={actionError} />}
 
       {requests.length === 0 ? (
         <div className={styles.emptyState}>
-          <p>Fronta je prazdna. Zadne zadosti necekaji na HR.</p>
+          <p>Fronta je prázdná. Žádné žádosti nečekají na HR.</p>
         </div>
       ) : (
         <div className={styles.requestList}>
@@ -96,7 +96,7 @@ const HRReviewQueue: React.FC<IHRReviewQueueProps> = ({ sp }) => {
                     disabled={isProcessing}
                     onClick={() => { void handleAction(req.Id, RequestStatus.Cancelled); }}
                   >
-                    Zrusit zadost
+                    Zrušit žádost
                   </button>
                 </div>
               </div>

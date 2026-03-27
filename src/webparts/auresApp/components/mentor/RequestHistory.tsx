@@ -61,7 +61,7 @@ const RequestHistory: React.FC<IRequestHistoryProps> = ({ sp, currentUser }) => 
 };
 
 // ----------------------------------------------------------------
-// HistoryRow — jeden zaznam v historii rozhodnuti
+// HistoryRow — jeden záznam v historii rozhodnutí
 // ----------------------------------------------------------------
 
 interface IHistoryRowProps {
@@ -69,7 +69,7 @@ interface IHistoryRowProps {
   mentorId: number;
 }
 
-const HistoryRow: React.FC<IHistoryRowProps> = ({ request, mentorId }) => {
+function HistoryRow({ request, mentorId }: IHistoryRowProps): React.ReactElement {
   const myDecision = resolveMyDecision(request, mentorId);
   const decisionDate = myDecision ? formatDate(getDecisionDate(request, myDecision.stage)) : '';
 
@@ -93,11 +93,7 @@ const HistoryRow: React.FC<IHistoryRowProps> = ({ request, mentorId }) => {
       )}
     </div>
   );
-};
-
-// ----------------------------------------------------------------
-// Helpers
-// ----------------------------------------------------------------
+}
 
 function resolveMyDecision(
   req: IMentoringRequest,

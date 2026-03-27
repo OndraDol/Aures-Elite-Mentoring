@@ -61,7 +61,7 @@ const AllRequests: React.FC<IAllRequestsProps> = ({ sp, currentUser }) => {
       );
       setRequests(prev => prev.filter(r => r.Id !== req.Id));
     } catch {
-      setActionError('Nepodarilo se schvalit zadost. Zkus to znovu.');
+      setActionError('Nepodařilo se schválit žádost. Zkus to znovu.');
     } finally {
       setProcessing(null);
     }
@@ -74,7 +74,7 @@ const AllRequests: React.FC<IAllRequestsProps> = ({ sp, currentUser }) => {
       await new MentoringService(sp).setRequestStatus(reqId, RequestStatus.Scheduled);
       setRequests(prev => prev.filter(r => r.Id !== reqId));
     } catch {
-      setActionError('Nepodarilo se oznacit mentoring jako naplanovany.');
+      setActionError('Nepodařilo se označit mentoring jako naplánovaný.');
     } finally {
       setProcessing(null);
     }
@@ -87,7 +87,7 @@ const AllRequests: React.FC<IAllRequestsProps> = ({ sp, currentUser }) => {
       await new MentoringService(sp).setRequestStatus(reqId, RequestStatus.Cancelled);
       setRequests(prev => prev.filter(r => r.Id !== reqId));
     } catch {
-      setActionError('Nepodarilo se zrusit zadost.');
+      setActionError('Nepodařilo se zrušit žádost.');
     } finally {
       setProcessing(null);
     }

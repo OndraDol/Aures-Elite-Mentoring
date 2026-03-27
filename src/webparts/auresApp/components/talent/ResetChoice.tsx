@@ -5,12 +5,13 @@ import { ICurrentUser } from '../../../../services/interfaces';
 import { MentoringService } from '../../../../services/MentoringService';
 import { NavigateFn } from '../AppView';
 import ErrorBanner from '../shared/ErrorBanner';
+import { completeRequestReset } from './requestNavigation';
 
 interface IResetChoiceProps {
   sp: SPFI;
   currentUser: ICurrentUser;
   navigate: NavigateFn;
-  onRequestsChanged: () => void;
+  onRequestsChanged: () => Promise<void>;
 }
 
 const ResetChoice: React.FC<IResetChoiceProps> = ({ sp, currentUser, navigate, onRequestsChanged }) => {
@@ -26,10 +27,11 @@ const ResetChoice: React.FC<IResetChoiceProps> = ({ sp, currentUser, navigate, o
     setResetting(true);
     try {
       await new MentoringService(sp).cancelAllRequestsForTalent(talentId);
-      setDone(true);
-      onRequestsChanged();
+      await completeRequestReset(onRequestsChanged, () => {
+        setDone(true);
+      });
     } catch {
-      setError('Nepodarilo se resetovat tvoji volbu. Zadne zadosti nebyly zmeneny.');
+      setError('Nepodařilo se resetovat tvoji volbu. Žádné žádosti nebyly změněny.');
     } finally {
       setResetting(false);
     }
@@ -38,13 +40,13 @@ const ResetChoice: React.FC<IResetChoiceProps> = ({ sp, currentUser, navigate, o
   if (done) {
     return (
       <div className={styles.emptyState}>
-        <p>Tvoje volba byla resetovana. Muzes si znovu vybrat mentora z katalogu.</p>
+        <p>Tvoje volba byla resetována. Můžeš si znovu vybrat mentora z katalogu.</p>
         <button
           className={styles.btnPrimary}
           style={{ marginTop: 16 }}
           onClick={() => navigate('MentorCatalog')}
         >
-          Prejit na katalog mentoru
+          Přejít na katalog mentorů
         </button>
       </div>
     );
@@ -52,25 +54,25 @@ const ResetChoice: React.FC<IResetChoiceProps> = ({ sp, currentUser, navigate, o
 
   return (
     <div>
-      <h2 className={styles.pageTitle}>Zmena volby mentora</h2>
+      <h2 className={styles.pageTitle}>Změna volby mentora</h2>
 
       {error && <ErrorBanner message={error} />}
 
       <div className={styles.resetChoiceCard}>
         <p className={styles.resetChoiceText}>
-          Pokud chces zmenit svou volbu mentora, muzes zde zrusit vsechny aktualni zadosti
-          a zacit vyber od zacatku. System zrusi vsechny tvoje aktivni zadosti
-          a budes si moci znovu vybrat mentora z katalogu.
+          Pokud chceš změnit svou volbu mentora, můžeš zde zrušit všechny aktuální žádosti
+          a začít výběr od začátku. Systém zruší všechny tvoje aktivní žádosti
+          a budeš si moci znovu vybrat mentora z katalogu.
         </p>
         <p className={styles.resetChoiceWarning}>
-          Tato akce je nevratna. Vsechny tvoje aktualni zadosti budou zruseny.
+          Tato akce je nevratná. Všechny tvoje aktuální žádosti budou zrušeny.
         </p>
         <button
           className={styles.btnReject}
           onClick={() => { void handleReset(); }}
           disabled={resetting}
         >
-          {resetting ? 'Rusim zadosti...' : 'Resetovat volbu a zacit znovu'}
+          {resetting ? 'Ruším žádosti...' : 'Resetovat volbu a začít znovu'}
         </button>
       </div>
     </div>

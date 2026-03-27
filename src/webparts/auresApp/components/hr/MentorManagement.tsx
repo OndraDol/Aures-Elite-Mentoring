@@ -31,13 +31,9 @@ const MentorManagement: React.FC<IMentorManagementProps> = ({ sp }) => {
   const [error, setError] = React.useState<string | null>(null);
   const [actionError, setActionError] = React.useState<string | null>(null);
   const [saving, setSaving]   = React.useState(false);
-
-  // Add/Edit form
-  const [showForm, setShowForm]     = React.useState(false);
-  const [editingId, setEditingId]   = React.useState<number | null>(null);
-  const [form, setForm]             = React.useState<IMentorFormData>(emptyForm);
-
-  // Delete confirmation
+  const [showForm, setShowForm] = React.useState(false);
+  const [editingId, setEditingId] = React.useState<number | null>(null);
+  const [form, setForm] = React.useState<IMentorFormData>(emptyForm);
   const [deletingId, setDeletingId] = React.useState<number | null>(null);
 
   const loadData = React.useCallback(() => {
@@ -102,7 +98,7 @@ const MentorManagement: React.FC<IMentorManagementProps> = ({ sp }) => {
       } else {
         const newId = await svc.addMentor({
           Title: form.Title.trim(),
-          MentorUserId: 0, // HR priradi rucne v SP
+          MentorUserId: 0, // HR přiřadí ručně v SP
           JobTitle: form.JobTitle.trim(),
           Superpower: form.Superpower.trim(),
           Bio: form.Bio.trim(),
@@ -125,7 +121,7 @@ const MentorManagement: React.FC<IMentorManagementProps> = ({ sp }) => {
       setShowForm(false);
       setEditingId(null);
     } catch {
-      setActionError(editingId ? 'Nepodarilo se ulozit zmeny mentora.' : 'Nepodarilo se vytvorit mentora.');
+      setActionError(editingId ? 'Nepodařilo se uložit změny mentora.' : 'Nepodařilo se vytvořit mentora.');
     } finally {
       setSaving(false);
     }
@@ -139,7 +135,7 @@ const MentorManagement: React.FC<IMentorManagementProps> = ({ sp }) => {
       setMentors(prev => prev.filter(m => m.Id !== mentorId));
       setDeletingId(null);
     } catch {
-      setActionError('Nepodarilo se smazat mentora.');
+      setActionError('Nepodařilo se smazat mentora.');
     } finally {
       setSaving(false);
     }
@@ -151,7 +147,7 @@ const MentorManagement: React.FC<IMentorManagementProps> = ({ sp }) => {
       await new MentoringService(sp).setMentorActive(mentor.Id, !mentor.IsActive);
       setMentors(prev => prev.map(m => m.Id === mentor.Id ? { ...m, IsActive: !m.IsActive } : m));
     } catch {
-      setActionError('Nepodarilo se zmenit stav mentora.');
+      setActionError('Nepodařilo se změnit stav mentora.');
     }
   };
 
@@ -169,7 +165,6 @@ const MentorManagement: React.FC<IMentorManagementProps> = ({ sp }) => {
 
       {actionError && <ErrorBanner message={actionError} />}
 
-      {/* Add/Edit Form */}
       {showForm && (
         <div className={styles.mentorFormCard}>
           <h3 className={styles.formSectionTitle}>
@@ -252,7 +247,6 @@ const MentorManagement: React.FC<IMentorManagementProps> = ({ sp }) => {
         </div>
       )}
 
-      {/* Mentor list */}
       <div className={styles.managementList}>
         {mentors.map(mentor => (
           <div

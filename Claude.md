@@ -8,7 +8,7 @@
 - React `17.0.1`
 - TypeScript `5.8.x`
 
-## Prikazy
+## Příkazy
 
 ```bash
 npm install
@@ -20,12 +20,17 @@ npm run package
 npm audit
 ```
 
-## Kvalitni pozadavky
+## Kvalitní požadavky
 
-Kazda zmena musi zachovat:
+Každá změna musí zachovat:
 
 - SPFx `1.22.x`
 - Node `22.x`
-- `npm audit` bez nalezenych zranitelnosti
-- unikatni GUID napric `solution.id` a `solution.features[*].id` v `config/package-solution.json`
-- packaging a deploy overeni pres Heft (`npm run package`), ne pres legacy gulp workflow
+- `npm audit` bez nalezených zranitelností
+- unikátní GUID napříč `solution.id` a `solution.features[*].id` v `config/package-solution.json`
+- packaging a deploy ověření přes Heft (`npm run package`), ne přes legacy gulp workflow
+
+## Provozní poznámka
+
+- Nové mentory přidávej přímo do listu `Mentors`.
+- Mentory nemaž přes HR UI `Smazat`; pro vyřazení použij deaktivaci přes `IsActive`.

@@ -34,7 +34,7 @@ const RequestDetail: React.FC<IRequestDetailProps> = ({ sp, currentUser, navigat
     setLoading(true);
     new MentoringService(sp).getRequestById(requestId)
       .then(setRequest)
-      .catch(() => setError('Nepodarilo se nacist detail zadosti.'))
+      .catch(() => setError('Nepodařilo se načíst detail žádosti.'))
       .finally(() => setLoading(false));
   }, [sp, requestId, navigate]);
 
@@ -60,21 +60,21 @@ const RequestDetail: React.FC<IRequestDetailProps> = ({ sp, currentUser, navigat
       setDecisionDone(true);
       setTimeout(() => navigate('PendingRequests'), 1200);
     } catch {
-      setActionError('Nepodarilo se ulozit tvoje rozhodnuti. Zkus to znovu.');
+      setActionError('Nepodařilo se uložit tvoje rozhodnutí. Zkus to znovu.');
     } finally {
       setDeciding(false);
     }
   };
 
-  if (loading) return <div className={styles.loading}>Nacitam detail zadosti...</div>;
+  if (loading) return <div className={styles.loading}>Načítám detail žádosti...</div>;
   if (error) return <ErrorBanner message={error} onRetry={loadData} />;
-  if (!request) return <div className={styles.loading}>Zadost nenalezena.</div>;
+  if (!request) return <div className={styles.loading}>Žádost nenalezena.</div>;
 
   if (!myStage) {
     return (
       <div className={styles.requestDetailCard}>
-        <p>Tato zadost momentalne nevyzaduje tvoje rozhodnuti.</p>
-        <button className={styles.btnSecondary} onClick={() => navigate('PendingRequests')}>Zpet</button>
+        <p>Tato žádost momentálně nevyžaduje tvoje rozhodnutí.</p>
+        <button className={styles.btnSecondary} onClick={() => navigate('PendingRequests')}>Zpět</button>
       </div>
     );
   }
@@ -88,7 +88,7 @@ const RequestDetail: React.FC<IRequestDetailProps> = ({ sp, currentUser, navigat
   return (
     <div>
       <button className={styles.btnBack} onClick={() => navigate('PendingRequests')}>
-        &larr; Zpet na seznam
+        &larr; Zpět na seznam
       </button>
 
       <h2 className={styles.pageTitle}>{request.Title}</h2>
@@ -102,38 +102,38 @@ const RequestDetail: React.FC<IRequestDetailProps> = ({ sp, currentUser, navigat
         </div>
 
         <div className={styles.detailSection}>
-          <p className={styles.detailLabel}>Tvoje pozice v retezu</p>
+          <p className={styles.detailLabel}>Tvoje pozice v řetězu</p>
           <span className={styles.stageIndicator}>Mentor #{myStage}</span>
         </div>
 
         <div className={styles.detailSection}>
-          <p className={styles.detailLabel}>Zprava od talentu</p>
+          <p className={styles.detailLabel}>Zpráva od talentu</p>
           <div className={styles.talentMessage}>
-            {myMessage ?? '(zadna zprava)'}
+            {myMessage ?? '(žádná zpráva)'}
           </div>
         </div>
 
         {decisionDone ? (
           <div className={styles.decisionConfirm}>
-            Rozhodnuti ulozeno. Presmerovavam...
+            Rozhodnutí uloženo. Přesměrovávám...
           </div>
         ) : (
           <div className={styles.detailSection}>
-            <p className={styles.detailLabel}>Tvoje rozhodnuti</p>
+            <p className={styles.detailLabel}>Tvoje rozhodnutí</p>
             <div className={styles.decisionBtns}>
               <button
                 className={styles.btnApprove}
                 disabled={deciding}
                 onClick={() => { void handleDecision(StageDecision.Approved); }}
               >
-                Schvalit
+                Schválit
               </button>
               <button
                 className={styles.btnReject}
                 disabled={deciding}
                 onClick={() => { void handleDecision(StageDecision.Rejected); }}
               >
-                Zamitnout
+                Zamítnout
               </button>
             </div>
             {nextMentorHint && (
@@ -156,9 +156,9 @@ function resolveActiveStage(req: IMentoringRequest, mentorId: number | undefined
 }
 
 function resolveNextMentorHint(req: IMentoringRequest, myStage: 1 | 2 | 3): string {
-  if (myStage === 1 && req.Mentor2Ref) return `Pri zamitnuti bude zadost predana ${req.Mentor2Ref.Title}.`;
-  if (myStage === 2 && req.Mentor3Ref) return `Pri zamitnuti bude zadost predana ${req.Mentor3Ref.Title}.`;
-  return 'Pri zamitnuti bude zadost predana na HR review.';
+  if (myStage === 1 && req.Mentor2Ref) return `Při zamítnutí bude žádost předána ${req.Mentor2Ref.Title}.`;
+  if (myStage === 2 && req.Mentor3Ref) return `Při zamítnutí bude žádost předána ${req.Mentor3Ref.Title}.`;
+  return 'Při zamítnutí bude žádost předána na HR review.';
 }
 
 async function sendDecisionNotification(

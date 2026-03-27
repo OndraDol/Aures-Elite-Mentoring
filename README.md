@@ -1,19 +1,19 @@
 # Aures Elite Mentoring
 
-SPFx aplikace pro propojovani talentu Aures Holdings s mentory a HR workflow nad SharePoint Online.
+SPFx aplikace pro propojování talentů Aures Holdings s mentory a HR workflow nad SharePoint Online.
 
 ## Source of Truth
 
-- Zdrojovy kod je v rootu repozitare.
-- Slozka `pro honzu/` je generovany export pro review/predani (viz `Create-ProHonzu.ps1`), neni to druhy aktivni projekt.
+- Zdrojový kód je v rootu repozitáře.
+- Složka `pro honzu/` je generovaný export pro review/předání (viz `Create-ProHonzu.ps1`), není to druhý aktivní projekt.
 
-## Hlavni workflow
+## Hlavní workflow
 
-1. Talent poda zadost a zvoli 1-3 mentory.
-2. Zadost jde nejdriv na Mentora 1.
-3. Pri odmitnuti se posouva na dalsiho mentora.
-4. Pokud odmitnou vsichni, zadost prejde do `HR_Review`.
-5. Pri schvaleni jde pripad k HR k domluveni mentoringu.
+1. Talent podá žádost a zvolí 1-3 mentory.
+2. Žádost jde nejdřív na Mentora 1.
+3. Při odmítnutí se posouvá na dalšího mentora.
+4. Pokud odmítnou všichni, žádost přejde do `HR_Review`.
+5. Při schválení jde případ k HR k domluvení mentoringu.
 
 ## Tech stack
 
@@ -26,39 +26,39 @@ SPFx aplikace pro propojovani talentu Aures Holdings s mentory a HR workflow nad
 | Data | `@pnp/sp` v4 |
 | Styling | Sass |
 
-## Pozadavky
+## Požadavky
 
 - Node.js `>=22.14.0 <23`
 - npm 10+
 
-## Prikazy
+## Příkazy
 
 ```bash
-npm install          # Instalace zavislosti
-npm run start        # Lokalni vyvoj
-npm test             # Jest testy pres Heft
-npm test -- --test-path-pattern packageSolution.test   # Regresni kontrola package manifestu
+npm install          # Instalace závislostí
+npm run start        # Lokální vývoj
+npm test             # Jest testy přes Heft
+npm test -- --test-path-pattern packageSolution.test   # Regresní kontrola package manifestu
 npm run build        # Production build
-npm run package      # Production .sppkg pres Heft package-solution
+npm run package      # Production .sppkg přes Heft package-solution
 npm run clean        # Cleanup
-npm audit            # Kontrola zranitelnosti
+npm audit            # Kontrola zranitelností
 ```
 
 ## Build artefakty
 
-Hlavni vystup pro nasazeni:
+Hlavní výstup pro nasazení:
 
 - `sharepoint/solution/aures-elite-mentoring.sppkg`
 
-## Poznamka k nasazeni
+## Poznámka k nasazení
 
-- Deployment balik se vytvari pres Heft workflow `npm run package`, ne pres legacy gulp prikazy.
-- V `config/package-solution.json` musi byt `solution.id` unikatni a nesmi se shodovat s zadnym `features[*].id`.
-- Regresni kontrola teto podminky je pokryta testem `src/config/packageSolution.test.js`.
+- Deployment balík se vytváří přes Heft workflow `npm run package`, ne přes legacy gulp příkazy.
+- V `config/package-solution.json` musí být `solution.id` unikátní a nesmí se shodovat s žádným `features[*].id`.
+- Regresní kontrola této podmínky je pokrytá testem `src/config/packageSolution.test.js`.
 
-## Poznamka k buildu
+## Poznámka k buildu
 
-Repo je po migraci v ejected modu — `config/heft.json`, `webpack.config.js`, `webpack.dev.config.js` jsou soucasti projektu. To je zamerne pro plnou kontrolu nad buildem pod SPFx 1.22.x a Node 22.
+Repo je po migraci v ejected módu, takže `config/heft.json`, `webpack.config.js` a `webpack.dev.config.js` jsou součástí projektu. To je záměrné pro plnou kontrolu nad buildem pod SPFx 1.22.x a Node 22.
 
 ## Lokalizace
 
@@ -66,33 +66,38 @@ SPFx webpart lokalizace je v `src/webparts/auresApp/loc/en-us.resjson`.
 
 ## Mockup
 
-- Staticky mockup pro GitHub Pages je v `index.html`.
+- Statický mockup pro GitHub Pages je v `index.html`.
 - SPFx assety v `src/webparts/auresApp/assets/`.
 
-## Otevrene body
+## Provozní poznámka
+
+- Nové mentory přidávej přímo do listu `Mentors`, ne přes HR UI.
+- Mentory nemaž přes HR UI `Smazat`; pro vyřazení použij deaktivaci přes `IsActive`.
+
+## Otevřené body
 
 - Otestovat aplikaci na SharePoint Online workbench / tenantovi
-- Nahrat `.sppkg` do App Catalogu
-- Vytvorit a naplnit SharePoint listy `Mentors`, `Talents`, `MentoringRequests`
+- Nahrát `.sppkg` do App Catalogu
+- Vytvořit a naplnit SharePoint listy `Mentors`, `Talents`, `MentoringRequests`
 
 ## Changelog
 
 ### 2026-03-24
 
 - Opraven konflikt GUID mezi `solution.id` a `features[0].id` v `config/package-solution.json`
-- Pridan regresni test `src/config/packageSolution.test.js` pro kontrolu unikatnich GUID v package manifestu
+- Přidán regresní test `src/config/packageSolution.test.js` pro kontrolu unikátních GUID v package manifestu
 - Potvrzen Heft packaging workflow pro deployment (`npm run package`)
 
 ### 2026-03-20
 
-- Odstraneni nebezpecnych mock data fallbacku ze vsech komponent
-- Pridani sdileneho ErrorBanner komponentu pro zobrazeni chyb
-- Doplneni metadata a features do `config/package-solution.json`
-- Aktualizace initialPage v `webpack.dev.config.js`
+- Odstranění nebezpečných mock data fallbacků ze všech komponent
+- Přidání sdíleného `ErrorBanner` komponentu pro zobrazení chyb
+- Doplnění metadata a features do `config/package-solution.json`
+- Aktualizace `initialPage` v `webpack.dev.config.js`
 
 ### 2026-03-18
 
 - Migrace toolchainu na SPFx 1.22.2 + Heft + ejected Webpack
 - Migrace build runtime na Node.js 22.x
-- Srovnani dependency stromu, 0 vulnerabilities
-- Bundling assetů mentoru a talentu do .sppkg
+- Srovnání dependency stromu, 0 vulnerabilities
+- Bundling assetů mentorů a talentů do `.sppkg`

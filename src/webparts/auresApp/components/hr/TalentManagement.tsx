@@ -25,7 +25,7 @@ const TalentManagement: React.FC<ITalentManagementProps> = ({ sp }) => {
     setLoading(true);
     new MentoringService(sp).getAllTalentsForAdmin()
       .then(setTalents)
-      .catch(() => setError('Nepodarilo se nacist talenty.'))
+      .catch(() => setError('Nepodařilo se načíst talenty.'))
       .finally(() => setLoading(false));
   }, [sp]);
 
@@ -37,16 +37,16 @@ const TalentManagement: React.FC<ITalentManagementProps> = ({ sp }) => {
       await new MentoringService(sp).setTalentActive(talent.Id, !talent.IsActive);
       setTalents(prev => prev.map(t => t.Id === talent.Id ? { ...t, IsActive: !t.IsActive } : t));
     } catch {
-      setActionError('Nepodarilo se zmenit stav talentu.');
+      setActionError('Nepodařilo se změnit stav talentu.');
     }
   };
 
-  if (loading) return <div className={styles.loading}>Nacitam talenty...</div>;
+  if (loading) return <div className={styles.loading}>Načítám talenty...</div>;
   if (error) return <ErrorBanner message={error} onRetry={loadData} />;
 
   return (
     <div>
-      <h2 className={styles.pageTitle}>Sprava talentu ({talents.length})</h2>
+      <h2 className={styles.pageTitle}>Správa talentů ({talents.length})</h2>
 
       {actionError && <ErrorBanner message={actionError} />}
 
@@ -73,7 +73,7 @@ const TalentManagement: React.FC<ITalentManagementProps> = ({ sp }) => {
                 className={talent.IsActive ? styles.activeBtn : styles.inactiveBtn}
                 onClick={() => { void toggleActive(talent); }}
               >
-                {talent.IsActive ? 'Aktivni' : 'Neaktivni'}
+                {talent.IsActive ? 'Aktivní' : 'Neaktivní'}
               </button>
             </div>
           );

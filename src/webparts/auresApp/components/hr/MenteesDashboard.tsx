@@ -98,7 +98,7 @@ const MenteesDashboard: React.FC<IMenteesDashboardProps> = ({ sp, currentUser })
       );
       await loadData();
     } catch {
-      setActionError('Nepodarilo se schvalit zadost za mentora.');
+      setActionError('Nepodařilo se schválit žádost za mentora.');
     } finally {
       setProcessingId(null);
     }
@@ -111,7 +111,7 @@ const MenteesDashboard: React.FC<IMenteesDashboardProps> = ({ sp, currentUser })
       await new MentoringService(sp).setRequestStatus(requestId, RequestStatus.Scheduled);
       await loadData();
     } catch {
-      setActionError('Nepodarilo se oznacit mentoring jako naplanovany.');
+      setActionError('Nepodařilo se označit mentoring jako naplánovaný.');
     } finally {
       setProcessingId(null);
     }
@@ -124,7 +124,7 @@ const MenteesDashboard: React.FC<IMenteesDashboardProps> = ({ sp, currentUser })
       await new MentoringService(sp).setRequestStatus(requestId, RequestStatus.Cancelled);
       await loadData();
     } catch {
-      setActionError('Nepodarilo se zrusit zadost.');
+      setActionError('Nepodařilo se zrušit žádost.');
     } finally {
       setProcessingId(null);
     }

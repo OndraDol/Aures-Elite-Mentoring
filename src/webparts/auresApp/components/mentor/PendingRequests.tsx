@@ -62,7 +62,7 @@ const PendingRequests: React.FC<IPendingRequestsProps> = ({ sp, currentUser, nav
 };
 
 // ----------------------------------------------------------------
-// PendingRow — jeden radek cekajici zadosti
+// PendingRow — jeden řádek čekající žádosti
 // ----------------------------------------------------------------
 
 interface IPendingRowProps {
@@ -71,7 +71,7 @@ interface IPendingRowProps {
   onClick: () => void;
 }
 
-const PendingRow: React.FC<IPendingRowProps> = ({ request, mentorId, onClick }) => {
+function PendingRow({ request, mentorId, onClick }: IPendingRowProps): React.ReactElement {
   const stage = resolveMyStage(request, mentorId);
   const message = stage === 1 ? request.Message1 : stage === 2 ? request.Message2 : request.Message3;
   const preview = message ? message.slice(0, 120) + (message.length > 120 ? '...' : '') : '';
@@ -89,7 +89,7 @@ const PendingRow: React.FC<IPendingRowProps> = ({ request, mentorId, onClick }) 
       <span className={styles.arrowIcon}>›</span>
     </div>
   );
-};
+}
 
 function resolveMyStage(req: IMentoringRequest, mentorId: number): 1 | 2 | 3 {
   if (req.Mentor2Ref?.Id === mentorId && req.CurrentStage === 2) return 2;
