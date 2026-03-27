@@ -5,12 +5,13 @@ import { ICurrentUser } from '../../../../services/interfaces';
 import { MentoringService } from '../../../../services/MentoringService';
 import { NavigateFn } from '../AppView';
 import ErrorBanner from '../shared/ErrorBanner';
+import { completeRequestReset } from './requestNavigation';
 
 interface IResetChoiceProps {
   sp: SPFI;
   currentUser: ICurrentUser;
   navigate: NavigateFn;
-  onRequestsChanged: () => void;
+  onRequestsChanged: () => Promise<void>;
 }
 
 const ResetChoice: React.FC<IResetChoiceProps> = ({ sp, currentUser, navigate, onRequestsChanged }) => {
@@ -26,8 +27,9 @@ const ResetChoice: React.FC<IResetChoiceProps> = ({ sp, currentUser, navigate, o
     setResetting(true);
     try {
       await new MentoringService(sp).cancelAllRequestsForTalent(talentId);
-      setDone(true);
-      onRequestsChanged();
+      await completeRequestReset(onRequestsChanged, () => {
+        setDone(true);
+      });
     } catch {
       setError('Nepodarilo se resetovat tvoji volbu. Zadne zadosti nebyly zmeneny.');
     } finally {

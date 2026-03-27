@@ -1,10 +1,12 @@
 import * as React from 'react';
 import styles from '../AuresApp.module.scss';
 import { SPFI } from '@pnp/sp';
-import { IMentor, ICurrentUser, RequestStatus } from '../../../../services/interfaces';
+import { IMentor, ICurrentUser } from '../../../../services/interfaces';
 import { MentoringService } from '../../../../services/MentoringService';
 import { NotificationService } from '../../../../services/NotificationService';
 import { NavigateFn } from '../AppView';
+import { hasActiveTalentRequests } from '../appNavigationState';
+import { completeRequestSubmission } from './requestNavigation';
 import MentorAvatar from '../shared/MentorAvatar';
 import ErrorBanner from '../shared/ErrorBanner';
 
@@ -13,10 +15,13 @@ interface IRequestFormProps {
   currentUser: ICurrentUser;
   navigate: NavigateFn;
   hrEmails: string[];
+  onRequestsChanged: () => Promise<void>;
   preselectedMentorId?: number;
 }
 
-const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, hrEmails, preselectedMentorId }) => {
+const RequestForm: React.FC<IRequestFormProps> = ({
+  sp, currentUser, navigate, hrEmails, onRequestsChanged, preselectedMentorId
+}) => {
   const [mentors, setMentors] = React.useState<IMentor[]>([]);
   const [loading, setLoading] = React.useState(true);
   const [submitting, setSubmitting] = React.useState(false);
@@ -40,13 +45,10 @@ const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, h
     ])
       .then(([mentorsData, myReqs]) => {
         setMentors(mentorsData);
-        const active = myReqs.some(r =>
-          ([RequestStatus.Pending, RequestStatus.Approved, RequestStatus.HR_Review, RequestStatus.Scheduled] as string[]).includes(r.RequestStatus)
-        );
-        setHasActiveRequest(active);
+        setHasActiveRequest(hasActiveTalentRequests(myReqs));
       })
       .catch(() => {
-        setLoadError('Nepodařilo se načíst data formuláře.');
+        setLoadError('NepodaĹ™ilo se naÄŤĂ­st data formulĂˇĹ™e.');
       })
       .finally(() => setLoading(false));
   }, [sp, currentUser]);
@@ -98,7 +100,7 @@ const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, h
         }
       })();
 
-      navigate('MyRequests');
+      await completeRequestSubmission(onRequestsChanged, navigate);
     } catch {
       setError('Nepodarilo se odeslat zadost. Zkus to znovu.');
     } finally {
@@ -181,7 +183,7 @@ const RequestForm: React.FC<IRequestFormProps> = ({ sp, currentUser, navigate, h
                     <div>
                       <p className={styles.mentorSelectName}>{mentor.Title}</p>
                       <p className={styles.mentorSelectJobTitle}>
-                        {mentor.JobTitle} · {mentor.Superpower}
+                        {mentor.JobTitle} Â· {mentor.Superpower}
                       </p>
                     </div>
                   </div>

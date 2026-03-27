@@ -2,30 +2,7 @@ import * as React from 'react';
 import styles from './AuresApp.module.scss';
 import { ICurrentUser, UserRole } from '../../../services/interfaces';
 import { AppView, NavigateFn } from './AppView';
-
-interface ITab { label: string; view: AppView; }
-
-const TALENT_TABS_BASE: ITab[] = [
-  { label: 'Katalog mentorů', view: 'MentorCatalog' },
-];
-const TALENT_TABS_WITH_REQUESTS: ITab[] = [
-  { label: 'Katalog mentorů', view: 'MentorCatalog' },
-  { label: 'Moje žádosti',    view: 'MyRequests'    },
-  { label: 'Změna volby',     view: 'ResetChoice'   },
-];
-
-const MENTOR_TABS: ITab[] = [
-  { label: 'Čekající žádosti', view: 'PendingRequests' },
-  { label: 'Historie',         view: 'RequestHistory'  },
-];
-
-const HR_TABS: ITab[] = [
-  { label: 'Mentees dashboard',  view: 'MenteesDashboard'   },
-  { label: 'Domluvené mentoringy', view: 'ApprovedMentorings' },
-  { label: 'Mentoři',             view: 'MentorManagement'   },
-  { label: 'Správa talentů',      view: 'TalentManagement'   },
-  { label: 'Kapacita',            view: 'CapacityDashboard'  },
-];
+import { getTabsForRole, INavigationTab, resolveActiveRoleForView } from './appNavigationState';
 
 const ROLE_LABELS: Partial<Record<UserRole, string>> = {
   [UserRole.Talent]: 'Talent',
@@ -48,22 +25,18 @@ const AppShell: React.FC<IAppShellProps> = ({
   currentUser, currentView, navigate, children, navBadges, hasActiveRequests
 }) => {
   const navigableRoles = currentUser.roles.filter(r => NAVIGABLE_ROLES.includes(r));
-  const [activeRole, setActiveRole] = React.useState<UserRole>(navigableRoles[0]);
+  const resolvedActiveRole = resolveActiveRoleForView(currentView, navigableRoles);
+  const [activeRole, setActiveRole] = React.useState<UserRole>(resolvedActiveRole);
 
-  const getTabsForRole = (role: UserRole): ITab[] => {
-    if (role === UserRole.Talent) {
-      return hasActiveRequests === false ? TALENT_TABS_BASE : TALENT_TABS_WITH_REQUESTS;
-    }
-    if (role === UserRole.Mentor) return MENTOR_TABS;
-    if (role === UserRole.HR) return HR_TABS;
-    return [];
-  };
+  React.useEffect(() => {
+    setActiveRole(resolvedActiveRole);
+  }, [resolvedActiveRole]);
 
-  const tabs = getTabsForRole(activeRole);
+  const tabs: INavigationTab[] = getTabsForRole(activeRole, hasActiveRequests);
 
   const handleRoleSwitch = (role: UserRole): void => {
     setActiveRole(role);
-    const defaultTab = getTabsForRole(role)[0];
+    const defaultTab = getTabsForRole(role, hasActiveRequests)[0];
     if (defaultTab) navigate(defaultTab.view);
   };
 

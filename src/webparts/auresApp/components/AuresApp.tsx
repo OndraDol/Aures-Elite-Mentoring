@@ -2,10 +2,11 @@ import * as React from 'react';
 import { SPFI } from '@pnp/sp';
 import styles from './AuresApp.module.scss';
 import { IAuresAppProps } from './IAuresAppProps';
-import { ICurrentUser, UserRole, RequestStatus } from '../../../services/interfaces';
+import { ICurrentUser, UserRole } from '../../../services/interfaces';
 import { RoleService } from '../../../services/RoleService';
 import { MentoringService } from '../../../services/MentoringService';
 import { AppView, NavigateFn } from './AppView';
+import { hasActiveTalentRequests, resolveDefaultView } from './appNavigationState';
 import AppShell from './AppShell';
 import AccessDenied from './AccessDenied';
 import ErrorBanner from './shared/ErrorBanner';
@@ -32,7 +33,7 @@ const AuresApp: React.FC<IAuresAppProps> = ({ sp, hrEmails }) => {
   const [hasActiveRequests, setHasActiveRequests] = React.useState<boolean | null>(null);
   const [requestStateError, setRequestStateError] = React.useState<string | null>(null);
 
-  const checkActiveRequests = React.useCallback((user: ICurrentUser) => {
+  const checkActiveRequests = React.useCallback(async (user: ICurrentUser): Promise<void> => {
     if (!user.roles.includes(UserRole.Talent) || !user.talentRecord) {
       setHasActiveRequests(false);
       setRequestStateError(null);
@@ -40,23 +41,16 @@ const AuresApp: React.FC<IAuresAppProps> = ({ sp, hrEmails }) => {
     }
     setHasActiveRequests(null);
     setRequestStateError(null);
-    new MentoringService(sp).getMyRequests(user.talentRecord.Id)
-      .then(reqs => {
-        const active = reqs.some(r =>
-          r.RequestStatus === RequestStatus.Pending ||
-          r.RequestStatus === RequestStatus.Approved ||
-          r.RequestStatus === RequestStatus.HR_Review ||
-          r.RequestStatus === RequestStatus.Scheduled
-        );
-        setHasActiveRequests(active);
-        setRequestStateError(null);
-      })
-      .catch(() => {
-        setHasActiveRequests(null);
-        setRequestStateError(
-          'Nepodarilo se overit stav tvych zadosti. Talent zalozky zustavaji dostupne, ale data mohou byt neuplna.'
-        );
-      });
+    try {
+      const requests = await new MentoringService(sp).getMyRequests(user.talentRecord.Id);
+      setHasActiveRequests(hasActiveTalentRequests(requests));
+      setRequestStateError(null);
+    } catch {
+      setHasActiveRequests(null);
+      setRequestStateError(
+        'Nepodarilo se overit stav tvych zadosti. Talent zalozky zustavaji dostupne, ale data mohou byt neuplna.'
+      );
+    }
   }, [sp]);
 
   React.useEffect(() => {
@@ -65,7 +59,7 @@ const AuresApp: React.FC<IAuresAppProps> = ({ sp, hrEmails }) => {
       .then(user => {
         setCurrentUser(user);
         setView(resolveDefaultView(user));
-        checkActiveRequests(user);
+        void checkActiveRequests(user);
         if (user.roles.includes(UserRole.Mentor) && user.mentorRecord) {
           new MentoringService(sp).getPendingRequestsForMentor(user.mentorRecord.Id)
             .then(items => { if (items.length > 0) setNavBadges({ PendingRequests: items.length }); })
@@ -84,16 +78,18 @@ const AuresApp: React.FC<IAuresAppProps> = ({ sp, hrEmails }) => {
     []
   );
 
-  const handleRequestsChanged = React.useCallback(() => {
-    if (currentUser) checkActiveRequests(currentUser);
+  const handleRequestsChanged = React.useCallback(async (): Promise<void> => {
+    if (currentUser) {
+      await checkActiveRequests(currentUser);
+    }
   }, [currentUser, checkActiveRequests]);
 
   if (loading) {
-    return <div className={styles.auresApp}><p style={{ padding: 16 }}>Načítám...</p></div>;
+    return <div className={styles.auresApp}><p style={{ padding: 16 }}>NaÄŤĂ­tĂˇm...</p></div>;
   }
 
   if (error) {
-    return <div className={styles.auresApp}><p style={{ padding: 16 }}>Chyba při inicializaci: {error}</p></div>;
+    return <div className={styles.auresApp}><p style={{ padding: 16 }}>Chyba pĹ™i inicializaci: {error}</p></div>;
   }
 
   if (!currentUser || view === 'AccessDenied') {
@@ -117,7 +113,7 @@ const AuresApp: React.FC<IAuresAppProps> = ({ sp, hrEmails }) => {
           {requestStateError && (
             <ErrorBanner
               message={requestStateError}
-              onRetry={() => { checkActiveRequests(currentUser); }}
+              onRetry={() => { void checkActiveRequests(currentUser); }}
             />
           )}
           {renderView(view, currentUser, sp, navigate, navParams, hrEmails, handleRequestsChanged)}
@@ -127,14 +123,6 @@ const AuresApp: React.FC<IAuresAppProps> = ({ sp, hrEmails }) => {
   );
 };
 
-function resolveDefaultView(user: ICurrentUser): AppView {
-  if (user.roles.includes(UserRole.Unknown) && user.roles.length === 1) return 'AccessDenied';
-  if (user.roles.includes(UserRole.Talent))  return 'MentorCatalog';
-  if (user.roles.includes(UserRole.Mentor))  return 'PendingRequests';
-  if (user.roles.includes(UserRole.HR))      return 'MenteesDashboard';
-  return 'AccessDenied';
-}
-
 function renderView(
   view: AppView | null,
   currentUser: ICurrentUser,
@@ -142,25 +130,22 @@ function renderView(
   navigate: NavigateFn,
   params: Record<string, unknown>,
   hrEmails: string[],
-  onRequestsChanged: () => void
+  onRequestsChanged: () => Promise<void>
 ): React.ReactElement {
   switch (view) {
-    // Talent
     case 'MentorCatalog': return <MentorCatalog sp={sp} currentUser={currentUser} navigate={navigate} />;
-    case 'RequestForm':   return <RequestForm   sp={sp} currentUser={currentUser} navigate={navigate} hrEmails={hrEmails} preselectedMentorId={params.preselectedMentorId as number | undefined} />;
+    case 'RequestForm':   return <RequestForm   sp={sp} currentUser={currentUser} navigate={navigate} hrEmails={hrEmails} onRequestsChanged={onRequestsChanged} preselectedMentorId={params.preselectedMentorId as number | undefined} />;
     case 'MyRequests':    return <MyRequests    sp={sp} currentUser={currentUser} navigate={navigate} />;
-    case 'ResetChoice':   return <ResetChoice  sp={sp} currentUser={currentUser} navigate={navigate} onRequestsChanged={onRequestsChanged} />;
-    // Mentor
+    case 'ResetChoice':   return <ResetChoice   sp={sp} currentUser={currentUser} navigate={navigate} onRequestsChanged={onRequestsChanged} />;
     case 'PendingRequests': return <PendingRequests sp={sp} currentUser={currentUser} navigate={navigate} />;
     case 'RequestDetail':   return <RequestDetail   sp={sp} currentUser={currentUser} navigate={navigate} requestId={params.requestId as number | undefined} hrEmails={hrEmails} />;
     case 'RequestHistory':  return <RequestHistory  sp={sp} currentUser={currentUser} navigate={navigate} />;
-    // HR
     case 'MenteesDashboard': return <MenteesDashboard sp={sp} currentUser={currentUser} navigate={navigate} />;
     case 'ApprovedMentorings': return <ApprovedMentorings sp={sp} currentUser={currentUser} navigate={navigate} />;
     case 'MentorManagement':  return <MentorManagement sp={sp} currentUser={currentUser} navigate={navigate} />;
     case 'TalentManagement':  return <TalentManagement sp={sp} currentUser={currentUser} navigate={navigate} />;
     case 'CapacityDashboard': return <CapacityDashboard sp={sp} currentUser={currentUser} navigate={navigate} />;
-    default:                  return <div>Načítám…</div>;
+    default:                  return <div>NaÄŤĂ­tĂˇmâ€¦</div>;
   }
 }
 

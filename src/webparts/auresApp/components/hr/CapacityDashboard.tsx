@@ -1,10 +1,11 @@
 import * as React from 'react';
 import styles from '../AuresApp.module.scss';
 import { SPFI } from '@pnp/sp';
-import { IMentor, IMentoringRequest, ICurrentUser, RequestStatus, StageDecision } from '../../../../services/interfaces';
+import { IMentor, IMentoringRequest, ICurrentUser } from '../../../../services/interfaces';
 import { MentoringService } from '../../../../services/MentoringService';
 import { NavigateFn } from '../AppView';
 import ErrorBanner from '../shared/ErrorBanner';
+import { countCapacityRequests } from './capacityDashboardHelpers';
 
 interface ICapacityDashboardProps {
   sp: SPFI;
@@ -24,24 +25,24 @@ const CapacityDashboard: React.FC<ICapacityDashboardProps> = ({ sp }) => {
     const svc = new MentoringService(sp);
     Promise.all([svc.getMentors(), svc.getAllRequests()])
       .then(([m, r]) => { setMentors(m); setRequests(r); })
-      .catch(() => setError('Nepodařilo se načíst kapacitní dashboard.'))
+      .catch(() => setError('NepodaĹ™ilo se naÄŤĂ­st kapacitnĂ­ dashboard.'))
       .finally(() => setLoading(false));
   }, [sp]);
 
   React.useEffect(() => { loadData(); }, [loadData]);
 
-  if (loading) return <div className={styles.loading}>Načítám dashboard…</div>;
+  if (loading) return <div className={styles.loading}>NaÄŤĂ­tĂˇm dashboardâ€¦</div>;
   if (error) return <ErrorBanner message={error} onRetry={loadData} />;
 
   return (
     <div>
-      <h2 className={styles.pageTitle}>Kapacitní dashboard</h2>
+      <h2 className={styles.pageTitle}>KapacitnĂ­ dashboard</h2>
       <div className={styles.capacityList}>
         {mentors.map(mentor => {
-          const approved  = countApproved(mentor.Id, requests);
-          const remaining = Math.max(0, mentor.Capacity - approved);
+          const occupied  = countCapacityRequests(mentor.Id, requests);
+          const remaining = Math.max(0, mentor.Capacity - occupied);
           const pct       = mentor.Capacity > 0
-            ? Math.min(100, Math.round((approved / mentor.Capacity) * 100))
+            ? Math.min(100, Math.round((occupied / mentor.Capacity) * 100))
             : 100;
           const barClass  = pct >= 100 ? styles.barFull : pct >= 75 ? styles.barHigh : styles.barOk;
 
@@ -52,12 +53,12 @@ const CapacityDashboard: React.FC<ICapacityDashboardProps> = ({ sp }) => {
                 <p className={styles.managementMeta}>{mentor.JobTitle}</p>
               </div>
               <div className={styles.capacityStats}>
-                <span className={styles.capacityStat}>{approved} / {mentor.Capacity}</span>
+                <span className={styles.capacityStat}>{occupied} / {mentor.Capacity}</span>
                 <span className={[
                   styles.capacityRemaining,
                   remaining === 0 ? styles.capacityFull : ''
                 ].filter(Boolean).join(' ')}>
-                  {remaining > 0 ? `${remaining} volných` : 'Plno'}
+                  {remaining > 0 ? `${remaining} volnĂ˝ch` : 'Plno'}
                 </span>
               </div>
               <div className={styles.capacityBarWrap}>
@@ -73,15 +74,5 @@ const CapacityDashboard: React.FC<ICapacityDashboardProps> = ({ sp }) => {
     </div>
   );
 };
-
-function countApproved(mentorId: number, reqs: IMentoringRequest[]): number {
-  return reqs.filter(r =>
-    r.RequestStatus === RequestStatus.Approved && (
-      (r.Mentor1Ref?.Id === mentorId && r.Stage1Decision === StageDecision.Approved) ||
-      (r.Mentor2Ref?.Id === mentorId && r.Stage2Decision === StageDecision.Approved) ||
-      (r.Mentor3Ref?.Id === mentorId && r.Stage3Decision === StageDecision.Approved)
-    )
-  ).length;
-}
 
 export default CapacityDashboard;
